@@ -1,0 +1,205 @@
+import React, {useState, useEffect, useCallback, useRef, createRef} from 'react';
+
+import { ReactComponent as HunterIcon } from '../assets/img/hunter.svg';
+import { ReactComponent as OutfitterIcon } from '../assets/img/outfitter.svg';
+import { ReactComponent as DealerIcon } from '../assets/img/dealer.svg';
+
+import {productType} from '../assets/data/products';
+
+interface inquiryType {
+  closeInquiry: () => void;
+  showInquiry: boolean;
+  productData: productType[];
+}
+
+const defaultInputData = [
+  {
+    name: 'Special-Ops',
+    qty: '0',
+    price: {
+      retail: 1875,
+      dealer: 1500
+    }
+  },
+  {
+    name: 'TreeHugger',
+    qty: '0',
+    price: {
+      retail: 795,
+      dealer: 635
+    }
+  },
+  {
+    name: '5-N-1',
+    qty: '0',
+    price: {
+      retail: 2250,
+      dealer: 1800
+    }
+  }
+];
+
+const Inquiry = (props: inquiryType) => {
+  const [cost, setCost] = useState(0);
+
+  const inputRef = useRef<any>(defaultInputData.map(() => createRef()));
+  const [productInputValues, setProductInputValues] = useState(defaultInputData);
+  const [showDealerPrice, setShowDealerPrice] = useState(false);
+
+  const [userType, setUserType] = useState('hunter');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [companyName, setCompanyName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+
+  const calculateTotalCost = (costArray: number[]) => {
+    let totalCost = 0;
+    costArray.map((numb: any) => {
+      totalCost = numb + totalCost;
+    });
+    setCost(totalCost);
+  }
+
+  const calculateTotals = useCallback(() => {
+    let totalInputValue = 0;
+    let retailCosts: number[] = [];
+    let dealerCosts: number[] = [];
+    productInputValues.map((item: any) => {
+      totalInputValue = Number(item.qty) + totalInputValue;
+      retailCosts.push((Number(item.qty) * Number(item.price.retail)));
+      dealerCosts.push((Number(item.qty) * Number(item.price.dealer)));
+    });
+    if(totalInputValue >= 5 && userType !== 'hunter') {
+      setShowDealerPrice(true);
+      calculateTotalCost(dealerCosts);
+    }
+    if(totalInputValue < 5 || userType === 'hunter') {
+      setShowDealerPrice(false);
+      calculateTotalCost(retailCosts);
+    }
+  }, [productInputValues, userType]);
+  
+  const handleProductInputChange = (key: number, event: any) => {
+    let result = productInputValues.filter(obj => {
+      return obj.name === event.currentTarget.name;
+    })
+    result[0].qty = event.currentTarget.value;
+    productInputValues[key] = result[0];
+    setProductInputValues(productInputValues);
+    calculateTotals();
+  }
+
+  const handleInputArrowClick = (direction: string, name: string, key: number, event: any) => {
+    let result = productInputValues.filter(obj => {
+      return obj.name === name;
+    })
+    if(direction === 'up') {
+      result[0].qty = (Number(result[0].qty) + 1).toString();
+    }
+    if(direction === 'down' && Number(result[0].qty) > 0) {
+      result[0].qty = (Number(result[0].qty) - 1).toString();
+    }
+    inputRef.current[key].current.value = result[0].qty;
+    productInputValues[key] = result[0];
+    setProductInputValues(productInputValues);
+    calculateTotals();
+  }
+
+  useEffect(() => {
+    calculateTotals();
+  },[userType]);
+  
+  return (
+    <div className={props.showInquiry ? "inquiryModal show" : "inquiryModal"}>
+
+      <button className="closeModal" onClick={() => props.closeInquiry()}></button>
+
+      <section className="inquiryCart">
+        {props.productData.map((item: any, index: number) => {
+          return (
+            <div key={index} className="inquiryProduct">
+              <div className="inquiryProductWrap">
+                <img src={item.image} alt={item.name} />
+                <div className="inquiryProductCopy">
+                  <div className="formGroup">
+                    <span className="arrow up" onClick={(e) => handleInputArrowClick('up', item.name, index, e)}></span>
+                    <span className="arrow down" onClick={(e) => handleInputArrowClick('down', item.name, index, e)}></span>
+                    <input ref={inputRef.current[index]} value={inputRef.current[index].value} type="number" name={item.name} min="0" step="1" onChange={(e) => handleProductInputChange(index, e)} placeholder="0" />
+                  </div>
+                  <div className="copyGroup">
+                    <h4>{item.name}</h4>
+                    <div className={showDealerPrice ? 'price dealer' : 'price'}>
+                      <span className="retail">${item.price.retail}</span>
+                      <span className="dealer">${item.price.dealer}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </section>
+
+      <section className="inquiryForm">
+
+        <div className="formHeader">
+          <h4 className="price">
+            <span className="ticker">$</span>{cost}
+          </h4>
+          <h5>Purchase Inquiry</h5>
+        </div>
+
+        <div className="formWrap">
+
+          <div className="formGroup formBtnGroup">
+            <label>Pick the role that best suits you...</label>
+            <div className="btnGroup">
+              <button className={userType === 'hunter' ? "selected" : ""} onClick={() => setUserType('hunter')}>
+                <HunterIcon />
+                Hunter
+              </button>
+              <button className={userType === 'outfitter' ? "selected" : ""} onClick={() => setUserType('outfitter')}>
+                <OutfitterIcon />
+                Outfitter
+              </button>
+              <button className={userType === 'dealer' ? "selected" : ""} onClick={() => setUserType('dealer')}>
+                <DealerIcon />
+                Dealer
+              </button>
+            </div>
+          </div>
+
+          <div className="formGroup half">
+            <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} placeholder="First Name" />
+            <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder="Last Name" />
+          </div>
+
+          {
+            userType !== 'hunter' && (
+              <div className="formGroup">
+                <input type="text" value={companyName} onChange={(e) => setCompanyName(e.target.value)} placeholder="Company Name" />
+              </div>
+            )
+          }
+
+          <div className="formGroup">
+            <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email Address" />
+          </div>
+
+          <div className="formGroup">
+            <input type="text" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="Phone Number" />
+          </div>
+
+        </div>
+
+        <div className="formSubmit">
+          <button className="btn">Send Inquiry</button>
+        </div>
+
+      </section>
+    </div>
+  )
+}
+
+export default Inquiry;
