@@ -1,0 +1,497 @@
+#productPage {
+  h2 {
+    font-size: 2rem;
+    text-align: center;
+  }
+  p {
+    opacity: 0.5;
+  }
+  .hero {
+    min-height: auto;
+  }
+  .content {
+    position: relative;
+    z-index: 3;
+    height: 100%;
+    .about {
+      display: flex;
+      flex-direction: column-reverse;
+      justify-content: center;
+      align-items: flex-start;
+      color: white;
+      height: 100%;
+      overflow: hidden;
+      .blueprint {
+        position: relative;
+        width: 100%;
+        padding-bottom: 60px;
+        img {
+          max-width: 80%;
+          margin: 0 auto;
+          display: block;
+          opacity: 0.5;
+        }
+      }
+      .desc {
+        max-width: 500px;
+        box-sizing: border-box;
+        padding: 20px;
+        p {
+          font-size: 2rem;
+          margin-top: 0;
+          opacity: 1;
+        }
+        ul {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          position: relative;
+          &:after {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 4%;
+            bottom: 4%;
+            width: 1px;
+            background: white;
+          }
+          li {
+            position: relative;
+            font-size: 1.4rem;
+            padding-left: 40px;
+            padding: 5px 0 5px 40px;
+            &:after {
+              content: '';
+              width: 30px;
+              height: 1px;
+              background: white;
+              position: absolute;
+              left: 0;
+              top: 50%;
+              transform: translate(0,-50%);
+            }
+          }
+        }
+        .btn {
+          margin: 40px 0;
+          width: 100%;
+        }
+      }
+    }
+  }
+  .imageGallery {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    background: $tan;
+    box-sizing: border-box;
+    padding: 15px;
+    .image {
+      flex: 0 0 50%;
+      box-sizing: border-box;
+      padding: 5px;
+      img {
+        width: 100%;
+        height: auto;
+        outline: solid 5px black;
+        outline-offset: -5px;
+        transition: all 0.3s ease-in-out;
+        &:hover {
+          cursor: pointer;
+          outline-offset: -10px;
+          outline: solid 10px black;
+          transition: all 0.3s ease-in-out;
+        }
+      }
+    }
+  }
+  .imageModal {
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0,0,0,0.8);
+    display: none;
+    box-sizing: border-box;
+    padding: 40px;
+    &.show {
+      display: flex;
+    }
+    img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+  .block {
+    display: flex;
+    flex-direction: column;
+    background: $grey;
+    color: white;
+    font-family: "stratum-1-web", sans-serif;
+    h3 {
+      font-family: "stratum-1-web", sans-serif;
+      font-weight: lighter;
+    }
+    p {
+      font-size: 1.4rem;
+    }
+    article {
+      padding: 20px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      img {
+        max-width: 80%;
+      }
+    }
+    .camo {
+      aspect-ratio: 1;
+      background: url('../img/camo.jpg') no-repeat scroll center / cover;
+    }
+    &.viewPort {
+      flex-direction: column-reverse;
+      .camoWrap {
+        position: relative;
+        overflow: hidden;
+        aspect-ratio: 1;
+        background: #222;
+        &:before {
+          content: '';
+          display: block;
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          z-index: 2;
+          background: rgba(0,0,0,0.7);
+        }
+        .cornImage {
+          position: absolute;
+          top: -40%;
+          left: 0;
+          right: 0;
+          bottom: 0;
+        }
+        .camoImage {
+          position: absolute;
+          z-index: 2;
+          top: 50%;
+          left: 50%;
+          right: 0;
+          bottom: 0;
+          width: 100%;
+          max-width: 100%;
+          transform: translate(-50%,-50%);
+        }
+        .viewPortImage {
+          position: relative;
+          z-index: 3;
+        }
+      }
+    }
+    &.solarPanel {
+      .camo {
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+        .glare {
+          position: absolute;
+          display: block;
+          width: 300px;
+          height: 300px;
+          top: 200%;
+          left: 50%;
+          background: white;
+          border-radius: 9999999px;
+          filter: blur(100px);
+          padding: 0;
+        }
+      }
+    }
+  }
+  .spotlight {
+    text-align: center;
+    color: white;
+    margin-top: 0;
+    box-sizing: border-box;
+    padding: 20px;
+    margin-bottom: 60px;
+    position: relative;
+    z-index: 2;
+    img {
+      max-width: 100%;
+      max-height: 800px;
+    }
+  }
+  .related {
+    display: flex;
+    flex-direction: column;
+    background: $green;
+    .item {
+      aspect-ratio: 1;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      box-sizing: border-box;
+      padding: 40px;
+      a {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      img {
+        max-width: 60%;
+      }
+      h4 {
+        margin-top: 40px;
+      }
+      &:nth-child(2) {
+        background: darken($green, 5%);
+      }
+    }
+  }
+  .riceBrand {
+    background: $blue;
+    article {
+      aspect-ratio: 1;
+      img {
+        max-width: 80%;
+      }
+    }
+  }
+  .feedOptions {
+    background: $blue;
+    .options {
+      box-sizing: border-box;
+      padding: 0 20px;
+      .btn {
+        margin: 10px 0;
+        width: 100%;
+      }
+      p {
+        margin-top: 0;
+      }
+    }
+    .graphic {
+      position: relative;
+      svg {
+        width: 100%;
+        #timer, 
+        #gravity,
+        #split {
+          opacity: 0;
+          transition: all 0.3s ease-in-out;
+        }
+      }
+      &.timer {
+        svg {
+          #timer {
+            opacity: 1;
+            transition: all 0.3s ease-in-out;
+          }
+        }
+      }
+      &.split {
+        .imageWrap {
+          &:after {
+            transform: rotate(-45deg);
+            transition: all 0.3s ease-in-out;
+          }
+        }
+        svg {
+          #split {
+            opacity: 1;
+            transition: all 0.3s ease-in-out;
+          }
+        }
+      }
+      &.gravity {
+        .imageWrap {
+          &:before {
+            transform: rotate(-45deg);
+            transition: all 0.3s ease-in-out;
+          }
+          &:after {
+            transform: rotate(-45deg);
+            transition: all 0.3s ease-in-out;
+          }
+        }
+        svg {
+          #gravity {
+            opacity: 1;
+            transition: all 0.3s ease-in-out;
+          }
+        }
+      }
+    }
+    &.specialOps {
+      .imageWrap {
+        width: 300px;
+        position: relative;
+        padding: 0;
+        &:before {
+          content: '';
+          display: block;
+          background: white;
+          width: 2px;
+          height: 160px;
+          position: absolute;
+          z-index: 2;
+          top: 71px;
+          left: 143px;
+          transform-origin: bottom center;
+          transition: all 0.3s ease-in-out;
+        }
+        &:after {
+          content: '';
+          display: block;
+          background: white;
+          width: 2px;
+          height: 160px;
+          position: absolute;
+          z-index: 2;
+          bottom: 125px;
+          right: 38px;
+          transform: translate(0,0);
+          transform-origin: bottom center;
+          transition: all 0.3s ease-in-out;
+        }
+      }
+      .graphic {
+        svg {
+          transform: translate(25px,0);
+        }
+      }
+    }
+    &.fiveInOne {
+      .imageWrap {
+        padding: 0;
+        width: 375px;
+      }
+    }
+  }
+}
+
+@media(min-width: 768px) {
+  #productPage {
+    .heroTitle {
+      h1 {
+        font-size: 5rem;
+        line-height: 80px;
+      }
+    }
+    h2 {
+      font-size: 4rem;
+      margin: 0 0 40px;
+    }
+    .content {
+      .about {
+        flex-direction: row;
+        .blueprint {
+          flex: 0 0 40%;
+          img {
+            position: absolute;
+            top: 0;
+            right: 60px;
+            max-width: 130%;
+          }
+        }
+        .desc {
+          flex: 0 0 60%;
+        }
+      }
+    }
+    .imageGallery {
+      padding: 60px;
+      .image {
+        flex: 0 0 25%;
+        padding: 10px;
+      }
+    }
+    .block {
+      flex-direction: row;
+      &.viewPort {
+        flex-direction: row;
+        .camoWrap {
+          .cornImage {
+            top: 0;
+          }
+        }
+      }
+      &.solarPanel {
+        .camo {
+          .glare {
+            top: 125%;
+          }
+        }
+      }
+      article {
+        flex: 0 0 50%;
+        div {
+          padding: 0 60px;
+        }
+      }
+      .copy {
+        div {
+          padding: 0 40px;
+        }
+        p {
+          font-size: 1rem;
+        }
+        h3 {
+          margin-top: 0;
+          font-size: 1.6rem;
+        }
+      }
+    }
+    .spotlight {
+      margin-top: -100px;
+    }
+    .related {
+      flex-direction: row;
+    }
+    .feedOptions {
+      padding: 60px 0;
+      .options {
+        padding: 20px;
+        h3 {
+          margin-top: 0;
+        }
+      }
+      &.fiveInOne {
+        .imageWrap {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+@media(min-width: 1024px) {
+  #productPage {
+    .block {
+      .copy {
+        div {
+          padding: 0 40px;
+        }
+        p {
+          font-size: 1.4rem;
+        }
+        h3 {
+          margin-top: 0;
+          font-size: 2rem;
+        }
+      }
+    }
+  }
+}

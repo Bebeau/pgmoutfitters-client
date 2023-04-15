@@ -6,10 +6,10 @@ const ProductListing = (props: any) => {
       <div className="contentWrap">
         {props.products.map((item: any, index: number) => {
           return (
-            <a href={item.link} key={index}>
+            <a href={`/products/deer-feeders/${item.slug}`} key={index}>
               <img src={item.image} alt={item.name} />
               <h4>{item.name}</h4>
-              <h5>View Details</h5>
+              <h5 className="details">View Details</h5>
             </a>
           );
         })}

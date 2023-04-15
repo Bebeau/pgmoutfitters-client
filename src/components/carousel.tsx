@@ -3,7 +3,7 @@ import React, {useState, useEffect} from 'react';
 interface slide {
   name?: string;
   image?: string;
-  link?: string;
+  slug?: string;
   transition?: string;
 }
 
@@ -15,7 +15,7 @@ const ProductSlide = (props: slide) => {
       </section>
       <section className={props.transition ? "slideCopy fade" : "slideCopy"}>
         <h2>
-          <a href={props.link}>
+          <a href={`/products/deer-feeders/${props.slug}`}>
             {props.name}
           </a>
         </h2>

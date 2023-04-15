@@ -40,7 +40,7 @@ const defaultInputData = [
 ];
 
 const Inquiry = (props: inquiryType) => {
-  const [cost, setCost] = useState(0);
+  const [cost, setCost] = useState('');
 
   const inputRef = useRef<any>(defaultInputData.map(() => createRef()));
   const [productInputValues, setProductInputValues] = useState(defaultInputData);
@@ -58,13 +58,19 @@ const Inquiry = (props: inquiryType) => {
     costArray.map((numb: any) => {
       totalCost = numb + totalCost;
     });
-    setCost(totalCost);
+    setCost(formatter.format(Number(totalCost)).replace("$",""));
   }
+  const formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    maximumFractionDigits: 0,
+  });
 
   const calculateTotals = useCallback(() => {
     let totalInputValue = 0;
     let retailCosts: number[] = [];
     let dealerCosts: number[] = [];
+    
     productInputValues.map((item: any) => {
       totalInputValue = Number(item.qty) + totalInputValue;
       retailCosts.push((Number(item.qty) * Number(item.price.retail)));

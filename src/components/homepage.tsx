@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Carousel from './carousel';
 import Company from './company';
 import Testimonials from './testimonials';
@@ -11,9 +11,16 @@ type homepageType = {
   openInquiry: () => void;
   productData: productType[];
   testimonialData: testimonialType[];
+  isLoading: boolean;
+  setIsLoading: (value: boolean) => void; 
 }
 
 const Homepage = (props: homepageType) => {
+  useEffect(() => {
+    if(props.isLoading) {
+      props.setIsLoading(false);
+    }
+  }, [props]);
   return (
     <>
     <div className="hero">
