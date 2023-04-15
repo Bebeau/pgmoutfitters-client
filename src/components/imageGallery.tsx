@@ -2,33 +2,64 @@ import React, {useState, useRef} from 'react';
 import {productImage} from '../assets/data/products';
 
 type imageGalleryType = {
-  photos: productImage[]
+  photos: productImage[],
+  openInquiry: () => void
 }
 const ImageGallery = (props: imageGalleryType) => {
   const modalRef = useRef(null);
-  const [selectedImage, setSelectedImage] = useState();
+  const [selected, setSelected] = useState<productImage>({
+    thumb: '',
+    full: '',
+    title: '',
+    desc: '',
+  });
   const [showImageModal, setShowImageModal] = useState(false);
 
-  const handleImageClick = (image: any) => {
-    setSelectedImage(image);
+  const handleImageClick = (item: productImage) => {
+    setSelected(item);
     setShowImageModal(true);
   }
   const handleModalClose = () => {
     setShowImageModal(false);
+  }
+  const handleModalInquiry = () => {
+    setShowImageModal(false);
+    props.openInquiry();
   }
   return (
     <>
       <div className="imageGallery">
         {props.photos.map((item: any, index: number) => {
           return (
-            <div className="image" onClick={() => handleImageClick(item.full)}>
+            <div className="image" onClick={() => handleImageClick(item)}>
               <img src={item.thumb} alt='' />
             </div>
           );
         })}
       </div>
-      <div ref={modalRef} className={showImageModal ? "imageModal show" : "imageModal"} onClick={handleModalClose}>
-        <img src={selectedImage} alt='' />
+      <div ref={modalRef} className={showImageModal ? "imageModal show" : "imageModal"}>
+        <button className="closeModal" onClick={handleModalClose}></button>
+        <div className="imageWrap">
+          <img src={selected.full} alt='' />
+          <div className="copy">
+            <div>
+              <h5>{selected.title}</h5>
+              <p>{selected.desc}</p>
+              <button className="btn" onClick={handleModalInquiry}>
+                Inquire For Purchase
+              </button>
+            </div>
+            <div className="thumbs">
+              {props.photos.map((item: any, index: number) => {
+                return (
+                  <div className="image" onClick={() => handleImageClick(item)}>
+                    <img src={item.thumb} alt='' />
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
       </div>
     </>
   )

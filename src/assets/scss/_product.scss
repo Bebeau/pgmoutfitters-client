@@ -115,16 +115,36 @@
     bottom: 0;
     justify-content: center;
     align-items: center;
-    background: rgba(0,0,0,0.8);
+    background: rgba(0,0,0,0.9);
     display: none;
     box-sizing: border-box;
     padding: 40px;
     &.show {
       display: flex;
+      flex-direction: column;
     }
-    img {
-      max-width: 100%;
+    .imageWrap {
+      max-width: 1200px;
       max-height: 100%;
+      img {
+        max-height: 80%;
+        max-width: 100%;
+        margin: 0 auto;
+        display: block;
+      }
+      .copy {
+        color: white;
+        h5 {
+          margin: 20px 0 0;
+          font-size: 2rem;
+        }
+        p {
+          font-size: 1.2rem;
+        }
+        .thumbs {
+          display: none;
+        }
+      }
     }
   }
   .block {
@@ -175,7 +195,7 @@
         }
         .cornImage {
           position: absolute;
-          top: -40%;
+          top: -50%;
           left: 0;
           right: 0;
           bottom: 0;
@@ -416,6 +436,40 @@
       .image {
         flex: 0 0 25%;
         padding: 10px;
+      }
+    }
+    .imageModal {
+      &.show {
+        .imageWrap {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          max-width: 100%;
+          padding-right: 40px;
+          img {
+            max-height: 100%;
+          }
+          .copy {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            max-width: 400px;
+            padding: 0 0 0 40px;
+            color: white;
+            .btn {
+              margin: 40px 0 0;
+            }
+            .thumbs {
+              display: flex;
+              flex-wrap: wrap;
+              gap: 5px;
+              .image {
+                flex: 0 0 20%;
+              }
+            }
+          }
+        }
       }
     }
     .block {

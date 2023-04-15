@@ -1,6 +1,5 @@
 import specialOps from '../img/special-ops/special-ops.png';
 import specialOpsBluePrint from '../img/special-ops/special-ops-blueprint.svg';
-
 import specialOpsThumb1 from '../img/special-ops/photos/thumb/1.jpg';
 import specialOpsThumb2 from '../img/special-ops/photos/thumb/2.jpg';
 import specialOpsThumb3 from '../img/special-ops/photos/thumb/3.jpg';
@@ -9,7 +8,6 @@ import specialOpsThumb5 from '../img/special-ops/photos/thumb/5.jpg';
 import specialOpsThumb6 from '../img/special-ops/photos/thumb/6.jpg';
 import specialOpsThumb7 from '../img/special-ops/photos/thumb/7.jpg';
 import specialOpsThumb8 from '../img/special-ops/photos/thumb/8.jpg';
-
 import specialOpsFull1 from '../img/special-ops/photos/full/1.jpg';
 import specialOpsFull2 from '../img/special-ops/photos/full/2.jpg';
 import specialOpsFull3 from '../img/special-ops/photos/full/3.jpg';
@@ -21,7 +19,6 @@ import specialOpsFull8 from '../img/special-ops/photos/full/8.jpg';
 
 import treeHugger from '../img/tree-hugger/treehugger_plain.png';
 import treeHuggerBluePrint from '../img/tree-hugger/treehugger-blueprint.svg';
-
 import treeHuggerThumb1 from '../img/tree-hugger/photos/thumb/1.jpg';
 import treeHuggerThumb2 from '../img/tree-hugger/photos/thumb/2.jpg';
 import treeHuggerThumb3 from '../img/tree-hugger/photos/thumb/3.jpg';
@@ -30,7 +27,6 @@ import treeHuggerThumb5 from '../img/tree-hugger/photos/thumb/5.jpg';
 import treeHuggerThumb6 from '../img/tree-hugger/photos/thumb/6.jpg';
 import treeHuggerThumb7 from '../img/tree-hugger/photos/thumb/7.jpg';
 import treeHuggerThumb8 from '../img/tree-hugger/photos/thumb/8.jpg';
-
 import treeHuggerFull1 from '../img/tree-hugger/photos/full/1.jpg';
 import treeHuggerFull2 from '../img/tree-hugger/photos/full/2.jpg';
 import treeHuggerFull3 from '../img/tree-hugger/photos/full/3.jpg';
@@ -42,7 +38,6 @@ import treeHuggerFull8 from '../img/tree-hugger/photos/full/8.jpg';
 
 import fiveInOne from '../img/5-n-1/5n1.png';
 import fiveInOneBluePrint from '../img/5-n-1/5n1-blueprint.svg';
-
 import fiveInOneThumb1 from '../img/5-n-1/photos/thumb/1.jpg';
 import fiveInOneThumb2 from '../img/5-n-1/photos/thumb/2.jpg';
 import fiveInOneThumb3 from '../img/5-n-1/photos/thumb/3.jpg';
@@ -51,7 +46,6 @@ import fiveInOneThumb5 from '../img/5-n-1/photos/thumb/5.jpg';
 import fiveInOneThumb6 from '../img/5-n-1/photos/thumb/6.jpg';
 import fiveInOneThumb7 from '../img/5-n-1/photos/thumb/7.jpg';
 import fiveInOneThumb8 from '../img/5-n-1/photos/thumb/8.jpg';
-
 import fiveInOneFull1 from '../img/5-n-1/photos/full/1.jpg';
 import fiveInOneFull2 from '../img/5-n-1/photos/full/2.jpg';
 import fiveInOneFull3 from '../img/5-n-1/photos/full/3.jpg';
@@ -64,6 +58,8 @@ import fiveInOneFull8 from '../img/5-n-1/photos/full/8.jpg';
 export type productImage = {
   thumb: string;
   full: string;
+  title: string;
+  desc: string;
 }
 
 export type productType = {
@@ -106,33 +102,49 @@ export const productData = [
       {
         thumb: specialOpsThumb1,
         full: specialOpsFull1,
+        title: '12 Volt Solar Panel',
+        desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
       },
       {
         thumb: specialOpsThumb2,
         full: specialOpsFull2,
+        title: 'Changable Feed Options',
+        desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
       },
       {
         thumb: specialOpsThumb3,
         full: specialOpsFull3,
+        title: 'Latchable Rain Guard Lid',
+        desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
       },{
         thumb: specialOpsThumb4,
         full: specialOpsFull4,
+        title: 'Tow Bar',
+        desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
       },
       {
         thumb: specialOpsThumb5,
         full: specialOpsFull5,
+        title: '30lb Hydrolic Lift',
+        desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
       },
       {
         thumb: specialOpsThumb6,
         full: specialOpsFull6,
+        title: 'Easy Access Latchable Modar',
+        desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
       },
       {
         thumb: specialOpsThumb7,
         full: specialOpsFull7,
+        title: 'Feed Funnel',
+        desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
       },
       {
         thumb: specialOpsThumb8,
         full: specialOpsFull8,
+        title: 'Timer Motar Casing',
+        desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
       }
     ],
     price: {
@@ -163,33 +175,49 @@ export const productData = [
       {
         thumb: treeHuggerThumb1,
         full: treeHuggerFull1,
+        title: '',
+        desc: '',
       },
       {
         thumb: treeHuggerThumb2,
         full: treeHuggerFull2,
+        title: '',
+        desc: '',
       },
       {
         thumb: treeHuggerThumb3,
         full: treeHuggerFull3,
+        title: '',
+        desc: '',
       },{
         thumb: treeHuggerThumb4,
         full: treeHuggerFull4,
+        title: '',
+        desc: '',
       },
       {
         thumb: treeHuggerThumb5,
         full: treeHuggerFull5,
+        title: '',
+        desc: '',
       },
       {
         thumb: treeHuggerThumb6,
         full: treeHuggerFull6,
+        title: '',
+        desc: '',
       },
       {
         thumb: treeHuggerThumb7,
         full: treeHuggerFull7,
+        title: '',
+        desc: '',
       },
       {
         thumb: treeHuggerThumb8,
         full: treeHuggerFull8,
+        title: '',
+        desc: '',
       }
     ],
     price: {
@@ -222,33 +250,49 @@ export const productData = [
       {
         thumb: fiveInOneThumb1,
         full: fiveInOneFull1,
+        title: '',
+        desc: '',
       },
       {
         thumb: fiveInOneThumb2,
         full: fiveInOneFull2,
+        title: '',
+        desc: '',
       },
       {
         thumb: fiveInOneThumb3,
         full: fiveInOneFull3,
+        title: '',
+        desc: '',
       },{
         thumb: fiveInOneThumb4,
         full: fiveInOneFull4,
+        title: '',
+        desc: '',
       },
       {
         thumb: fiveInOneThumb5,
         full: fiveInOneFull5,
+        title: '',
+        desc: '',
       },
       {
         thumb: fiveInOneThumb6,
         full: fiveInOneFull6,
+        title: '',
+        desc: '',
       },
       {
         thumb: fiveInOneThumb7,
         full: fiveInOneFull7,
+        title: '',
+        desc: '',
       },
       {
         thumb: fiveInOneThumb8,
         full: fiveInOneFull8,
+        title: '',
+        desc: '',
       }
     ],
     price: {

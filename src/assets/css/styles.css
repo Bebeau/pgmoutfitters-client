@@ -458,44 +458,6 @@ input::placeholder {
   transform: translate(0, 0);
   transition: all 0.5s ease-in-out;
 }
-.inquiryModal .closeModal {
-  width: 50px;
-  height: 50px;
-  border: 3px solid white;
-  border-radius: 999px;
-  position: absolute;
-  top: 20px;
-  right: 20px;
-}
-.inquiryModal .closeModal:before {
-  content: "";
-  width: 50%;
-  height: 3px;
-  background: #223047;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(45deg);
-  transition: all 0.3s ease-in-out;
-}
-.inquiryModal .closeModal:after {
-  content: "";
-  width: 50%;
-  height: 3px;
-  background: #223047;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(-45deg);
-  transition: all 0.3s ease-in-out;
-}
-.inquiryModal .closeModal:hover {
-  cursor: pointer;
-}
-.inquiryModal .closeModal:hover:before, .inquiryModal .closeModal:hover:after {
-  width: 60%;
-  transition: all 0.3s ease-in-out;
-}
 .inquiryModal .inquiryCart {
   min-height: 100vh;
   background: #7C8969;
@@ -696,6 +658,45 @@ input::placeholder {
   border: none;
   color: #223047;
   font-size: 1.6rem;
+}
+
+.closeModal {
+  width: 50px;
+  height: 50px;
+  border: 3px solid white;
+  border-radius: 999px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+.closeModal:before {
+  content: "";
+  width: 50%;
+  height: 3px;
+  background: #223047;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  transition: all 0.3s ease-in-out;
+}
+.closeModal:after {
+  content: "";
+  width: 50%;
+  height: 3px;
+  background: #223047;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  transition: all 0.3s ease-in-out;
+}
+.closeModal:hover {
+  cursor: pointer;
+}
+.closeModal:hover:before, .closeModal:hover:after {
+  width: 60%;
+  transition: all 0.3s ease-in-out;
 }
 
 @media (min-width: 768px) {
@@ -1001,17 +1002,37 @@ input::placeholder {
   bottom: 0;
   justify-content: center;
   align-items: center;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.9);
   display: none;
   box-sizing: border-box;
   padding: 40px;
 }
 #productPage .imageModal.show {
   display: flex;
+  flex-direction: column;
 }
-#productPage .imageModal img {
-  max-width: 100%;
+#productPage .imageModal .imageWrap {
+  max-width: 1200px;
   max-height: 100%;
+}
+#productPage .imageModal .imageWrap img {
+  max-height: 80%;
+  max-width: 100%;
+  margin: 0 auto;
+  display: block;
+}
+#productPage .imageModal .imageWrap .copy {
+  color: white;
+}
+#productPage .imageModal .imageWrap .copy h5 {
+  margin: 20px 0 0;
+  font-size: 2rem;
+}
+#productPage .imageModal .imageWrap .copy p {
+  font-size: 1.2rem;
+}
+#productPage .imageModal .imageWrap .copy .thumbs {
+  display: none;
 }
 #productPage .block {
   display: flex;
@@ -1064,7 +1085,7 @@ input::placeholder {
 }
 #productPage .block.viewPort .camoWrap .cornImage {
   position: absolute;
-  top: -40%;
+  top: -50%;
   left: 0;
   right: 0;
   bottom: 0;
@@ -1273,6 +1294,36 @@ input::placeholder {
   #productPage .imageGallery .image {
     flex: 0 0 25%;
     padding: 10px;
+  }
+  #productPage .imageModal.show .imageWrap {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    max-width: 100%;
+    padding-right: 40px;
+  }
+  #productPage .imageModal.show .imageWrap img {
+    max-height: 100%;
+  }
+  #productPage .imageModal.show .imageWrap .copy {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    max-width: 400px;
+    padding: 0 0 0 40px;
+    color: white;
+  }
+  #productPage .imageModal.show .imageWrap .copy .btn {
+    margin: 40px 0 0;
+  }
+  #productPage .imageModal.show .imageWrap .copy .thumbs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  #productPage .imageModal.show .imageWrap .copy .thumbs .image {
+    flex: 0 0 20%;
   }
   #productPage .block {
     flex-direction: row;

@@ -55,12 +55,28 @@ const Product = (props: singleProductType) => {
   //   });
   // }
 
+  const preloadImages = () => {
+    let images = productInfo.photos.map((item) => {
+      return new Promise<void>((resolve, reject) => {
+        let img = new Image();
+        img.src = item.full;
+        img.onload = function(){
+          resolve();
+        }
+      })
+    });
+
+    Promise.all(images)
+    .then(() => {
+      props.setIsLoading(false);
+    });
+  }
+
   useEffect(() => {
-    console.log("PRODUCT NAME: ", slug);
     if(slug) {
       setProductInfo(productData.filter(product => product.slug === slug)[0]);
+      preloadImages();
       setRelatedProducts(productData.filter(product => product.slug !== slug));
-      props.setIsLoading(false);
     }
     
   }, [props, slug]);
@@ -77,6 +93,7 @@ const Product = (props: singleProductType) => {
       />
       <ImageGallery 
         photos={productInfo.photos}
+        openInquiry={props.openInquiry}
       />
       {productInfo.name === "TreeHugger" && (
         <RiceBrand />
