@@ -20,7 +20,7 @@ const ProductSpecs = (props: productSpecsType) => {
           <ul>
             {props.productInfo.specs.map((item: any, index: number) => {
               return (
-                <li>{item}</li>
+                <li key={index}>{item}</li>
               );
             })}
           </ul>

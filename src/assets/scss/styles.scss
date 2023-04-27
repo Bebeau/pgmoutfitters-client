@@ -6,6 +6,7 @@ $green: #7C8969;
 $tan: #BEA296;
 $orange: #885438;
 $grey: #4C4F58;
+$error: #f46868;
 
 html,
 body {
@@ -184,6 +185,16 @@ input {
   }
   &:hover {
     cursor: pointer;
+  }
+}
+.alert {
+  display: block;
+  max-width: 100%;
+  padding: 10px;
+  text-align: center;
+  color: darken($error, 60%);
+  &.error {
+    background: $error;
   }
 }
 .dotNav {
@@ -581,6 +592,7 @@ input {
     justify-content: space-evenly;
     min-height: 100vh;
     height: 100%;
+    width: 100%;
     padding: 20px;
     box-sizing: border-box;
     .formHeader {
@@ -647,6 +659,9 @@ input {
         }
       }
     }
+    .formWrap {
+      width: 100%;
+    }
     .formGroup {
       display: flex;
       gap: 20px;
@@ -669,6 +684,7 @@ input {
       }
     }
     .formSubmit {
+      width: 100%;
       button {
         background: white;
         border: none;
@@ -921,6 +937,10 @@ input {
     }
     .inquiryForm {
       padding: 0 60px;
+      .formSubmit,
+      .formWrap {
+        width: 80%;
+      }
     }
     .inquiryCart {
       h4 {

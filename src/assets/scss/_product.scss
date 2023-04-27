@@ -8,6 +8,12 @@
   }
   .hero {
     min-height: auto;
+    .heroTitle {
+      z-index: 999;
+      .btn {
+        margin: 40px 0 0;
+      }
+    }
   }
   .content {
     position: relative;
@@ -536,7 +542,7 @@
     .block {
       .copy {
         div {
-          padding: 0 40px;
+          padding: 0 60px;
         }
         p {
           font-size: 1.4rem;
@@ -544,6 +550,18 @@
         h3 {
           margin-top: 0;
           font-size: 2rem;
+        }
+      }
+    }
+  }
+}
+
+@media(min-width: 1200px) {
+  #productPage {
+    .block {
+      .copy {
+        div {
+          padding: 0 100px;
         }
       }
     }

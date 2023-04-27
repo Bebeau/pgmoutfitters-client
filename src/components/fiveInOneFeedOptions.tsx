@@ -20,8 +20,8 @@ const FiveInOneFeedOptions = (props: {openInquiry: () => void}) => {
         <div>
           <h3>Feed Options</h3>
           <p>Click the feed options below to see the settings change in on the feeder blueprint.</p>
-          <button ref={timerBtnRef} className={activeBtnRef.current === timerBtnRef.current ? 'btn outline active' : 'btn outline'} onClick={(e) => handleBtnClick(e.target, 'timer')}>650 lb timer</button>
-          <button ref={gravityBtnRef} className={activeBtnRef.current === gravityBtnRef.current ? 'btn outline active' : 'btn outline'} onClick={(e) => handleBtnClick(e.target, 'gravity')}>450 lb gravity</button>
+          <button ref={timerBtnRef} className={activeBtnRef.current === timerBtnRef.current ? 'btn outline active' : 'btn outline'} onClick={(e) => handleBtnClick(e.target, 'timer')}>450 lb cascade</button>
+          <button ref={gravityBtnRef} className={activeBtnRef.current === gravityBtnRef.current ? 'btn outline active' : 'btn outline'} onClick={(e) => handleBtnClick(e.target, 'gravity')}>650 lb gravity</button>
           <button className="btn" onClick={props.openInquiry}>
             Inquire For Purchase
           </button>

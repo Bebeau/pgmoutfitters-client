@@ -6,6 +6,8 @@ import { ReactComponent as DealerIcon } from '../assets/img/dealer.svg';
 
 import {productType} from '../assets/data/products';
 
+import APIUtils from '../utils/APIUtils';
+
 interface inquiryType {
   closeInquiry: () => void;
   showInquiry: boolean;
@@ -53,18 +55,23 @@ const Inquiry = (props: inquiryType) => {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
 
-  const calculateTotalCost = (costArray: number[]) => {
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const calculateTotalCost = useCallback((costArray: number[]) => {
+    
+    const formatter = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      maximumFractionDigits: 0,
+    });
+
     let totalCost = 0;
     costArray.map((numb: any) => {
-      totalCost = numb + totalCost;
+      return totalCost = numb + totalCost;
     });
+    
     setCost(formatter.format(Number(totalCost)).replace("$",""));
-  }
-  const formatter = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    maximumFractionDigits: 0,
-  });
+  }, []);
 
   const calculateTotals = useCallback(() => {
     let totalInputValue = 0;
@@ -72,9 +79,9 @@ const Inquiry = (props: inquiryType) => {
     let dealerCosts: number[] = [];
     
     productInputValues.map((item: any) => {
-      totalInputValue = Number(item.qty) + totalInputValue;
       retailCosts.push((Number(item.qty) * Number(item.price.retail)));
       dealerCosts.push((Number(item.qty) * Number(item.price.dealer)));
+      return totalInputValue = Number(item.qty) + totalInputValue;
     });
     if(totalInputValue >= 5 && userType !== 'hunter') {
       setShowDealerPrice(true);
@@ -84,7 +91,7 @@ const Inquiry = (props: inquiryType) => {
       setShowDealerPrice(false);
       calculateTotalCost(retailCosts);
     }
-  }, [productInputValues, userType]);
+  }, [productInputValues, userType, calculateTotalCost]);
   
   const handleProductInputChange = (key: number, event: any) => {
     let result = productInputValues.filter(obj => {
@@ -92,11 +99,12 @@ const Inquiry = (props: inquiryType) => {
     })
     result[0].qty = event.currentTarget.value;
     productInputValues[key] = result[0];
+
     setProductInputValues(productInputValues);
     calculateTotals();
   }
 
-  const handleInputArrowClick = (direction: string, name: string, key: number, event: any) => {
+  const handleInputArrowClick = (direction: string, name: string, key: number) => {
     let result = productInputValues.filter(obj => {
       return obj.name === name;
     })
@@ -112,9 +120,79 @@ const Inquiry = (props: inquiryType) => {
     calculateTotals();
   }
 
+  const validateForm = (formData: any) => {
+    let errorFields: string[] = [];
+    Object.keys(formData).forEach((key: string) => {
+      
+      // let productCount = 0;
+      // if(key === 'cart') {
+      //   formData[key].filter( (item: any) => {
+      //     productCount = productCount + Number(item.qty);
+      //   });
+      //   if(productCount === 0) {
+      //     errorFields.push(key);
+      //   }
+      // }
+
+      if(key !=='cart' && formData[key] === '') {
+        errorFields.push(key);
+      }
+
+    });
+    if(errorFields.length > 0) {
+      return {errors: errorFields};
+    }
+    return {errors: false};
+  }
+
+  const submitInquiry = () => {
+    const formData: {
+      type: string,
+      first: string,
+      last: string,
+      company?: string,
+      email: string,
+      phone: string,
+      status: string,
+      cart: object[],
+      cost: string
+    } = {
+      type: userType,
+      first: firstName,
+      last: lastName,
+      email: email,
+      phone: phone,
+      status: 'submitted',
+      cart: productInputValues,
+      cost: cost
+    }
+
+    if(userType !== 'hunter') {
+      formData.company = companyName;
+    }
+
+    const validate = validateForm(formData);
+
+    if(validate.errors) {
+      setErrorMessage('Please fill out all form fields and at least 1 product.');
+    }
+
+    console.log('FORM DATA: ', formData);
+
+    if(!validate.errors) {
+      APIUtils.callPost('api/inquiry/submit', formData)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+    }
+  }
+
   useEffect(() => {
     calculateTotals();
-  },[userType]);
+  },[userType, calculateTotals]);
   
   return (
     <div className={props.showInquiry ? "inquiryModal show" : "inquiryModal"}>
@@ -129,8 +207,8 @@ const Inquiry = (props: inquiryType) => {
                 <img src={item.image} alt={item.name} />
                 <div className="inquiryProductCopy">
                   <div className="formGroup">
-                    <span className="arrow up" onClick={(e) => handleInputArrowClick('up', item.name, index, e)}></span>
-                    <span className="arrow down" onClick={(e) => handleInputArrowClick('down', item.name, index, e)}></span>
+                    <span className="arrow up" onClick={(e) => handleInputArrowClick('up', item.name, index)}></span>
+                    <span className="arrow down" onClick={(e) => handleInputArrowClick('down', item.name, index)}></span>
                     <input ref={inputRef.current[index]} value={inputRef.current[index].value} type="number" name={item.name} min="0" step="1" onChange={(e) => handleProductInputChange(index, e)} placeholder="0" />
                   </div>
                   <div className="copyGroup">
@@ -158,6 +236,12 @@ const Inquiry = (props: inquiryType) => {
 
         <div className="formWrap">
 
+          {errorMessage && (
+            <p className="alert error">
+              {errorMessage}
+            </p>
+          )}
+
           <div className="formGroup formBtnGroup">
             <label>Pick the role that best suits you...</label>
             <div className="btnGroup">
@@ -177,30 +261,30 @@ const Inquiry = (props: inquiryType) => {
           </div>
 
           <div className="formGroup half">
-            <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} placeholder="First Name" />
-            <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder="Last Name" />
+            <input type="text" name="first" value={firstName} onChange={(e) => setFirstName(e.target.value)} placeholder="First Name" />
+            <input type="text" name="last" value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder="Last Name" />
           </div>
 
           {
             userType !== 'hunter' && (
               <div className="formGroup">
-                <input type="text" value={companyName} onChange={(e) => setCompanyName(e.target.value)} placeholder="Company Name" />
+                <input type="text" name="company" value={companyName} onChange={(e) => setCompanyName(e.target.value)} placeholder="Company Name" />
               </div>
             )
           }
 
           <div className="formGroup">
-            <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email Address" />
+            <input type="text" name="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email Address" />
           </div>
 
           <div className="formGroup">
-            <input type="text" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="Phone Number" />
+            <input type="text" name="phone" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="Phone Number" />
           </div>
 
         </div>
 
         <div className="formSubmit">
-          <button className="btn">Send Inquiry</button>
+          <button className="btn" onClick={submitInquiry}>Send Inquiry</button>
         </div>
 
       </section>

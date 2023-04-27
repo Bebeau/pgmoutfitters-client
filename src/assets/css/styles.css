@@ -191,6 +191,17 @@ input::placeholder {
   cursor: pointer;
 }
 
+.alert {
+  display: block;
+  max-width: 100%;
+  padding: 10px;
+  text-align: center;
+  color: #270303;
+}
+.alert.error {
+  background: #f46868;
+}
+
 .dotNav {
   display: flex;
   justify-content: center;
@@ -569,6 +580,7 @@ input::placeholder {
   justify-content: space-evenly;
   min-height: 100vh;
   height: 100%;
+  width: 100%;
   padding: 20px;
   box-sizing: border-box;
 }
@@ -634,6 +646,9 @@ input::placeholder {
 .inquiryModal .inquiryForm .btnGroup button.selected:hover {
   background: white;
 }
+.inquiryModal .inquiryForm .formWrap {
+  width: 100%;
+}
 .inquiryModal .inquiryForm .formGroup {
   display: flex;
   gap: 20px;
@@ -652,6 +667,9 @@ input::placeholder {
   color: white;
   margin-bottom: 10px;
   display: block;
+}
+.inquiryModal .inquiryForm .formSubmit {
+  width: 100%;
 }
 .inquiryModal .inquiryForm .formSubmit button {
   background: white;
@@ -870,6 +888,10 @@ input::placeholder {
   .inquiryModal .inquiryForm {
     padding: 0 60px;
   }
+  .inquiryModal .inquiryForm .formSubmit,
+  .inquiryModal .inquiryForm .formWrap {
+    width: 80%;
+  }
   .inquiryModal .inquiryCart h4 {
     font-size: 1.2rem;
   }
@@ -895,6 +917,12 @@ input::placeholder {
 }
 #productPage .hero {
   min-height: auto;
+}
+#productPage .hero .heroTitle {
+  z-index: 999;
+}
+#productPage .hero .heroTitle .btn {
+  margin: 40px 0 0;
 }
 #productPage .content {
   position: relative;
@@ -1374,7 +1402,7 @@ input::placeholder {
 }
 @media (min-width: 1024px) {
   #productPage .block .copy div {
-    padding: 0 40px;
+    padding: 0 60px;
   }
   #productPage .block .copy p {
     font-size: 1.4rem;
@@ -1382,6 +1410,11 @@ input::placeholder {
   #productPage .block .copy h3 {
     margin-top: 0;
     font-size: 2rem;
+  }
+}
+@media (min-width: 1200px) {
+  #productPage .block .copy div {
+    padding: 0 100px;
   }
 }
 

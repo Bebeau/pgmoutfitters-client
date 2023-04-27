@@ -86,6 +86,7 @@ const Product = (props: singleProductType) => {
       <ProductHero 
         image={productInfo.image}
         name={productInfo.name}
+        openInquiry={props.openInquiry}
       />
       <ProductSpecs
         productInfo={productInfo}

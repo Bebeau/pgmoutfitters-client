@@ -31,7 +31,7 @@ const ImageGallery = (props: imageGalleryType) => {
       <div className="imageGallery">
         {props.photos.map((item: any, index: number) => {
           return (
-            <div className="image" onClick={() => handleImageClick(item)}>
+            <div key={index} className="image" onClick={() => handleImageClick(item)}>
               <img src={item.thumb} alt='' />
             </div>
           );
@@ -52,7 +52,7 @@ const ImageGallery = (props: imageGalleryType) => {
             <div className="thumbs">
               {props.photos.map((item: any, index: number) => {
                 return (
-                  <div className="image" onClick={() => handleImageClick(item)}>
+                  <div key={index} className="image" onClick={() => handleImageClick(item)}>
                     <img src={item.thumb} alt='' />
                   </div>
                 );

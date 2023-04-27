@@ -9,7 +9,7 @@ const relatedProducts = (props: relatedType) => {
     <div className="related">
       {props.products.map((item: any, index: number) => {
         return (
-          <div className="item">
+          <div key={index} className="item">
             <a href={`/products/deer-feeders/${item.slug}`} key={index}>
               <img src={item.image} alt={item.name} />
               <h4>{item.name}</h4>

@@ -3,18 +3,24 @@ import React from 'react';
 type productHeroType = {
   image: string;
   name: string;
+  openInquiry: () => void;
 }
 const ProductHero = (props: productHeroType) => {
   return (
     <div className="hero">
       <div className="heroTitle">
         <div></div>
-        <h1>
-          Next <br />
-          Generation <br />
-          Deer <br />
-          Feeders
-        </h1>
+        <div>
+          <h1>
+            Next <br />
+            Generation <br />
+            Deer <br />
+            Feeders
+          </h1>
+          <button className="btn" onClick={props.openInquiry}>
+            Inquire For Purchase
+          </button>
+        </div>
       </div>
       <div className="carousel">
         <div className="carouselWrap">
