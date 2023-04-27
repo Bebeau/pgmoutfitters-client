@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect} from 'react';
 
 import viewport from '../assets/img/viewport.png';
 import camo from '../assets/img/camo.png';
@@ -19,7 +19,7 @@ const FeatureBlocks = (props: featureBlockType) => {
     return () => {
       window.removeEventListener("scroll", handleScroll)
     }
-  }, [document, offset]);
+  }, [offset]);
   return (
     <>
       <div className="block viewPort">

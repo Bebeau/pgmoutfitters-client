@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import { useParams } from 'react-router-dom';
 import {productData, productType} from '../assets/data/products';
 import {testimonialType} from '../assets/data/testimonials';
@@ -55,7 +55,7 @@ const Product = (props: singleProductType) => {
   //   });
   // }
 
-  const preloadImages = () => {
+  const preloadImages = useCallback(() => {
     let images = productInfo.photos.map((item) => {
       return new Promise<void>((resolve, reject) => {
         let img = new Image();
@@ -70,7 +70,7 @@ const Product = (props: singleProductType) => {
     .then(() => {
       props.setIsLoading(false);
     });
-  }
+  }, [productInfo.photos]);
 
   useEffect(() => {
     if(slug) {
@@ -79,7 +79,7 @@ const Product = (props: singleProductType) => {
       setRelatedProducts(productData.filter(product => product.slug !== slug));
     }
     
-  }, [props, slug]);
+  }, [props, slug, preloadImages]);
 
   return (
     <div id="productPage">
