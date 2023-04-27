@@ -921,9 +921,6 @@ input::placeholder {
 #productPage .hero .heroTitle {
   z-index: 999;
 }
-#productPage .hero .heroTitle .btn {
-  margin: 40px 0 0;
-}
 #productPage .content {
   position: relative;
   z-index: 3;
@@ -1004,7 +1001,7 @@ input::placeholder {
   padding: 15px;
 }
 #productPage .imageGallery .image {
-  flex: 0 0 50%;
+  flex: 0 0 25%;
   box-sizing: border-box;
   padding: 5px;
 }
@@ -1042,12 +1039,15 @@ input::placeholder {
 #productPage .imageModal .imageWrap {
   max-width: 1200px;
   max-height: 100%;
+  width: 100%;
 }
-#productPage .imageModal .imageWrap img {
-  max-height: 80%;
-  max-width: 100%;
-  margin: 0 auto;
-  display: block;
+#productPage .imageModal .imageWrap .featureImage {
+  max-height: 50vh;
+  overflow: hidden;
+}
+#productPage .imageModal .imageWrap .featureImage img {
+  width: 100%;
+  height: 100%;
 }
 #productPage .imageModal .imageWrap .copy {
   color: white;
@@ -1061,6 +1061,11 @@ input::placeholder {
 }
 #productPage .imageModal .imageWrap .copy .thumbs {
   display: none;
+}
+#productPage .imageModal .imageWrap .copy .thumbs img {
+  max-width: 100%;
+  margin: 0 auto;
+  display: block;
 }
 #productPage .block {
   display: flex;
@@ -1297,6 +1302,9 @@ input::placeholder {
     font-size: 5rem;
     line-height: 80px;
   }
+  #productPage .heroTitle .btn {
+    margin: 40px 0 0;
+  }
   #productPage h2 {
     font-size: 4rem;
     margin: 0 0 40px;
@@ -1319,21 +1327,31 @@ input::placeholder {
   #productPage .imageGallery {
     padding: 60px;
   }
-  #productPage .imageGallery .image {
+  #productPage .imageGallery .featureImage {
     flex: 0 0 25%;
     padding: 10px;
   }
-  #productPage .imageModal.show .imageWrap {
+  #productPage .imageGallery .copy h5 {
+    margin: 0;
+  }
+  #productPage .imageModal .imageWrap {
     display: flex;
     flex-direction: row;
     align-items: center;
     max-width: 100%;
     padding-right: 40px;
   }
-  #productPage .imageModal.show .imageWrap img {
-    max-height: 100%;
+  #productPage .imageModal .imageWrap .featureImage {
+    height: 100%;
+    overflow: hidden;
   }
-  #productPage .imageModal.show .imageWrap .copy {
+  #productPage .imageModal .imageWrap .featureImage img {
+    object-position: 50% 50%;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+  #productPage .imageModal .imageWrap .copy {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -1342,16 +1360,17 @@ input::placeholder {
     padding: 0 0 0 40px;
     color: white;
   }
-  #productPage .imageModal.show .imageWrap .copy .btn {
+  #productPage .imageModal .imageWrap .copy .btn {
     margin: 40px 0 0;
   }
-  #productPage .imageModal.show .imageWrap .copy .thumbs {
+  #productPage .imageModal .imageWrap .copy .thumbs {
     display: flex;
     flex-wrap: wrap;
     gap: 5px;
+    margin-top: 40px;
   }
-  #productPage .imageModal.show .imageWrap .copy .thumbs .image {
-    flex: 0 0 20%;
+  #productPage .imageModal .imageWrap .copy .thumbs .image {
+    flex: 0 0 10%;
   }
   #productPage .block {
     flex-direction: row;
@@ -1410,6 +1429,9 @@ input::placeholder {
   #productPage .block .copy h3 {
     margin-top: 0;
     font-size: 2rem;
+  }
+  #productPage .imageModal .imageWrap .copy .thumbs .image {
+    flex: 0 0 20%;
   }
 }
 @media (min-width: 1200px) {

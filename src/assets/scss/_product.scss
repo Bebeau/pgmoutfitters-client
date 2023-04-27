@@ -10,9 +10,6 @@
     min-height: auto;
     .heroTitle {
       z-index: 999;
-      .btn {
-        margin: 40px 0 0;
-      }
     }
   }
   .content {
@@ -94,7 +91,7 @@
     box-sizing: border-box;
     padding: 15px;
     .image {
-      flex: 0 0 50%;
+      flex: 0 0 25%;
       box-sizing: border-box;
       padding: 5px;
       img {
@@ -132,11 +129,14 @@
     .imageWrap {
       max-width: 1200px;
       max-height: 100%;
-      img {
-        max-height: 80%;
-        max-width: 100%;
-        margin: 0 auto;
-        display: block;
+      width: 100%;
+      .featureImage {
+        max-height: 50vh;
+        overflow: hidden;
+        img {
+          width: 100%;
+          height: 100%;
+        }
       }
       .copy {
         color: white;
@@ -149,6 +149,11 @@
         }
         .thumbs {
           display: none;
+          img {
+            max-width: 100%;
+            margin: 0 auto;
+            display: block;
+          }
         }
       }
     }
@@ -415,6 +420,9 @@
         font-size: 5rem;
         line-height: 80px;
       }
+      .btn {
+        margin: 40px 0 0;
+      }
     }
     h2 {
       font-size: 4rem;
@@ -439,40 +447,51 @@
     }
     .imageGallery {
       padding: 60px;
-      .image {
+      .featureImage {
         flex: 0 0 25%;
         padding: 10px;
       }
+      .copy {
+        h5 {
+          margin: 0;
+        }
+      }
     }
     .imageModal {
-      &.show {
-        .imageWrap {
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          max-width: 100%;
-          padding-right: 40px;
+      .imageWrap {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        max-width: 100%;
+        padding-right: 40px;
+        .featureImage {
+          height: 100%;
+          overflow: hidden;
           img {
-            max-height: 100%;
+            object-position: 50% 50%;
+            object-fit: cover;
+            width:100%;
+            height:100%;
           }
-          .copy {
+        }
+        .copy {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          height: 100%;
+          max-width: 400px;
+          padding: 0 0 0 40px;
+          color: white;
+          .btn {
+            margin: 40px 0 0;
+          }
+          .thumbs {
             display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            height: 100%;
-            max-width: 400px;
-            padding: 0 0 0 40px;
-            color: white;
-            .btn {
-              margin: 40px 0 0;
-            }
-            .thumbs {
-              display: flex;
-              flex-wrap: wrap;
-              gap: 5px;
-              .image {
-                flex: 0 0 20%;
-              }
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: 40px;
+            .image {
+              flex: 0 0 10%;
             }
           }
         }
@@ -550,6 +569,17 @@
         h3 {
           margin-top: 0;
           font-size: 2rem;
+        }
+      }
+    }
+    .imageModal {
+      .imageWrap {
+        .copy {
+          .thumbs {
+            .image {
+              flex: 0 0 20%;
+            }
+          }
         }
       }
     }

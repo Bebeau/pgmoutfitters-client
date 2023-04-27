@@ -40,7 +40,9 @@ const ImageGallery = (props: imageGalleryType) => {
       <div ref={modalRef} className={showImageModal ? "imageModal show" : "imageModal"}>
         <button className="closeModal" onClick={handleModalClose}></button>
         <div className="imageWrap">
-          <img src={selected.full} alt='' />
+          <div className="featureImage">
+            <img src={selected.full} alt='' />
+          </div>
           <div className="copy">
             <div>
               <h5>{selected.title}</h5>
