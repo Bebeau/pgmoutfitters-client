@@ -18,9 +18,9 @@ const CascadeBlocks = () => {
         <img src={guardImage} alt="" />
         <article className="copy" onMouseEnter={() => setActiveItem('guard')} onMouseLeave={() => setActiveItem('')}>
           <div>
-            <h3>Varmet Guard</h3>
+            <h3>Varment Guard</h3>
             <p>
-              The cascade timer feeders are equip with a 24in x 24in x 1/4in steel plate varmet guard. It prevents any varmets from reaching the motor and manually emptying your feed. It is also durable enough to discourage boars.
+              The cascade timer feeders are equip with a 24in x 24in x 1/4in steel plate varment guard. It prevents any varments from reaching the motor and manually emptying your feed. It is also durable enough to discourage boars.
             </p>
           </div>
         </article>

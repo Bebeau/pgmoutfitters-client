@@ -1273,7 +1273,6 @@ input::placeholder {
   transition: all 0.3s ease-in-out;
 }
 #productPage .feedOptions.specialOps .imageWrap {
-  width: 300px;
   position: relative;
   padding: 0;
 }
@@ -1413,8 +1412,8 @@ input::placeholder {
   }
   #productPage .block.cascade .copy div {
     border: 1px solid white;
-    padding: 60px;
-    margin: 60px;
+    padding: 30px;
+    margin: 30px;
   }
   #productPage .block.cascade .copy div:hover {
     background: #4E6283;
@@ -1463,11 +1462,9 @@ input::placeholder {
   }
   #productPage .motor-blueprint #motor {
     transform: rotate(0deg);
-    transition: all 0.3s ease-in-out;
   }
   #productPage .motor-blueprint.guard #guard polygon {
     fill: white;
-    transition: all 0.3s ease-in-out;
   }
   #productPage .motor-blueprint.door #motor {
     fill: white;
@@ -1497,6 +1494,38 @@ input::placeholder {
   #productPage .feedOptions.fiveInOne .imageWrap {
     width: 100%;
   }
+  #productPage .feedOptions.specialOps .imageWrap {
+    width: 400px;
+    position: relative;
+    padding: 0;
+  }
+  #productPage .feedOptions.specialOps .imageWrap:before {
+    content: "";
+    display: block;
+    background: white;
+    width: 2px;
+    height: 210px;
+    position: absolute;
+    z-index: 2;
+    top: 100px;
+    left: 183px;
+    transform-origin: bottom center;
+    transition: all 0.3s ease-in-out;
+  }
+  #productPage .feedOptions.specialOps .imageWrap:after {
+    content: "";
+    display: block;
+    background: white;
+    width: 2px;
+    height: 210px;
+    position: absolute;
+    z-index: 2;
+    bottom: 165px;
+    right: 60px;
+    transform: translate(0, 0);
+    transform-origin: bottom center;
+    transition: all 0.3s ease-in-out;
+  }
 }
 @media (min-width: 1024px) {
   #productPage .block .copy div {
@@ -1508,6 +1537,10 @@ input::placeholder {
   #productPage .block .copy h3 {
     margin-top: 0;
     font-size: 2rem;
+  }
+  #productPage .block.cascade .copy div {
+    padding: 60px;
+    margin: 60px;
   }
   #productPage .imageModal .imageWrap .copy .thumbs .image {
     flex: 0 0 20%;

@@ -372,7 +372,6 @@
     }
     &.specialOps {
       .imageWrap {
-        width: 300px;
         position: relative;
         padding: 0;
         &:before {
@@ -535,8 +534,8 @@
         .copy {
           div {
             border: 1px solid white;
-            padding: 60px;
-            margin: 60px;
+            padding: 30px;
+            margin: 30px;
             &:hover {
               background: $lightblue;
               border: 1px solid $lightblue;
@@ -589,13 +588,11 @@
       }
       #motor {
         transform: rotate(0deg);
-        transition: all 0.3s ease-in-out;
       }
       &.guard {
         #guard {
           polygon {
             fill: white;
-            transition: all 0.3s ease-in-out;
           }
         }
       }
@@ -631,6 +628,40 @@
           width: 100%;
         }
       }
+      &.specialOps {
+        .imageWrap {
+          width: 400px;
+          position: relative;
+          padding: 0;
+          &:before {
+            content: '';
+            display: block;
+            background: white;
+            width: 2px;
+            height: 210px;
+            position: absolute;
+            z-index: 2;
+            top: 100px;
+            left: 183px;
+            transform-origin: bottom center;
+            transition: all 0.3s ease-in-out;
+          }
+          &:after {
+            content: '';
+            display: block;
+            background: white;
+            width: 2px;
+            height: 210px;
+            position: absolute;
+            z-index: 2;
+            bottom: 165px;
+            right: 60px;
+            transform: translate(0,0);
+            transform-origin: bottom center;
+            transition: all 0.3s ease-in-out;
+          }
+        }
+      }
     }
   }
 }
@@ -648,6 +679,14 @@
         h3 {
           margin-top: 0;
           font-size: 2rem;
+        }
+      }
+      &.cascade {
+        .copy {
+          div {
+            padding: 60px;
+            margin: 60px;
+          }
         }
       }
     }
