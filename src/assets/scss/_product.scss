@@ -462,10 +462,12 @@
         display: flex;
         flex-direction: row;
         align-items: center;
+        justify-content: center;
         max-width: 100%;
         padding-right: 40px;
         .featureImage {
           height: 100%;
+          max-height: inherit;
           overflow: hidden;
           img {
             object-position: 50% 50%;

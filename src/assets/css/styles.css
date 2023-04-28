@@ -1338,11 +1338,13 @@ input::placeholder {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
     max-width: 100%;
     padding-right: 40px;
   }
   #productPage .imageModal .imageWrap .featureImage {
     height: 100%;
+    max-height: inherit;
     overflow: hidden;
   }
   #productPage .imageModal .imageWrap .featureImage img {
