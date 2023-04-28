@@ -42,7 +42,7 @@ const defaultInputData = [
 ];
 
 const Inquiry = (props: inquiryType) => {
-  const [cost, setCost] = useState('');
+  const [cost, setCost] = useState('0');
 
   const inputRef = useRef<any>(defaultInputData.map(() => createRef()));
   const [productInputValues, setProductInputValues] = useState(defaultInputData);
@@ -55,7 +55,9 @@ const Inquiry = (props: inquiryType) => {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
 
+  const [formLoading, setFormLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
 
   const calculateTotalCost = useCallback((costArray: number[]) => {
     
@@ -120,6 +122,19 @@ const Inquiry = (props: inquiryType) => {
     calculateTotals();
   }
 
+  const clearFormValues = () => {
+    inputRef.current.map((input: object, index: number) => {
+      return inputRef.current[index].current.value = '0';
+    });
+    setUserType('hunter');
+    setFirstName('');
+    setLastName('');
+    setCompanyName('');
+    setEmail('');
+    setPhone('');
+    setCost('0');
+  }
+
   const validateForm = (formData: any) => {
     let errorFields: string[] = [];
     Object.keys(formData).forEach((key: string) => {
@@ -146,6 +161,8 @@ const Inquiry = (props: inquiryType) => {
   }
 
   const submitInquiry = () => {
+    setFormLoading(true);
+    setErrorMessage('');
     const formData: {
       type: string,
       first: string,
@@ -175,19 +192,30 @@ const Inquiry = (props: inquiryType) => {
 
     if(validate.errors) {
       setErrorMessage('Please fill out all form fields and at least 1 product.');
+      setFormLoading(false);
     }
-
-    console.log('FORM DATA: ', formData);
 
     if(!validate.errors) {
       APIUtils.callPost('api/inquiry/submit', formData)
       .then((res) => {
-        console.log(res);
+        if(res.status !== 200) {
+          return setErrorMessage(res.message);
+        }
+        setSuccessMessage('Thank You for your interest in our next generation deer feeders! We have received your inquriy and look forward to fulfilling your request. A member of our team will be in contact with you shortly.');
+        clearFormValues();
       })
       .catch((err) => {
         console.error(err);
+      })
+      .finally(() => {
+        setFormLoading(false);
       });
     }
+  }
+
+  const handleCloseModal = () => {
+    props.closeInquiry();
+    setTimeout(() => setSuccessMessage(''), 1000);
   }
 
   useEffect(() => {
@@ -227,6 +255,18 @@ const Inquiry = (props: inquiryType) => {
 
       <section className="inquiryForm">
 
+      {successMessage && (
+        <div className="inquirySuccessMessage">
+          <h1>Thank You!</h1>
+          <p>{successMessage}</p>
+          <button className="btn white" onClick={handleCloseModal}>
+            Close
+          </button>
+        </div>
+      )}
+
+      {!successMessage && (
+        <>
         <div className="formHeader">
           <h4 className="price">
             <span className="ticker">$</span>{cost}
@@ -284,8 +324,12 @@ const Inquiry = (props: inquiryType) => {
         </div>
 
         <div className="formSubmit">
-          <button className="btn" onClick={submitInquiry}>Send Inquiry</button>
+          <button className="btn white" onClick={submitInquiry} disabled={formLoading}>
+            <>Send Inquiry</>
+          </button>
         </div>
+        </>
+      )}
 
       </section>
     </div>

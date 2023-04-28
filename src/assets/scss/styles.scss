@@ -100,7 +100,7 @@ h2 {
   color: white;
 }
 h3 {
-  font-size: 2rem;
+  font-size: 1.8rem;
   letter-spacing: 1px;
   font-weight: 700;
   font-style: normal;
@@ -137,6 +137,12 @@ h5.details {
 button {
   border: none;
   font-family: "stratum-1-web", sans-serif;
+  &.white {
+    background: white;
+    border: none;
+    color: $blue;
+    font-size: 1.6rem;
+  }
 }
 input {
   background: none;
@@ -243,6 +249,9 @@ input {
     }
     * {
       flex: 0 0 50%;
+    }
+    .btn {
+      margin: 0 auto 20px;
     }
   }
   &:after {
@@ -685,12 +694,13 @@ input {
     }
     .formSubmit {
       width: 100%;
-      button {
-        background: white;
-        border: none;
-        color: $blue;
-        font-size: 1.6rem;
-      }
+    }
+    .inquirySuccessMessage {
+      color: white;
+      font-size: 1.6rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
     }
   }
 }

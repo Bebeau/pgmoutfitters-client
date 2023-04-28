@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useCallback} from 'react';
-import { useParams } from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 import {productData, productType} from '../assets/data/products';
 import {testimonialType} from '../assets/data/testimonials';
 import ProductSpecs from './productSpecs';
@@ -11,7 +11,7 @@ import RelatedProducts from './relatedProducts';
 import RiceBrand from './riceBrand';
 import SpecialOpsFeedOptions from './specialOpsFeedOptions';
 import FiveInOneFeedOptions from './fiveInOneFeedOptions';
-// import APIUtils from '../utils/APIUtils';
+import CascadeBlocks from './cascadeBlocks';
 
 type singleProductType = {
   openInquiry: () => void;
@@ -100,14 +100,20 @@ const Product = (props: singleProductType) => {
         <RiceBrand />
       )}
       {productInfo.name === "Special-Ops" && (
-        <SpecialOpsFeedOptions 
-          openInquiry={props.openInquiry}
-        />
+        <>
+          <SpecialOpsFeedOptions 
+            openInquiry={props.openInquiry}
+          />
+          <CascadeBlocks />
+        </>
       )}
       {productInfo.name === "5-N-1" && (
-        <FiveInOneFeedOptions 
-          openInquiry={props.openInquiry}
-        />
+        <>
+          <FiveInOneFeedOptions 
+            openInquiry={props.openInquiry}
+          />
+          <CascadeBlocks />
+        </>
       )}
       <FeatureBlocks 
         name={productInfo.name}

@@ -94,11 +94,12 @@
       flex: 0 0 25%;
       box-sizing: border-box;
       padding: 5px;
+      margin-bottom: -5px;
       img {
         width: 100%;
         height: auto;
-        outline: solid 5px black;
-        outline-offset: -5px;
+        outline: solid 2px black;
+        outline-offset: -2px;
         transition: all 0.3s ease-in-out;
         &:hover {
           cursor: pointer;
@@ -167,6 +168,7 @@
     h3 {
       font-family: "stratum-1-web", sans-serif;
       font-weight: lighter;
+      margin: 0;
     }
     p {
       font-size: 1.4rem;
@@ -206,7 +208,7 @@
         }
         .cornImage {
           position: absolute;
-          top: -50%;
+          top: -60%;
           left: 0;
           right: 0;
           bottom: 0;
@@ -247,6 +249,9 @@
         }
       }
     }
+  }
+  .motor-blueprint {
+    display: none;
   }
   .spotlight {
     text-align: center;
@@ -305,12 +310,12 @@
     .options {
       box-sizing: border-box;
       padding: 0 20px;
+      h3 {
+        margin-top: 20px;
+      }
       .btn {
         margin: 10px 0;
         width: 100%;
-      }
-      p {
-        margin-top: 0;
       }
     }
     .graphic {
@@ -451,6 +456,12 @@
         flex: 0 0 25%;
         padding: 10px;
       }
+      .image {
+        img {
+          outline: solid 5px black;
+          outline-offset: -5px;
+        }
+      }
       .copy {
         h5 {
           margin: 0;
@@ -505,7 +516,7 @@
         flex-direction: row;
         .camoWrap {
           .cornImage {
-            top: 0;
+            top: -10%;
           }
         }
       }
@@ -513,6 +524,23 @@
         .camo {
           .glare {
             top: 125%;
+          }
+        }
+      }
+      &.cascade {
+        background: $blue;
+        img {
+          display: none;
+        }
+        .copy {
+          div {
+            border: 1px solid white;
+            padding: 60px;
+            margin: 60px;
+            &:hover {
+              background: $lightblue;
+              border: 1px solid $lightblue;
+            }
           }
         }
       }
@@ -535,6 +563,55 @@
         }
       }
     }
+    .motor-blueprint {
+      display: block;
+      position: relative;
+      z-index: 99;
+      max-width: 1024px;
+      margin: 0 auto;
+      padding: 20px;
+      box-sizing: border-box;
+      pointer-events: none;
+      svg {
+        overflow: visible;
+        g, polygon, path {
+          fill: $lightblue;
+          transition: all 0.3s ease-in-out;
+        }
+        &#motorGraphic {
+          width: 20%;
+          display: block;
+          position: absolute;
+          top: 29%;
+          left: 50%;
+          transform: translate(-50%,0);
+        }
+      }
+      #motor {
+        transform: rotate(0deg);
+        transition: all 0.3s ease-in-out;
+      }
+      &.guard {
+        #guard {
+          polygon {
+            fill: white;
+            transition: all 0.3s ease-in-out;
+          }
+        }
+      }
+      &.door {
+        #motor {
+          fill: white;
+          transform-origin: 0 0;
+          transform-box: view-box;
+          transform: rotate(80deg) translate(45px, -40px);
+          transition: all 0.3s ease-in-out;
+          path {
+            fill: white;
+          }
+        }
+      }
+    }
     .spotlight {
       margin-top: -100px;
     }
@@ -542,7 +619,7 @@
       flex-direction: row;
     }
     .feedOptions {
-      padding: 60px 0;
+      padding: 60px 0 0;
       .options {
         padding: 20px;
         h3 {

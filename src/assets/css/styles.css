@@ -99,7 +99,7 @@ h2 {
 }
 
 h3 {
-  font-size: 2rem;
+  font-size: 1.8rem;
   letter-spacing: 1px;
   font-weight: 700;
   font-style: normal;
@@ -139,6 +139,12 @@ h5.details:after {
 button {
   border: none;
   font-family: "stratum-1-web", sans-serif;
+}
+button.white {
+  background: white;
+  border: none;
+  color: #223047;
+  font-size: 1.6rem;
 }
 
 input {
@@ -252,6 +258,9 @@ input::placeholder {
 }
 .hero .heroTitle * {
   flex: 0 0 50%;
+}
+.hero .heroTitle .btn {
+  margin: 0 auto 20px;
 }
 .hero:after {
   content: "";
@@ -671,11 +680,12 @@ input::placeholder {
 .inquiryModal .inquiryForm .formSubmit {
   width: 100%;
 }
-.inquiryModal .inquiryForm .formSubmit button {
-  background: white;
-  border: none;
-  color: #223047;
+.inquiryModal .inquiryForm .inquirySuccessMessage {
+  color: white;
   font-size: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
 .closeModal {
@@ -1004,12 +1014,13 @@ input::placeholder {
   flex: 0 0 25%;
   box-sizing: border-box;
   padding: 5px;
+  margin-bottom: -5px;
 }
 #productPage .imageGallery .image img {
   width: 100%;
   height: auto;
-  outline: solid 5px black;
-  outline-offset: -5px;
+  outline: solid 2px black;
+  outline-offset: -2px;
   transition: all 0.3s ease-in-out;
 }
 #productPage .imageGallery .image img:hover {
@@ -1077,6 +1088,7 @@ input::placeholder {
 #productPage .block h3 {
   font-family: "stratum-1-web", sans-serif;
   font-weight: lighter;
+  margin: 0;
 }
 #productPage .block p {
   font-size: 1.4rem;
@@ -1118,7 +1130,7 @@ input::placeholder {
 }
 #productPage .block.viewPort .camoWrap .cornImage {
   position: absolute;
-  top: -50%;
+  top: -60%;
   left: 0;
   right: 0;
   bottom: 0;
@@ -1154,6 +1166,9 @@ input::placeholder {
   border-radius: 9999999px;
   filter: blur(100px);
   padding: 0;
+}
+#productPage .motor-blueprint {
+  display: none;
 }
 #productPage .spotlight {
   text-align: center;
@@ -1214,12 +1229,12 @@ input::placeholder {
   box-sizing: border-box;
   padding: 0 20px;
 }
+#productPage .feedOptions .options h3 {
+  margin-top: 20px;
+}
 #productPage .feedOptions .options .btn {
   margin: 10px 0;
   width: 100%;
-}
-#productPage .feedOptions .options p {
-  margin-top: 0;
 }
 #productPage .feedOptions .graphic {
   position: relative;
@@ -1331,6 +1346,10 @@ input::placeholder {
     flex: 0 0 25%;
     padding: 10px;
   }
+  #productPage .imageGallery .image img {
+    outline: solid 5px black;
+    outline-offset: -5px;
+  }
   #productPage .imageGallery .copy h5 {
     margin: 0;
   }
@@ -1381,10 +1400,25 @@ input::placeholder {
     flex-direction: row;
   }
   #productPage .block.viewPort .camoWrap .cornImage {
-    top: 0;
+    top: -10%;
   }
   #productPage .block.solarPanel .camo .glare {
     top: 125%;
+  }
+  #productPage .block.cascade {
+    background: #223047;
+  }
+  #productPage .block.cascade img {
+    display: none;
+  }
+  #productPage .block.cascade .copy div {
+    border: 1px solid white;
+    padding: 60px;
+    margin: 60px;
+  }
+  #productPage .block.cascade .copy div:hover {
+    background: #4E6283;
+    border: 1px solid #4E6283;
   }
   #productPage .block article {
     flex: 0 0 50%;
@@ -1402,6 +1436,49 @@ input::placeholder {
     margin-top: 0;
     font-size: 1.6rem;
   }
+  #productPage .motor-blueprint {
+    display: block;
+    position: relative;
+    z-index: 99;
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+    pointer-events: none;
+  }
+  #productPage .motor-blueprint svg {
+    overflow: visible;
+  }
+  #productPage .motor-blueprint svg g, #productPage .motor-blueprint svg polygon, #productPage .motor-blueprint svg path {
+    fill: #4E6283;
+    transition: all 0.3s ease-in-out;
+  }
+  #productPage .motor-blueprint svg#motorGraphic {
+    width: 20%;
+    display: block;
+    position: absolute;
+    top: 29%;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+  #productPage .motor-blueprint #motor {
+    transform: rotate(0deg);
+    transition: all 0.3s ease-in-out;
+  }
+  #productPage .motor-blueprint.guard #guard polygon {
+    fill: white;
+    transition: all 0.3s ease-in-out;
+  }
+  #productPage .motor-blueprint.door #motor {
+    fill: white;
+    transform-origin: 0 0;
+    transform-box: view-box;
+    transform: rotate(80deg) translate(45px, -40px);
+    transition: all 0.3s ease-in-out;
+  }
+  #productPage .motor-blueprint.door #motor path {
+    fill: white;
+  }
   #productPage .spotlight {
     margin-top: -100px;
   }
@@ -1409,7 +1486,7 @@ input::placeholder {
     flex-direction: row;
   }
   #productPage .feedOptions {
-    padding: 60px 0;
+    padding: 60px 0 0;
   }
   #productPage .feedOptions .options {
     padding: 20px;

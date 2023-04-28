@@ -3,6 +3,7 @@ import React, {useState, useEffect} from 'react';
 import viewport from '../assets/img/viewport.png';
 import camo from '../assets/img/camo.png';
 import corn from '../assets/img/corn-kernals.png';
+import riceBrand from '../assets/img/rice-brand-feeder.png';
 import solarPanel1 from '../assets/img/solarPanel1.png';
 import solarPanel2 from '../assets/img/solarPanel2.png';
 
@@ -35,7 +36,7 @@ const FeatureBlocks = (props: featureBlockType) => {
           <img className="camoImage" src={camo} alt='Camo Pattern' />
           <img 
             className="cornImage" 
-            src={corn} 
+            src={props.name === 'TreeHugger' ? riceBrand : corn} 
             alt='Corn Feed' 
             style={{
               transform: `translateY(${offset * 0.5}px)`,
