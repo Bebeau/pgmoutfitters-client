@@ -6,12 +6,6 @@
   p {
     opacity: 0.5;
   }
-  .hero {
-    min-height: auto;
-    .heroTitle {
-      z-index: 999;
-    }
-  }
   .content {
     position: relative;
     z-index: 3;
@@ -249,6 +243,23 @@
         }
       }
     }
+    &.cascade {
+      padding: 0;
+      .image {
+        margin: 0;
+        padding: 0;
+        img {
+          max-width: 100%;
+          margin-bottom: -5px;
+        }
+      }
+      .copy {
+        padding: 20px;
+      }
+      article {
+        padding: 0;
+      }
+    }
   }
   .motor-blueprint {
     display: none;
@@ -419,15 +430,6 @@
 
 @media(min-width: 768px) {
   #productPage {
-    .heroTitle {
-      h1 {
-        font-size: 5rem;
-        line-height: 80px;
-      }
-      .btn {
-        margin: 40px 0 0;
-      }
-    }
     h2 {
       font-size: 4rem;
       margin: 0 0 40px;
@@ -526,23 +528,6 @@
           }
         }
       }
-      &.cascade {
-        background: $blue;
-        img {
-          display: none;
-        }
-        .copy {
-          div {
-            border: 1px solid white;
-            padding: 30px;
-            margin: 30px;
-            &:hover {
-              background: $lightblue;
-              border: 1px solid $lightblue;
-            }
-          }
-        }
-      }
       article {
         flex: 0 0 50%;
         div {
@@ -559,6 +544,25 @@
         h3 {
           margin-top: 0;
           font-size: 1.6rem;
+        }
+      }
+      &.cascade {
+        background: $blue;
+        padding: 20px;
+        article {
+          padding: 30px;
+        }
+        .image {
+          margin: 0;
+          padding: 0;
+          img {
+            max-width: 100%;
+            margin-bottom: -5px;
+          }
+        }
+        .copy {
+          padding: 30px;
+          border: 1px solid white;
         }
       }
     }
@@ -682,11 +686,12 @@
         }
       }
       &.cascade {
+        padding: 20px;
+        article {
+          padding: 60px;
+        }
         .copy {
-          div {
-            padding: 60px;
-            margin: 60px;
-          }
+          padding: 60px;
         }
       }
     }

@@ -22,14 +22,8 @@ const ProductHero = (props: productHeroType) => {
           </button>
         </div>
       </div>
-      <div className="carousel">
-        <div className="carouselWrap">
-          <div className="slide">
-            <section className="slideImage">
-              <img src={props.image} alt={props.name} />
-            </section>
-          </div>
-        </div>
+      <div className={props.name === 'TreeHugger' ? "heroImage" : "heroImage pad"}>
+        <img src={props.image} alt={props.name} />
       </div>
     </div>
   )

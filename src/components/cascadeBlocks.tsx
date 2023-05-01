@@ -10,23 +10,27 @@ const CascadeBlocks = () => {
   const [activeItem, setActiveItem] = useState('');
   return (
     <>
-      <div className={activeItem ? `motor-blueprint ${activeItem}` : 'motor-blueprint'}>
+      {/* <div className={activeItem ? `motor-blueprint ${activeItem}` : 'motor-blueprint'}>
         <CascadeOptions />
         <MotorGraphic />
-      </div>
+      </div> */}
       <div className="block cascade">
-        <img src={guardImage} alt="" />
-        <article className="copy" onMouseEnter={() => setActiveItem('guard')} onMouseLeave={() => setActiveItem('')}>
-          <div>
+        <article onMouseEnter={() => setActiveItem('guard')} onMouseLeave={() => setActiveItem('')}>
+          <div className="image">
+            <img src={guardImage} alt="" />
+          </div>
+          <div className="copy">
             <h3>Varment Guard</h3>
             <p>
-              The cascade timer feeders are equip with a 24in x 24in x 1/4in steel plate varment guard. It prevents any varments from reaching the motor and manually emptying your feed. It is also durable enough to discourage boars.
+              The cascade timer feeders are equip with a 24in x 24in x 1/8in steel plate varment guard. This feature prevents any varments from reaching the motor and manually emptying your feed, and is durable enough to discourage boars.
             </p>
           </div>
         </article>
-        <img src={motorImage} alt="" />
-        <article className="copy" onMouseEnter={() => setActiveItem('door')} onMouseLeave={() => setActiveItem('')}>
-          <div>
+        <article onMouseEnter={() => setActiveItem('door')} onMouseLeave={() => setActiveItem('')}>
+          <div className="image">
+            <img src={motorImage} alt="" />
+          </div>
+          <div className="copy">
             <h3>Funnel Drop Door</h3>
             <p>
               We have specifically cut an access door around the motor casing to allow for easy funnel access. This door is toggled by a latch to make maintenance, upkeep, and funnel cleaning as convenient as possible.

@@ -203,26 +203,6 @@ input {
     background: $error;
   }
 }
-.dotNav {
-  display: flex;
-  justify-content: center;
-  padding: 0 0 40px;
-  .dot {
-    width: 30px;
-    height: 30px;
-    margin: 0 20px;
-    background: rgba(255,255,255,0.2);
-    border-radius: 99999px;
-    transition: all 0.3s ease-in-out;
-    &.active {
-      background: rgba(255,255,255,1);
-      transition: all 0.3s ease-in-out;
-    }
-    &:first-child {
-      margin: 0 20px 0 0;
-    }
-  }
-}
 .contentWrap {
   width: 100%;
   box-sizing: border-box;
@@ -230,7 +210,6 @@ input {
 }
 .hero {
   background: linear-gradient(#885438, #461D0D);
-  min-height: 100vh;
   position: relative;
   .heroTitle {
     height: 100%;
@@ -243,6 +222,8 @@ input {
     text-transform: uppercase;
     line-height: 50px;
     color: $tan;
+    position: relative;
+    z-index: 2;
     h1 {
       margin: 0;
       padding: 20px;
@@ -254,6 +235,13 @@ input {
       margin: 0 auto 20px;
     }
   }
+  .heroImage {
+    position: relative;
+    z-index: 2;
+    img {
+      width: 100%;
+    }
+  }
   &:after {
     content: '';
     display: block;
@@ -263,77 +251,11 @@ input {
     bottom: 0;
     left: 0;
     right: 0;
-    height: 25vh;
-  }
-}
-.carousel {
-  position: relative;
-  overflow-x: hidden;
-  .carouselWrap {
-    display: flex;
-    align-items: center;
-    transition: all 1s ease-in-out;
-    position: relative;
-    z-index: 2;
-    &.resizing {
-      transition: none;
-    }
-    .slide {
-      display: block;
-      flex: 0 0 100%;
-      &:nth-child(3) {
-        .slideImage {
-          img {
-            width: 100%;
-          }
-        }
-      }
-      .slideImage {
-        img {
-          width: 80%;
-          margin: 0 auto;
-          display: block;
-        }
-      }
-      .slideCopy {
-        text-align: center;
-        font-size: 1.4rem;
-        h2 {
-          margin: 20px 0 0;
-          letter-spacing: 2px;
-          &:after {
-            margin-left: 10px;
-            content: '';
-            display: inline-block;
-            height: 0px;
-            width: 0px;
-            border-top: 10px solid transparent;
-            border-bottom: 10px solid transparent;
-            border-left: 15px solid $tan;
-            transform: translate(0, 0);
-            transition: all 0.3s ease-in-out;
-          }
-          &:hover {
-            &:after {
-              border-left: 15px solid white;
-              transform: translate(10px, 0);
-              transition: all 0.3s ease-in-out;
-            }
-          }
-        }
-      }
-    }
-  }
-  .dotNav {
-    display: flex;
-    justify-content: center;
-    padding: 40px 0;
+    height: 30vh;
   }
 }
 .company {
-  &.contentWrap {
-    padding: 0 20px;
-  }
+  padding-bottom: 0;
   .companyCopy {
     color: white;
     p {
@@ -747,7 +669,8 @@ input {
 
 @media(min-width: 768px) {
   .hero {
-    padding-top: 100px;
+    min-height: 100vh;
+    display: flex;
     .heroTitle {
       display: flex;
       align-items: flex-start;
@@ -757,67 +680,26 @@ input {
       margin-top: 50px;
       transform: translate(0,-60px);
       h1 {
-        padding: 0;
-        font-size: 5rem;
+        padding: 100px 0 0;
+        font-size: 4rem;
+        line-height: 60px;
+      }
+      .btn {
+        margin: 40px 0;
       }
     }
-  }
-  .dotNav {
-    .dot {
-      width: 20px;
-      height: 20px;
-      margin: 0 10px;
-      &:first-child {
-        margin: 0 10px 0 0;
+    .heroImage {
+      flex: 0 0 50%;
+      img {
+        max-height: 100%;
+        padding: 0 60px;
+        box-sizing: border-box;
+        margin: 0 auto;
+        display: block;
       }
-      &:hover {
-        cursor: pointer;
+      &.pad {
+        padding-top: 100px;
       }
-    }
-  }
-  .carousel {
-    height: 100vh;
-    .carouselWrap {
-      height: 100%;
-      .slide {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        &:nth-child(3) {
-          .slideImage {
-            img {
-              width: 100%;
-            }
-          }
-        }
-        .slideImage {
-          flex: 0 0 50%;
-          img {
-            width: 80%;
-          }
-        }
-        .slideCopy {
-          flex: 0 0 50%;
-          opacity: 1;
-          transform: translate(0, 0);
-          transition: all 1s ease-in-out;
-          h2 {
-            text-align: left;
-          }
-          &.fade {
-            transform: translate(0, 10px);
-            opacity: 0;
-            transition: all 0.3s ease-in-out;
-          }
-        }
-      }
-    }
-    .dotNav {
-      position: absolute;
-      z-index: 3;
-      bottom: 40%;
-      left: 50%;
-      padding: 0;
     }
   }
   .company {
@@ -829,7 +711,7 @@ input {
     .companyCopy {
       flex: 0 0 50%;
       padding-right: 50px;
-      transform: translate(0,-100px);
+      align-self: center;
       h3 {
         font-size: 2rem;
       }
@@ -896,22 +778,11 @@ input {
     width: 900px;
     margin: 0 auto;
   }
-  .carousel {
-    .carouselWrap {
-      .slide {
-        &:nth-child(3) {
-          .slideImage {
-            img {
-              width: 80%;
-            }
-          }
-        }
-        .slideImage {
-          flex: 0 0 50%;
-          img {
-            width: 70%;
-          }
-        }
+  .hero {
+    .heroTitle {
+      h1 {
+        font-size: 5rem;
+        line-height: 80px;
       }
     }
   }
@@ -976,3 +847,4 @@ input {
 }
 
 @import './_product.scss';
+@import './_carousel.scss';

@@ -17,7 +17,7 @@ import specialOpsFull6 from '../img/special-ops/photos/full/6.jpg';
 import specialOpsFull7 from '../img/special-ops/photos/full/7.jpg';
 import specialOpsFull8 from '../img/special-ops/photos/full/8.jpg';
 
-import treeHugger from '../img/tree-hugger/treehugger_plain.png';
+import treeHugger from '../img/tree-hugger/treehugger.png';
 import treeHuggerBluePrint from '../img/tree-hugger/treehugger-blueprint.svg';
 import treeHuggerThumb1 from '../img/tree-hugger/photos/thumb/1.jpg';
 import treeHuggerThumb2 from '../img/tree-hugger/photos/thumb/2.jpg';
