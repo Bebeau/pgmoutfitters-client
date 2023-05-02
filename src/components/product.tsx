@@ -1,7 +1,6 @@
 import React, {useState, useEffect, useCallback} from 'react';
 import {useParams} from 'react-router-dom';
 import {productData, productType} from '../assets/data/products';
-import {testimonialType} from '../assets/data/testimonials';
 import ProductSpecs from './productSpecs';
 import ImageGallery from './imageGallery';
 import ProductHero from './productHero';
@@ -12,6 +11,10 @@ import RiceBrand from './riceBrand';
 import SpecialOpsFeedOptions from './specialOpsFeedOptions';
 import FiveInOneFeedOptions from './fiveInOneFeedOptions';
 import CascadeBlocks from './cascadeBlocks';
+import DealerInquiry from './dealer';
+
+import Testimonials from './testimonials';
+import {testimonialType} from '../assets/data/testimonials';
 
 type singleProductType = {
   openInquiry: () => void;
@@ -82,7 +85,7 @@ const Product = (props: singleProductType) => {
   }, [props, slug, preloadImages]);
 
   return (
-    <div id="productPage">
+    <div id="productPage" className={productInfo.name}>
       <ProductHero 
         image={productInfo.image}
         name={productInfo.name}
@@ -123,8 +126,14 @@ const Product = (props: singleProductType) => {
         name={productInfo.name}
         openInquiry={props.openInquiry}
       />
+      <Testimonials 
+        testimonials={props.testimonialData}
+      />
       <RelatedProducts
         products={relatedProducts}
+      />
+      <DealerInquiry 
+        openInquiry={props.openInquiry}
       />
     </div>
   )

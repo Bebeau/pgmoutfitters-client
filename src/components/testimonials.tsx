@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react';
 
+import { ReactComponent as Refresh } from '../assets/img/refresh.svg';
+
 const SingleQuote = (props: any) => {
   return (
     <div className={props.transition ? "testimonialWrap show" : "testimonialWrap" }>
@@ -19,15 +21,28 @@ const SingleQuote = (props: any) => {
 }
 
 const Testimonials = (props: any) => {
+  const btnRef = React.useRef<any>();
   const [activeIndex, setActiveIndex] = useState(0);
   const [show, setShow] = useState(false);
   const handleTransition = () => {
     setShow(false);
     setTimeout(() => setShow(true), 500);
   }
-  const handleNavClick = (index: number) => {
+  const rotateBtnClick = () => {
+    if(typeof btnRef.current !== 'undefined') {
+      btnRef.current.classList.add('rotate');
+      setTimeout(() => {
+        btnRef.current.classList.remove('rotate');
+      }, 1000 );
+    }
+  }
+  const handleNavClick = () => {
     handleTransition();
-    setTimeout(() => setActiveIndex(index), 500);
+    rotateBtnClick();
+    if(activeIndex !== (props.testimonials.length - 1) ) {
+      return setTimeout(() => setActiveIndex(activeIndex+1), 500);
+    }
+    setTimeout(() => setActiveIndex(0), 500);
   }
   useEffect(() => {
     setShow(true);
@@ -36,14 +51,10 @@ const Testimonials = (props: any) => {
   return (
     <div className="testimonials">
       <div className="contentWrap">
-        <h3>Customer Testimonials</h3>
+        <h3>Testimonials</h3>
         <SingleQuote {...props.testimonials[activeIndex]} transition={show} />
-        <div className="dotNav">
-          {props.testimonials.map((item: any, index: number) => {
-          return (
-              <div key={index} className={activeIndex === index ? 'dot active' : 'dot'} onClick={() => handleNavClick(index)} />
-            );
-          })}
+        <div ref={btnRef} className='change'>
+          <Refresh onClick={() => handleNavClick()} />
         </div>
       </div>
     </div>

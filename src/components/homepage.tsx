@@ -3,6 +3,7 @@ import Carousel from './carousel';
 import Company from './company';
 import Testimonials from './testimonials';
 import ProductListing from './productListing';
+import DealerInquiry from './dealer';
 
 import {productType} from '../assets/data/products';
 import {testimonialType} from '../assets/data/testimonials';
@@ -45,6 +46,9 @@ const Homepage = (props: homepageType) => {
     <ProductListing 
       openInquiry={props.openInquiry}
       products={props.productData} 
+    />
+    <DealerInquiry 
+      openInquiry={props.openInquiry}
     />
     </>
   );

@@ -202,7 +202,7 @@
         }
         .cornImage {
           position: absolute;
-          top: -60%;
+          top: -70%;
           left: 0;
           right: 0;
           bottom: 0;
@@ -302,8 +302,11 @@
       h4 {
         margin-top: 40px;
       }
+      &:nth-child(1) {
+        background: darken($green, 10%);
+      }
       &:nth-child(2) {
-        background: darken($green, 5%);
+        background: darken($green, 15%);
       }
     }
   }
@@ -426,10 +429,26 @@
       }
     }
   }
+  &.TreeHugger {
+    .spotlight {
+      margin-top: -20px;
+    }
+  }
 }
 
 @media(min-width: 768px) {
   #productPage {
+    &.TreeHugger {
+      .block {
+        &.viewPort {
+          .camoWrap {
+            .cornImage {
+              top: -10%;
+            }
+          }
+        }
+      }
+    }
     h2 {
       font-size: 4rem;
       margin: 0 0 40px;
@@ -517,7 +536,7 @@
         flex-direction: row;
         .camoWrap {
           .cornImage {
-            top: -10%;
+            top: -20%;
           }
         }
       }

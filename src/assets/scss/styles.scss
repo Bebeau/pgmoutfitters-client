@@ -202,11 +202,38 @@ input {
   &.error {
     background: $error;
   }
+  &.info {
+    color: white;
+  }
 }
 .contentWrap {
   width: 100%;
   box-sizing: border-box;
   padding: 20px;
+}
+.dealerInquiry {
+  background: linear-gradient(#885438, #461D0D);
+  color: white;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 0 20px;
+  h3 {
+    margin: 0;
+  }
+  p {
+    font-size: 1.4rem;
+    max-width: 800px;
+  }
+  .btn {
+    color: $blue;
+    background: white;
+    margin-top: 20px;
+  }
 }
 .hero {
   background: linear-gradient(#885438, #461D0D);
@@ -353,6 +380,40 @@ input {
       }
     }
   }
+  .change {
+    width: 50px;
+    height: 50px;
+    background: $blue;
+    margin: 0 auto 40px;
+    border-radius: 9999px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    svg {
+      width: 60%;
+      height: auto;
+      g,path, polygon {
+        fill: white;
+      }
+    }
+    &:hover {
+      cursor: pointer;
+    }
+    &.rotate {
+      svg {
+        animation: rotateBtn 1s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+    }
+  }
+}
+@keyframes rotateBtn {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(180deg);
+  }
 }
 .productListing {
   margin-bottom: 100px;
@@ -415,6 +476,11 @@ input {
     justify-content: space-evenly;
     box-sizing: border-box;
     padding: 20px 0;
+    position: relative;
+    .alert {
+      margin: 0 auto;
+      font-size: 2rem;
+    }
     .inquiryProductWrap {
       display: flex;
       align-items: center;
@@ -633,6 +699,7 @@ input {
   border: 3px solid white;
   border-radius: 999px;
   position: absolute;
+  z-index: 999;
   top: 20px;
   right: 20px;
   &:before {
@@ -739,6 +806,17 @@ input {
   }
   .inquiryModal {
     .inquiryCart {
+      .alert {
+        &.info {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          font-size: 1.2rem;
+          background: $blue;
+          color: white;
+        }
+      }
       .inquiryProductCopy {
         display: flex;
         justify-content: flex-start;
