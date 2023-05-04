@@ -615,6 +615,7 @@ input::placeholder {
 .inquiryModal .inquiryForm .btnGroup {
   display: flex;
   width: 100%;
+  box-sizing: border-box;
   justify-content: center;
   align-items: center;
   border: 3px solid white;
@@ -1227,6 +1228,15 @@ input::placeholder {
   opacity: 0;
   transition: all 0.3s ease-in-out;
 }
+#productPage .feedOptions .graphic svg polyline {
+  fill: none;
+  stroke-dasharray: 10;
+  animation: dashPolyLine 5s linear infinite;
+}
+#productPage .feedOptions .graphic svg line {
+  stroke-dasharray: 10;
+  animation: dashLine 5s linear infinite;
+}
 #productPage .feedOptions .graphic.timer svg #timer {
   opacity: 1;
   transition: all 0.3s ease-in-out;
@@ -1289,10 +1299,24 @@ input::placeholder {
   padding: 0;
   width: 375px;
 }
+#productPage .feedOptions.fiveInOne svg line {
+  stroke-dasharray: 10;
+  animation: dashPolyLine 5s linear infinite;
+}
 #productPage.TreeHugger .spotlight {
   margin-top: -20px;
 }
 
+@keyframes dashLine {
+  to {
+    stroke-dashoffset: 100;
+  }
+}
+@keyframes dashPolyLine {
+  to {
+    stroke-dashoffset: -100;
+  }
+}
 @media (min-width: 768px) {
   #productPage.TreeHugger .block.viewPort .camoWrap .cornImage {
     top: -10%;

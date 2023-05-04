@@ -342,6 +342,15 @@
           opacity: 0;
           transition: all 0.3s ease-in-out;
         }
+        polyline {
+          fill: none;
+          stroke-dasharray: 10;
+          animation: dashPolyLine 5s linear infinite;
+        }
+        line {
+          stroke-dasharray: 10;
+          animation: dashLine 5s linear infinite;
+        }
       }
       &.timer {
         svg {
@@ -427,12 +436,30 @@
         padding: 0;
         width: 375px;
       }
+      svg {
+        line {
+          stroke-dasharray: 10;
+          animation: dashPolyLine 5s linear infinite;
+        }
+      }
     }
   }
   &.TreeHugger {
     .spotlight {
       margin-top: -20px;
     }
+  }
+}
+
+@keyframes dashLine {
+  to {
+    stroke-dashoffset: 100;
+  }
+}
+
+@keyframes dashPolyLine {
+  to {
+    stroke-dashoffset: -100;
   }
 }
 
