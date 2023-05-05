@@ -143,7 +143,7 @@ export const productData = [
       {
         thumb: specialOpsThumb8,
         full: specialOpsFull8,
-        title: 'Timer Motar Casing',
+        title: 'Timer Motor Casing',
         desc: 'The battery and motor are stored in an 1/8 in steel casing to protect from boar and the elements.',
       }
     ],
@@ -291,7 +291,7 @@ export const productData = [
       {
         thumb: fiveInOneThumb8,
         full: fiveInOneFull8,
-        title: 'Timer Motar Casing',
+        title: 'Timer Motor Casing',
         desc: 'The battery and motor are stored in an 1/8 in steel casing to protect from boar and the elements.',
       }
     ],

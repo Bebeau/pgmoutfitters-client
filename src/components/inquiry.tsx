@@ -328,7 +328,12 @@ const Inquiry = (props: inquiryType) => {
 
         <div className="formSubmit">
           <button className="btn white" onClick={submitInquiry} disabled={formLoading}>
-            <>Send Inquiry</>
+            {formLoading && (
+              <>Sending...</>
+            )}
+            {!formLoading && (
+              <>Send Inquiry</>
+            )}
           </button>
         </div>
         </>
