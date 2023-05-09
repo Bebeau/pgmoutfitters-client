@@ -84,6 +84,7 @@ export const productData = [
     blueprint: specialOpsBluePrint,
     description: 'This next generation deer feeder offers feeding options with the turn of a lever to configure between gravity and timer feeding.',
     specs: [
+      '200 lbs total weight',
       'Split gravity/timer feeder',
       '3 adjustable feed load settings',
       '6 feed settings (THE TIMER)',
@@ -159,6 +160,7 @@ export const productData = [
     blueprint: treeHuggerBluePrint,
     description: 'This next generation deer feeder was created specifically for all the rice brand believers. Just lean and feed.',
     specs: [
+      '80 lbs total weight',
       'Gravity feeder',
       'Proprietary shaker',
       '100 lb total feed volume',
@@ -232,6 +234,7 @@ export const productData = [
     blueprint: fiveInOneBluePrint,
     description: 'This next generation deer feeder offers 5 chambers, 4 gravity feed stations, and 1 central timer feed station. Made for serious game management.',
     specs: [
+      '400 lbs total weight',
       '1100 lb total feed volume',
       '5 feed chambers',
       '650 lb gravity',
