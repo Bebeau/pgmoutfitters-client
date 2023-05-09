@@ -1,6 +1,10 @@
 import React from 'react';
 
 const ProductListing = (props: any) => {
+  const handleBtnClick = () => {
+    window.dataLayer.push({event: 'productListingCTA'});
+    props.openInquiry();
+  }
   return (
     <div className="productListing">
       <div className="contentWrap">
@@ -14,7 +18,7 @@ const ProductListing = (props: any) => {
           );
         })}
       </div>
-      <button className="btn" onClick={props.openInquiry}>
+      <button className="btn" onClick={handleBtnClick}>
         Inquire For Purchase
       </button>
     </div>

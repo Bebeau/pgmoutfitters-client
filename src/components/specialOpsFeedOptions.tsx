@@ -15,6 +15,11 @@ const SpecialOpsFeedOptions = (props: {openInquiry: () => void}) => {
     setSetting(setting);
   }
 
+  const handleInquiryBtnClick = () => {
+    window.dataLayer.push({event: 'feedOptionsCTA'});
+    props.openInquiry();
+  }
+
   return (
     <div className="block feedOptions specialOps">
       <article className="options">
@@ -24,7 +29,7 @@ const SpecialOpsFeedOptions = (props: {openInquiry: () => void}) => {
           <button ref={timerBtnRef} className={activeBtnRef.current === timerBtnRef.current ? 'btn outline active' : 'btn outline'} onClick={(e) => handleBtnClick(e.target, 'timer')}>800 lb full timer</button>
           <button ref={splitBtnRef} className={activeBtnRef.current === splitBtnRef.current ? 'btn outline active' : 'btn outline'} onClick={(e) => handleBtnClick(e.target, 'split')}>350 lb gravity / 450 lb timer</button>
           <button ref={gravityBtnRef} className={activeBtnRef.current === gravityBtnRef.current ? 'btn outline active' : 'btn outline'} onClick={(e) => handleBtnClick(e.target, 'gravity')}>600 lb full gravity</button>
-          <button className="btn" onClick={props.openInquiry}>
+          <button className="btn" onClick={handleInquiryBtnClick}>
             Inquire For Purchase
           </button>
         </div>

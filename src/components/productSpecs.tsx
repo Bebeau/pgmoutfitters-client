@@ -6,6 +6,10 @@ type productSpecsType = {
   openInquiry: () => void
 }
 const ProductSpecs = (props: productSpecsType) => {
+  const handleBtnClick = () => {
+    window.dataLayer.push({event: 'productSpecsCTA'});
+    props.openInquiry();
+  }
   return (
     <div className="content">
       <h2>{props.productInfo.name}</h2>
@@ -24,7 +28,7 @@ const ProductSpecs = (props: productSpecsType) => {
               );
             })}
           </ul>
-          <button className="btn" onClick={props.openInquiry}>
+          <button className="btn" onClick={handleBtnClick}>
             Inquire For Purchase
           </button>
         </div>

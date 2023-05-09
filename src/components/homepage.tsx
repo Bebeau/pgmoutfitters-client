@@ -17,11 +17,13 @@ type homepageType = {
 }
 
 const Homepage = (props: homepageType) => {
+
   useEffect(() => {
     if(props.isLoading) {
       props.setIsLoading(false);
     }
   }, [props]);
+
   return (
     <>
     <div className="hero">

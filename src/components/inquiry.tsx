@@ -201,6 +201,7 @@ const Inquiry = (props: inquiryType) => {
         if(res.status !== 200) {
           return setErrorMessage(res.message);
         }
+        window.dataLayer.push({event: 'inquiry'});
         setSuccessMessage('Thank You for your interest in our next generation deer feeders! We have received your inquriy and look forward to fulfilling your request. A member of our team will be in contact with you shortly.');
         clearFormValues();
       })

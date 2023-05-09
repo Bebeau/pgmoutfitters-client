@@ -6,6 +6,10 @@ type productHeroType = {
   openInquiry: () => void;
 }
 const ProductHero = (props: productHeroType) => {
+  const handleBtnClick = () => {
+    window.dataLayer.push({event: 'productHeroCTA'});
+    props.openInquiry();
+  }
   return (
     <div className="hero">
       <div className="heroTitle">
@@ -17,7 +21,7 @@ const ProductHero = (props: productHeroType) => {
             Deer <br />
             Feeders
           </h1>
-          <button className="btn" onClick={props.openInquiry}>
+          <button className="btn" onClick={handleBtnClick}>
             Inquire For Purchase
           </button>
         </div>
