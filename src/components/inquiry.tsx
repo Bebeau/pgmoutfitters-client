@@ -201,7 +201,11 @@ const Inquiry = (props: inquiryType) => {
         if(res.status !== 200) {
           return setErrorMessage(res.message);
         }
-        window.dataLayer.push({event: 'inquiry'});
+        window.dataLayer.push('event', 'conversion', {
+          'send_to': 'AW-11171481429/4FueCK2qlZ0YENWO_c4p',
+          'value': Number(cost.replace(',','')),
+          'currency': 'USD',
+        });
         setSuccessMessage('Thank You for your interest in our next generation deer feeders! We have received your inquriy and look forward to fulfilling your request. A member of our team will be in contact with you shortly.');
         clearFormValues();
       })
