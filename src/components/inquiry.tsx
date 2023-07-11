@@ -93,7 +93,7 @@ const Inquiry = (props: inquiryType) => {
       setShowDealerPrice(false);
       calculateTotalCost(retailCosts);
     }
-  }, [productInputValues, userType, calculateTotalCost]);
+  }, [productInputValues, calculateTotalCost]);
   
   const handleProductInputChange = (key: number, event: any) => {
     let result = productInputValues.filter(obj => {
