@@ -19,7 +19,7 @@ const defaultInputData = [
     name: 'Special-Ops',
     qty: '0',
     price: {
-      retail: 1875,
+      retail: 1625,
       dealer: 1500
     }
   },
@@ -35,7 +35,7 @@ const defaultInputData = [
     name: '5-N-1',
     qty: '0',
     price: {
-      retail: 2250,
+      retail: 1995,
       dealer: 1800
     }
   }

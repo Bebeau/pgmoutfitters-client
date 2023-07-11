@@ -149,7 +149,7 @@ export const productData = [
       }
     ],
     price: {
-      retail: 1875,
+      retail: 1625,
       dealer: 1500
     }
   },
@@ -299,7 +299,7 @@ export const productData = [
       }
     ],
     price: {
-      retail: 2250,
+      retail: 1995,
       dealer: 1800
     }
   }

@@ -11,7 +11,7 @@ import RiceBrand from './riceBrand';
 import SpecialOpsFeedOptions from './specialOpsFeedOptions';
 import FiveInOneFeedOptions from './fiveInOneFeedOptions';
 import CascadeBlocks from './cascadeBlocks';
-import DealerInquiry from './dealer';
+// import DealerInquiry from './dealer';
 
 import Testimonials from './testimonials';
 import {testimonialType} from '../assets/data/testimonials';
@@ -73,7 +73,7 @@ const Product = (props: singleProductType) => {
     .then(() => {
       props.setIsLoading(false);
     });
-  }, [productInfo.photos]);
+  }, [productInfo.photos, props]);
 
   useEffect(() => {
     if(slug) {
@@ -132,9 +132,9 @@ const Product = (props: singleProductType) => {
       <RelatedProducts
         products={relatedProducts}
       />
-      <DealerInquiry 
+      {/* <DealerInquiry 
         openInquiry={props.openInquiry}
-      />
+      /> */}
     </div>
   )
 }
