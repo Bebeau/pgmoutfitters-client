@@ -233,9 +233,9 @@ const Inquiry = (props: inquiryType) => {
       <button className="closeModal" onClick={() => props.closeInquiry()}></button>
 
       <section className="inquiryCart">
-        <div className="alert info">
+        {/* <div className="alert info">
           Purchase 10 or more to receive dealer pricing.
-        </div>
+        </div> */}
         {props.productData.map((item: any, index: number) => {
           return (
             <div key={index} className="inquiryProduct">

@@ -1,8 +1,4 @@
 import React, {useState} from 'react';
-
-import { ReactComponent as CascadeOptions } from '../assets/img/cascade.svg';
-import { ReactComponent as MotorGraphic } from '../assets/img/motor.svg';
-
 import motorImage from '../assets/img/special-ops/photos/full/6.jpg';
 import guardImage from '../assets/img/guard.jpg';
 
