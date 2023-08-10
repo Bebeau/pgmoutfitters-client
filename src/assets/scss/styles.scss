@@ -148,6 +148,7 @@ input {
   background: none;
   border: none;
   border-bottom: 2px solid white;
+  border-radius: 0;
   color: white;
   width: 100%;
   box-sizing: border-box;
@@ -517,7 +518,7 @@ input {
       .arrow {
         display: block;
         position: absolute;
-        right: -40px;
+        right: -30px;
         &.up {
           top: 10px;
           height: 0px;
@@ -552,7 +553,7 @@ input {
     }
     h4 {
       font-family: "clarendon-wide", serif;
-      margin: 20px 0 5px;
+      margin: 10px 0 0;
       font-size: 1rem;
     }
     .price {
@@ -580,6 +581,18 @@ input {
           display: initial;
         }
       }
+    }
+  }
+  .phone-number-input {
+    input {
+      border-radius: 0;
+    }
+    button {
+      background: none;
+      color: white;
+      border-bottom: 2px solid white;
+      border-radius: 0;
+      font-size: 1.2rem;
     }
   }
   .inquiryForm {
@@ -633,6 +646,8 @@ input {
         box-sizing: border-box;
         letter-spacing: 1px;
         border: none;
+        margin: 0;
+        outline: none;
         svg {
           height: 50px;
           width: auto;
@@ -695,14 +710,15 @@ input {
 }
 
 .closeModal {
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
   border: 3px solid white;
   border-radius: 999px;
   position: absolute;
   z-index: 999;
   top: 20px;
   right: 20px;
+  background: white;
   &:before {
     content: '';
     width: 50%;
@@ -736,6 +752,10 @@ input {
 }
 
 @media(min-width: 768px) {
+  .closeModal {
+    width: 50px;
+    height: 50px;
+  }
   .hero {
     display: flex;
     .heroTitle {

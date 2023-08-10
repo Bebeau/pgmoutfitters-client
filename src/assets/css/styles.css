@@ -151,6 +151,7 @@ input {
   background: none;
   border: none;
   border-bottom: 2px solid white;
+  border-radius: 0;
   color: white;
   width: 100%;
   box-sizing: border-box;
@@ -518,7 +519,7 @@ input::placeholder {
 .inquiryModal .inquiryCart .formGroup .arrow {
   display: block;
   position: absolute;
-  right: -40px;
+  right: -30px;
 }
 .inquiryModal .inquiryCart .formGroup .arrow.up {
   top: 10px;
@@ -550,7 +551,7 @@ input::placeholder {
 }
 .inquiryModal .inquiryCart h4 {
   font-family: "clarendon-wide", serif;
-  margin: 20px 0 5px;
+  margin: 10px 0 0;
   font-size: 1rem;
 }
 .inquiryModal .inquiryCart .price {
@@ -576,6 +577,16 @@ input::placeholder {
 }
 .inquiryModal .inquiryCart .price.dealer .dealer {
   display: initial;
+}
+.inquiryModal .phone-number-input input {
+  border-radius: 0;
+}
+.inquiryModal .phone-number-input button {
+  background: none;
+  color: white;
+  border-bottom: 2px solid white;
+  border-radius: 0;
+  font-size: 1.2rem;
 }
 .inquiryModal .inquiryForm {
   display: flex;
@@ -630,6 +641,8 @@ input::placeholder {
   box-sizing: border-box;
   letter-spacing: 1px;
   border: none;
+  margin: 0;
+  outline: none;
 }
 .inquiryModal .inquiryForm .btnGroup button svg {
   height: 50px;
@@ -685,14 +698,15 @@ input::placeholder {
 }
 
 .closeModal {
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
   border: 3px solid white;
   border-radius: 999px;
   position: absolute;
   z-index: 999;
   top: 20px;
   right: 20px;
+  background: white;
 }
 .closeModal:before {
   content: "";
@@ -725,6 +739,10 @@ input::placeholder {
 }
 
 @media (min-width: 768px) {
+  .closeModal {
+    width: 50px;
+    height: 50px;
+  }
   .hero {
     display: flex;
   }

@@ -7,6 +7,7 @@ import { ReactComponent as DealerIcon } from '../assets/img/dealer.svg';
 import {productType} from '../assets/data/products';
 
 import APIUtils from '../utils/APIUtils';
+import PhoneNumeberInput from '@bebeau/phone-number-input';
 
 interface inquiryType {
   closeInquiry: () => void;
@@ -46,7 +47,7 @@ const Inquiry = (props: inquiryType) => {
 
   const inputRef = useRef<any>(defaultInputData.map(() => createRef()));
   const [productInputValues, setProductInputValues] = useState(defaultInputData);
-  const [showDealerPrice, setShowDealerPrice] = useState(false);
+  // const [showDealerPrice, setShowDealerPrice] = useState(false);
 
   const [userType, setUserType] = useState('hunter');
   const [firstName, setFirstName] = useState('');
@@ -86,11 +87,11 @@ const Inquiry = (props: inquiryType) => {
       return totalInputValue = Number(item.qty) + totalInputValue;
     });
     if(totalInputValue >= 10) {
-      setShowDealerPrice(true);
+      // setShowDealerPrice(true);
       calculateTotalCost(dealerCosts);
     }
     if(totalInputValue < 10) {
-      setShowDealerPrice(false);
+      // setShowDealerPrice(false);
       calculateTotalCost(retailCosts);
     }
   }, [productInputValues, calculateTotalCost]);
@@ -138,21 +139,9 @@ const Inquiry = (props: inquiryType) => {
   const validateForm = (formData: any) => {
     let errorFields: string[] = [];
     Object.keys(formData).forEach((key: string) => {
-      
-      // let productCount = 0;
-      // if(key === 'cart') {
-      //   formData[key].filter( (item: any) => {
-      //     productCount = productCount + Number(item.qty);
-      //   });
-      //   if(productCount === 0) {
-      //     errorFields.push(key);
-      //   }
-      // }
-
       if(key !=='cart' && formData[key] === '') {
         errorFields.push(key);
       }
-
     });
     if(errorFields.length > 0) {
       return {errors: errorFields};
@@ -201,11 +190,17 @@ const Inquiry = (props: inquiryType) => {
         if(res.status !== 200) {
           return setErrorMessage(res.message);
         }
-        window.dataLayer.push('event', 'conversion', {
+        // window.dataLayer.push('event', 'conversion', {
+        //   'send_to': 'AW-11171481429/4FueCK2qlZ0YENWO_c4p',
+        //   'value': Number(cost.replace(',','')).toFixed(2),
+        //   'currency': 'USD',
+        // });
+        window.dataLayer.push({
+          event: 'conversion',
           send_to: 'AW-11171481429/4FueCK2qlZ0YENWO_c4p',
-          value: Number(cost.replace(',','')),
+          value: parseInt(Number(cost.replace(',','')).toFixed(2)),
           currency: 'USD',
-        });
+        })
         setSuccessMessage('Thank You for your interest in our next generation deer feeders! We have received your inquriy and look forward to fulfilling your request. A member of our team will be in contact with you shortly.');
         clearFormValues();
       })
@@ -249,9 +244,9 @@ const Inquiry = (props: inquiryType) => {
                   </div>
                   <div className="copyGroup">
                     <h4>{item.name}</h4>
-                    <div className={showDealerPrice ? 'price dealer' : 'price'}>
+                    <div className="price">
                       <span className="retail">${item.price.retail}</span>
-                      <span className="dealer">${item.price.dealer}</span>
+                      {/* <span className="dealer">${item.price.dealer}</span> */}
                     </div>
                   </div>
                 </div>
@@ -326,7 +321,9 @@ const Inquiry = (props: inquiryType) => {
           </div>
 
           <div className="formGroup">
-            <input type="text" name="phone" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="Phone Number" />
+            <PhoneNumeberInput 
+              onInputChange={(value: string) => setPhone(value)}
+            />
           </div>
 
         </div>

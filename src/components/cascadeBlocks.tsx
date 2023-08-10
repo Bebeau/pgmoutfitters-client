@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
+import React from 'react';
 import motorImage from '../assets/img/special-ops/photos/full/6.jpg';
 import guardImage from '../assets/img/guard.jpg';
 
 const CascadeBlocks = () => {
-  const [activeItem, setActiveItem] = useState('');
+  // const [activeItem, setActiveItem] = useState('');
   return (
     <>
       {/* <div className={activeItem ? `motor-blueprint ${activeItem}` : 'motor-blueprint'}>
@@ -11,7 +11,7 @@ const CascadeBlocks = () => {
         <MotorGraphic />
       </div> */}
       <div className="block cascade">
-        <article onMouseEnter={() => setActiveItem('guard')} onMouseLeave={() => setActiveItem('')}>
+        <article>
           <div className="image">
             <img src={guardImage} alt="" />
           </div>
@@ -22,7 +22,7 @@ const CascadeBlocks = () => {
             </p>
           </div>
         </article>
-        <article onMouseEnter={() => setActiveItem('door')} onMouseLeave={() => setActiveItem('')}>
+        <article>
           <div className="image">
             <img src={motorImage} alt="" />
           </div>
