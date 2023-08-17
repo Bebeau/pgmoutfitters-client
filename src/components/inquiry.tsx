@@ -190,14 +190,9 @@ const Inquiry = (props: inquiryType) => {
         if(res.status !== 200) {
           return setErrorMessage(res.message);
         }
-        // window.dataLayer.push('event', 'conversion', {
-        //   'send_to': 'AW-11171481429/4FueCK2qlZ0YENWO_c4p',
-        //   'value': Number(cost.replace(',','')).toFixed(2),
-        //   'currency': 'USD',
-        // });
         window.dataLayer.push({
           event: 'conversion',
-          send_to: 'AW-11171481429/4FueCK2qlZ0YENWO_c4p',
+          send_to: 'AW-11171481429/0RBkCPb7uNMYENWO_c4p',
           value: parseInt(Number(cost.replace(',','')).toFixed(2)),
           currency: 'USD',
         })
