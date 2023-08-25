@@ -193,8 +193,6 @@ const Inquiry = (props: inquiryType) => {
         window.dataLayer.push({
           event: 'conversion',
           send_to: 'AW-11171481429/0RBkCPb7uNMYENWO_c4p',
-          value: parseInt(Number(cost.replace(',','')).toFixed(2)),
-          currency: 'USD',
         })
         setSuccessMessage('Thank You for your interest in our next generation deer feeders! We have received your inquriy and look forward to fulfilling your request. A member of our team will be in contact with you shortly.');
         clearFormValues();
