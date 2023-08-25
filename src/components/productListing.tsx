@@ -2,7 +2,7 @@ import React from 'react';
 
 const ProductListing = (props: any) => {
   const handleBtnClick = () => {
-    window.dataLayer.push({event: 'productListingCTA'});
+    window.dataLayer.push({'event': 'productListingCTA'});
     props.openInquiry();
   }
   return (

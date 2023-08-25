@@ -23,7 +23,7 @@ const ImageGallery = (props: imageGalleryType) => {
     setShowImageModal(false);
   }
   const handleModalInquiry = () => {
-    window.dataLayer.push({event: 'imageCTA'});
+    window.dataLayer.push({'event': 'imageCTA'});
     setShowImageModal(false);
     props.openInquiry();
   }

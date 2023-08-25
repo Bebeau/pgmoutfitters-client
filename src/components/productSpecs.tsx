@@ -7,7 +7,7 @@ type productSpecsType = {
 }
 const ProductSpecs = (props: productSpecsType) => {
   const handleBtnClick = () => {
-    window.dataLayer.push({event: 'productSpecsCTA'});
+    window.dataLayer.push({'event': 'productSpecsCTA'});
     props.openInquiry();
   }
   return (
