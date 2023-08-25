@@ -2,7 +2,7 @@ import React from 'react';
 
 const DealerInquiry = (props: any) => {
   const handleInquiryBtnClick = () => {
-    window.dataLayer.push({event: 'dealerCTA'});
+    window.gtag('event', 'dealerCTA');
     props.openInquiry();
   }
   return (

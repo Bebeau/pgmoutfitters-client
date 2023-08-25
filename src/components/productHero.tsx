@@ -7,7 +7,7 @@ type productHeroType = {
 }
 const ProductHero = (props: productHeroType) => {
   const handleBtnClick = () => {
-    window.dataLayer.push({'event': 'productHeroCTA'});
+    window.gtag('event', 'productHeroCTA');
     props.openInquiry();
   }
   return (

@@ -7,7 +7,7 @@ type spotlightType = {
 }
 const Spotlight = (props: spotlightType) => {
   const handleBtnClick = () => {
-    window.dataLayer.push({'event': 'productSpotlightCTA'});
+    window.gtag('event', 'productSpotlightCTA');
     props.openInquiry();
   }
   return (

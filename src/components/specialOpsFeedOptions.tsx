@@ -16,7 +16,7 @@ const SpecialOpsFeedOptions = (props: {openInquiry: () => void}) => {
   }
 
   const handleInquiryBtnClick = () => {
-    window.dataLayer.push({'event': 'feedOptionsCTA'});
+    window.gtag('event', 'feedOptionsCTA');
     props.openInquiry();
   }
 

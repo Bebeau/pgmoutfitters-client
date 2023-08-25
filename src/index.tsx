@@ -8,7 +8,7 @@ import {testimonialData} from './assets/data/testimonials';
 
 declare global {
   interface Window {
-      dataLayer:any;
+      gtag: (type: string, title: string, data?: object) => void;
   }
 }
 
