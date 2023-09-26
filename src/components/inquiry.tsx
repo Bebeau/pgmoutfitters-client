@@ -4,7 +4,7 @@ import { ReactComponent as HunterIcon } from '../assets/img/hunter.svg';
 import { ReactComponent as OutfitterIcon } from '../assets/img/outfitter.svg';
 import { ReactComponent as DealerIcon } from '../assets/img/dealer.svg';
 
-import {productType} from '../assets/data/products';
+import {productType, productInquiryItem} from '../assets/data/products';
 
 import APIUtils from '../utils/APIUtils';
 import PhoneNumeberInput from '@bebeau/phone-number-input';
@@ -15,38 +15,11 @@ interface inquiryType {
   productData: productType[];
 }
 
-const defaultInputData = [
-  {
-    name: 'Special-Ops',
-    qty: '0',
-    price: {
-      retail: 1625,
-      dealer: 1500
-    }
-  },
-  {
-    name: 'TreeHugger',
-    qty: '0',
-    price: {
-      retail: 795,
-      dealer: 635
-    }
-  },
-  {
-    name: '5-N-1',
-    qty: '0',
-    price: {
-      retail: 1995,
-      dealer: 1800
-    }
-  }
-];
-
 const Inquiry = (props: inquiryType) => {
   const [cost, setCost] = useState('0');
 
-  const inputRef = useRef<any>(defaultInputData.map(() => createRef()));
-  const [productInputValues, setProductInputValues] = useState(defaultInputData);
+  const inputRef = useRef<any>(props.productData.map(() => createRef()));
+  const [productInputValues, setProductInputValues] = useState<any[]>([]);
   // const [showDealerPrice, setShowDealerPrice] = useState(false);
 
   const [userType, setUserType] = useState('hunter');
@@ -79,21 +52,22 @@ const Inquiry = (props: inquiryType) => {
   const calculateTotals = useCallback(() => {
     let totalInputValue = 0;
     let retailCosts: number[] = [];
-    let dealerCosts: number[] = [];
+    // let dealerCosts: number[] = [];
     
     productInputValues.map((item: any) => {
-      retailCosts.push((Number(item.qty) * Number(item.price.retail)));
-      dealerCosts.push((Number(item.qty) * Number(item.price.dealer)));
+      let itemTotal = item.price.retail * item.qty;
+      retailCosts.push(itemTotal);
+      // dealerCosts.push((Number(item.qty) * Number(item.price.dealer)));
       return totalInputValue = Number(item.qty) + totalInputValue;
     });
-    if(totalInputValue >= 10) {
-      // setShowDealerPrice(true);
-      calculateTotalCost(dealerCosts);
-    }
-    if(totalInputValue < 10) {
+    // if(totalInputValue >= 10) {
+    //   // setShowDealerPrice(true);
+    //   calculateTotalCost(dealerCosts);
+    // }
+    // if(totalInputValue < 10) {
       // setShowDealerPrice(false);
       calculateTotalCost(retailCosts);
-    }
+    // }
   }, [productInputValues, calculateTotalCost]);
   
   const handleProductInputChange = (key: number, event: any) => {
@@ -112,10 +86,10 @@ const Inquiry = (props: inquiryType) => {
       return obj.name === name;
     })
     if(direction === 'up') {
-      result[0].qty = (Number(result[0].qty) + 1).toString();
+      result[0].qty = (Number(result[0].qty) + 1);
     }
     if(direction === 'down' && Number(result[0].qty) > 0) {
-      result[0].qty = (Number(result[0].qty) - 1).toString();
+      result[0].qty = (Number(result[0].qty) - 1);
     }
     inputRef.current[key].current.value = result[0].qty;
     productInputValues[key] = result[0];
@@ -211,9 +185,31 @@ const Inquiry = (props: inquiryType) => {
     setTimeout(() => setSuccessMessage(''), 1000);
   }
 
+  const formatProductInquiryData = () => {
+    let formattedProductData = [];
+    for (const key in props.productData) {
+      let product = props.productData[key];
+      let formatted = {
+        name: product.name,
+        price: {
+          retail: product.price.retail
+        },
+        qty: 0
+      }
+      formattedProductData.push(formatted);
+    }
+    return formattedProductData;
+  }
+
   useEffect(() => {
     calculateTotals();
   },[userType, calculateTotals]);
+
+  useEffect(() => {
+    let productData = formatProductInquiryData();
+    setProductInputValues(productData);
+    // setProductInputValues(props.productData);
+  }, [props.productData]);
   
   return (
     <div className={props.showInquiry ? "inquiryModal show" : "inquiryModal"}>

@@ -72,7 +72,16 @@ export type productType = {
   photos: productImage[]
   price: {
     retail: number;
-    dealer: number;
+    dealer?: number;
+  }
+}
+
+export type productInquiryItem = {
+  name: string;
+  qty?: string;
+  price: {
+    retail: number;
+    dealer?: number;
   }
 }
 
@@ -149,8 +158,8 @@ export const productData = [
       }
     ],
     price: {
-      retail: 1625,
-      dealer: 1500
+      retail: 1495,
+      // dealer: 1500
     }
   },
   {
@@ -223,8 +232,8 @@ export const productData = [
       }
     ],
     price: {
-      retail: 795,
-      dealer: 635
+      retail: 687,
+      // dealer: 635
     }
   },
   {
@@ -299,8 +308,8 @@ export const productData = [
       }
     ],
     price: {
-      retail: 1995,
-      dealer: 1800
+      retail: 1750,
+      // dealer: 1800
     }
   }
 ];
