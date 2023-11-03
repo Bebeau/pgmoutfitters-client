@@ -336,9 +336,16 @@
       position: relative;
       svg {
         width: 100%;
+        #outline {
+          fill: white;
+        }
+        #bg {
+          fill: #4E6283;
+        }
         #timer, 
-        #gravity,
-        #split {
+        #left,
+        #right,
+        #gravity {
           opacity: 0;
           transition: all 0.3s ease-in-out;
         }
@@ -360,7 +367,7 @@
           }
         }
       }
-      &.split {
+      &.left {
         .imageWrap {
           &:after {
             transform: rotate(-45deg);
@@ -368,7 +375,25 @@
           }
         }
         svg {
-          #split {
+          #right {
+            opacity: 1;
+            transition: all 0.3s ease-in-out;
+          }
+        }
+      }
+      &.right {
+        .imageWrap {
+          &:before {
+            transform: rotate(45deg);
+            transition: all 0.3s ease-in-out;
+          }
+          &:after {
+            transform: rotate(0);
+            transition: all 0.3s ease-in-out;
+          }
+        }
+        svg {
+          #left {
             opacity: 1;
             transition: all 0.3s ease-in-out;
           }
@@ -377,7 +402,7 @@
       &.gravity {
         .imageWrap {
           &:before {
-            transform: rotate(-45deg);
+            transform: rotate(45deg);
             transition: all 0.3s ease-in-out;
           }
           &:after {
@@ -401,12 +426,12 @@
           content: '';
           display: block;
           background: white;
-          width: 2px;
-          height: 160px;
+          width: 1px;
+          height: 138px;
           position: absolute;
           z-index: 2;
-          top: 71px;
-          left: 143px;
+          bottom: 105px;
+          left: 53px;
           transform-origin: bottom center;
           transition: all 0.3s ease-in-out;
         }
@@ -414,20 +439,15 @@
           content: '';
           display: block;
           background: white;
-          width: 2px;
-          height: 160px;
+          width: 1px;
+          height: 138px;
           position: absolute;
           z-index: 2;
-          bottom: 125px;
-          right: 38px;
+          bottom: 105px;
+          right: 53px;
           transform: translate(0,0);
           transform-origin: bottom center;
           transition: all 0.3s ease-in-out;
-        }
-      }
-      .graphic {
-        svg {
-          transform: translate(25px,0);
         }
       }
     }
@@ -490,6 +510,7 @@
             top: 0;
             right: 60px;
             max-width: 130%;
+            width: 130%;
           }
         }
         .desc {
@@ -688,11 +709,13 @@
             display: block;
             background: white;
             width: 2px;
-            height: 210px;
+            height: 180px;
             position: absolute;
             z-index: 2;
-            top: 100px;
-            left: 183px;
+            top: auto;
+            right: auto;
+            bottom: 140px;
+            left: 71px;
             transform-origin: bottom center;
             transition: all 0.3s ease-in-out;
           }
@@ -701,11 +724,11 @@
             display: block;
             background: white;
             width: 2px;
-            height: 210px;
+            height: 180px;
             position: absolute;
             z-index: 2;
-            bottom: 165px;
-            right: 60px;
+            bottom: 140px;
+            right: 71px;
             transform: translate(0,0);
             transform-origin: bottom center;
             transition: all 0.3s ease-in-out;

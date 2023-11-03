@@ -1240,9 +1240,16 @@ input::placeholder {
 #productPage .feedOptions .graphic svg {
   width: 100%;
 }
+#productPage .feedOptions .graphic svg #outline {
+  fill: white;
+}
+#productPage .feedOptions .graphic svg #bg {
+  fill: #4E6283;
+}
 #productPage .feedOptions .graphic svg #timer,
-#productPage .feedOptions .graphic svg #gravity,
-#productPage .feedOptions .graphic svg #split {
+#productPage .feedOptions .graphic svg #left,
+#productPage .feedOptions .graphic svg #right,
+#productPage .feedOptions .graphic svg #gravity {
   opacity: 0;
   transition: all 0.3s ease-in-out;
 }
@@ -1259,16 +1266,28 @@ input::placeholder {
   opacity: 1;
   transition: all 0.3s ease-in-out;
 }
-#productPage .feedOptions .graphic.split .imageWrap:after {
+#productPage .feedOptions .graphic.left .imageWrap:after {
   transform: rotate(-45deg);
   transition: all 0.3s ease-in-out;
 }
-#productPage .feedOptions .graphic.split svg #split {
+#productPage .feedOptions .graphic.left svg #right {
+  opacity: 1;
+  transition: all 0.3s ease-in-out;
+}
+#productPage .feedOptions .graphic.right .imageWrap:before {
+  transform: rotate(45deg);
+  transition: all 0.3s ease-in-out;
+}
+#productPage .feedOptions .graphic.right .imageWrap:after {
+  transform: rotate(0);
+  transition: all 0.3s ease-in-out;
+}
+#productPage .feedOptions .graphic.right svg #left {
   opacity: 1;
   transition: all 0.3s ease-in-out;
 }
 #productPage .feedOptions .graphic.gravity .imageWrap:before {
-  transform: rotate(-45deg);
+  transform: rotate(45deg);
   transition: all 0.3s ease-in-out;
 }
 #productPage .feedOptions .graphic.gravity .imageWrap:after {
@@ -1287,12 +1306,12 @@ input::placeholder {
   content: "";
   display: block;
   background: white;
-  width: 2px;
-  height: 160px;
+  width: 1px;
+  height: 138px;
   position: absolute;
   z-index: 2;
-  top: 71px;
-  left: 143px;
+  bottom: 105px;
+  left: 53px;
   transform-origin: bottom center;
   transition: all 0.3s ease-in-out;
 }
@@ -1300,18 +1319,15 @@ input::placeholder {
   content: "";
   display: block;
   background: white;
-  width: 2px;
-  height: 160px;
+  width: 1px;
+  height: 138px;
   position: absolute;
   z-index: 2;
-  bottom: 125px;
-  right: 38px;
+  bottom: 105px;
+  right: 53px;
   transform: translate(0, 0);
   transform-origin: bottom center;
   transition: all 0.3s ease-in-out;
-}
-#productPage .feedOptions.specialOps .graphic svg {
-  transform: translate(25px, 0);
 }
 #productPage .feedOptions.fiveInOne .imageWrap {
   padding: 0;
@@ -1354,6 +1370,7 @@ input::placeholder {
     top: 0;
     right: 60px;
     max-width: 130%;
+    width: 130%;
   }
   #productPage .content .about .desc {
     flex: 0 0 60%;
@@ -1528,11 +1545,13 @@ input::placeholder {
     display: block;
     background: white;
     width: 2px;
-    height: 210px;
+    height: 180px;
     position: absolute;
     z-index: 2;
-    top: 100px;
-    left: 183px;
+    top: auto;
+    right: auto;
+    bottom: 140px;
+    left: 71px;
     transform-origin: bottom center;
     transition: all 0.3s ease-in-out;
   }
@@ -1541,11 +1560,11 @@ input::placeholder {
     display: block;
     background: white;
     width: 2px;
-    height: 210px;
+    height: 180px;
     position: absolute;
     z-index: 2;
-    bottom: 165px;
-    right: 60px;
+    bottom: 140px;
+    right: 71px;
     transform: translate(0, 0);
     transform-origin: bottom center;
     transition: all 0.3s ease-in-out;

@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react';
+import {useState, useRef, useEffect} from 'react';
 
 import { ReactComponent as FeedOptions } from '../assets/img/5-n-1/fiveInOne-feed-options.svg';
 
@@ -18,6 +18,11 @@ const FiveInOneFeedOptions = (props: {openInquiry: () => void}) => {
     window.gtag('event', 'feedOptionsCTA');
     props.openInquiry();
   }
+
+  useEffect(() => {
+    activeBtnRef.current = timerBtnRef.current;
+    setSetting('timer');
+  }, []);
 
   return (
     <div className="block feedOptions fiveInOne">
