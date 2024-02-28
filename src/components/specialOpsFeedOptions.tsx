@@ -36,7 +36,7 @@ const SpecialOpsFeedOptions = (props: {openInquiry: () => void}) => {
           <button ref={timerBtnRef} className={activeBtnRef.current === timerBtnRef.current ? 'btn outline active' : 'btn outline'} onClick={(e) => handleBtnClick(e.target, 'timer')}>800 lb full timer</button>
           <button ref={leftBtnRef} className={activeBtnRef.current === leftBtnRef.current ? 'btn outline active' : 'btn outline'} onClick={(e) => handleBtnClick(e.target, 'left')}>Right 350 lb gravity / 450 lb timer</button>
           <button ref={rightBtnRef} className={activeBtnRef.current === rightBtnRef.current ? 'btn outline active' : 'btn outline'} onClick={(e) => handleBtnClick(e.target, 'right')}>Left 350 lb gravity / 450 lb timer</button>
-          <button ref={gravityBtnRef} className={activeBtnRef.current === gravityBtnRef.current ? 'btn outline active' : 'btn outline'} onClick={(e) => handleBtnClick(e.target, 'gravity')}>600 lb gravity</button>
+          <button ref={gravityBtnRef} className={activeBtnRef.current === gravityBtnRef.current ? 'btn outline active' : 'btn outline'} onClick={(e) => handleBtnClick(e.target, 'gravity')}>700 lb gravity</button>
           <button className="btn" onClick={handleInquiryBtnClick}>
             Inquire For Purchase
           </button>

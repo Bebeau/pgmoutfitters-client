@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Homepage from './homepage';
 import Inquiry from './inquiry';
+import Footer from './footer';
 import Product from './product';
 
 import {productType} from '../assets/data/products';
@@ -60,6 +61,7 @@ const App = (props: sampleData) => {
           />
         </Routes>
       </Router>
+      <Footer />
       <Inquiry
         closeInquiry={() => setShowInquiry(false)}
         showInquiry={showInquiry}
