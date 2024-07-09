@@ -302,7 +302,8 @@
       h4 {
         margin-top: 40px;
       }
-      &:nth-child(1) {
+      &:nth-child(1),
+      &:nth-child(3) {
         background: darken($green, 10%);
       }
       &:nth-child(2) {
@@ -460,6 +461,85 @@
         line {
           stroke-dasharray: 10;
           animation: dashPolyLine 5s linear infinite;
+        }
+      }
+    }
+    &.surfNTurf {
+      .graphic {
+        svg {
+          min-height: 500px;
+          height: 100%;
+          width: 100%;
+          #timer,
+          #timer-full,
+          #left,
+          #left-full {
+            opacity: 0;
+            transition: all 0.3s ease-in-out;
+          }
+        }
+        &.timer {
+          svg {
+            #timer-full {
+              opacity: 1;
+              transition: all 0.3s ease-in-out;
+            }
+          }
+        }
+        &.directional {
+          svg {
+            #timer {
+              opacity: 1;
+              transition: all 0.3s ease-in-out;
+            }
+          }
+        }
+        &.split {
+          .imageWrap {
+            &:before {
+              transform: rotate(45deg);
+              transition: all 0.3s ease-in-out;
+            }
+          }
+          &.directional {
+            svg {
+              #timer {
+                opacity: 0;
+              }
+              #left {
+                opacity: 1;
+                transition: all 0.3s ease-in-out;
+              }
+            }
+          }
+          &.timer {
+            svg {
+              #timer-full {
+                opacity: 0;
+              }
+              #left-full {
+                opacity: 1;
+                transition: all 0.3s ease-in-out;
+              }
+            }
+          }
+        }
+      }
+      .imageWrap {
+        position: relative;
+        padding: 0;
+        &:before {
+          content: '';
+          display: block;
+          background: white;
+          width: 1.5px;
+          height: 173px;
+          position: absolute;
+          z-index: 2;
+          bottom: 130px;
+          left: 68px;
+          transform-origin: bottom center;
+          transition: all 0.3s ease-in-out;
         }
       }
     }
@@ -687,7 +767,7 @@
       flex-direction: row;
     }
     .feedOptions {
-      padding: 60px 0 0;
+      padding: 60px 0;
       .options {
         padding: 20px;
         h3 {

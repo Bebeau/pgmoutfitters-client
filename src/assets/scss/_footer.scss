@@ -44,7 +44,7 @@ footer {
       gap: 20px;
       svg {
         margin-top: 8px;
-        max-height: 20px;
+        height: 20px;
         align-self: flex-start;
       }
     }
@@ -56,12 +56,11 @@ footer {
       svg {
         align-self: center;
         &#phoneIcon {
-          max-height: 15px;
+          height: 15px;
           margin: 0 3px;
         }
         &#emailIcon {
-          min-width: 15px;
-          max-width: 15px;
+          width: 15px;
         }
       }
     }

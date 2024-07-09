@@ -425,13 +425,19 @@ input::placeholder {
 .productListing {
   margin-bottom: 100px;
 }
+.productListing .contentWrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 80px 0;
+  margin: 80px auto;
+}
 .productListing .contentWrap a {
   text-align: center;
-  margin: 100px 0;
   display: block;
+  flex: 0 1 100%;
 }
 .productListing .contentWrap a img {
-  width: 80%;
+  width: 50%;
   height: auto;
   margin: 0 auto;
   display: block;
@@ -445,11 +451,8 @@ input::placeholder {
   transform: translate(5px, 0);
   transition: all 0.3s ease-in-out;
 }
-.productListing .contentWrap a:nth-child(1) img {
-  width: 70%;
-}
-.productListing .contentWrap a:nth-child(2) img {
-  width: 65%;
+.productListing .contentWrap a:nth-child(3) img {
+  width: 60%;
 }
 
 .inquiryModal {
@@ -478,6 +481,7 @@ input::placeholder {
   box-sizing: border-box;
   padding: 20px 0;
   position: relative;
+  gap: 10px;
 }
 .inquiryModal .inquiryCart .alert {
   margin: 0 auto;
@@ -805,6 +809,9 @@ input::placeholder {
     display: flex;
     align-items: flex-end;
   }
+  .productListing .contentWrap a {
+    flex: 0 1 50%;
+  }
   .inquiryModal .inquiryCart .alert.info {
     position: absolute;
     top: 0;
@@ -897,6 +904,10 @@ input::placeholder {
   .contentWrap {
     width: 1200px;
     margin: 0 auto;
+  }
+  .productListing .contentWrap {
+    width: 100%;
+    flex-wrap: nowrap;
   }
   .company .companyImage {
     transform: translate(0, 32px);
@@ -1205,7 +1216,7 @@ input::placeholder {
 #productPage .related .item h4 {
   margin-top: 40px;
 }
-#productPage .related .item:nth-child(1) {
+#productPage .related .item:nth-child(1), #productPage .related .item:nth-child(3) {
   background: #626c53;
 }
 #productPage .related .item:nth-child(2) {
@@ -1336,6 +1347,61 @@ input::placeholder {
 #productPage .feedOptions.fiveInOne svg line {
   stroke-dasharray: 10;
   animation: dashPolyLine 5s linear infinite;
+}
+#productPage .feedOptions.surfNTurf .graphic svg {
+  min-height: 500px;
+  height: 100%;
+  width: 100%;
+}
+#productPage .feedOptions.surfNTurf .graphic svg #timer,
+#productPage .feedOptions.surfNTurf .graphic svg #timer-full,
+#productPage .feedOptions.surfNTurf .graphic svg #left,
+#productPage .feedOptions.surfNTurf .graphic svg #left-full {
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+}
+#productPage .feedOptions.surfNTurf .graphic.timer svg #timer-full {
+  opacity: 1;
+  transition: all 0.3s ease-in-out;
+}
+#productPage .feedOptions.surfNTurf .graphic.directional svg #timer {
+  opacity: 1;
+  transition: all 0.3s ease-in-out;
+}
+#productPage .feedOptions.surfNTurf .graphic.split .imageWrap:before {
+  transform: rotate(45deg);
+  transition: all 0.3s ease-in-out;
+}
+#productPage .feedOptions.surfNTurf .graphic.split.directional svg #timer {
+  opacity: 0;
+}
+#productPage .feedOptions.surfNTurf .graphic.split.directional svg #left {
+  opacity: 1;
+  transition: all 0.3s ease-in-out;
+}
+#productPage .feedOptions.surfNTurf .graphic.split.timer svg #timer-full {
+  opacity: 0;
+}
+#productPage .feedOptions.surfNTurf .graphic.split.timer svg #left-full {
+  opacity: 1;
+  transition: all 0.3s ease-in-out;
+}
+#productPage .feedOptions.surfNTurf .imageWrap {
+  position: relative;
+  padding: 0;
+}
+#productPage .feedOptions.surfNTurf .imageWrap:before {
+  content: "";
+  display: block;
+  background: white;
+  width: 1.5px;
+  height: 173px;
+  position: absolute;
+  z-index: 2;
+  bottom: 130px;
+  left: 68px;
+  transform-origin: bottom center;
+  transition: all 0.3s ease-in-out;
 }
 #productPage.TreeHugger .spotlight {
   margin-top: -20px;
@@ -1524,7 +1590,7 @@ input::placeholder {
     flex-direction: row;
   }
   #productPage .feedOptions {
-    padding: 60px 0 0;
+    padding: 60px 0;
   }
   #productPage .feedOptions .options {
     padding: 20px;
@@ -1814,7 +1880,7 @@ footer {
 }
 .footerWrap article address svg {
   margin-top: 8px;
-  max-height: 20px;
+  height: 20px;
   align-self: flex-start;
 }
 .footerWrap article a {
@@ -1827,12 +1893,11 @@ footer {
   align-self: center;
 }
 .footerWrap article a svg#phoneIcon {
-  max-height: 15px;
+  height: 15px;
   margin: 0 3px;
 }
 .footerWrap article a svg#emailIcon {
-  min-width: 15px;
-  max-width: 15px;
+  width: 15px;
 }
 
 @media (min-width: 768px) {

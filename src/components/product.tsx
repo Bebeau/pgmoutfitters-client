@@ -7,7 +7,8 @@ import ProductHero from './productHero';
 import FeatureBlocks from './featureBlocks';
 import Spotlight from './spotlight';
 import RelatedProducts from './relatedProducts';
-import RiceBrand from './riceBrand';
+
+import SurfNTurfFeedOptions from './surfNTurfFeedOptions';
 import SpecialOpsFeedOptions from './specialOpsFeedOptions';
 import FiveInOneFeedOptions from './fiveInOneFeedOptions';
 import CascadeBlocks from './cascadeBlocks';
@@ -99,8 +100,10 @@ const Product = (props: singleProductType) => {
         photos={productInfo.photos}
         openInquiry={props.openInquiry}
       />
-      {productInfo.name === "TreeHugger" && (
-        <RiceBrand />
+      {productInfo.name === "Surf-N-Turf" && (
+        <SurfNTurfFeedOptions 
+          openInquiry={props.openInquiry}
+        />
       )}
       {productInfo.name === "Special-Ops" && (
         <>

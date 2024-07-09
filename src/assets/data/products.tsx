@@ -17,7 +17,7 @@ import specialOpsFull6 from '../img/special-ops/photos/full/6.jpg';
 import specialOpsFull7 from '../img/special-ops/photos/full/7.jpg';
 import specialOpsFull8 from '../img/special-ops/photos/full/8.jpg';
 
-import treeHugger from '../img/tree-hugger/treehugger.png';
+import treeHugger from '../img/tree-hugger/treehugger2.png';
 import treeHuggerBluePrint from '../img/tree-hugger/treehugger-blueprint.svg';
 import treeHuggerThumb1 from '../img/tree-hugger/photos/thumb/1.jpg';
 import treeHuggerThumb2 from '../img/tree-hugger/photos/thumb/2.jpg';
@@ -54,6 +54,13 @@ import fiveInOneFull5 from '../img/5-n-1/photos/full/5.jpg';
 import fiveInOneFull6 from '../img/5-n-1/photos/full/6.jpg';
 import fiveInOneFull7 from '../img/5-n-1/photos/full/7.jpg';
 import fiveInOneFull8 from '../img/5-n-1/photos/full/8.jpg';
+
+import surfNTurf from '../img/surf-n-turf/surfnturf.png';
+import surfNTurfBluePrint from '../img/surf-n-turf/surfnturf-blueprint.svg';
+import surfNTurfThumb1 from '../img/surf-n-turf/photos/thumb/1.jpg';
+import surfNTurfThumb2 from '../img/surf-n-turf/photos/thumb/2.jpg';
+import surfNTurfFull1 from '../img/surf-n-turf/photos/full/1.jpg';
+import surfNTurfFull2 from '../img/surf-n-turf/photos/full/2.jpg';
 
 export type productImage = {
   thumb: string;
@@ -163,7 +170,7 @@ export const productData = [
     }
   },
   {
-    name: 'TreeHugger',
+    name: 'Mass XL',
     image: treeHugger,
     slug: 'treehugger',
     blueprint: treeHuggerBluePrint,
@@ -311,5 +318,80 @@ export const productData = [
       retail: 1750,
       // dealer: 1800
     }
-  }
+  },
+  {
+    name: 'Surf-N-Turf',
+    image: surfNTurf,
+    slug: 'surfnturf',
+    blueprint: surfNTurfBluePrint,
+    description: 'This next generation deer feeder was created to be placed by a pond as a multi-feeder for fish and deer.',
+    specs: [
+      'Split gravity/directional feeder',
+      'Deer & fish feeder',
+      '6 feed settings (THE TIMER)',
+      '650 lb full directional',
+      '350 lb directional / 300 lb gravity',
+      'Drop door feed funnel access',
+      '12 volt solar panel',
+      '12 volt motor',
+      '12 volt battery',
+      'Towable draggable base',
+      '30 lb weighted hinge door',
+      'Rain guard latchable lid',
+    ],
+    photos: [
+      {
+        thumb: surfNTurfThumb1,
+        full: surfNTurfFull1,
+        title: 'Feeder In The Field',
+        desc: 'Placing feeder by water allows for multi-feed of directional fish and gravity deer feed.',
+      },
+      {
+        thumb: surfNTurfThumb2,
+        full: surfNTurfFull2,
+        title: 'Directional Feed Path',
+        desc: 'A custom directional feed path allows for feed to thrown futher in one direction.',
+      },
+      {
+        thumb: specialOpsThumb1,
+        full: specialOpsFull1,
+        title: '12 Volt Solar Panel',
+        desc: 'A small solar panel is mounted to the top side, harnessing energy from the sun to charge a 12 volt battery, which powers a deer feeder.',
+      },
+      {
+        thumb: specialOpsThumb3,
+        full: specialOpsFull3,
+        title: 'Latchable Rain Guard',
+        desc: 'The top overlaps to prevent rain from getting into the feed. There is a latch to hold the top in place and optionally lock it.',
+      },
+      {
+        thumb: specialOpsThumb5,
+        full: specialOpsFull5,
+        title: '30lb Hydrolic Lift',
+        desc: 'A hydrolic lift is added to the inside of the feeder top to allow for ease with opening and closing.',
+      },
+      {
+        thumb: specialOpsThumb6,
+        full: specialOpsFull6,
+        title: 'Funnel Drop Door',
+        desc: 'The motor is latched and swivels out from the bottom of the feeder to expose the feed funnel for easy access.',
+      },
+      {
+        thumb: specialOpsThumb7,
+        full: specialOpsFull7,
+        title: 'Feed Funnel',
+        desc: 'The feed funnel is cut short to deter varments while not affecting the flow.',
+      },
+      {
+        thumb: specialOpsThumb8,
+        full: specialOpsFull8,
+        title: 'Timer Motor Casing',
+        desc: 'The battery and motor are stored in an 1/8 in steel casing to protect from boar and the elements.',
+      }
+    ],
+    price: {
+      retail: 1495,
+      // dealer: 635
+    }
+  },
 ];
