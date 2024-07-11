@@ -10,9 +10,15 @@ const ProductSpecs = (props: productSpecsType) => {
     window.gtag('event', 'productSpecsCTA');
     props.openInquiry();
   }
+  const formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    maximumFractionDigits: 0,
+  });
   return (
     <div className="content">
       <h2>{props.productInfo.name}</h2>
+      <div className="price">${formatter.format(Number(props.productInfo.price.retail)).replace('$','')}</div>
       <div className="about">
         <div className="blueprint">
           <img src={props.productInfo.blueprint} alt='blueprint' />

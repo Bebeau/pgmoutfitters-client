@@ -186,6 +186,9 @@ input::placeholder {
   font-style: normal;
   font-size: 1.2rem;
 }
+.btn.blue {
+  background: #223047;
+}
 .btn.outline {
   background: none;
   border: 1px solid white;
@@ -437,10 +440,17 @@ input::placeholder {
   flex: 0 1 100%;
 }
 .productListing .contentWrap a img {
-  width: 50%;
+  width: 80%;
   height: auto;
   margin: 0 auto;
   display: block;
+}
+.productListing .contentWrap a h4 {
+  margin-bottom: 0;
+}
+.productListing .contentWrap a .price {
+  font-size: 1.4rem;
+  margin-bottom: 20px;
 }
 .productListing .contentWrap a:hover h5 {
   color: rgb(255, 255, 255);
@@ -452,7 +462,7 @@ input::placeholder {
   transition: all 0.3s ease-in-out;
 }
 .productListing .contentWrap a:nth-child(3) img {
-  width: 60%;
+  width: 90%;
 }
 
 .inquiryModal {
@@ -916,6 +926,13 @@ input::placeholder {
 #productPage h2 {
   font-size: 2rem;
   text-align: center;
+  margin-bottom: 0;
+}
+#productPage .price {
+  font-size: 2rem;
+  text-align: center;
+  color: white;
+  margin-bottom: 40px;
 }
 #productPage p {
   opacity: 0.5;
@@ -1423,7 +1440,6 @@ input::placeholder {
   }
   #productPage h2 {
     font-size: 4rem;
-    margin: 0 0 40px;
   }
   #productPage .content .about {
     flex-direction: row;
@@ -1830,9 +1846,116 @@ input::placeholder {
     padding: 0 40px;
   }
 }
+.map {
+  flex: 0 1 100%;
+  position: relative;
+  align-self: flex-start;
+}
+.map .dealerPin {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background: #BEA296;
+  border-radius: 999px;
+}
+.map .dealerPin.active, .map .dealerPin:hover {
+  background: white;
+}
+.map svg {
+  width: 90%;
+  margin: 0 auto;
+  display: block;
+}
+.map svg path {
+  fill: #BEA296;
+}
+
+.dealerList {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.dealerList .dealerBlock {
+  box-sizing: border-box;
+  padding: 20px;
+  border-radius: 5px;
+}
+.dealerList .dealerBlock:hover, .dealerList .dealerBlock.active {
+  background: rgba(0, 0, 0, 0.1);
+}
+.dealerList h4 {
+  color: white;
+}
+.dealerList .addressWrap {
+  display: flex;
+}
+.dealerList .addressWrap svg {
+  width: 20px;
+  height: 20px;
+}
+
+@media (min-width: 1200px) {
+  .map .dealerPin {
+    width: 30px;
+    height: 30px;
+  }
+}
 footer {
   width: 100%;
   background: linear-gradient(#885438, #461D0D);
+  padding-top: 80px;
+}
+footer h3 {
+  color: white;
+  text-align: center;
+  margin: 0;
+}
+footer .icon {
+  width: 25px;
+  display: flex;
+  justify-content: center;
+}
+
+.addressWrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 10px;
+}
+.addressWrap img {
+  margin-top: 8px;
+  width: 15px;
+  align-self: flex-start;
+}
+.addressWrap address {
+  flex: 1 0 auto;
+  color: #BEA296;
+  font-size: 1.2rem;
+  font-style: normal;
+  transition: 0.3s all ease-in-out;
+}
+.addressWrap address:hover {
+  color: white;
+  transition: 0.3s all ease-in-out;
+}
+
+.contactWrap {
+  margin-top: 10px;
+  font-size: 1.2rem;
+}
+.contactWrap a {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 5px;
+}
+.contactWrap a.phone img {
+  width: 12px;
+}
+.contactWrap a.email img {
+  width: 20px;
 }
 
 .footerWrap {
@@ -1844,70 +1967,45 @@ footer {
   max-width: 1600px;
   margin: 0 auto;
 }
+.footerWrap.dealerWrap {
+  flex-direction: column;
+}
+.footerWrap article {
+  width: auto;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.footerWrap .copyWrap {
+  flex: 0 1 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 40px;
+}
 .footerWrap iframe {
   border: none;
-  width: 100%;
+  width: auto;
   min-height: 300px;
   flex: 0 0 50%;
   border-radius: 5px;
 }
-.footerWrap .copyWrap {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-}
-.footerWrap article {
-  display: flex;
-  gap: 20px;
-  flex-direction: column;
-  justify-content: center;
-  font-size: 1.2rem;
-  font-family: "new-frank", sans-serif;
-  width: 100%;
-}
-.footerWrap article #Logo {
+.footerWrap #Logo {
   align-self: center;
 }
-.footerWrap article #Logo text {
-  fill: #BEA296;
-}
-.footerWrap article address {
-  color: white;
-  font-style: normal;
-  line-height: 30px;
-  display: flex;
-  gap: 20px;
-}
-.footerWrap article address svg {
-  margin-top: 8px;
-  height: 20px;
-  align-self: flex-start;
-}
-.footerWrap article a {
-  display: block;
-  line-height: 30px;
-  display: flex;
-  gap: 20px;
-}
-.footerWrap article a svg {
-  align-self: center;
-}
-.footerWrap article a svg#phoneIcon {
-  height: 15px;
-  margin: 0 3px;
-}
-.footerWrap article a svg#emailIcon {
-  width: 15px;
+.footerWrap #Logo text {
+  fill: white;
 }
 
 @media (min-width: 768px) {
   .footerWrap {
     flex-direction: row;
   }
-  .footerWrap article {
-    width: auto;
+  .footerWrap.dealerWrap {
+    flex-direction: row;
   }
-  .footerWrap article #Logo {
+  .footerWrap #Logo {
     align-self: flex-start;
   }
 }

@@ -335,7 +335,6 @@ export const productData = [
       '12 volt solar panel',
       '12 volt motor',
       '12 volt battery',
-      'Towable draggable base',
       '30 lb weighted hinge door',
       'Rain guard latchable lid',
     ],

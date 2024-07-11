@@ -1,10 +1,11 @@
-import React from 'react';
+/* eslint-disable jsx-a11y/iframe-has-title */
+import DealerList from './dealerList';
 
 import {ReactComponent as Logo} from '../assets/img/logo.svg';
 
-import {ReactComponent as Pin} from '../assets/img/icons/pin.svg';
-import {ReactComponent as Email} from '../assets/img/icons/email.svg';
-import {ReactComponent as Phone} from '../assets/img/icons/phone.svg';
+import PinIcon from '../assets/img/icons/png/pin.png';
+import EmailIcon from '../assets/img/icons/png/email.png';
+import PhoneIcon from '../assets/img/icons/png/phone.png';
 
 const Footer = (props: any) => {
   // const handleInquiryBtnClick = () => {
@@ -13,30 +14,44 @@ const Footer = (props: any) => {
   // }
   return (
     <footer>
-      <div className="footerWrap">
-      <iframe
-        height="450"
-        loading="lazy" 
-        allowFullScreen
-        src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJXWCtKtnMNoYRCMcONgvgYtk&key=AIzaSyBQGqPcLfspTJC6KKJplR9YFFrbOvD9xDs">
-      </iframe>
-      <div className="copyWrap">
-        <article>
-          <Logo />
-          <section>
-            <address>
-              <Pin /> 908 Joseph St.
-              <br />
-              Shreveport, LA 71107
-            </address>
-          </section>
-          <section>
-            <a href="tel:3182278145"><Phone /> (318) 227-8145</a>
-            <a href="mailto:sales@pgmoutfitters.com"><Email /> sales@pgmoutfitters.com</a>
-          </section>
-        </article>
-      </div>
-      </div>
+        <DealerList />
+        <div className="footerWrap">
+            <div className="copyWrap">
+                <article>
+                    <Logo />
+                    <section className="addressWrap">
+                        <div className="icon">
+                            <img src={PinIcon} alt="" />
+                        </div>
+                        <address>
+                            908 Joseph St.
+                            <br />
+                            Shreveport, LA 71107
+                        </address>
+                    </section>
+                    <section className="contactWrap">
+                        <a href="tel:3182278145" className="phone">
+                            <div className="icon">
+                                <img src={PhoneIcon} alt="" />
+                            </div>
+                            <span>(318) 227-8145</span>
+                        </a>
+                        <a href="mailto:sales@pgmoutfitters.com" className="email">
+                            <div className="icon">
+                                <img src={EmailIcon} alt="" />
+                            </div>
+                            <span>sales@pgmoutfitters.com</span>
+                        </a>
+                    </section>
+                </article>
+            </div>
+            <iframe
+                height="450"
+                loading="lazy" 
+                allowFullScreen
+                src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJXWCtKtnMNoYRCMcONgvgYtk&key=AIzaSyBQGqPcLfspTJC6KKJplR9YFFrbOvD9xDs">
+            </iframe>
+        </div>
     </footer>
   )
 }

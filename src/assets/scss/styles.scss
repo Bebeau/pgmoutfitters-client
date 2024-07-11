@@ -182,6 +182,9 @@ input {
   font-weight: 400;
   font-style: normal;
   font-size: 1.2rem;
+  &.blue {
+    background: $blue;
+  }
   &.outline {
     background: none;
     border: 1px solid white;
@@ -428,10 +431,17 @@ input {
       display: block;
       flex: 0 1 100%;
       img {
-        width: 50%;
+        width: 80%;
         height: auto;
         margin: 0 auto;
         display: block;
+      }
+      h4 {
+        margin-bottom: 0;
+      }
+      .price {
+        font-size: 1.4rem;
+        margin-bottom: 20px;
       }
       &:hover {
         h5 {
@@ -452,7 +462,7 @@ input {
       // }
       &:nth-child(3) {
         img {
-          width: 60%;
+          width: 90%;
         }
       }
     }
@@ -961,4 +971,5 @@ input {
 
 @import './_product.scss';
 @import './_carousel.scss';
+@import './_dealerList.scss';
 @import './_footer.scss';

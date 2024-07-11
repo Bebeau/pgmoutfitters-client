@@ -5,6 +5,11 @@ const ProductListing = (props: any) => {
     window.gtag('event', 'productListingCTA');
     props.openInquiry();
   }
+  const formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    maximumFractionDigits: 0,
+  });
   return (
     <div className="productListing">
       <div className="contentWrap">
@@ -13,6 +18,7 @@ const ProductListing = (props: any) => {
             <a href={`/products/deer-feeders/${item.slug}`} key={index}>
               <img src={item.image} alt={item.name} />
               <h4>{item.name}</h4>
+              <div className="price">${formatter.format(Number(item.price.retail)).replace('$','')}</div>
               <h5 className="details">View Details</h5>
             </a>
           );
