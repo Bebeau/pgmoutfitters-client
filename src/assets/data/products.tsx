@@ -239,7 +239,7 @@ export const productData = [
       }
     ],
     price: {
-      retail: 687,
+      retail: 750,
       // dealer: 635
     }
   },

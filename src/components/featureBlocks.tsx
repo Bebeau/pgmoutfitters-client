@@ -36,7 +36,7 @@ const FeatureBlocks = (props: featureBlockType) => {
           <img className="camoImage" src={camo} alt='Camo Pattern' />
           <img 
             className="cornImage" 
-            src={props.name === 'TreeHugger' ? riceBrand : corn} 
+            src={props.name === 'Mass XL' ? riceBrand : corn} 
             alt='Corn Feed' 
             style={{
               transform: `translateY(${offset * 0.5}px)`,

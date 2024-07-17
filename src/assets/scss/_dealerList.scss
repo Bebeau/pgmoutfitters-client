@@ -1,11 +1,18 @@
 .map {
   flex: 0 1 100%;
   position: relative;
-  align-self: flex-start;
+  align-self: center;
+  .headquarters {
+    position: absolute;
+    top: 36%;
+    left: 66%;
+    color: gold;
+    font-size: 1rem;
+  }
   .dealerPin {
     position: absolute;
-    width: 15px;
-    height: 15px;
+    width: 10px;
+    height: 10px;
     background: $tan;
     border-radius: 999px;
     &.active,
@@ -14,7 +21,7 @@
     }
   }
   svg {
-    width: 90%;
+    width: 100%;
     margin: 0 auto;
     display: block;
     path {
@@ -26,10 +33,10 @@
 .dealerList {
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 20px;
   .dealerBlock {
     box-sizing: border-box;
-    padding: 20px;
+    padding: 10px;
     border-radius: 5px;
     &:hover,
     &.active {
@@ -38,6 +45,7 @@
   }
   h4 {
     color: white;
+    margin: 0;
   }
   .addressWrap {
     display: flex;
@@ -48,11 +56,14 @@
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 991px) {
   .map {
+    .headquarters {
+      font-size: 2rem;
+    }
     .dealerPin {
-      width: 30px;
-      height: 30px;
+      width: 20px;
+      height: 20px;
     }
   }
 }

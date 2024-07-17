@@ -26,7 +26,7 @@ const ProductHero = (props: productHeroType) => {
           </button>
         </div>
       </div>
-      <div className={props.name === 'TreeHugger' ? "heroImage" : "heroImage pad"}>
+      <div className={props.name === 'Mass XL' ? "heroImage" : "heroImage pad"}>
         <img src={props.image} alt={props.name} />
       </div>
     </div>

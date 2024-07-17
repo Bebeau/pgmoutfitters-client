@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useCallback} from 'react';
+import {useState, useEffect, useCallback} from 'react';
 import {useParams} from 'react-router-dom';
 import {productData, productType} from '../assets/data/products';
 import ProductSpecs from './productSpecs';
@@ -7,6 +7,7 @@ import ProductHero from './productHero';
 import FeatureBlocks from './featureBlocks';
 import Spotlight from './spotlight';
 import RelatedProducts from './relatedProducts';
+import RiceBrand from './riceBrand';
 
 import SurfNTurfFeedOptions from './surfNTurfFeedOptions';
 import SpecialOpsFeedOptions from './specialOpsFeedOptions';
@@ -120,6 +121,9 @@ const Product = (props: singleProductType) => {
           />
           <CascadeBlocks />
         </>
+      )}
+      {productInfo.name === "Mass XL" && (
+        <RiceBrand />
       )}
       <FeatureBlocks 
         name={productInfo.name}

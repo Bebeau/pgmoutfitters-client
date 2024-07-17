@@ -24,10 +24,10 @@ export const dealerData = [
         zip: '75559'
     },
     logo: 'logo',
-    link: 'link',
+    link: 'https://store.phillipsforestproducts.com/',
     position: {
-        top: '30',
-        left: '80'
+        top: '28',
+        left: '56'
     }
   },
   {
@@ -39,10 +39,10 @@ export const dealerData = [
         zip: '76443'
     },
     logo: 'logo',
-    link: 'link',
+    link: 'https://jandlsales.com/',
     position: {
         top: '40',
-        left: '50'
+        left: '35'
     }
   },
   {
@@ -57,7 +57,7 @@ export const dealerData = [
     link: 'link',
     position: {
         top: '38',
-        left: '54'
+        left: '38'
     }
   },
   {
@@ -69,10 +69,25 @@ export const dealerData = [
         zip: '76364'
     },
     logo: 'logo',
-    link: 'link',
+    link: 'https://www.makemonsterdeer.com/',
     position: {
         top: '25',
-        left: '50'
+        left: '35'
+    }
+  },
+  {
+    name: 'Vans Outdoors',
+    address: {
+        street: '777 Highway 468',
+        city: 'Brandon',
+        state: 'MS',
+        zip: '39042'
+    },
+    logo: 'logo',
+    link: 'https://vansoutdoorsbrandon.com/',
+    position: {
+        top: '35',
+        left: '85'
     }
   }
 ];

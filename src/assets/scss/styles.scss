@@ -185,6 +185,9 @@ input {
   &.blue {
     background: $blue;
   }
+  &.full {
+    width: 100%;
+  }
   &.outline {
     background: none;
     border: 1px solid white;

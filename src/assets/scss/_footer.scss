@@ -84,6 +84,9 @@ footer {
     flex-direction: column;
     justify-content: center;
     gap: 40px;
+    &.dealerList {
+      gap: 20px;
+    }
   }
   iframe {
     border: none;

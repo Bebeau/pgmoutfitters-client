@@ -540,11 +540,11 @@
           display: block;
           background: white;
           width: 1.5px;
-          height: 173px;
+          height: 148px;
           position: absolute;
           z-index: 2;
-          bottom: 130px;
-          left: 68px;
+          bottom: 155px;
+          left: 57px;
           transform-origin: bottom center;
           transition: all 0.3s ease-in-out;
         }
@@ -783,6 +783,17 @@
       &.fiveInOne {
         .imageWrap {
           width: 100%;
+        }
+      }
+      &.surfNTurf {
+        .imageWrap {
+          &:before {
+            content: '';
+            width: 1.5px;
+            height: 173px;
+            bottom: 130px;
+            left: 68px;
+          }
         }
       }
       &.specialOps {

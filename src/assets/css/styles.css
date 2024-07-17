@@ -189,6 +189,9 @@ input::placeholder {
 .btn.blue {
   background: #223047;
 }
+.btn.full {
+  width: 100%;
+}
 .btn.outline {
   background: none;
   border: 1px solid white;
@@ -1412,11 +1415,11 @@ input::placeholder {
   display: block;
   background: white;
   width: 1.5px;
-  height: 173px;
+  height: 148px;
   position: absolute;
   z-index: 2;
-  bottom: 130px;
-  left: 68px;
+  bottom: 155px;
+  left: 57px;
   transform-origin: bottom center;
   transition: all 0.3s ease-in-out;
 }
@@ -1616,6 +1619,13 @@ input::placeholder {
   }
   #productPage .feedOptions.fiveInOne .imageWrap {
     width: 100%;
+  }
+  #productPage .feedOptions.surfNTurf .imageWrap:before {
+    content: "";
+    width: 1.5px;
+    height: 173px;
+    bottom: 130px;
+    left: 68px;
   }
   #productPage .feedOptions.specialOps .imageWrap {
     width: 400px;
@@ -1849,12 +1859,19 @@ input::placeholder {
 .map {
   flex: 0 1 100%;
   position: relative;
-  align-self: flex-start;
+  align-self: center;
+}
+.map .headquarters {
+  position: absolute;
+  top: 36%;
+  left: 66%;
+  color: gold;
+  font-size: 1rem;
 }
 .map .dealerPin {
   position: absolute;
-  width: 15px;
-  height: 15px;
+  width: 10px;
+  height: 10px;
   background: #BEA296;
   border-radius: 999px;
 }
@@ -1862,7 +1879,7 @@ input::placeholder {
   background: white;
 }
 .map svg {
-  width: 90%;
+  width: 100%;
   margin: 0 auto;
   display: block;
 }
@@ -1873,11 +1890,11 @@ input::placeholder {
 .dealerList {
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 20px;
 }
 .dealerList .dealerBlock {
   box-sizing: border-box;
-  padding: 20px;
+  padding: 10px;
   border-radius: 5px;
 }
 .dealerList .dealerBlock:hover, .dealerList .dealerBlock.active {
@@ -1885,6 +1902,7 @@ input::placeholder {
 }
 .dealerList h4 {
   color: white;
+  margin: 0;
 }
 .dealerList .addressWrap {
   display: flex;
@@ -1894,10 +1912,13 @@ input::placeholder {
   height: 20px;
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 991px) {
+  .map .headquarters {
+    font-size: 2rem;
+  }
   .map .dealerPin {
-    width: 30px;
-    height: 30px;
+    width: 20px;
+    height: 20px;
   }
 }
 footer {
@@ -1983,6 +2004,9 @@ footer .icon {
   flex-direction: column;
   justify-content: center;
   gap: 40px;
+}
+.footerWrap .copyWrap.dealerList {
+  gap: 20px;
 }
 .footerWrap iframe {
   border: none;

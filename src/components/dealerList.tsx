@@ -1,8 +1,8 @@
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 import { dealerData } from "../assets/data/dealers"
 import PinIcon from '../assets/img/icons/png/pin.png'
 
-import { ReactComponent as Map } from '../assets/img/texas.svg'
+import { ReactComponent as Map } from '../assets/img/map.svg'
 
 const formatAddress = (address: {
     street: string,
@@ -11,7 +11,7 @@ const formatAddress = (address: {
     zip: string
 }) => {
     return (
-        <a href={`https://www.google.com/maps/dir/?api=1&origin=Current+Location&destination=${address.street + ' ' + address.city + ' ' + address.state + ' ' + address.zip}`}>
+        <a href={`https://www.google.com/maps/dir/?api=1&origin=Current+Location&destination=${address.street + ' ' + address.city + ' ' + address.state + ' ' + address.zip}`} target="_blank">
             <div className="addressWrap">
                 <div className="icon">
                     <img src={PinIcon} alt="" />
@@ -34,6 +34,7 @@ const DealerList = () => {
         <h3>Dealers</h3>
         <div className="footerWrap dealerWrap">
             <div className="map">
+                <div className="headquarters">★</div>
                 {
                     dealerData &&
                     dealerData.length > 0 &&

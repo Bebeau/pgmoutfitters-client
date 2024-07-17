@@ -1,6 +1,6 @@
 import React from 'react';
 
-import riceBrand from '../assets/img/ricebrand.png';
+import riceBrand from '../assets/img/tree-hugger/massxl-feed.png';
 
 const RiceBrand = () => {
   return (
@@ -10,8 +10,10 @@ const RiceBrand = () => {
       </article>
       <article>
         <div>
-          <h3>Rice Brand Feed</h3>
-          <p>Rice bran is a popular choice as deer feed due to its high nutrient content and digestibility. It contains a high level of fat, which is essential for providing the deer with energy during the winter months. Rice bran is a good source of protein, fiber, and minerals, which are crucial for the deer’s overall health and growth. Unlike other types of feed, rice bran does not contain any harmful additives, making it a safe and natural option for deer.</p>
+          <h3>Mass XL Supplement</h3>
+          <p>Mass XL is made up of 100% legumes. It is not formulated in a lab. There are no additives to make it appealing to deer. It is all natural and is a major part of the deer diet were these legumes grow.</p>
+          <p>Legumes are plants that are able to convert or "fix" atmospheric nitrogen into a form usable by plants and animals. Once fixed the nitrogen found in legumes become an essential building block for various proteins which plants and animals require. Protein is needed for deer to grow massive antlers and boasting 40%, Mass XL surpasses any other on the market.</p>
+          <a className="btn full" target="_blank" href="https://www.makemonsterdeer.com/products/mass-xl-30lb-bucket/">Buy Now</a>
         </div>
       </article>
     </div>
