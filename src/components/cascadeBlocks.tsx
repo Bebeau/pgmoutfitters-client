@@ -16,7 +16,7 @@ const CascadeBlocks = () => {
             <img src={guardImage} alt="" />
           </div>
           <div className="copy">
-            <h3>Varment Guard</h3>
+            <h3>Raccoon Deterent Shield</h3>
             <p>
               The cascade timer feeders are equip with a 24in x 24in x 1/8in steel plate varment guard. This feature prevents any varments from reaching the motor and manually emptying your feed, and is durable enough to discourage boars.
             </p>

@@ -1,0 +1,24 @@
+.dealerInquiry {
+    background: linear-gradient(#885438, #461D0D);
+    color: white;
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 20px;
+    h3 {
+        margin: 0;
+    }
+    p {
+        font-size: 1.4rem;
+        max-width: 800px;
+    }
+    .btn {
+        color: $blue;
+        background: white;
+        margin-top: 20px;
+    }
+}

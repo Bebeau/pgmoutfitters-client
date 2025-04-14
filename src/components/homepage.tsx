@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import Carousel from './carousel';
+// import Carousel from './carousel';
 import Company from './company';
 import Testimonials from './testimonials';
 import ProductListing from './productListing';
@@ -26,7 +26,7 @@ const Homepage = (props: homepageType) => {
 
   return (
     <>
-    <div className="hero">
+    {/* <div className="hero">
       <div className="heroTitle">
         <div></div>
         <h1>
@@ -40,14 +40,14 @@ const Homepage = (props: homepageType) => {
         type="Product"
         slides={props.productData}
       />
-    </div>
-    <Company />
-    <Testimonials 
-      testimonials={props.testimonialData}
-    />
+    </div> */}
     <ProductListing 
       openInquiry={props.openInquiry}
       products={props.productData} 
+    />
+    <Company />
+    <Testimonials 
+      testimonials={props.testimonialData}
     />
     {/* <DealerInquiry 
       openInquiry={props.openInquiry}

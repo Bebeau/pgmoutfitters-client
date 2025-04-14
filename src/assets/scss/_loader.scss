@@ -1,0 +1,76 @@
+.loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: $tan;
+    .scope {
+        position: relative;
+        &:after {
+            content: '';
+            display: block;
+            border: 5px solid $blue;
+            border-top: 5px solid $orange;
+            border-radius: 9999px;
+            width: 80px;
+            height: 80px;
+            animation: spin 2s linear infinite;
+        }
+        .sights {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            span {
+                width: 5px;
+                height: 30%;
+                background: $blue;
+                display: block;
+                position: absolute;
+                &:nth-child(1) {
+                    top: 0;
+                    left: 50%;
+                    transform: translate(-50%,0);
+                }
+                &:nth-child(2) {
+                    top: 50%;
+                    right: 0;
+                    transform: translate(0, 0) rotate(90deg);
+                    transform-origin: 100% 0;
+                }
+                &:nth-child(3) {
+                    bottom: 0;
+                    left: 50%;
+                    transform: translate(-50%,0);
+                }
+                &:nth-child(4) {
+                    top: 50%;
+                    left: 0;
+                    transform: translate(0, 0) rotate(-90deg);
+                    transform-origin: 0 0;
+                }
+            }
+        }
+        .dot {
+            display: block;
+            width: 10px;
+            height: 10px;
+            background: $orange;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            border-radius: 999px;
+        }
+    }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

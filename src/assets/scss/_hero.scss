@@ -1,0 +1,93 @@
+.hero {
+    background: linear-gradient(#885438, #461D0D);
+    position: relative;
+    .heroTitle {
+        height: 100%;
+        width: 100%;
+        color: white;
+        font-size: 1.6rem;
+        font-family: "new-frank", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        text-transform: uppercase;
+        line-height: 50px;
+        color: $tan;
+        position: relative;
+        z-index: 2;
+        h1 {
+            margin: 0;
+            padding: 20px;
+        }
+        * {
+            flex: 0 0 50%;
+        }
+        .btn {
+            margin: 0 auto 20px;
+        }
+    }
+    .heroImage {
+        position: relative;
+        z-index: 2;
+        img {
+            width: 100%;
+        }
+    }
+    &:after {
+        content: '';
+        display: block;
+        background: $blue;
+        position: absolute;
+        z-index: 1;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 30vh;
+    }
+}
+
+@media(min-width: 768px) {
+    .hero {
+        display: flex;
+        .heroTitle {
+            display: flex;
+            align-items: flex-start;
+            position: absolute;
+            font-size: 2rem;
+            line-height: 80px;
+            margin-top: 50px;
+            transform: translate(0,-60px);
+            h1 {
+                padding: 100px 0 0;
+                font-size: 4rem;
+                line-height: 60px;
+            }
+            .btn {
+                margin: 40px 0;
+            }
+        }
+        .heroImage {
+            flex: 0 0 50%;
+            img {
+                max-height: 100%;
+                padding: 0 60px;
+                box-sizing: border-box;
+                margin: 0 auto;
+                display: block;
+            }
+            &.pad {
+                padding-top: 100px;
+            }
+        }
+    }
+}
+
+@media(min-width: 991px) {
+    .hero {
+        .heroTitle {
+            h1 {
+                font-size: 5rem;
+                line-height: 80px;
+            }
+        }
+    }
+}

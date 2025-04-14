@@ -1,6 +1,6 @@
 import {useState, useRef, useEffect} from 'react';
 
-import { ReactComponent as FeedOptions } from '../assets/img/5-n-1/fiveInOne-feed-options.svg';
+import { ReactComponent as FeedOptions } from '../assets/img/feeders/5n1/modes.svg';
 
 const FiveInOneFeedOptions = (props: {openInquiry: () => void}) => {
   const activeBtnRef = useRef(null);

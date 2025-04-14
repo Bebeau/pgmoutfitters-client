@@ -3,19 +3,20 @@ import {useParams} from 'react-router-dom';
 import {productData, productType} from '../assets/data/products';
 import ProductSpecs from './productSpecs';
 import ImageGallery from './imageGallery';
-import ProductHero from './productHero';
+// import ProductHero from './productHero';
 import FeatureBlocks from './featureBlocks';
 import Spotlight from './spotlight';
 import RelatedProducts from './relatedProducts';
 import RiceBrand from './riceBrand';
 
 import SurfNTurfFeedOptions from './surfNTurfFeedOptions';
-import SpecialOpsFeedOptions from './specialOpsFeedOptions';
 import FiveInOneFeedOptions from './fiveInOneFeedOptions';
+import {ThreeInOneFeedOptions} from './threeInOneFeedOptions';
+import {TwoInOneFeedOptions} from './twoInOneFeedOptions';
 import CascadeBlocks from './cascadeBlocks';
 // import DealerInquiry from './dealer';
 
-import Testimonials from './testimonials';
+// import Testimonials from './testimonials';
 import {testimonialType} from '../assets/data/testimonials';
 
 type singleProductType = {
@@ -88,11 +89,11 @@ const Product = (props: singleProductType) => {
 
   return (
     <div id="productPage" className={productInfo.name}>
-      <ProductHero 
+      {/* <ProductHero 
         image={productInfo.image}
         name={productInfo.name}
         openInquiry={props.openInquiry}
-      />
+      /> */}
       <ProductSpecs
         productInfo={productInfo}
         openInquiry={props.openInquiry}
@@ -101,14 +102,22 @@ const Product = (props: singleProductType) => {
         photos={productInfo.photos}
         openInquiry={props.openInquiry}
       />
-      {productInfo.name === "Surf-N-Turf" && (
+      {/* {productInfo.name === "Surf-N-Turf" && (
         <SurfNTurfFeedOptions 
           openInquiry={props.openInquiry}
         />
-      )}
-      {productInfo.name === "Special-Ops" && (
+      )} */}
+      {productInfo.name === "Special Ops 2-N-1" && (
         <>
-          <SpecialOpsFeedOptions 
+          <TwoInOneFeedOptions 
+            openInquiry={props.openInquiry}
+          />
+          <CascadeBlocks />
+        </>
+      )}
+      {productInfo.name === "Special Ops 3-N-1" && (
+        <>
+          <ThreeInOneFeedOptions 
             openInquiry={props.openInquiry}
           />
           <CascadeBlocks />
@@ -131,11 +140,12 @@ const Product = (props: singleProductType) => {
       <Spotlight 
         image={productInfo.image}
         name={productInfo.name}
+        price={productInfo.price.retail}
         openInquiry={props.openInquiry}
       />
-      <Testimonials 
+      {/* <Testimonials 
         testimonials={props.testimonialData}
-      />
+      /> */}
       <RelatedProducts
         products={relatedProducts}
       />

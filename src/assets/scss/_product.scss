@@ -1,39 +1,56 @@
 #productPage {
   h2 {
-    font-size: 2rem;
     text-align: center;
-    margin-bottom: 0;
+    font-size: 2rem;
+    margin: 0;
+    &.specialOpsTitle {
+      font-size: 1.6rem;
+      span {
+        display: block;
+        font-size: 2rem;
+      }
+    }
   }
   .price {
-    font-size: 2rem;
     text-align: center;
+    font-size: 2rem;
     color: white;
     margin-bottom: 40px;
-  }
-  p {
-    opacity: 0.5;
   }
   .content {
     position: relative;
     z-index: 3;
     height: 100%;
+    overflow: hidden;
+    .blueprint {
+      position: absolute;
+      top: 20px;
+      left: -100px;
+      width: 600px;
+      z-index: 1;
+    }
     .about {
       display: flex;
-      flex-direction: column-reverse;
+      flex-direction: column;
       justify-content: center;
       align-items: flex-start;
       color: white;
       height: 100%;
       overflow: hidden;
-      .blueprint {
-        position: relative;
+      position: relative;
+      z-index: 2;
+      margin-top: 20px;
+      .image {
+        height: auto;
         width: 100%;
-        padding-bottom: 60px;
+        position: relative;
+        z-index: 2;
+        align-self: center;
+        display: flex;
+        justify-content: center;
         img {
-          max-width: 80%;
-          margin: 0 auto;
-          display: block;
-          opacity: 0.5;
+          width: 60%;
+          height: auto;
         }
       }
       .desc {
@@ -79,6 +96,9 @@
         .btn {
           margin: 40px 0;
           width: 100%;
+          &:hover {
+            cursor: pointer;
+          }
         }
       }
     }
@@ -96,12 +116,15 @@
       box-sizing: border-box;
       padding: 5px;
       margin-bottom: -5px;
+      aspect-ratio: 1/1;
+      overflow: hidden;
       img {
+        height: 100%;
         width: 100%;
-        height: auto;
         outline: solid 2px black;
         outline-offset: -2px;
         transition: all 0.3s ease-in-out;
+        object-fit: cover;
         &:hover {
           cursor: pointer;
           outline-offset: -10px;
@@ -155,6 +178,7 @@
             max-width: 100%;
             margin: 0 auto;
             display: block;
+            aspect-ratio: 1/1;
           }
         }
       }
@@ -289,6 +313,7 @@
     display: flex;
     flex-direction: column;
     background: $green;
+    flex-wrap: wrap;
     .item {
       aspect-ratio: 1;
       text-align: center;
@@ -297,6 +322,8 @@
       justify-content: center;
       box-sizing: border-box;
       padding: 40px;
+      flex: 0 0 33.3333%;
+      width: 100%;
       a {
         display: flex;
         flex-direction: column;
@@ -309,21 +336,25 @@
       h4 {
         margin-top: 40px;
       }
-      &:nth-child(1),
-      &:nth-child(3) {
+      &:nth-child(odd){
         background: darken($green, 10%);
       }
-      &:nth-child(2) {
+      &:nth-child(even) {
         background: darken($green, 15%);
       }
     }
   }
   .riceBrand {
     background: $blue;
+    max-width: 1200px;
+    margin: 0 auto;
     article {
       aspect-ratio: 1;
+      .copy {
+        padding-left: 0;
+      }
       img {
-        max-width: 80%;
+        max-width: 60%;
       }
     }
   }
@@ -359,11 +390,16 @@
         }
         polyline {
           fill: none;
+          stroke: white;
           stroke-dasharray: 10;
+          stroke-width: 1px;
           animation: dashPolyLine 5s linear infinite;
         }
         line {
+          fill: none;
+          stroke: white;
           stroke-dasharray: 10;
+          stroke-width: 1px;
           animation: dashLine 5s linear infinite;
         }
       }
@@ -453,6 +489,26 @@
           z-index: 2;
           bottom: 105px;
           right: 53px;
+          transform: translate(0,0);
+          transform-origin: bottom center;
+          transition: all 0.3s ease-in-out;
+        }
+      }
+    }
+    &.twoInOne {
+      .imageWrap {
+        position: relative;
+        padding: 0;
+        &:after {
+          content: '';
+          display: block;
+          background: white;
+          width: 1px;
+          height: 160px;
+          position: absolute;
+          z-index: 2;
+          bottom: 125px;
+          right: 64px;
           transform: translate(0,0);
           transform-origin: bottom center;
           transition: all 0.3s ease-in-out;
@@ -585,22 +641,33 @@
     }
     h2 {
       font-size: 4rem;
+      text-align: left;
+      &.specialOpsTitle {
+        font-size: 2rem;
+        span {
+          display: block;
+          font-size: 4rem;
+        }
+      }
+    }
+    .price {
+      text-align: left;
     }
     .content {
+      .blueprint {
+        display: block;
+      }
       .about {
         flex-direction: row;
-        .blueprint {
-          flex: 0 0 40%;
+        gap: 20px;
+        .image {
+          width: auto;
           img {
-            position: absolute;
-            top: 0;
-            right: 60px;
-            max-width: 130%;
-            width: 130%;
+            width: 400px;
           }
         }
         .desc {
-          flex: 0 0 60%;
+          flex: 0 0 50%;
         }
       }
     }
@@ -715,7 +782,7 @@
         }
         .copy {
           padding: 30px;
-          border: 1px solid white;
+          background: #4E6283;
         }
       }
     }
@@ -768,6 +835,9 @@
     }
     .spotlight {
       margin-top: -100px;
+      h2, .price {
+        text-align: center;
+      }
     }
     .related {
       flex-direction: row;

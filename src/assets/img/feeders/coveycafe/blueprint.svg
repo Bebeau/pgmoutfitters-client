@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 826.4 668.63">
+  <defs>
+    <style>
+      .cls-1 {
+        font-family: Monaco, Monaco;
+        font-size: 9.17px;
+        letter-spacing: -.02em;
+      }
+
+      .cls-1, .cls-2 {
+        fill: #435d79;
+      }
+
+      .cls-3 {
+        fill: none;
+        stroke: #435d79;
+        stroke-miterlimit: 10;
+      }
+    </style>
+  </defs>
+  <g id="back">
+    <g>
+      <g>
+        <g>
+          <path class="cls-2" d="M403.89,262.74h-30.94V121.1h30.94v141.64ZM374.54,261.15h27.76V122.69h-27.76v138.46Z"/>
+          <path class="cls-2" d="M419.21,279.22h-61.57V104.62h61.57v174.6ZM359.23,277.63h58.39V106.21h-58.39v171.42Z"/>
+          <circle class="cls-2" cx="366.23" cy="115.11" r="3.03"/>
+          <circle class="cls-2" cx="410.79" cy="115.11" r="3.03"/>
+          <circle class="cls-2" cx="366.23" cy="149.79" r="3.03"/>
+          <circle class="cls-2" cx="410.79" cy="149.79" r="3.03"/>
+          <circle class="cls-2" cx="366.23" cy="188.89" r="3.03"/>
+          <circle class="cls-2" cx="410.79" cy="188.89" r="3.03"/>
+          <circle class="cls-2" cx="366.23" cy="229.79" r="3.03"/>
+          <circle class="cls-2" cx="410.79" cy="229.79" r="3.03"/>
+          <circle class="cls-2" cx="366.23" cy="269.43" r="3.03"/>
+          <circle class="cls-2" cx="410.79" cy="269.43" r="3.03"/>
+        </g>
+        <g>
+          <rect class="cls-2" x="209.99" y="322.37" width="357.42" height="4.83"/>
+          <rect class="cls-2" x="190.59" y="295.71" width="395.67" height="6.35"/>
+          <rect class="cls-2" x="256.28" y="298.89" width="7.54" height="23.48"/>
+          <rect class="cls-2" x="515.19" y="298.89" width="7.54" height="23.48"/>
+          <rect class="cls-2" x="350.66" y="327.2" width="76.08" height="34.38"/>
+        </g>
+        <path class="cls-2" d="M774.15,668.63H0l.48-1.11,161.55-371.57V90.61h450.08v204l162.04,374.03ZM2.43,667.04h769.3l-161.2-372.11V92.2H163.63v204.09l-.07.15L2.43,667.04Z"/>
+        <path class="cls-2" d="M627.6,92.2H146.55v-20.45h481.06v20.45ZM148.14,90.61h477.88v-17.27H148.14v17.27Z"/>
+        <rect class="cls-2" x="162.83" y="295.32" width="448.49" height="1.59"/>
+        <path class="cls-2" d="M160.27,647.98H42.62l66.18-104.78,51.47,104.78ZM45.51,646.39h112.21l-49.09-99.94-63.12,99.94Z"/>
+        <path class="cls-2" d="M713.99,647.98h-103.96l52.41-104.94,51.55,104.94ZM612.61,646.39h98.83l-49.01-99.77-49.82,99.77Z"/>
+        <path class="cls-2" d="M568.95,647.98H190.84l-61.47-126.55.24-.38,75.66-117.09h347.46l74.98,121.96-.19.39-58.58,121.66ZM191.84,646.39h376.11l57.96-120.37-74.06-120.47H206.14l-74.94,115.99,60.64,124.85Z"/>
+      </g>
+      <g>
+        <line class="cls-3" x1="221.1" y1="25.76" x2="771.23" y2="25.76"/>
+        <rect class="cls-2" x="220.6" y="22.51" width="1" height="6.5"/>
+        <rect class="cls-2" x="770.73" y="22.51" width="1" height="6.5"/>
+      </g>
+      <g>
+        <line class="cls-3" x1="816.93" y1="72.25" x2="816.93" y2="668.13"/>
+        <rect class="cls-2" x="813.68" y="71.75" width="6.5" height="1"/>
+        <rect class="cls-2" x="813.68" y="667.63" width="6.5" height="1"/>
+      </g>
+      <text class="cls-1" transform="translate(810.26 63.06)"><tspan x="0" y="0">36’</tspan></text>
+      <text class="cls-1" transform="translate(387.08 8.06)"><tspan x="0" y="0">40’</tspan></text>
+    </g>
+  </g>
+</svg>

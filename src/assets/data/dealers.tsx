@@ -26,8 +26,8 @@ export const dealerData = [
     logo: 'logo',
     link: 'https://store.phillipsforestproducts.com/',
     position: {
-        top: '28',
-        left: '56'
+        top: '29',
+        left: '57'
     }
   },
   {
@@ -88,6 +88,21 @@ export const dealerData = [
     position: {
         top: '35',
         left: '85'
+    }
+  },
+  {
+    name: 'Potts Feed Store',
+    address: {
+        street: '119 N Texas Street',
+        city: 'Emory',
+        state: 'TX',
+        zip: '75440'
+    },
+    logo: 'logo',
+    link: 'https://pottsfeedstore.com/',
+    position: {
+        top: '33',
+        left: '53'
     }
   }
 ];

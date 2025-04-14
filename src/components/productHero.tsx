@@ -12,7 +12,7 @@ const ProductHero = (props: productHeroType) => {
   }
   return (
     <div className="hero">
-      <div className="heroTitle">
+      {/* <div className="heroTitle">
         <div></div>
         <div>
           <h1>
@@ -25,7 +25,7 @@ const ProductHero = (props: productHeroType) => {
             Inquire For Purchase
           </button>
         </div>
-      </div>
+      </div> */}
       <div className={props.name === 'Mass XL' ? "heroImage" : "heroImage pad"}>
         <img src={props.image} alt={props.name} />
       </div>

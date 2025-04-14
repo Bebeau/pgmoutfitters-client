@@ -45,35 +45,37 @@ const FeatureBlocks = (props: featureBlockType) => {
           <img className="viewPortImage" src={viewport} alt='Poly Sealed View Port' />
         </article>
       </div>
-      <div className="block solarPanel">
-        <article className="camo">
-          <div 
-            className="glare"
-            style={{
-              transform: `translateY(${offset * -1}px)`,
-            }}
-          >
-          </div>
-          {
-            props.name !== 'TreeHugger' && (
-              <img src={solarPanel1} alt='' />
-            )
-          }
-          {
-            props.name === 'TreeHugger' && (
-              <img src={solarPanel2} alt='' />
-            )
-          }
-        </article>
-        <article className="copy">
-          <div>
-            <h3>12 Volt Solar Panel</h3>
-            <p>
-              The solar panel makes it convenient and an eco-friendly solution for powering the feeder. The solar panel is mounted on the top of the feeder and is designed to absorb sunlight during the day, converting it into energy that can be used to power the feeder’s motor or other electrical components. This eliminates the need for traditional batteries or electrical outlets, making it easier and more cost-effective to maintain the feeder.
-            </p>
-          </div>
-        </article>
-      </div>
+      {props.name !== 'Covey Cafe' && (
+        <div className="block solarPanel">
+          <article className="camo">
+            <div 
+              className="glare"
+              style={{
+                transform: `translateY(${offset * -1}px)`,
+              }}
+            >
+            </div>
+            {
+              props.name !== 'TreeHugger' && (
+                <img src={solarPanel1} alt='' />
+              )
+            }
+            {
+              props.name === 'TreeHugger' && (
+                <img src={solarPanel2} alt='' />
+              )
+            }
+          </article>
+          <article className="copy">
+            <div>
+              <h3>12 Volt Solar Panel</h3>
+              <p>
+                The solar panel makes it convenient and an eco-friendly solution for powering the feeder. The solar panel is mounted on the top of the feeder and is designed to absorb sunlight during the day, converting it into energy that can be used to power the feeder’s motor or other electrical components. This eliminates the need for traditional batteries or electrical outlets, making it easier and more cost-effective to maintain the feeder.
+              </p>
+            </div>
+          </article>
+        </div>
+      )}
     </>
   )
 }
