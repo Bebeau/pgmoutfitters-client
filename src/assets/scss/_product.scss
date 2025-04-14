@@ -233,7 +233,7 @@
         }
         .cornImage {
           position: absolute;
-          top: -70%;
+          top: 40%;
           left: 0;
           right: 0;
           bottom: 0;
@@ -265,8 +265,8 @@
           display: block;
           width: 300px;
           height: 300px;
-          top: 200%;
-          left: 50%;
+          top: -20%;
+          left: 20%;
           background: white;
           border-radius: 9999999px;
           filter: blur(100px);
@@ -346,10 +346,10 @@
   }
   .riceBrand {
     background: $blue;
-    max-width: 1200px;
     margin: 0 auto;
+    width: 100%;
+    max-width: 1200px;
     article {
-      aspect-ratio: 1;
       .copy {
         padding-left: 0;
       }
@@ -628,17 +628,17 @@
 
 @media(min-width: 768px) {
   #productPage {
-    &.TreeHugger {
-      .block {
-        &.viewPort {
-          .camoWrap {
-            .cornImage {
-              top: -10%;
-            }
-          }
-        }
-      }
-    }
+    // &.TreeHugger {
+    //   .block {
+    //     &.viewPort {
+    //       .camoWrap {
+    //         .cornImage {
+    //           top: -10%;
+    //         }
+    //       }
+    //     }
+    //   }
+    // }
     h2 {
       font-size: 4rem;
       text-align: left;
@@ -735,19 +735,19 @@
       flex-direction: row;
       &.viewPort {
         flex-direction: row;
-        .camoWrap {
-          .cornImage {
-            top: -20%;
-          }
-        }
+        // .camoWrap {
+        //   .cornImage {
+        //     top: -20%;
+        //   }
+        // }
       }
-      &.solarPanel {
-        .camo {
-          .glare {
-            top: 125%;
-          }
-        }
-      }
+      // &.solarPanel {
+      //   .camo {
+      //     .glare {
+      //       top: 125%;
+      //     }
+      //   }
+      // }
       article {
         flex: 0 0 50%;
         div {

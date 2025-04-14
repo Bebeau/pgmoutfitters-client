@@ -1097,7 +1097,7 @@ input::placeholder {
 }
 #productPage .block.viewPort .camoWrap .cornImage {
   position: absolute;
-  top: -70%;
+  top: 40%;
   left: 0;
   right: 0;
   bottom: 0;
@@ -1127,8 +1127,8 @@ input::placeholder {
   display: block;
   width: 300px;
   height: 300px;
-  top: 200%;
-  left: 50%;
+  top: -20%;
+  left: 20%;
   background: white;
   border-radius: 9999999px;
   filter: blur(100px);
@@ -1207,9 +1207,6 @@ input::placeholder {
   background: #223047;
   max-width: 1200px;
   margin: 0 auto;
-}
-#productPage .riceBrand article {
-  aspect-ratio: 1;
 }
 #productPage .riceBrand article .copy {
   padding-left: 0;
@@ -1427,9 +1424,6 @@ input::placeholder {
   }
 }
 @media (min-width: 768px) {
-  #productPage.TreeHugger .block.viewPort .camoWrap .cornImage {
-    top: -10%;
-  }
   #productPage h2 {
     font-size: 4rem;
     text-align: left;
@@ -1519,12 +1513,6 @@ input::placeholder {
   }
   #productPage .block.viewPort {
     flex-direction: row;
-  }
-  #productPage .block.viewPort .camoWrap .cornImage {
-    top: -20%;
-  }
-  #productPage .block.solarPanel .camo .glare {
-    top: 125%;
   }
   #productPage .block article {
     flex: 0 0 50%;

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import {useState, useEffect} from 'react';
 
 import viewport from '../assets/img/viewport.png';
 import camo from '../assets/img/camo.png';
@@ -11,16 +11,18 @@ type featureBlockType = {
   name: string;
 }
 const FeatureBlocks = (props: featureBlockType) => {
-  const [offset, setOffset] = useState(0);
-  useEffect(() => {
-    const handleScroll = () => {
-      setOffset(window.pageYOffset * 0.2);
-    }
-    window.addEventListener("scroll", handleScroll)
-    return () => {
-      window.removeEventListener("scroll", handleScroll)
-    }
-  }, [offset]);
+  // const [offset, setOffset] = useState(0);
+  
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     setOffset(window.pageYOffset * 0.2);
+  //   }
+  //   window.addEventListener("scroll", handleScroll)
+  //   return () => {
+  //     window.removeEventListener("scroll", handleScroll)
+  //   }
+  // }, [offset]);
+
   return (
     <>
       <div className="block viewPort">
@@ -38,9 +40,9 @@ const FeatureBlocks = (props: featureBlockType) => {
             className="cornImage" 
             src={props.name === 'Mass XL' ? riceBrand : corn} 
             alt='Corn Feed' 
-            style={{
-              transform: `translateY(${offset * 0.5}px)`,
-            }}
+            // style={{
+            //   transform: `translateY(${offset * 0.5}px)`,
+            // }}
           />
           <img className="viewPortImage" src={viewport} alt='Poly Sealed View Port' />
         </article>
@@ -50,9 +52,9 @@ const FeatureBlocks = (props: featureBlockType) => {
           <article className="camo">
             <div 
               className="glare"
-              style={{
-                transform: `translateY(${offset * -1}px)`,
-              }}
+              // style={{
+              //   transform: `translateY(${offset * -1}px)`,
+              // }}
             >
             </div>
             {
