@@ -7,7 +7,7 @@ import photo4 from '../../img/feeders/mealtime/photos/4.jpg';
 import photo5 from '../../img/feeders/mealtime/photos/5.jpg';
 import photo6 from '../../img/feeders/mealtime/photos/6.jpg';
 import photo7 from '../../img/feeders/mealtime/photos/7.jpg';
-import photo8 from '../../img/feeders/mealtime/photos/8.jpg';
+// import photo8 from '../../img/feeders/mealtime/photos/8.jpg';
 
 export const MealTime = {
   name: 'Mass XL',

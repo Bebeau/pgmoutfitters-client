@@ -11,7 +11,7 @@ const formatAddress = (address: {
     zip: string
 }) => {
     return (
-        <a href={`https://www.google.com/maps/dir/?api=1&origin=Current+Location&destination=${address.street + ' ' + address.city + ' ' + address.state + ' ' + address.zip}`} target="_blank">
+        <a href={`https://www.google.com/maps/dir/?api=1&origin=Current+Location&destination=${address.street + ' ' + address.city + ' ' + address.state + ' ' + address.zip}`} target="_blank" rel="noreferrer">
             <div className="addressWrap">
                 <div className="icon">
                     <img src={PinIcon} alt="" />

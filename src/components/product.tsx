@@ -9,7 +9,7 @@ import Spotlight from './spotlight';
 import RelatedProducts from './relatedProducts';
 import RiceBrand from './riceBrand';
 
-import SurfNTurfFeedOptions from './surfNTurfFeedOptions';
+// import SurfNTurfFeedOptions from './surfNTurfFeedOptions';
 import FiveInOneFeedOptions from './fiveInOneFeedOptions';
 import {ThreeInOneFeedOptions} from './threeInOneFeedOptions';
 import {TwoInOneFeedOptions} from './twoInOneFeedOptions';

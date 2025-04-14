@@ -1,10 +1,10 @@
-    import React, {useState, useEffect, useCallback, useRef, createRef} from 'react';
+    import {useState, useEffect, useCallback, useRef, createRef} from 'react';
 
     import { ReactComponent as HunterIcon } from '../assets/img/hunter.svg';
     import { ReactComponent as OutfitterIcon } from '../assets/img/outfitter.svg';
     import { ReactComponent as DealerIcon } from '../assets/img/dealer.svg';
 
-    import {productType, productInquiryItem} from '../assets/data/products';
+    import {productType} from '../assets/data/products';
 
     import APIUtils from '../utils/APIUtils';
     import PhoneNumeberInput from '@bebeau/phone-number-input';
