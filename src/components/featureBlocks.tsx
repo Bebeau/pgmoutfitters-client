@@ -1,5 +1,3 @@
-import {useState, useEffect} from 'react';
-
 import viewport from '../assets/img/viewport.png';
 import camo from '../assets/img/camo.png';
 import corn from '../assets/img/corn-kernals.png';

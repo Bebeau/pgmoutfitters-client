@@ -463,9 +463,6 @@ input::placeholder {
   transform: translate(5px, 0);
   transition: all 0.3s ease-in-out;
 }
-.productListing .contentWrap a:nth-child(3) img {
-  width: 90%;
-}
 
 @media (min-width: 768px) {
   .productListing .contentWrap {
@@ -1205,8 +1202,9 @@ input::placeholder {
 }
 #productPage .riceBrand {
   background: #223047;
-  max-width: 1200px;
   margin: 0 auto;
+  width: 100%;
+  max-width: 1200px;
 }
 #productPage .riceBrand article .copy {
   padding-left: 0;
