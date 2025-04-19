@@ -478,7 +478,7 @@ input::placeholder {
     width: 100%;
   }
   .productListing .contentWrap a {
-    flex: 0 0 25%;
+    flex: 0 0 33.3333%;
   }
 }
 .inquiryModal {
