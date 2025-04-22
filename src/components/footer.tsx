@@ -3,7 +3,7 @@ import DealerList from './dealerList';
 
 import {ReactComponent as Logo} from '../assets/img/logo.svg';
 
-import PinIcon from '../assets/img/icons/png/pin.png';
+// import PinIcon from '../assets/img/icons/png/pin.png';
 import EmailIcon from '../assets/img/icons/png/email.png';
 import PhoneIcon from '../assets/img/icons/png/phone.png';
 
@@ -17,9 +17,9 @@ const Footer = (props: any) => {
         <DealerList />
         <div className="footerWrap">
             <div className="copyWrap">
-                <article>
+                {/* <article> */}
                     <Logo />
-                    <section className="addressWrap">
+                    {/* <section className="addressWrap">
                         <div className="icon">
                             <img src={PinIcon} alt="" />
                         </div>
@@ -28,7 +28,7 @@ const Footer = (props: any) => {
                             <br />
                             Shreveport, LA 71107
                         </address>
-                    </section>
+                    </section> */}
                     <section className="contactWrap">
                         <a href="tel:3182278145" className="phone">
                             <div className="icon">
@@ -43,14 +43,14 @@ const Footer = (props: any) => {
                             <span>sales@pgmoutfitters.com</span>
                         </a>
                     </section>
-                </article>
+                {/* </article> */}
             </div>
-            <iframe
+            {/* <iframe
                 height="450"
                 loading="lazy" 
                 allowFullScreen
                 src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJXWCtKtnMNoYRCMcONgvgYtk&key=AIzaSyBQGqPcLfspTJC6KKJplR9YFFrbOvD9xDs">
-            </iframe>
+            </iframe> */}
         </div>
     </footer>
   )

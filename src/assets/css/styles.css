@@ -1913,7 +1913,7 @@ input::placeholder {
 footer {
   width: 100%;
   background: linear-gradient(#885438, #461D0D);
-  padding-top: 80px;
+  padding: 80px 0;
 }
 footer h3 {
   color: white;
@@ -1959,7 +1959,7 @@ footer .icon {
   justify-content: flex-start;
   align-items: center;
   gap: 10px;
-  margin-bottom: 5px;
+  margin-bottom: 15px;
 }
 .contactWrap a.phone img {
   width: 12px;
@@ -1988,14 +1988,17 @@ footer .icon {
   gap: 20px;
 }
 .footerWrap .copyWrap {
-  flex: 0 1 50%;
   display: flex;
   flex-direction: column;
+  max-width: 800px;
+  margin: 0 auto;
   justify-content: center;
-  gap: 40px;
+  align-items: center;
+  gap: 20px;
 }
 .footerWrap .copyWrap.dealerList {
   gap: 20px;
+  align-items: flex-start;
 }
 .footerWrap iframe {
   border: none;
@@ -2006,6 +2009,7 @@ footer .icon {
 }
 .footerWrap #Logo {
   align-self: center;
+  width: 200px;
 }
 .footerWrap #Logo text {
   fill: white;
@@ -2014,6 +2018,13 @@ footer .icon {
 @media (min-width: 768px) {
   .footerWrap {
     flex-direction: row;
+  }
+  .footerWrap .copyWrap {
+    flex-direction: row;
+    gap: 40px;
+  }
+  .footerWrap .copyWrap.dealerList {
+    flex-direction: column;
   }
   .footerWrap.dealerWrap {
     flex-direction: row;

@@ -1,7 +1,7 @@
 footer {
   width: 100%;
   background: linear-gradient(#885438, #461D0D);
-  padding-top: 80px;
+  padding: 80px 0;
   h3 {
     color: white;
     text-align: center;
@@ -46,7 +46,7 @@ footer {
     justify-content: flex-start;
     align-items: center;
     gap: 10px;
-    margin-bottom: 5px;
+    margin-bottom: 15px;
     &.phone {
       img {
         width: 12px;
@@ -79,13 +79,18 @@ footer {
     gap: 20px;
   }
   .copyWrap {
-    flex: 0 1 50%;
+    // flex: 0 1 50%;
     display: flex;
     flex-direction: column;
+    max-width: 800px;
+    margin: 0 auto;
+    // flex-direction: column;
     justify-content: center;
-    gap: 40px;
+    align-items: center;
+    gap: 20px;
     &.dealerList {
       gap: 20px;
+      align-items: flex-start;
     }
   }
   iframe {
@@ -97,6 +102,7 @@ footer {
   }
   #Logo {
     align-self: center;
+    width: 200px;
     text {
       fill: white;
     }
@@ -106,6 +112,13 @@ footer {
 @media (min-width: 768px) {
   .footerWrap {
     flex-direction: row;
+    .copyWrap {
+      flex-direction: row;
+      gap: 40px;
+      &.dealerList {
+        flex-direction: column;
+      }
+    }
     &.dealerWrap {
       flex-direction: row;
     }
