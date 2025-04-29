@@ -3,7 +3,7 @@ import {ThreeInOne} from './feeders/3n1';
 import {FourInOne} from './feeders/4n1';
 import {FiveInOne} from './feeders/5n1';
 import {Woody} from './feeders/woody';
-// import {CoveyCafe} from './feeders/coveycafe';
+import {CoveyCafe} from './feeders/coveycafe';
 import {MealTime} from './feeders/mealtime';
 
 
@@ -43,5 +43,5 @@ export const productData = [
   MealTime,
   FourInOne,
   FiveInOne,
-  // CoveyCafe,
+  CoveyCafe,
 ];
