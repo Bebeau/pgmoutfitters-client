@@ -2,10 +2,13 @@ import {TwoInOne} from './feeders/2n1';
 import {ThreeInOne} from './feeders/3n1';
 import {FourInOne} from './feeders/4n1';
 import {FiveInOne} from './feeders/5n1';
-import {Woody} from './feeders/woody';
+import {XXX} from './feeders/xxx';
+import {OneInOne} from './feeders/1n1';
 import {CoveyCafe} from './feeders/coveycafe';
-import {MealTime} from './feeders/mealtime';
-
+import {RiceBrand} from './feeders/ricebrand';
+import {DuelTray} from './feeders/dueltray';
+import {BackYard} from './feeders/backyard';
+import {DockFeeder} from './feeders/dockfeeder';
 
 export type price = {
   retail: number,
@@ -37,11 +40,15 @@ export type productInquiryItem = {
 }
 
 export const productData = [
-  Woody,
+  OneInOne,
   TwoInOne,
   ThreeInOne,
-  MealTime,
   FourInOne,
   FiveInOne,
+  XXX,
+  RiceBrand,
+  DuelTray,
+  BackYard,
+  DockFeeder,
   CoveyCafe,
 ];

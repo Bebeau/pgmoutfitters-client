@@ -10,9 +10,9 @@ import photo7 from '../../img/feeders/2n1/photos/7.jpg';
 import photo8 from '../../img/feeders/2n1/photos/8.jpg';
 
 export const TwoInOne = {
-  name: 'Special Ops 2-N-1',
+  name: '2-N-1',
   image: feature,
-  slug: 'special-ops-2-n-1',
+  slug: '2-n-1',
   blueprint: bluePrint,
   description: '',
   specs: [

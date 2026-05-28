@@ -10,6 +10,7 @@ import RelatedProducts from './relatedProducts';
 import RiceBrand from './riceBrand';
 
 // import SurfNTurfFeedOptions from './surfNTurfFeedOptions';
+import FourInOneFeedOptions from './fourInOneFeedOptions';
 import FiveInOneFeedOptions from './fiveInOneFeedOptions';
 import {ThreeInOneFeedOptions} from './threeInOneFeedOptions';
 import {TwoInOneFeedOptions} from './twoInOneFeedOptions';
@@ -89,24 +90,29 @@ const Product = (props: singleProductType) => {
 
   return (
     <div id="productPage" className={productInfo.name}>
+      
       {/* <ProductHero 
         image={productInfo.image}
         name={productInfo.name}
         openInquiry={props.openInquiry}
       /> */}
+
       <ProductSpecs
         productInfo={productInfo}
         openInquiry={props.openInquiry}
       />
+
       <ImageGallery 
         photos={productInfo.photos}
         openInquiry={props.openInquiry}
       />
+
       {/* {productInfo.name === "Surf-N-Turf" && (
         <SurfNTurfFeedOptions 
           openInquiry={props.openInquiry}
         />
       )} */}
+
       {productInfo.name === "Special Ops 2-N-1" && (
         <>
           <TwoInOneFeedOptions 
@@ -115,6 +121,7 @@ const Product = (props: singleProductType) => {
           <CascadeBlocks />
         </>
       )}
+
       {productInfo.name === "Special Ops 3-N-1" && (
         <>
           <ThreeInOneFeedOptions 
@@ -123,6 +130,15 @@ const Product = (props: singleProductType) => {
           <CascadeBlocks />
         </>
       )}
+
+      {productInfo.name === "4-N-1" && (
+        <>
+          <FourInOneFeedOptions 
+            openInquiry={props.openInquiry}
+          />
+        </>
+      )}
+
       {productInfo.name === "5-N-1" && (
         <>
           <FiveInOneFeedOptions 
@@ -131,9 +147,11 @@ const Product = (props: singleProductType) => {
           <CascadeBlocks />
         </>
       )}
-      {productInfo.name === "Mass XL" && (
+
+      {productInfo.name === "Rice Brand" && (
         <RiceBrand />
       )}
+
       <FeatureBlocks 
         name={productInfo.name}
       />

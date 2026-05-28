@@ -1,18 +1,18 @@
-import feature from '../../img/feeders/mealtime/mealtime.png';
-import bluePrint from '../../img/feeders/mealtime/blueprint.svg';
-import photo1 from '../../img/feeders/mealtime/photos/1.jpg';
-import photo2 from '../../img/feeders/mealtime/photos/2.jpg';
-import photo3 from '../../img/feeders/mealtime/photos/3.jpg';
-import photo4 from '../../img/feeders/mealtime/photos/4.jpg';
-import photo5 from '../../img/feeders/mealtime/photos/5.jpg';
-import photo6 from '../../img/feeders/mealtime/photos/6.jpg';
-import photo7 from '../../img/feeders/mealtime/photos/7.jpg';
+import feature from '../../img/feeders/ricebrand/ricebrand.png';
+import bluePrint from '../../img/feeders/ricebrand/blueprint.svg';
+import photo1 from '../../img/feeders/ricebrand/photos/1.jpg';
+import photo2 from '../../img/feeders/ricebrand/photos/2.jpg';
+import photo3 from '../../img/feeders/ricebrand/photos/3.jpg';
+import photo4 from '../../img/feeders/ricebrand/photos/4.jpg';
+import photo5 from '../../img/feeders/ricebrand/photos/5.jpg';
+import photo6 from '../../img/feeders/ricebrand/photos/6.jpg';
+import photo7 from '../../img/feeders/ricebrand/photos/7.jpg';
 // import photo8 from '../../img/feeders/mealtime/photos/8.jpg';
 
-export const MealTime = {
-  name: 'Mass XL',
+export const RiceBrand = {
+  name: 'Rice Brand',
   image: feature,
-  slug: 'mass-xl',
+  slug: 'rice-brand',
   blueprint: bluePrint,
   description: '',
   specs: [

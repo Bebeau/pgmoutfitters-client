@@ -154,19 +154,19 @@
         const validate = validateForm(formData);
 
         if(validate.errors) {
-        setErrorMessage('Please fill out all form fields and at least 1 product.');
-        setFormLoading(false);
+            setErrorMessage('Please fill out all form fields and at least 1 product.');
+            setFormLoading(false);
         }
 
         if(!validate.errors) {
         APIUtils.callPost('api/inquiry/submit', formData)
         .then((res) => {
             if(res.status !== 200) {
-            return setErrorMessage(res.message);
+                return setErrorMessage(res.message);
             }
             window.gtag('config', 'AW-11171481429');
             window.gtag('event', 'conversion', {
-            send_to: 'AW-11171481429/0RBkCPb7uNMYENWO_c4p',
+                send_to: 'AW-11171481429/0RBkCPb7uNMYENWO_c4p',
             })
             setSuccessMessage('Thank You for your interest in our next generation deer feeders! We have received your inquriy and look forward to fulfilling your request. A member of our team will be in contact with you shortly.');
             clearFormValues();
@@ -208,7 +208,6 @@
     useEffect(() => {
         let productData = formatProductInquiryData();
         setProductInputValues(productData);
-        // setProductInputValues(props.productData);
     }, [props.productData]);
     
     return (
@@ -217,9 +216,6 @@
         <button className="closeModal" onClick={() => props.closeInquiry()}></button>
 
         <section className="inquiryCart">
-            {/* <div className="alert info">
-            Purchase 10 or more to receive dealer pricing.
-            </div> */}
             {props.productData.map((item: any, index: number) => {
             return (
                 <div key={index} className="inquiryProduct">

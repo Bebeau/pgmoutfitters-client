@@ -1,28 +1,33 @@
-import feature from '../../img/feeders/4n1/4n1.png';
-import bluePrint from '../../img/feeders/4n1/blueprint.svg';
-import photo1 from '../../img/feeders/4n1/photos/1.jpg';
-import photo2 from '../../img/feeders/4n1/photos/2.jpg';
-import photo3 from '../../img/feeders/4n1/photos/3.jpg';
-import photo4 from '../../img/feeders/4n1/photos/4.jpg';
-import photo5 from '../../img/feeders/4n1/photos/5.jpg';
-import photo6 from '../../img/feeders/4n1/photos/6.jpg';
-import photo7 from '../../img/feeders/4n1/photos/7.jpg';
-import photo8 from '../../img/feeders/4n1/photos/8.jpg';
+import feature from '../../img/feeders/1n1/1n1.png';
+import bluePrint from '../../img/feeders/1n1/blueprint.svg';
+import photo1 from '../../img/feeders/woody/photos/1.jpg';
+import photo2 from '../../img/feeders/woody/photos/2.jpg';
+import photo3 from '../../img/feeders/woody/photos/3.jpg';
+import photo4 from '../../img/feeders/woody/photos/4.jpg';
+import photo5 from '../../img/feeders/woody/photos/5.jpg';
+import photo6 from '../../img/feeders/woody/photos/6.jpg';
+import photo7 from '../../img/feeders/woody/photos/7.jpg';
+import photo8 from '../../img/feeders/woody/photos/8.jpg';
 
-export const FourInOne = {
-  name: '4-N-1',
+export const OneInOne = {
+  name: '1-N-1',
   image: feature,
-  slug: '4-n-1',
+  slug: '1-n-1',
   blueprint: bluePrint,
   description: '',
   specs: [
-    '1100 or 1700 lb Capacity',
-    '4 Gravity Feed Chambers',
-    'Towable Draggable Base',
+    '600 lb Spin Mode',
+    'Drop Door Feed Funnel Access',
+    '12 volt Solar Panel',
+    '12 volt Motor',
+    '12 volt Battery',
+    '6 Feed Settings (THE TIMER)',
+    'Gas Actuator Assist Lid',
     'Feed Level Sightglass',
+    'Raccoon Deterent Shield System',
+    '40in x 40in Footprint',
     'Stand and Fill Style',
-    'Feed Tray Clean out Door',
-    'Feed Tray Open/Close Door',
+    'Custom Patterns Available',
   ],
   photos: [
     {
@@ -74,6 +79,6 @@ export const FourInOne = {
     }
   ],
   price: {
-    retail: 1900,
+    retail: 1125
   }
 }

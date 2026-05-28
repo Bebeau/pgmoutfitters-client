@@ -1,33 +1,34 @@
-import feature from '../../img/feeders/woody/woody.png';
-import bluePrint from '../../img/feeders/woody/blueprint.svg';
-import photo1 from '../../img/feeders/woody/photos/1.jpg';
-import photo2 from '../../img/feeders/woody/photos/2.jpg';
-import photo3 from '../../img/feeders/woody/photos/3.jpg';
-import photo4 from '../../img/feeders/woody/photos/4.jpg';
-import photo5 from '../../img/feeders/woody/photos/5.jpg';
-import photo6 from '../../img/feeders/woody/photos/6.jpg';
-import photo7 from '../../img/feeders/woody/photos/7.jpg';
-import photo8 from '../../img/feeders/woody/photos/8.jpg';
+import feature from '../../img/feeders/xxx/xxx.png';
+import bluePrint from '../../img/feeders/5n1/blueprint.svg';
+import photo1 from '../../img/feeders/5n1/photos/1.jpg';
+import photo2 from '../../img/feeders/5n1/photos/2.jpg';
+import photo3 from '../../img/feeders/5n1/photos/3.jpg';
+import photo4 from '../../img/feeders/5n1/photos/4.jpg';
+import photo5 from '../../img/feeders/5n1/photos/5.jpg';
+import photo6 from '../../img/feeders/5n1/photos/6.jpg';
+import photo7 from '../../img/feeders/5n1/photos/7.jpg';
+import photo8 from '../../img/feeders/5n1/photos/8.jpg';
 
-export const Woody = {
-  name: 'Special Ops',
+export const XXX = {
+  name: 'XXX',
   image: feature,
-  slug: 'special-ops',
+  slug: 'xxx',
   blueprint: bluePrint,
   description: '',
   specs: [
-    '600 lb Spin Mode',
+    '5 Feed Chambers',
+    '1500 lb Spin Mode',
     'Drop Door Feed Funnel Access',
     '12 volt Solar Panel',
     '12 volt Motor',
     '12 volt Battery',
     '6 Feed Settings (THE TIMER)',
-    'Gas Actuator Assist Lid',
+    'Towable Draggable Base',
+    'Swivel Lever Door',
     'Feed Level Sightglass',
-    'Raccoon Deterent Shield System',
-    '40in x 40in Footprint',
     'Stand and Fill Style',
-    'Custom Patterns Available',
+    'Feed Tray Clean out Door',
+    'Feed Tray Open/Close Door',
   ],
   photos: [
     {
@@ -36,12 +37,12 @@ export const Woody = {
       title: '12 Volt Solar Panel',
       desc: 'A small solar panel is mounted to the top side, harnessing energy from the sun to charge a 12 volt battery, which powers a deer feeder.',
     },
-    {
-      thumb: photo2,
-      full: photo2,
-      title: 'Changable Feed Options',
-      desc: 'There are two levelers used to swivel metal plates within the body of the feeder. This changes the flow within the feed chambers.',
-    },
+    // {
+    //   thumb: photo2,
+    //   full: photo2,
+    //   title: 'Changable Feed Options',
+    //   desc: 'There are two levelers used to swivel metal plates within the body of the feeder. This changes the flow within the feed chambers.',
+    // },
     {
       thumb: photo3,
       full: photo3,
@@ -79,6 +80,6 @@ export const Woody = {
     }
   ],
   price: {
-    retail: 1125
+    retail: 2000,
   }
 }

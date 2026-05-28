@@ -81,6 +81,6 @@ export const FiveInOne = {
     }
   ],
   price: {
-    retail: 1750,
+    retail: 2125,
   }
 }
