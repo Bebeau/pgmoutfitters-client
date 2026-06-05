@@ -16,8 +16,9 @@ export const FourInOne = {
   blueprint: bluePrint,
   description: '',
   specs: [
-    '1100 or 1700 lb Capacity',
+    '1700 lb Capacity',
     '4 Gravity Feed Chambers',
+    'Vibration System',
     'Towable Draggable Base',
     'Feed Level Sightglass',
     'Stand and Fill Style',
@@ -31,12 +32,12 @@ export const FourInOne = {
       title: '12 Volt Solar Panel',
       desc: 'A small solar panel is mounted to the top side, harnessing energy from the sun to charge a 12 volt battery, which powers a deer feeder.',
     },
-    {
-      thumb: photo2,
-      full: photo2,
-      title: 'Changable Feed Options',
-      desc: 'There are two levelers used to swivel metal plates within the body of the feeder. This changes the flow within the feed chambers.',
-    },
+    // {
+    //   thumb: photo2,
+    //   full: photo2,
+    //   title: 'Changable Feed Options',
+    //   desc: 'There are two levelers used to swivel metal plates within the body of the feeder. This changes the flow within the feed chambers.',
+    // },
     {
       thumb: photo3,
       full: photo3,
@@ -48,12 +49,12 @@ export const FourInOne = {
       title: 'Tow Bar',
       desc: 'The feeder is built on two metal sled bases with a tow bar to latch onto to easily drag and position the feeder with a vehicle.',
     },
-    {
-      thumb: photo5,
-      full: photo5,
-      title: '30lb Hydrolic Lift',
-      desc: 'A hydrolic lift is added to the inside of the feeder top to allow for ease with opening and closing.',
-    },
+    // {
+    //   thumb: photo5,
+    //   full: photo5,
+    //   title: '30lb Hydrolic Lift',
+    //   desc: 'A hydrolic lift is added to the inside of the feeder top to allow for ease with opening and closing.',
+    // },
     {
       thumb: photo6,
       full: photo6,

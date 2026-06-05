@@ -3,9 +3,9 @@ import {useState, useRef, useEffect} from 'react';
 import { ReactComponent as FeedOptions } from '../assets/img/feeders/4n1/modes.svg';
 
 const FourInOneFeedOptions = (props: {openInquiry: () => void}) => {
+  const fullBtnRef = useRef(null);
+  const singleBtnRef = useRef(null);
   const activeBtnRef = useRef(null);
-  const gravityBtnRef = useRef(null);
-  const timerBtnRef = useRef(null);
 
   const [setting, setSetting] = useState('');
 
@@ -20,7 +20,7 @@ const FourInOneFeedOptions = (props: {openInquiry: () => void}) => {
   }
 
   useEffect(() => {
-    activeBtnRef.current = timerBtnRef.current;
+    activeBtnRef.current = fullBtnRef.current;
     setSetting('timer');
   }, []);
 
@@ -30,7 +30,8 @@ const FourInOneFeedOptions = (props: {openInquiry: () => void}) => {
         <div>
           <h3>Feed Options</h3>
           <p>Click the feed options below to see the settings change in on the feeder blueprint.</p>
-          <button ref={timerBtnRef} className={activeBtnRef.current === timerBtnRef.current ? 'btn outline active' : 'btn outline'} onClick={(e) => handleBtnClick(e.target, 'timer')}>1700 lb gravity</button>
+          <button ref={fullBtnRef} className={activeBtnRef.current === fullBtnRef.current ? 'btn outline active' : 'btn outline'} onClick={(e) => handleBtnClick(e.target, 'full')}>4 chambers @ 425lb each</button>
+          <button ref={singleBtnRef} className={activeBtnRef.current === singleBtnRef.current ? 'btn outline active' : 'btn outline'} onClick={(e) => handleBtnClick(e.target, 'single')}>425 lb single chamber</button>
           <button className="btn" onClick={handleInquiryBtnClick}>
             Inquire For Purchase
           </button>

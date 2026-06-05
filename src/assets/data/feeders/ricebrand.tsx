@@ -22,7 +22,7 @@ export const RiceBrand = {
     'Feeds All Textured Mill Types',
     'Feed Level Sightglass',
     'Other Uses - Farm & Ranch Applications',
-    '6 volt Motor',
+    'Vibration Motor',
     '12 volt Solar Panel',
     '12 volt Battery',
     '6 Feed Settings (THE TIMER)',

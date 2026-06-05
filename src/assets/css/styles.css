@@ -1205,12 +1205,13 @@ input::placeholder {
   margin: 0 auto;
   width: 100%;
   max-width: 1200px;
+  padding: 40px 0;
 }
 #productPage .riceBrand article .copy {
   padding-left: 0;
 }
 #productPage .riceBrand article img {
-  max-width: 60%;
+  max-width: 80%;
 }
 #productPage .feedOptions {
   background: #223047;
@@ -1235,8 +1236,10 @@ input::placeholder {
 #productPage .feedOptions .graphic svg #outline {
   fill: white;
 }
-#productPage .feedOptions .graphic svg #bg {
+#productPage .feedOptions .graphic svg #bg, #productPage .feedOptions .graphic svg .bg {
   fill: #4E6283;
+  z-index: -1;
+  position: relative;
 }
 #productPage .feedOptions .graphic svg #timer,
 #productPage .feedOptions .graphic svg #left,
@@ -1294,6 +1297,20 @@ input::placeholder {
 #productPage .feedOptions .graphic.gravity svg #gravity {
   opacity: 1;
   transition: all 0.3s ease-in-out;
+}
+#productPage .feedOptions .graphic.full .one-chamber {
+  display: none;
+}
+#productPage .feedOptions .graphic.single .one-chamber {
+  display: block;
+}
+#productPage .feedOptions .graphic.single .four-chamber {
+  display: none;
+}
+#productPage .feedOptions .graphic.single .top,
+#productPage .feedOptions .graphic.single .right,
+#productPage .feedOptions .graphic.single .bottom {
+  display: none;
 }
 #productPage .feedOptions.specialOps .imageWrap {
   position: relative;

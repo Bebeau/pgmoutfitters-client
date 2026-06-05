@@ -16,8 +16,9 @@ export const XXX = {
   blueprint: bluePrint,
   description: '',
   specs: [
-    '5 Feed Chambers',
-    '1500 lb Spin Mode',
+    '1500 lb Spin Cast',
+    'Vibration System',
+    'Spin Cast Protein & Bulk Unclean Corn',
     'Drop Door Feed Funnel Access',
     '12 volt Solar Panel',
     '12 volt Motor',
@@ -54,12 +55,12 @@ export const XXX = {
       title: 'Tow Bar',
       desc: 'The feeder is built on two metal sled bases with a tow bar to latch onto to easily drag and position the feeder with a vehicle.',
     },
-    {
-      thumb: photo5,
-      full: photo5,
-      title: '30lb Hydrolic Lift',
-      desc: 'A hydrolic lift is added to the inside of the feeder top to allow for ease with opening and closing.',
-    },
+    // {
+    //   thumb: photo5,
+    //   full: photo5,
+    //   title: '30lb Hydrolic Lift',
+    //   desc: 'A hydrolic lift is added to the inside of the feeder top to allow for ease with opening and closing.',
+    // },
     {
       thumb: photo6,
       full: photo6,

@@ -38,12 +38,12 @@ export const ThreeInOne = {
       title: '12 Volt Solar Panel',
       desc: 'A small solar panel is mounted to the top side, harnessing energy from the sun to charge a 12 volt battery, which powers a deer feeder.',
     },
-    {
-      thumb: photo2,
-      full: photo2,
-      title: 'Changable Feed Options',
-      desc: 'There are two levelers used to swivel metal plates within the body of the feeder. This changes the flow within the feed chambers.',
-    },
+    // {
+    //   thumb: photo2,
+    //   full: photo2,
+    //   title: 'Changable Feed Options',
+    //   desc: 'There are two levelers used to swivel metal plates within the body of the feeder. This changes the flow within the feed chambers.',
+    // },
     {
       thumb: photo3,
       full: photo3,

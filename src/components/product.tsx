@@ -113,7 +113,7 @@ const Product = (props: singleProductType) => {
         />
       )} */}
 
-      {productInfo.name === "Special Ops 2-N-1" && (
+      {productInfo.name === "2-N-1" && (
         <>
           <TwoInOneFeedOptions 
             openInquiry={props.openInquiry}
@@ -122,7 +122,7 @@ const Product = (props: singleProductType) => {
         </>
       )}
 
-      {productInfo.name === "Special Ops 3-N-1" && (
+      {productInfo.name === "3-N-1" && (
         <>
           <ThreeInOneFeedOptions 
             openInquiry={props.openInquiry}

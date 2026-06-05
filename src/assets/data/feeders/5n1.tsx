@@ -17,8 +17,8 @@ export const FiveInOne = {
   description: '',
   specs: [
     '5 Feed Chambers',
-    '1100 lb - 650 lb Gravity / 450 lb Spin Mode',
-    '1700 lb - 1000 lb Gravity / 700 lb Spin Mode',
+    '1700 lb - 1000 lb Gravity / 700 lb Spin Cast',
+    'Vibration System',
     'Drop Door Feed Funnel Access',
     '12 volt Solar Panel',
     '12 volt Motor',
@@ -38,29 +38,30 @@ export const FiveInOne = {
       title: '12 Volt Solar Panel',
       desc: 'A small solar panel is mounted to the top side, harnessing energy from the sun to charge a 12 volt battery, which powers a deer feeder.',
     },
-    {
-      thumb: photo2,
-      full: photo2,
-      title: 'Changable Feed Options',
-      desc: 'There are two levelers used to swivel metal plates within the body of the feeder. This changes the flow within the feed chambers.',
-    },
+    // {
+    //   thumb: photo2,
+    //   full: photo2,
+    //   title: 'Changable Feed Options',
+    //   desc: 'There are two levelers used to swivel metal plates within the body of the feeder. This changes the flow within the feed chambers.',
+    // },
     {
       thumb: photo3,
       full: photo3,
       title: 'Latchable Rain Guard',
       desc: 'The top overlaps to prevent rain from getting into the feed. There is a latch to hold the top in place and optionally lock it.',
-    },{
+    },
+    {
       thumb: photo4,
       full: photo4,
       title: 'Tow Bar',
       desc: 'The feeder is built on two metal sled bases with a tow bar to latch onto to easily drag and position the feeder with a vehicle.',
     },
-    {
-      thumb: photo5,
-      full: photo5,
-      title: '30lb Hydrolic Lift',
-      desc: 'A hydrolic lift is added to the inside of the feeder top to allow for ease with opening and closing.',
-    },
+    // {
+    //   thumb: photo5,
+    //   full: photo5,
+    //   title: '30lb Hydrolic Lift',
+    //   desc: 'A hydrolic lift is added to the inside of the feeder top to allow for ease with opening and closing.',
+    // },
     {
       thumb: photo6,
       full: photo6,

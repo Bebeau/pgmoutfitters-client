@@ -349,12 +349,13 @@
     margin: 0 auto;
     width: 100%;
     max-width: 1200px;
+    padding: 40px 0;
     article {
       .copy {
         padding-left: 0;
       }
       img {
-        max-width: 60%;
+        max-width: 80%;
       }
     }
   }
@@ -378,8 +379,10 @@
         #outline {
           fill: white;
         }
-        #bg {
+        #bg, .bg {
           fill: #4E6283;
+          z-index: -1;
+          position: relative;
         }
         #timer, 
         #left,
@@ -461,6 +464,24 @@
           }
         }
       }
+      &.full {
+        .one-chamber {
+          display: none;
+        }
+      }
+      &.single {
+        .one-chamber {
+          display: block;
+        }
+        .four-chamber {
+          display: none;
+        }
+        .top,
+        .right,
+        .bottom {
+          display: none;
+        }
+      }
     }
     &.specialOps {
       .imageWrap {
@@ -515,6 +536,8 @@
         }
       }
     }
+    // &.fourInOne {
+    // }
     &.fiveInOne {
       .imageWrap {
         padding: 0;

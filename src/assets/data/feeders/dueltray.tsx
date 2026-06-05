@@ -18,8 +18,8 @@ export const DuelTray = {
   specs: [
     '350 lb Shake & Feed',
     'Drop Door Feed Funnel Access',
-    '12 volt Solar panel',
-    '12 volt Motor',
+    'Vibration Motor',
+    '12 volt Solar Panel',
     '12 volt Battery',
     'Towable Draggable Base',
     'Gas Actuator Assist Lid',
