@@ -76,18 +76,18 @@ export const dealerData = [
     }
   },
   {
-    name: 'Vans Outdoors',
+    name: 'Wes-Tex Steel Inc.',
     address: {
-        street: '777 Highway 468',
-        city: 'Brandon',
-        state: 'MS',
-        zip: '39042'
+        street: '88029 I-20',
+        city: 'Santo',
+        state: 'TX',
+        zip: '76472'
     },
     logo: 'logo',
     link: 'https://vansoutdoorsbrandon.com/',
     position: {
-        top: '35',
-        left: '85'
+        top: '36',
+        left: '43'
     }
   },
   {
