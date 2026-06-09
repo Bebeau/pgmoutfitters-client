@@ -72,7 +72,7 @@
     
     const handleProductInputChange = (key: number, event: any) => {
         let result = productInputValues.filter(obj => {
-        return obj.name === event.currentTarget.name;
+            return obj.name === event.currentTarget.name;
         })
         result[0].qty = event.currentTarget.value;
         productInputValues[key] = result[0];
@@ -83,13 +83,13 @@
 
     const handleInputArrowClick = (direction: string, name: string, key: number) => {
         let result = productInputValues.filter(obj => {
-        return obj.name === name;
+            return obj.name === name;
         })
         if(direction === 'up') {
-        result[0].qty = (Number(result[0].qty) + 1);
+            result[0].qty = (Number(result[0].qty) + 1);
         }
         if(direction === 'down' && Number(result[0].qty) > 0) {
-        result[0].qty = (Number(result[0].qty) - 1);
+            result[0].qty = (Number(result[0].qty) - 1);
         }
         inputRef.current[key].current.value = result[0].qty;
         productInputValues[key] = result[0];
@@ -127,28 +127,28 @@
         setFormLoading(true);
         setErrorMessage('');
         const formData: {
-        type: string,
-        first: string,
-        last: string,
-        company?: string,
-        email: string,
-        phone: string,
-        status: string,
-        cart: object[],
-        cost: string
+            type: string,
+            first: string,
+            last: string,
+            company?: string,
+            email: string,
+            phone: string,
+            status: string,
+            cart: object[],
+            cost: string
         } = {
-        type: userType,
-        first: firstName,
-        last: lastName,
-        email: email,
-        phone: phone,
-        status: 'submitted',
-        cart: productInputValues,
-        cost: cost
+            type: userType,
+            first: firstName,
+            last: lastName,
+            email: email,
+            phone: phone,
+            status: 'submitted',
+            cart: productInputValues,
+            cost: cost
         }
 
         if(userType !== 'hunter') {
-        formData.company = companyName;
+            formData.company = companyName;
         }
 
         const validate = validateForm(formData);
@@ -188,15 +188,15 @@
     const formatProductInquiryData = () => {
         let formattedProductData = [];
         for (const key in props.productData) {
-        let product = props.productData[key];
-        let formatted = {
-            name: product.name,
-            price: {
-            retail: product.price.retail
-            },
-            qty: 0
-        }
-        formattedProductData.push(formatted);
+            let product = props.productData[key];
+            let formatted = {
+                name: product.name,
+                price: {
+                retail: product.price.retail
+                },
+                qty: 0
+            }
+            formattedProductData.push(formatted);
         }
         return formattedProductData;
     }
