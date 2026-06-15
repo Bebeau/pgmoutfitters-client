@@ -16,21 +16,6 @@ export type dealerType = {
 
 export const dealerData = [
   {
-    name: 'Philips Forest Products',
-    address: {
-        street: '13431 US-82',
-        city: 'De Kalb',
-        state: 'TX',
-        zip: '75559'
-    },
-    logo: 'logo',
-    link: 'https://store.phillipsforestproducts.com/',
-    position: {
-        top: '29',
-        left: '57'
-    }
-  },
-  {
     name: 'J and L Sales',
     address: {
         street: '116 Southeast Fifth Street',
