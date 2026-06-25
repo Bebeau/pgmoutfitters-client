@@ -15,6 +15,21 @@ export type dealerType = {
 }
 
 export const dealerData = [
+   {
+    name: 'Russell Feed & Supply Decatur',
+    address: {
+        street: '1817 US-287',
+        city: 'Decatur',
+        state: 'TX',
+        zip: '76234'
+    },
+    logo: 'logo',
+    link: 'https://www.russellfeed.com/',
+    position: {
+        top: '31',
+        left: '48'
+    }
+  },
   {
     name: 'J and L Sales',
     address: {
