@@ -15,6 +15,21 @@ export type dealerType = {
 }
 
 export const dealerData = [
+  {
+    name: 'Delta Outdoors',
+    address: {
+        street: '3755 Hwy 61 North',
+        city: 'Cleveland',
+        state: 'MS',
+        zip: '38732'
+    },
+    logo: 'logo',
+    link: 'https://www.deltaoutdoors.com/',
+    position: {
+        top: '18',
+        left: '84'
+    }
+  },
    {
     name: 'Russell Feed & Supply Decatur',
     address: {
