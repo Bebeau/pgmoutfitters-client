@@ -1,4 +1,7 @@
 export const CART_STORAGE_KEY = 'pgmoutfitters.cart';
+export const CART_QTY_MAX = 20;
+export const QTY_LIMIT_MESSAGE =
+  'Limit is 20 per feeder. Call (318) 227-8145 if you need more.';
 
 export type CartLine = {
   slug: string;
@@ -32,6 +35,13 @@ export const toPositiveInt = (value: unknown): number | null => {
   return qty >= 1 ? qty : null;
 };
 
+export const clampCartQty = (qty: number) => Math.min(CART_QTY_MAX, Math.max(1, Math.floor(qty)));
+
+export type CartMutation = {
+  items: CartLine[];
+  limited: boolean;
+};
+
 const isCartLine = (value: unknown): value is CartLine => {
   if (!value || typeof value !== 'object') {
     return false;
@@ -54,7 +64,7 @@ export const sanitizeCart = (value: unknown): CartLine[] => {
   return value.filter(isCartLine).map((line) => ({
     slug: line.slug,
     name: line.name,
-    qty: toPositiveInt(line.qty) as number,
+    qty: clampCartQty(toPositiveInt(line.qty) as number),
     unitPrice: Number(line.unitPrice),
   }));
 };
@@ -77,45 +87,63 @@ export const writeStoredCart = (items: CartLine[]) => {
   window.localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(sanitizeCart(items)));
 };
 
-export const addLine = (items: CartLine[], incoming: CartProductInput): CartLine[] => {
+export const applyAddLine = (items: CartLine[], incoming: CartProductInput): CartMutation => {
   const addQty = toPositiveInt(incoming.qty ?? 1) ?? 1;
   const existing = items.find((item) => item.slug === incoming.slug);
-  if (existing) {
-    return items.map((item) =>
-      item.slug === incoming.slug
-        ? {
-            ...item,
-            qty: item.qty + addQty,
-            name: incoming.name,
-            unitPrice: incoming.unitPrice,
-          }
-        : item
-    );
+  const currentQty = existing?.qty ?? 0;
+  if (currentQty >= CART_QTY_MAX) {
+    return { items, limited: true };
   }
-  return [
-    ...items,
-    {
-      slug: incoming.slug,
-      name: incoming.name,
-      qty: addQty,
-      unitPrice: incoming.unitPrice,
-    },
-  ];
+
+  const nextQty = clampCartQty(currentQty + addQty);
+  const limited = currentQty + addQty > CART_QTY_MAX;
+  const line = {
+    slug: incoming.slug,
+    name: incoming.name,
+    qty: nextQty,
+    unitPrice: incoming.unitPrice,
+  };
+
+  if (existing) {
+    return {
+      items: items.map((item) => (item.slug === incoming.slug ? line : item)),
+      limited,
+    };
+  }
+  return { items: [...items, line], limited };
 };
+
+export const addLine = (items: CartLine[], incoming: CartProductInput): CartLine[] =>
+  applyAddLine(items, incoming).items;
 
 export const setLineQty = (items: CartLine[], slug: string, qty: unknown): CartLine[] => {
   const nextQty = toPositiveInt(qty);
   if (nextQty === null) {
     return items;
   }
-  return items.map((item) => (item.slug === slug ? { ...item, qty: nextQty } : item));
-};
-
-export const incrementLine = (items: CartLine[], slug: string): CartLine[] => {
   return items.map((item) =>
-    item.slug === slug ? { ...item, qty: item.qty + 1 } : item
+    item.slug === slug ? { ...item, qty: clampCartQty(nextQty) } : item
   );
 };
+
+export const applyIncrementLine = (items: CartLine[], slug: string): CartMutation => {
+  const existing = items.find((item) => item.slug === slug);
+  if (!existing) {
+    return { items, limited: false };
+  }
+  if (existing.qty >= CART_QTY_MAX) {
+    return { items, limited: true };
+  }
+  return {
+    items: items.map((item) =>
+      item.slug === slug ? { ...item, qty: item.qty + 1 } : item
+    ),
+    limited: false,
+  };
+};
+
+export const incrementLine = (items: CartLine[], slug: string): CartLine[] =>
+  applyIncrementLine(items, slug).items;
 
 export const decrementLine = (items: CartLine[], slug: string): CartLine[] => {
   return items.map((item) =>

@@ -13,7 +13,7 @@ const PICKUP_PHONE = '(318) 227-8145';
 const PICKUP_ADDRESS = '908 Joseph St, Shreveport, LA 71107';
 
 const Cart = () => {
-  const { items, subtotal, incrementQty, decrementQty, removeItem } = useCart();
+  const { items, subtotal, incrementQty, decrementQty, removeItem, limitMessage } = useCart();
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -53,6 +53,10 @@ const Cart = () => {
           Purchases are currently pickup only at {PICKUP_ADDRESS} during business
           hours — call ahead at <a href="tel:3182278145">{PICKUP_PHONE}</a>.
         </p>
+
+        {limitMessage && (
+          <p className="alert error">{limitMessage}</p>
+        )}
 
         {errorMessage && (
           <p className="alert error">{errorMessage}</p>
@@ -114,6 +118,7 @@ const Cart = () => {
                         type="number"
                         name={item.slug}
                         min="1"
+                        max="20"
                         step="1"
                         value={item.qty}
                         readOnly

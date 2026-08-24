@@ -1,6 +1,9 @@
 import {
+  CART_QTY_MAX,
   CART_STORAGE_KEY,
   addLine,
+  applyAddLine,
+  applyIncrementLine,
   cartCount,
   cartSubtotal,
   checkoutItems,
@@ -46,6 +49,17 @@ describe('cartStorage', () => {
     expect(checkoutItems([{ ...feeder, qty: 3 }])).toEqual([{ slug: '2-n-1', qty: 3 }]);
   });
 
+  test('caps add and increment at 20 per slug', () => {
+    const atLimit = addLine([], { ...feeder, qty: CART_QTY_MAX });
+    expect(atLimit[0].qty).toBe(20);
+    expect(incrementLine(atLimit, feeder.slug)[0].qty).toBe(20);
+    expect(applyIncrementLine(atLimit, feeder.slug).limited).toBe(true);
+    expect(applyAddLine(atLimit, feeder).limited).toBe(true);
+    expect(applyAddLine(atLimit, feeder).items[0].qty).toBe(20);
+    expect(setLineQty(atLimit, feeder.slug, 21)[0].qty).toBe(20);
+    expect(addLine([], { ...feeder, qty: 25 })[0].qty).toBe(20);
+  });
+
   test('persists a sanitized cart in localStorage', () => {
     writeStoredCart([
       { ...feeder, qty: 2 },
@@ -57,5 +71,6 @@ describe('cartStorage', () => {
     ]);
     expect(readStoredCart()).toEqual([{ ...feeder, qty: 2 }]);
     expect(sanitizeCart('nope')).toEqual([]);
+    expect(sanitizeCart([{ ...feeder, qty: 25 }])).toEqual([{ ...feeder, qty: 20 }]);
   });
 });

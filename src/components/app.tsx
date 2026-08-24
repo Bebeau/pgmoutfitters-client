@@ -7,7 +7,7 @@ import Product from './product';
 import LegacyProductRedirect from './legacyProductRedirect';
 import Cart from './cart';
 import CartSuccess from './cartSuccess';
-import CartLink from './cartLink';
+import CartLink, { CartLimitNotice } from './cartLink';
 import { CartProvider } from '../context/cartContext';
 
 import {productType} from '../assets/data/products';
@@ -48,6 +48,7 @@ const App = (props: sampleData) => {
     }
       <Router>
         <CartLink />
+        <CartLimitNotice />
         <Routes>
           <Route 
             path="/" 

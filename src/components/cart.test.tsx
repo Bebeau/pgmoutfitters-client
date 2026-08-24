@@ -4,7 +4,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import { MemoryRouter } from 'react-router-dom';
 import Cart from './cart';
 import { CartProvider } from '../context/cartContext';
-import { CART_STORAGE_KEY } from '../utils/cartStorage';
+import { CART_STORAGE_KEY, QTY_LIMIT_MESSAGE } from '../utils/cartStorage';
 import { CART_TITLE } from '../utils/siteMeta';
 import { createCheckoutSession } from '../utils/checkoutApi';
 
@@ -80,5 +80,19 @@ describe('Cart page', () => {
     });
     expect(mockedCreateCheckoutSession.mock.calls[0][0][0]).not.toHaveProperty('unitPrice');
     expect(assign).toHaveBeenCalledWith('https://checkout.stripe.com/c/pay/cs_test');
+  });
+
+  test('qty up at 20 stays at 20 and shows the limit message', async () => {
+    window.localStorage.setItem(
+      CART_STORAGE_KEY,
+      JSON.stringify([{ slug: '2-n-1', name: '2-N-1', qty: 20, unitPrice: 1300 }])
+    );
+
+    renderCart();
+
+    await userEvent.click(document.querySelector('.arrow.up') as HTMLElement);
+
+    expect(screen.getByLabelText('2-N-1 quantity')).toHaveValue(20);
+    expect(screen.getByText(QTY_LIMIT_MESSAGE)).toBeInTheDocument();
   });
 });

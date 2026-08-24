@@ -1,5 +1,20 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useCart } from '../context/cartContext';
+
+export const CartLimitNotice = () => {
+  const { limitMessage } = useCart();
+  const location = useLocation();
+
+  if (!limitMessage || location.pathname === '/cart') {
+    return null;
+  }
+
+  return (
+    <p className="alert error cartLimitAlert" role="status">
+      {limitMessage}
+    </p>
+  );
+};
 
 const CartLink = () => {
   const { itemCount } = useCart();
