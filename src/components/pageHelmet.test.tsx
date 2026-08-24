@@ -1,6 +1,6 @@
 import { render, waitFor } from '@testing-library/react';
 import { HelmetProvider } from 'react-helmet-async';
-import PageHelmet from './components/pageHelmet';
+import PageHelmet from './pageHelmet';
 
 const metaContent = (selector: string) =>
   document.head.querySelector(selector)?.getAttribute('content');
