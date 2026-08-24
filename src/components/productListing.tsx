@@ -18,7 +18,7 @@ const ProductListing = (props: any) => {
       <div className="contentWrap">
         {props.products.map((item: any, index: number) => {
           return (
-            <a href={`/products/deer-feeders/${item.slug}`} key={index}>
+            <a href={`/deer-feeders/${item.slug}`} key={index}>
 
               <img src={item.image} alt={item.name} />
               {item.name === 'Special Ops 1-N-1' || item.name === 'Special Ops 2-N-1' || item.name === 'Special Ops 3-N-1' ? (

@@ -15,7 +15,7 @@ const ProductSlide = (props: slide) => {
       </section>
       <section className={props.transition ? "slideCopy fade" : "slideCopy"}>
         <h2>
-          <a href={`/products/deer-feeders/${props.slug}`}>
+          <a href={`/deer-feeders/${props.slug}`}>
             {props.name}
           </a>
         </h2>
