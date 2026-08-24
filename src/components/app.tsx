@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate, useParams } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Homepage from './homepage';
 import Inquiry from './inquiry';
 import Footer from './footer';
 import Product from './product';
+import LegacyProductRedirect from './legacyProductRedirect';
 
 import {productType} from '../assets/data/products';
 import {testimonialType} from '../assets/data/testimonials';
@@ -12,11 +13,6 @@ type sampleData = {
   productData: productType[];
   testimonialData: testimonialType[];
 }
-
-const LegacyProductRedirect = () => {
-  const { slug } = useParams();
-  return <Navigate to={`/deer-feeders/${slug}`} replace />;
-};
 
 const App = (props: sampleData) => {
   const [showInquiry, setShowInquiry] = useState(false);

@@ -1,5 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {productType} from '../assets/data/products';
+import { productPath } from '../utils/productPath';
 
 type relatedType = {
   products: productType[];
@@ -11,7 +13,7 @@ const relatedProducts = (props: relatedType) => {
         if (index >= 9) return;
         return (
           <div key={index} className="item">
-            <a href={`/deer-feeders/${item.slug}`} key={index}>
+            <Link to={productPath(item.slug)} key={index}>
               <img src={item.image} alt={item.name} />
               {item.name === 'Special Ops 2-N-1' || item.name === 'Special Ops 3-N-1' ? (
                   <h4>Special Ops <span className="break">{item.name.replace('Special Ops ', '')}</span></h4>
@@ -19,7 +21,7 @@ const relatedProducts = (props: relatedType) => {
                   <h4>{item.name}</h4>
               )}
               <h5 className="details">View Details</h5>
-            </a>
+            </Link>
           </div>
         );
       })}
