@@ -1,6 +1,14 @@
 import {useState, useEffect, useCallback} from 'react';
 import {useParams} from 'react-router-dom';
 import {productData, productType} from '../assets/data/products';
+import PageHelmet from './pageHelmet';
+import ProductNotFound from './productNotFound';
+import {
+  isAbsoluteHttpUrl,
+  productCanonical,
+  productPageDescription,
+  productPageTitle,
+} from '../utils/siteMeta';
 import ProductSpecs from './productSpecs';
 import ImageGallery from './imageGallery';
 // import ProductHero from './productHero';
@@ -31,19 +39,7 @@ const Product = (props: singleProductType) => {
   // Use once data is pulled from database
   // const productFetchRef = useRef(false);
   const {slug} = useParams();
-  const [productInfo, setProductInfo] = useState<productType>({
-    name: '',
-    image: '',
-    slug: '',
-    blueprint: '',
-    description: '',
-    specs: [],
-    photos: [],
-    price: {
-      retail: 0,
-      dealer: 0,
-    }
-  });
+  const matchedProduct = productData.find(product => product.slug === slug);
   const [relatedProducts, setRelatedProducts] = useState<productType[]>([]);
 
   // Use once data is pulled from database
@@ -63,7 +59,12 @@ const Product = (props: singleProductType) => {
   // }
 
   const preloadImages = useCallback(() => {
-    let images = productInfo.photos.map((item) => {
+    if (!matchedProduct) {
+      props.setIsLoading(false);
+      return;
+    }
+
+    let images = matchedProduct.photos.map((item) => {
       return new Promise<void>((resolve, reject) => {
         let img = new Image();
         img.src = item.full;
@@ -77,43 +78,55 @@ const Product = (props: singleProductType) => {
     .then(() => {
       props.setIsLoading(false);
     });
-  }, [productInfo.photos, props]);
+  }, [matchedProduct, props]);
 
   useEffect(() => {
-    if(slug) {
-      setProductInfo(productData.filter(product => product.slug === slug)[0]);
-      preloadImages();
-      setRelatedProducts(productData.filter(product => product.slug !== slug));
+    if (!matchedProduct) {
+      setRelatedProducts([]);
+      props.setIsLoading(false);
+      return;
     }
-    
-  }, [props, slug, preloadImages]);
+
+    setRelatedProducts(productData.filter(product => product.slug !== slug));
+    preloadImages();
+  }, [matchedProduct, props, slug, preloadImages]);
+
+  if (!matchedProduct) {
+    return <ProductNotFound />;
+  }
 
   return (
-    <div id="productPage" className={productInfo.name}>
+    <div id="productPage" className={matchedProduct.name}>
+      <PageHelmet
+        title={productPageTitle(matchedProduct.name)}
+        description={productPageDescription(matchedProduct.name, matchedProduct.description)}
+        canonical={productCanonical(matchedProduct.slug)}
+        image={isAbsoluteHttpUrl(matchedProduct.image) ? matchedProduct.image : undefined}
+      />
       
       {/* <ProductHero 
-        image={productInfo.image}
-        name={productInfo.name}
+        image={matchedProduct.image}
+        name={matchedProduct.name}
         openInquiry={props.openInquiry}
       /> */}
 
       <ProductSpecs
-        productInfo={productInfo}
+        productInfo={matchedProduct}
         openInquiry={props.openInquiry}
       />
 
       <ImageGallery 
-        photos={productInfo.photos}
+        photos={matchedProduct.photos}
         openInquiry={props.openInquiry}
       />
 
-      {/* {productInfo.name === "Surf-N-Turf" && (
+      {/* {matchedProduct.name === "Surf-N-Turf" && (
         <SurfNTurfFeedOptions 
           openInquiry={props.openInquiry}
         />
       )} */}
 
-      {productInfo.name === "2-N-1" && (
+      {matchedProduct.name === "2-N-1" && (
         <>
           <TwoInOneFeedOptions 
             openInquiry={props.openInquiry}
@@ -122,7 +135,7 @@ const Product = (props: singleProductType) => {
         </>
       )}
 
-      {productInfo.name === "3-N-1" && (
+      {matchedProduct.name === "3-N-1" && (
         <>
           <ThreeInOneFeedOptions 
             openInquiry={props.openInquiry}
@@ -131,7 +144,7 @@ const Product = (props: singleProductType) => {
         </>
       )}
 
-      {productInfo.name === "4-N-1" && (
+      {matchedProduct.name === "4-N-1" && (
         <>
           <FourInOneFeedOptions 
             openInquiry={props.openInquiry}
@@ -139,7 +152,7 @@ const Product = (props: singleProductType) => {
         </>
       )}
 
-      {productInfo.name === "5-N-1" && (
+      {matchedProduct.name === "5-N-1" && (
         <>
           <FiveInOneFeedOptions 
             openInquiry={props.openInquiry}
@@ -148,17 +161,17 @@ const Product = (props: singleProductType) => {
         </>
       )}
 
-      {productInfo.name === "Rice Brand" && (
+      {matchedProduct.name === "Rice Brand" && (
         <RiceBrand />
       )}
 
       <FeatureBlocks 
-        name={productInfo.name}
+        name={matchedProduct.name}
       />
       <Spotlight 
-        image={productInfo.image}
-        name={productInfo.name}
-        price={productInfo.price.retail}
+        image={matchedProduct.image}
+        name={matchedProduct.name}
+        price={matchedProduct.price.retail}
         openInquiry={props.openInquiry}
       />
       {/* <Testimonials 

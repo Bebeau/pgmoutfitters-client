@@ -7,6 +7,8 @@ import ProductListing from './productListing';
 
 import {productType} from '../assets/data/products';
 import {testimonialType} from '../assets/data/testimonials';
+import PageHelmet from './pageHelmet';
+import { HOME_DESCRIPTION, HOME_TITLE, homeCanonical } from '../utils/siteMeta';
 
 type homepageType = {
   openInquiry: () => void;
@@ -26,6 +28,11 @@ const Homepage = (props: homepageType) => {
 
   return (
     <>
+    <PageHelmet
+      title={HOME_TITLE}
+      description={HOME_DESCRIPTION}
+      canonical={homeCanonical()}
+    />
     {/* <div className="hero">
       <div className="heroTitle">
         <div></div>
