@@ -22,10 +22,10 @@ const renderSuccess = (search: string) =>
   render(
     <HelmetProvider>
       <CartProvider>
-        <MemoryRouter initialEntries={[`/cart/success${search}`]}>
+        <MemoryRouter initialEntries={[`/checkout/success${search}`]}>
           <Routes>
             <Route
-              path="/cart/success"
+              path="/checkout/success"
               element={
                 <>
                   <CartSuccess />

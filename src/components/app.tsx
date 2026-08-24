@@ -85,7 +85,7 @@ const App = (props: sampleData) => {
             }
           />
           <Route
-            path="/cart/success"
+            path="/checkout/success"
             element={
               <DismissLoader setIsLoading={setIsLoading}>
                 <CartSuccess />
