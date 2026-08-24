@@ -1,4 +1,6 @@
 import React, {useState, useEffect} from 'react';
+import { Link } from 'react-router-dom';
+import { productPath } from '../utils/productPath';
 
 interface slide {
   name?: string;
@@ -15,9 +17,9 @@ const ProductSlide = (props: slide) => {
       </section>
       <section className={props.transition ? "slideCopy fade" : "slideCopy"}>
         <h2>
-          <a href={`/products/deer-feeders/${props.slug}`}>
+          <Link to={productPath(props.slug)}>
             {props.name}
-          </a>
+          </Link>
         </h2>
       </section>
     </div>
