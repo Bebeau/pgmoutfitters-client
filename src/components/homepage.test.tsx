@@ -38,5 +38,7 @@ describe('Homepage helmet', () => {
     expect(metaContent('meta[property="og:title"]')).toBe(HOME_TITLE);
     expect(metaContent('meta[property="og:description"]')).toBe(HOME_DESCRIPTION);
     expect(metaContent('meta[property="og:url"]')).toBe('https://pgmoutfitters.com/');
+    expect(metaContent('meta[name="twitter:title"]')).toBe(HOME_TITLE);
+    expect(metaContent('meta[name="twitter:description"]')).toBe(HOME_DESCRIPTION);
   });
 });

@@ -11,8 +11,10 @@ export const homeCanonical = () => `${SITE_ORIGIN}/`;
 export const productCanonical = (slug: string) =>
   `${SITE_ORIGIN}${productPath(slug)}`;
 
-export const productPageTitle = (name: string) =>
-  `${name} Deer Feeder | PGM Outfitters`;
+export const productPageTitle = (name: string) => {
+  const suffix = /feeder$/i.test(name.trim()) ? '' : ' Deer Feeder';
+  return `${name}${suffix} | PGM Outfitters`;
+};
 
 export const productPageDescription = (name: string, description?: string) => {
   const trimmed = description?.trim();

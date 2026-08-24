@@ -1,4 +1,4 @@
-import { render, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { HelmetProvider } from 'react-helmet-async';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import Product from './product';
@@ -57,11 +57,13 @@ describe('Product helmet', () => {
     expect(metaContent('meta[property="og:title"]')).toBe(title);
     expect(metaContent('meta[property="og:description"]')).toBe(description);
     expect(metaContent('meta[property="og:url"]')).toBe(canonical);
+    expect(metaContent('meta[name="twitter:title"]')).toBe(title);
+    expect(metaContent('meta[name="twitter:description"]')).toBe(description);
     expect(document.head.querySelector('meta[property="og:image"]')).toBeNull();
     expect(canonical).toBe('https://pgmoutfitters.com/deer-feeders/2-n-1');
   });
 
-  test('does not emit a product title for an unknown slug', async () => {
+  test('unknown slugs use ProductNotFound instead of the product layout', async () => {
     renderProduct('not-a-real-feeder');
 
     await waitFor(() => {
@@ -70,5 +72,9 @@ describe('Product helmet', () => {
 
     expect(document.title).not.toMatch(/Deer Feeder \| PGM Outfitters$/);
     expect(document.head.querySelector('link[rel="canonical"]')).toBeNull();
+    expect(screen.getByRole('heading', { name: /deer feeder not found/i })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /view deer feeders/i })).toHaveAttribute('href', '/');
+    expect(document.getElementById('productPage')).toBeNull();
+    expect(screen.queryByRole('button', { name: /inquire for purchase/i })).not.toBeInTheDocument();
   });
 });

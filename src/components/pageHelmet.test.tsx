@@ -31,4 +31,25 @@ test('PageHelmet writes matching title, description, canonical, and optional og:
   expect(metaContent('meta[property="og:image"]')).toBe(
     'https://pgmoutfitters.com/feeder.png'
   );
+  expect(metaContent('meta[name="twitter:title"]')).toBe(
+    '2-N-1 Deer Feeder | PGM Outfitters'
+  );
+  expect(metaContent('meta[name="twitter:description"]')).toBe(
+    'A split gravity and spin feeder.'
+  );
+});
+
+test('PageHelmet can emit noindex without a product title', async () => {
+  render(
+    <HelmetProvider>
+      <PageHelmet noindex />
+    </HelmetProvider>
+  );
+
+  await waitFor(() => {
+    expect(metaContent('meta[name="robots"]')).toBe('noindex');
+  });
+
+  expect(document.title).not.toMatch(/Deer Feeder \| PGM Outfitters$/);
+  expect(document.head.querySelector('link[rel="canonical"]')).toBeNull();
 });

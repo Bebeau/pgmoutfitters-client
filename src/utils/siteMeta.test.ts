@@ -19,7 +19,8 @@ describe('siteMeta', () => {
     expect(productPageTitle('2-N-1')).toBe('2-N-1 Deer Feeder | PGM Outfitters');
     expect(productPageTitle('XXX')).toBe('XXX Deer Feeder | PGM Outfitters');
     expect(productPageTitle('Rice Brand')).toBe('Rice Brand Deer Feeder | PGM Outfitters');
-    expect(productPageTitle('Dock Feeder')).toBe('Dock Feeder Deer Feeder | PGM Outfitters');
+    expect(productPageTitle('Dock Feeder')).toBe('Dock Feeder | PGM Outfitters');
+    expect(productPageTitle('dock feeder')).toBe('dock feeder | PGM Outfitters');
     expect(productPageTitle('Covey Cafe')).toBe('Covey Cafe Deer Feeder | PGM Outfitters');
     expect(productCanonical('2-n-1')).toBe(`https://pgmoutfitters.com${productPath('2-n-1')}`);
     expect(productCanonical('2-n-1')).toBe('https://pgmoutfitters.com/deer-feeders/2-n-1');
