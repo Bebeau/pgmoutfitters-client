@@ -5,6 +5,10 @@ import Inquiry from './inquiry';
 import Footer from './footer';
 import Product from './product';
 import LegacyProductRedirect from './legacyProductRedirect';
+import Cart from './cart';
+import CartSuccess from './cartSuccess';
+import CartLink from './cartLink';
+import { CartProvider } from '../context/cartContext';
 
 import {productType} from '../assets/data/products';
 import {testimonialType} from '../assets/data/testimonials';
@@ -19,7 +23,7 @@ const App = (props: sampleData) => {
   const [isLoading, setIsLoading] = useState(true);
 
   return (
-    <>
+    <CartProvider>
     {
       isLoading && (
         <div className="loader">
@@ -36,6 +40,7 @@ const App = (props: sampleData) => {
       )
     }
       <Router>
+        <CartLink />
         <Routes>
           <Route 
             path="/" 
@@ -64,15 +69,17 @@ const App = (props: sampleData) => {
             path="/products/deer-feeders/:slug"
             element={<LegacyProductRedirect />}
           />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/cart/success" element={<CartSuccess />} />
         </Routes>
+        <Footer />
       </Router>
-      <Footer />
       <Inquiry
         closeInquiry={() => setShowInquiry(false)}
         showInquiry={showInquiry}
         productData={props.productData}
       />
-    </>
+    </CartProvider>
   )
 }
 

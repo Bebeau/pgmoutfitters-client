@@ -1,22 +1,28 @@
 import React from 'react';
 import {productType} from '../assets/data/products';
+import { useCart } from '../context/cartContext';
+import { formatRetailPrice } from '../utils/cartStorage';
 
 type productSpecsType = {
     productInfo: productType,
     openInquiry: () => void
 }
 const ProductSpecs = (props: productSpecsType) => {
+    const { addToCart } = useCart();
 
     const handleBtnClick = () => {
         window.gtag('event', 'productSpecsCTA');
         props.openInquiry();
     }
 
-    const formatter = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-        maximumFractionDigits: 0,
-    });
+    const handleAddToCart = () => {
+        window.gtag('event', 'addToCart');
+        addToCart({
+            slug: props.productInfo.slug,
+            name: props.productInfo.name,
+            unitPrice: props.productInfo.price.retail,
+        });
+    }
 
     return (
         <div className="content">
@@ -39,7 +45,7 @@ const ProductSpecs = (props: productSpecsType) => {
                         <h2>{props.productInfo.name}</h2>
                     )}
     
-                    <div className="price">${formatter.format(Number(props.productInfo.price.retail)).replace('$','')}</div>
+                    <div className="price">{formatRetailPrice(Number(props.productInfo.price.retail))}</div>
             
                     <p>{props.productInfo.description}</p>
 
@@ -51,9 +57,14 @@ const ProductSpecs = (props: productSpecsType) => {
                         })}
                     </ul>
 
-                    <button className="btn" onClick={handleBtnClick}>
-                        Inquire For Purchase
-                    </button>
+                    <div className="ctaGroup">
+                        <button type="button" className="btn" onClick={handleAddToCart}>
+                            Add to Cart
+                        </button>
+                        <button type="button" className="btn outline" onClick={handleBtnClick}>
+                            Inquire For Purchase
+                        </button>
+                    </div>
                 </div>
             </div>
 

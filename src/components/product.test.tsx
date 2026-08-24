@@ -10,25 +10,28 @@ import {
   productPageDescription,
   productPageTitle,
 } from '../utils/siteMeta';
+import { CartProvider } from '../context/cartContext';
 
 const renderProduct = (slug: string) =>
   render(
     <HelmetProvider>
-      <MemoryRouter initialEntries={[`/deer-feeders/${slug}`]}>
-        <Routes>
-          <Route
-            path="/deer-feeders/:slug"
-            element={
-              <Product
-                openInquiry={() => undefined}
-                testimonialData={[]}
-                isLoading={false}
-                setIsLoading={() => undefined}
-              />
-            }
-          />
-        </Routes>
-      </MemoryRouter>
+      <CartProvider>
+        <MemoryRouter initialEntries={[`/deer-feeders/${slug}`]}>
+          <Routes>
+            <Route
+              path="/deer-feeders/:slug"
+              element={
+                <Product
+                  openInquiry={() => undefined}
+                  testimonialData={[]}
+                  isLoading={false}
+                  setIsLoading={() => undefined}
+                />
+              }
+            />
+          </Routes>
+        </MemoryRouter>
+      </CartProvider>
     </HelmetProvider>
   );
 
@@ -68,6 +71,8 @@ describe('Product helmet', () => {
     expect(metaContent('meta[property="og:image"]')).toBe(DEFAULT_OG_IMAGE);
     expect(metaContent('meta[name="twitter:image:src"]')).toBe(DEFAULT_TWITTER_IMAGE);
     expect(canonical).toBe('https://pgmoutfitters.com/deer-feeders/2-n-1');
+    expect(screen.getAllByRole('button', { name: /add to cart/i }).length).toBeGreaterThan(0);
+    expect(screen.getAllByRole('button', { name: /inquire for purchase/i }).length).toBeGreaterThan(0);
   });
 
   test('unknown slugs use ProductNotFound instead of the product layout', async () => {

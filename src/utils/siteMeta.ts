@@ -6,6 +6,9 @@ export const HOME_TITLE = 'Next Generation Deer Feeders | PGM Outfitters';
 export const HOME_DESCRIPTION =
   'PGM Outfitters is a manufacturer of next generation deer feeders.';
 
+export const CART_TITLE = 'Cart | PGM Outfitters';
+export const CART_SUCCESS_TITLE = 'Order Confirmed | PGM Outfitters';
+
 export const DEFAULT_OG_IMAGE =
   'https://init-public.s3.amazonaws.com/pgmFacebook.jpg';
 export const DEFAULT_TWITTER_IMAGE =
