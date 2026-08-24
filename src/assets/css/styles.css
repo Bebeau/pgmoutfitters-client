@@ -1028,9 +1028,17 @@ input::placeholder {
   display: block;
   position: absolute;
   right: -30px;
+  background: none;
+  padding: 0;
+  font-size: 0;
+  line-height: 0;
 }
-.cartPage .cartItem .formGroup .arrow:hover {
+.cartPage .cartItem .formGroup .arrow:hover:not(:disabled) {
   cursor: pointer;
+}
+.cartPage .cartItem .formGroup .arrow:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
 }
 .cartPage .cartItem .formGroup .arrow.up {
   top: 50%;

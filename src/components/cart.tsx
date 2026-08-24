@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useCart } from '../context/cartContext';
 import { productData } from '../assets/data/products';
 import { productPath } from '../utils/productPath';
-import { formatRetailPrice, lineTotal } from '../utils/cartStorage';
+import { CART_QTY_MAX, formatRetailPrice, lineTotal } from '../utils/cartStorage';
 import { createCheckoutSession } from '../utils/checkoutApi';
 import { unwrapCheckoutUrl } from '../utils/checkoutResponse';
 import PageHelmet from './pageHelmet';
@@ -106,14 +106,19 @@ const Cart = () => {
 
                   <section className="formGroup">
                     <div className="inputWrap">
-                      <span
+                      <button
+                        type="button"
                         className="arrow up"
+                        aria-label={`Increase ${item.name} quantity`}
                         onClick={() => incrementQty(item.slug)}
-                      ></span>
-                      <span
+                        disabled={item.qty >= CART_QTY_MAX}
+                      ></button>
+                      <button
+                        type="button"
                         className="arrow down"
+                        aria-label={`Decrease ${item.name} quantity`}
                         onClick={() => decrementQty(item.slug)}
-                      ></span>
+                      ></button>
                       <input
                         type="number"
                         name={item.slug}

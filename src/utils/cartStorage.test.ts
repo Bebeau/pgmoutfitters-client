@@ -57,6 +57,7 @@ describe('cartStorage', () => {
     expect(applyAddLine(atLimit, feeder).limited).toBe(true);
     expect(applyAddLine(atLimit, feeder).items[0].qty).toBe(20);
     expect(setLineQty(atLimit, feeder.slug, 21)[0].qty).toBe(20);
+    expect(setLineQty([{ ...feeder, qty: 4 }], feeder.slug, 99)[0].qty).toBe(20);
     expect(addLine([], { ...feeder, qty: 25 })[0].qty).toBe(20);
   });
 

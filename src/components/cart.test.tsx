@@ -4,7 +4,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import { MemoryRouter } from 'react-router-dom';
 import Cart from './cart';
 import { CartProvider } from '../context/cartContext';
-import { CART_STORAGE_KEY, QTY_LIMIT_MESSAGE } from '../utils/cartStorage';
+import { CART_STORAGE_KEY } from '../utils/cartStorage';
 import { CART_TITLE } from '../utils/siteMeta';
 import { createCheckoutSession } from '../utils/checkoutApi';
 
@@ -72,6 +72,8 @@ describe('Cart page', () => {
     expect(screen.getByText('$1,300')).toBeInTheDocument();
     expect(screen.getAllByText(/\$2,600/).length).toBeGreaterThan(0);
     expect(screen.getByLabelText('2-N-1 quantity')).toHaveValue(2);
+    expect(screen.getByRole('button', { name: 'Increase 2-N-1 quantity' })).toBeEnabled();
+    expect(screen.getByRole('button', { name: 'Decrease 2-N-1 quantity' })).toBeEnabled();
 
     await userEvent.click(screen.getByRole('button', { name: /checkout/i }));
 
@@ -90,9 +92,8 @@ describe('Cart page', () => {
 
     renderCart();
 
-    await userEvent.click(document.querySelector('.arrow.up') as HTMLElement);
-
+    expect(screen.getByRole('button', { name: 'Increase 2-N-1 quantity' })).toBeDisabled();
+    expect(screen.getByRole('button', { name: 'Decrease 2-N-1 quantity' })).toBeEnabled();
     expect(screen.getByLabelText('2-N-1 quantity')).toHaveValue(20);
-    expect(screen.getByText(QTY_LIMIT_MESSAGE)).toBeInTheDocument();
   });
 });

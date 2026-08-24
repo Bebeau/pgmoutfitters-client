@@ -8,6 +8,9 @@ import { CART_SUCCESS_TITLE } from '../utils/siteMeta';
 
 type confirmationState = 'loading' | 'paid' | 'unpaid' | 'missing' | 'error';
 
+export const CHECKOUT_POLL_INTERVAL_MS = 1000;
+export const CHECKOUT_POLL_TIMEOUT_MS = 12000;
+
 const CartSuccess = () => {
   const [searchParams] = useSearchParams();
   const sessionId = searchParams.get('session_id');
@@ -22,29 +25,47 @@ const CartSuccess = () => {
     }
 
     let cancelled = false;
+    let timeoutId: number | undefined;
+    const startedAt = Date.now();
 
-    fetchCheckoutSession(sessionId)
-      .then((res: any) => {
-        if (cancelled) {
-          return;
-        }
-        const payment = unwrapSessionPayment(res);
-        setStatus(payment.status);
-        if (payment.paid) {
-          clearCart();
-          setState('paid');
-          return;
-        }
-        setState('unpaid');
-      })
-      .catch(() => {
-        if (!cancelled) {
-          setState('error');
-        }
-      });
+    const poll = () => {
+      fetchCheckoutSession(sessionId)
+        .then((res: any) => {
+          if (cancelled) {
+            return;
+          }
+          const payment = unwrapSessionPayment(res);
+          setStatus(payment.status);
+          if (payment.paid) {
+            clearCart();
+            setState('paid');
+            return;
+          }
+          if (Date.now() - startedAt >= CHECKOUT_POLL_TIMEOUT_MS) {
+            setState('unpaid');
+            return;
+          }
+          timeoutId = window.setTimeout(poll, CHECKOUT_POLL_INTERVAL_MS);
+        })
+        .catch(() => {
+          if (cancelled) {
+            return;
+          }
+          if (Date.now() - startedAt >= CHECKOUT_POLL_TIMEOUT_MS) {
+            setState('error');
+            return;
+          }
+          timeoutId = window.setTimeout(poll, CHECKOUT_POLL_INTERVAL_MS);
+        });
+    };
+
+    poll();
 
     return () => {
       cancelled = true;
+      if (timeoutId) {
+        window.clearTimeout(timeoutId);
+      }
     };
   }, [sessionId, clearCart]);
 

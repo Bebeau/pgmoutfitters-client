@@ -156,8 +156,16 @@
                 display: block;
                 position: absolute;
                 right: -30px;
-                &:hover {
+                background: none;
+                padding: 0;
+                font-size: 0;
+                line-height: 0;
+                &:hover:not(:disabled) {
                     cursor: pointer;
+                }
+                &:disabled {
+                    opacity: 0.35;
+                    cursor: not-allowed;
                 }
                 &.up {
                     top: 50%;
