@@ -30,6 +30,10 @@ const metaContent = (selector: string) =>
   document.head.querySelector(selector)?.getAttribute('content');
 
 describe('Product helmet', () => {
+  beforeEach(() => {
+    document.title = '';
+  });
+
   test('sets unique title, description, canonical, and og tags for a real feeder', async () => {
     const product = productData.find((item) => item.slug === '2-n-1');
     if (!product) {
@@ -53,7 +57,7 @@ describe('Product helmet', () => {
     expect(metaContent('meta[property="og:title"]')).toBe(title);
     expect(metaContent('meta[property="og:description"]')).toBe(description);
     expect(metaContent('meta[property="og:url"]')).toBe(canonical);
-    expect(metaContent('meta[property="og:image"]')).toBeNull();
+    expect(document.head.querySelector('meta[property="og:image"]')).toBeNull();
     expect(canonical).toBe('https://pgmoutfitters.com/deer-feeders/2-n-1');
   });
 
