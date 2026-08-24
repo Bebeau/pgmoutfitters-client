@@ -4,6 +4,7 @@ import Homepage from './homepage';
 import Inquiry from './inquiry';
 import Footer from './footer';
 import Product from './product';
+import LegacyProductRedirect from './legacyProductRedirect';
 
 import {productType} from '../assets/data/products';
 import {testimonialType} from '../assets/data/testimonials';
@@ -49,7 +50,7 @@ const App = (props: sampleData) => {
             } 
           />
           <Route 
-            path="/products/deer-feeders/:slug"
+            path="/deer-feeders/:slug"
             element={
               <Product 
                 openInquiry={() => setShowInquiry(true)}
@@ -58,6 +59,10 @@ const App = (props: sampleData) => {
                 setIsLoading={(value: boolean) => setIsLoading(value)}
               />
             } 
+          />
+          <Route
+            path="/products/deer-feeders/:slug"
+            element={<LegacyProductRedirect />}
           />
         </Routes>
       </Router>
