@@ -3,13 +3,16 @@ import path from 'path';
 import { render, waitFor } from '@testing-library/react';
 import { HelmetProvider } from 'react-helmet-async';
 import PageHelmet from './pageHelmet';
-import { productPageDescription, productPageTitle } from '../utils/siteMeta';
+import {
+  DEFAULT_OG_IMAGE,
+  DEFAULT_TWITTER_IMAGE,
+  productPageDescription,
+  productPageTitle,
+} from '../utils/siteMeta';
 
 const INDEX_HTML_DESCRIPTION =
   'PGM Outfitters is a manufacturer of next generation deer feeders.';
 const INDEX_HTML_TITLE = 'Next Generation Deer Feeders';
-const INDEX_HTML_OG_IMAGE = 'https://init-public.s3.amazonaws.com/pgmFacebook.jpg';
-const INDEX_HTML_TWITTER_IMAGE = 'https://init-public.s3.amazonaws.com/pgmTwitter.jpg';
 
 const metaContent = (selector: string) =>
   document.head.querySelector(selector)?.getAttribute('content');
@@ -25,10 +28,11 @@ const seedIndexHtmlHead = () => {
     { property: 'og:title', content: INDEX_HTML_TITLE, 'data-rh': 'true' },
     { property: 'og:description', content: INDEX_HTML_DESCRIPTION, 'data-rh': 'true' },
     { property: 'og:url', content: 'https://pgmoutfitters.com', 'data-rh': 'true' },
-    { property: 'og:image', content: INDEX_HTML_OG_IMAGE },
+    { property: 'og:image', content: DEFAULT_OG_IMAGE, 'data-rh': 'true' },
+    { property: 'og:image:secure_url', content: DEFAULT_OG_IMAGE, 'data-rh': 'true' },
     { name: 'twitter:title', content: INDEX_HTML_TITLE, 'data-rh': 'true' },
     { name: 'twitter:description', content: INDEX_HTML_DESCRIPTION, 'data-rh': 'true' },
-    { name: 'twitter:image:src', content: INDEX_HTML_TWITTER_IMAGE },
+    { name: 'twitter:image:src', content: DEFAULT_TWITTER_IMAGE, 'data-rh': 'true' },
   ];
 
   tags.forEach((attrs) => {
@@ -47,6 +51,7 @@ const clearSeededHead = () => {
         'meta[property="og:description"]',
         'meta[property="og:url"]',
         'meta[property="og:image"]',
+        'meta[property="og:image:secure_url"]',
         'meta[name="twitter:title"]',
         'meta[name="twitter:description"]',
         'meta[name="twitter:image:src"]',
@@ -68,9 +73,15 @@ describe('PageHelmet', () => {
     expect(html).toMatch(/name="twitter:description"[\s\S]*?data-rh="true"/);
     expect(html).toMatch(/name="twitter:title"[^>]*data-rh="true"/);
     expect(html).toMatch(/<title data-rh="true">/);
-    expect(html).not.toMatch(/property="og:image"[^>]*data-rh=/);
-    expect(html).not.toMatch(/property="og:image:secure_url"[^>]*data-rh=/);
-    expect(html).not.toMatch(/name="twitter:image:src"[^>]*data-rh=/);
+    expect(html).toMatch(
+      /property="og:image"\s+content="https:\/\/init-public\.s3\.amazonaws\.com\/pgmFacebook\.jpg"\s+data-rh="true"/
+    );
+    expect(html).toMatch(
+      /property="og:image:secure_url"\s+content="https:\/\/init-public\.s3\.amazonaws\.com\/pgmFacebook\.jpg"\s+data-rh="true"/
+    );
+    expect(html).toMatch(
+      /name="twitter:image:src"\s+content="https:\/\/init-public\.s3\.amazonaws\.com\/pgmTwitter\.jpg"\s+data-rh="true"/
+    );
   });
 
   beforeEach(() => {
@@ -105,6 +116,12 @@ describe('PageHelmet', () => {
       'https://pgmoutfitters.com/deer-feeders/2-n-1'
     );
     expect(metaContent('meta[property="og:image"]')).toBe(
+      'https://pgmoutfitters.com/feeder.png'
+    );
+    expect(metaContent('meta[property="og:image:secure_url"]')).toBe(
+      'https://pgmoutfitters.com/feeder.png'
+    );
+    expect(metaContent('meta[name="twitter:image:src"]')).toBe(
       'https://pgmoutfitters.com/feeder.png'
     );
     expect(metaContent('meta[name="twitter:title"]')).toBe(
@@ -162,10 +179,44 @@ describe('PageHelmet', () => {
     expect(metaContent('meta[name="twitter:title"]')).toBe(title);
     expect(metaContent('meta[property="og:url"]')).toBe(canonical);
     expect(document.title).toBe(title);
-    expect(metaContent('meta[property="og:image"]')).toBe(INDEX_HTML_OG_IMAGE);
-    expect(metaContent('meta[name="twitter:image:src"]')).toBe(INDEX_HTML_TWITTER_IMAGE);
+    expect(metaCount('meta[property="og:image"]')).toBe(1);
+    expect(metaCount('meta[property="og:image:secure_url"]')).toBe(1);
+    expect(metaCount('meta[name="twitter:image:src"]')).toBe(1);
+    expect(metaContent('meta[property="og:image"]')).toBe(DEFAULT_OG_IMAGE);
+    expect(metaContent('meta[property="og:image:secure_url"]')).toBe(DEFAULT_OG_IMAGE);
+    expect(metaContent('meta[name="twitter:image:src"]')).toBe(DEFAULT_TWITTER_IMAGE);
     expect(description).toBe(
       'The 2-N-1 deer feeder from PGM Outfitters. Built for hunters and dealers. Request pricing.'
     );
+  });
+
+  test('replaces pre-existing default images when PageHelmet gets an absolute image', async () => {
+    seedIndexHtmlHead();
+
+    expect(metaContent('meta[property="og:image"]')).toBe(DEFAULT_OG_IMAGE);
+    expect(metaContent('meta[name="twitter:image:src"]')).toBe(DEFAULT_TWITTER_IMAGE);
+
+    const productImage = 'https://pgmoutfitters.com/feeder.png';
+
+    render(
+      <HelmetProvider>
+        <PageHelmet
+          title={productPageTitle('2-N-1')}
+          description={productPageDescription('2-N-1', '')}
+          canonical="https://pgmoutfitters.com/deer-feeders/2-n-1"
+          image={productImage}
+        />
+      </HelmetProvider>
+    );
+
+    await waitFor(() => {
+      expect(metaContent('meta[property="og:image"]')).toBe(productImage);
+    });
+
+    expect(metaCount('meta[property="og:image"]')).toBe(1);
+    expect(metaCount('meta[property="og:image:secure_url"]')).toBe(1);
+    expect(metaCount('meta[name="twitter:image:src"]')).toBe(1);
+    expect(metaContent('meta[property="og:image:secure_url"]')).toBe(productImage);
+    expect(metaContent('meta[name="twitter:image:src"]')).toBe(productImage);
   });
 });

@@ -1,6 +1,8 @@
 import { productData } from '../assets/data/products';
 import { productPath } from './productPath';
 import {
+  DEFAULT_OG_IMAGE,
+  DEFAULT_TWITTER_IMAGE,
   HOME_DESCRIPTION,
   HOME_TITLE,
   homeCanonical,
@@ -36,6 +38,11 @@ describe('siteMeta', () => {
     expect(productPageDescription('2-N-1', 'A split gravity and spin feeder.')).toBe(
       'A split gravity and spin feeder.'
     );
+  });
+
+  test('keeps the existing index.html S3 URLs as the site default images', () => {
+    expect(DEFAULT_OG_IMAGE).toBe('https://init-public.s3.amazonaws.com/pgmFacebook.jpg');
+    expect(DEFAULT_TWITTER_IMAGE).toBe('https://init-public.s3.amazonaws.com/pgmTwitter.jpg');
   });
 
   test('only treats http(s) values as absolute image URLs', () => {
