@@ -1,6 +1,14 @@
 import {useState, useEffect, useCallback} from 'react';
 import {useParams} from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import {productData, productType} from '../assets/data/products';
+import PageHelmet from './pageHelmet';
+import {
+  isAbsoluteHttpUrl,
+  productCanonical,
+  productPageDescription,
+  productPageTitle,
+} from '../utils/siteMeta';
 import ProductSpecs from './productSpecs';
 import ImageGallery from './imageGallery';
 // import ProductHero from './productHero';
@@ -27,23 +35,26 @@ type singleProductType = {
   setIsLoading: (value: boolean) => void; 
 }
 
+const emptyProduct: productType = {
+  name: '',
+  image: '',
+  slug: '',
+  blueprint: '',
+  description: '',
+  specs: [],
+  photos: [],
+  price: {
+    retail: 0,
+    dealer: 0,
+  }
+};
+
 const Product = (props: singleProductType) => {
   // Use once data is pulled from database
   // const productFetchRef = useRef(false);
   const {slug} = useParams();
-  const [productInfo, setProductInfo] = useState<productType>({
-    name: '',
-    image: '',
-    slug: '',
-    blueprint: '',
-    description: '',
-    specs: [],
-    photos: [],
-    price: {
-      retail: 0,
-      dealer: 0,
-    }
-  });
+  const matchedProduct = productData.find(product => product.slug === slug);
+  const [productInfo, setProductInfo] = useState<productType>(emptyProduct);
   const [relatedProducts, setRelatedProducts] = useState<productType[]>([]);
 
   // Use once data is pulled from database
@@ -80,16 +91,34 @@ const Product = (props: singleProductType) => {
   }, [productInfo.photos, props]);
 
   useEffect(() => {
-    if(slug) {
-      setProductInfo(productData.filter(product => product.slug === slug)[0]);
-      preloadImages();
+    if (matchedProduct) {
+      setProductInfo(matchedProduct);
       setRelatedProducts(productData.filter(product => product.slug !== slug));
+      preloadImages();
+      return;
     }
-    
-  }, [props, slug, preloadImages]);
+
+    setProductInfo(emptyProduct);
+    setRelatedProducts([]);
+    props.setIsLoading(false);
+  }, [matchedProduct, props, slug, preloadImages]);
+
+  const productHelmet = matchedProduct ? (
+    <PageHelmet
+      title={productPageTitle(matchedProduct.name)}
+      description={productPageDescription(matchedProduct.name, matchedProduct.description)}
+      canonical={productCanonical(matchedProduct.slug)}
+      image={isAbsoluteHttpUrl(matchedProduct.image) ? matchedProduct.image : undefined}
+    />
+  ) : (
+    <Helmet>
+      <meta name="robots" content="noindex" />
+    </Helmet>
+  );
 
   return (
     <div id="productPage" className={productInfo.name}>
+      {productHelmet}
       
       {/* <ProductHero 
         image={productInfo.image}

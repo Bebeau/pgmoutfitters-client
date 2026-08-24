@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { HelmetProvider } from 'react-helmet-async';
 import App from './components/app';
 import reportWebVitals from './reportWebVitals';
 import './assets/css/styles.css';
@@ -18,10 +19,12 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App 
-      productData={productData}
-      testimonialData={testimonialData}
-    />
+    <HelmetProvider>
+      <App 
+        productData={productData}
+        testimonialData={testimonialData}
+      />
+    </HelmetProvider>
   </React.StrictMode>
 );
 

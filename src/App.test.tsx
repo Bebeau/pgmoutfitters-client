@@ -1,17 +1,21 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
+import { HelmetProvider } from 'react-helmet-async';
 import App from './components/app';
+import { productData } from './assets/data/products';
+import { testimonialData } from './assets/data/testimonials';
+import { HOME_TITLE } from './utils/siteMeta';
 
-import {productData} from './assets/data/products';
-import {testimonialData} from './assets/data/testimonials';
-
-test('renders learn react link', () => {
+test('renders the homepage with the unique site title', async () => {
   render(
-    <App 
-      productData={productData}
-      testimonialData={testimonialData}
-    />
+    <HelmetProvider>
+      <App
+        productData={productData}
+        testimonialData={testimonialData}
+      />
+    </HelmetProvider>
   );
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+
+  await waitFor(() => {
+    expect(document.title).toBe(HOME_TITLE);
+  });
 });
