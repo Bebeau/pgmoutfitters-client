@@ -3,7 +3,13 @@ import { HelmetProvider } from 'react-helmet-async';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import Product from './product';
 import { productData } from '../assets/data/products';
-import { productCanonical, productPageDescription, productPageTitle } from '../utils/siteMeta';
+import {
+  DEFAULT_OG_IMAGE,
+  DEFAULT_TWITTER_IMAGE,
+  productCanonical,
+  productPageDescription,
+  productPageTitle,
+} from '../utils/siteMeta';
 
 const renderProduct = (slug: string) =>
   render(
@@ -59,7 +65,8 @@ describe('Product helmet', () => {
     expect(metaContent('meta[property="og:url"]')).toBe(canonical);
     expect(metaContent('meta[name="twitter:title"]')).toBe(title);
     expect(metaContent('meta[name="twitter:description"]')).toBe(description);
-    expect(document.head.querySelector('meta[property="og:image"]')).toBeNull();
+    expect(metaContent('meta[property="og:image"]')).toBe(DEFAULT_OG_IMAGE);
+    expect(metaContent('meta[name="twitter:image:src"]')).toBe(DEFAULT_TWITTER_IMAGE);
     expect(canonical).toBe('https://pgmoutfitters.com/deer-feeders/2-n-1');
   });
 
