@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Homepage from './homepage';
 import Inquiry from './inquiry';
@@ -17,6 +17,13 @@ type sampleData = {
   productData: productType[];
   testimonialData: testimonialType[];
 }
+
+const DismissLoader = (props: { setIsLoading: (value: boolean) => void; children: React.ReactNode }) => {
+  useEffect(() => {
+    props.setIsLoading(false);
+  }, [props]);
+  return <>{props.children}</>;
+};
 
 const App = (props: sampleData) => {
   const [showInquiry, setShowInquiry] = useState(false);
@@ -69,8 +76,22 @@ const App = (props: sampleData) => {
             path="/products/deer-feeders/:slug"
             element={<LegacyProductRedirect />}
           />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/cart/success" element={<CartSuccess />} />
+          <Route
+            path="/cart"
+            element={
+              <DismissLoader setIsLoading={setIsLoading}>
+                <Cart />
+              </DismissLoader>
+            }
+          />
+          <Route
+            path="/cart/success"
+            element={
+              <DismissLoader setIsLoading={setIsLoading}>
+                <CartSuccess />
+              </DismissLoader>
+            }
+          />
         </Routes>
         <Footer />
       </Router>
