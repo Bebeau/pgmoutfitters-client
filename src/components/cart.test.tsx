@@ -44,8 +44,9 @@ describe('Cart page', () => {
     );
     expect(screen.getByText(/your cart is empty/i)).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /view deer feeders/i })).toHaveAttribute('href', '/');
+    expect(screen.getByText(/purchases are pickup only at/i)).toBeInTheDocument();
     expect(
-      screen.getByText(/pickup only at 908 Joseph St, Shreveport, LA 71107/i)
+      screen.getByRole('link', { name: '908 Joseph St, Shreveport, LA 71107' })
     ).toBeInTheDocument();
     expect(screen.getByRole('link', { name: '(318) 227-8145' })).toHaveAttribute(
       'href',
