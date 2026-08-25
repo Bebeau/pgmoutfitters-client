@@ -1,12 +1,11 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { productPath } from '../utils/productPath';
-import { useCart } from '../context/cartContext';
 import { formatRetailPrice } from '../utils/cartStorage';
+import { useAddToCartNavigate } from '../hooks/useAddToCartNavigate';
 
 const ProductListing = (props: any) => {
-  const { addToCart } = useCart();
-  const navigate = useNavigate();
+  const addToCartAndGo = useAddToCartNavigate();
   
   const handleBtnClick = () => {
     window.gtag('event', 'productListingCTA');
@@ -16,13 +15,11 @@ const ProductListing = (props: any) => {
   const handleAddToCart = (event: React.MouseEvent, item: any) => {
     event.preventDefault();
     event.stopPropagation();
-    window.gtag('event', 'addToCart');
-    addToCart({
+    addToCartAndGo({
       slug: item.slug,
       name: item.name,
       unitPrice: item.price.retail,
     });
-    navigate('/cart');
   }
 
   return (

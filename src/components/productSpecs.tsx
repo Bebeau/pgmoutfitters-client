@@ -1,16 +1,14 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import {productType} from '../assets/data/products';
-import { useCart } from '../context/cartContext';
 import { formatRetailPrice } from '../utils/cartStorage';
+import { useAddToCartNavigate } from '../hooks/useAddToCartNavigate';
 
 type productSpecsType = {
     productInfo: productType,
     openInquiry: () => void
 }
 const ProductSpecs = (props: productSpecsType) => {
-    const { addToCart } = useCart();
-    const navigate = useNavigate();
+    const addToCartAndGo = useAddToCartNavigate();
 
     const handleBtnClick = () => {
         window.gtag('event', 'productSpecsCTA');
@@ -18,13 +16,11 @@ const ProductSpecs = (props: productSpecsType) => {
     }
 
     const handleAddToCart = () => {
-        window.gtag('event', 'addToCart');
-        addToCart({
+        addToCartAndGo({
             slug: props.productInfo.slug,
             name: props.productInfo.name,
             unitPrice: props.productInfo.price.retail,
         });
-        navigate('/cart');
     }
 
     return (
