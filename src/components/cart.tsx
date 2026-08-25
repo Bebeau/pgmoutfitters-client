@@ -50,8 +50,8 @@ const Cart = () => {
         <h2>Cart</h2>
 
         <p className="alert info pickupAlert">
-          Purchases are currently pickup only at {PICKUP_ADDRESS} during business
-          hours — call ahead at <a href="tel:3182278145">{PICKUP_PHONE}</a>.
+          Purchases are pickup only at <a href="https://www.google.com/maps/place/908+Joseph+St,+Shreveport,+LA+71107/@32.5293771,-93.7613823,750m/data=!3m2!1e3!4b1!4m6!3m5!1s0x8636ccd92aad605d:0xd962e00b360ec708!8m2!3d32.5293771!4d-93.7588074!16s%2Fg%2F11c1h99zbr?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D" target="_BLANK" rel="noreferrer">{PICKUP_ADDRESS}</a> during regular business
+          hours.<br />Call <a href="tel:3182278145">{PICKUP_PHONE}</a> or email <a href="mailto:sales@pgmoutfitters.com">sales@pgmoutfitters.com</a> to schedule pickup.
         </p>
 
         {limitMessage && (

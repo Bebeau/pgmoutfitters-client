@@ -923,8 +923,9 @@ input::placeholder {
   margin: 0 0 20px;
 }
 .cartPage .pickupAlert {
-  background: #885438;
-  color: white;
+  background: red;
+  color: black;
+  font-weight: bold;
   font-size: 1.2rem;
   line-height: 1.6;
   margin: 0 0 30px;
@@ -1096,8 +1097,7 @@ input::placeholder {
     top: 20px;
   }
   .cartPage .cartItem .formGroup .arrow.down {
-    top: auto;
-    bottom: 20px;
+    top: 30px;
   }
   .cartPage .cartSummary {
     align-items: flex-end;
