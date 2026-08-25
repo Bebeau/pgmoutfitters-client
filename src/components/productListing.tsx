@@ -1,11 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { productPath } from '../utils/productPath';
 import { useCart } from '../context/cartContext';
 import { formatRetailPrice } from '../utils/cartStorage';
 
 const ProductListing = (props: any) => {
   const { addToCart } = useCart();
+  const navigate = useNavigate();
   
   const handleBtnClick = () => {
     window.gtag('event', 'productListingCTA');
@@ -21,6 +22,7 @@ const ProductListing = (props: any) => {
       name: item.name,
       unitPrice: item.price.retail,
     });
+    navigate('/cart');
   }
 
   return (

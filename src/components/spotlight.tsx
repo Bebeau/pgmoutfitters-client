@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/cartContext';
 import { formatRetailPrice } from '../utils/cartStorage';
 
@@ -11,6 +12,7 @@ type spotlightType = {
 }
 const Spotlight = (props: spotlightType) => {
   const { addToCart } = useCart();
+  const navigate = useNavigate();
 
   const handleBtnClick = () => {
     window.gtag('event', 'productSpotlightCTA');
@@ -27,6 +29,7 @@ const Spotlight = (props: spotlightType) => {
       name: props.name,
       unitPrice: props.price,
     });
+    navigate('/cart');
   }
 
   return (

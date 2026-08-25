@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useCart } from '../context/cartContext';
 import { productData } from '../assets/data/products';
@@ -16,6 +16,10 @@ const Cart = () => {
   const { items, subtotal, incrementQty, decrementQty, removeItem, limitMessage } = useCart();
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleCheckout = () => {
     if (!items.length || isCheckingOut) {
@@ -142,14 +146,21 @@ const Cart = () => {
             <span className="label">Subtotal</span>
             {formatRetailPrice(subtotal)}
           </h4>
-          <button
-            type="button"
-            className="btn"
-            onClick={handleCheckout}
-            disabled={!items.length || isCheckingOut}
-          >
-            {isCheckingOut ? 'Starting Checkout...' : 'Checkout'}
-          </button>
+          <div className="cartActions">
+            {!!items.length && (
+              <Link to="/" className="btn outline">
+                Keep Shopping
+              </Link>
+            )}
+            <button
+              type="button"
+              className="btn"
+              onClick={handleCheckout}
+              disabled={!items.length || isCheckingOut}
+            >
+              {isCheckingOut ? 'Starting Checkout...' : 'Checkout'}
+            </button>
+          </div>
         </section>
       </div>
     </div>

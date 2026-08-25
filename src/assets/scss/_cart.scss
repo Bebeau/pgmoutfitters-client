@@ -210,6 +210,17 @@
                 margin-bottom: 6px;
             }
         }
+        .cartActions {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+            .btn {
+                margin: 0;
+                width: 300px;
+            }
+        }
     }
 }
 
@@ -237,6 +248,11 @@
             align-items: flex-end;
             .subtotal {
                 align-items: flex-end;
+            }
+            .cartActions {
+                flex-direction: row;
+                justify-content: flex-end;
+                width: auto;
             }
         }
     }

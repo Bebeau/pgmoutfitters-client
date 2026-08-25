@@ -30,6 +30,7 @@ describe('Cart page', () => {
     window.localStorage.clear();
     mockedCreateCheckoutSession.mockReset();
     window.gtag = jest.fn();
+    window.scrollTo = jest.fn();
   });
 
   test('shows an empty state, home link, pickup alert, and disabled checkout', async () => {
@@ -51,6 +52,18 @@ describe('Cart page', () => {
       'tel:3182278145'
     );
     expect(screen.getByRole('button', { name: /checkout/i })).toBeDisabled();
+    expect(screen.queryByRole('link', { name: /keep shopping/i })).not.toBeInTheDocument();
+  });
+
+  test('scrolls the window to the top when the cart page mounts', () => {
+    window.localStorage.setItem(
+      CART_STORAGE_KEY,
+      JSON.stringify([{ slug: '2-n-1', name: '2-N-1', qty: 2, unitPrice: 1300 }])
+    );
+
+    renderCart();
+
+    expect(window.scrollTo).toHaveBeenCalledWith(0, 0);
   });
 
   test('renders line items with image, prices, qty controls, and checkout slugs only', async () => {
@@ -74,6 +87,8 @@ describe('Cart page', () => {
     expect(screen.getByLabelText('2-N-1 quantity')).toHaveValue(2);
     expect(screen.getByRole('button', { name: 'Increase 2-N-1 quantity' })).toBeEnabled();
     expect(screen.getByRole('button', { name: 'Decrease 2-N-1 quantity' })).toBeEnabled();
+    expect(screen.getByRole('link', { name: /keep shopping/i })).toHaveAttribute('href', '/');
+    expect(screen.getByRole('button', { name: /checkout/i })).toBeEnabled();
 
     await userEvent.click(screen.getByRole('button', { name: /checkout/i }));
 
