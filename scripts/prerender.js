@@ -3,7 +3,7 @@ const http = require('http');
 const path = require('path');
 const { URL } = require('url');
 const { getPrerenderPaths } = require('../src/utils/prerenderRoutes');
-const { assertDistinctPageTitles, getTitle } = require('./assertPrerenderedHtml');
+const { assertDistinctPageTitles, assertPrerenderedPage, getTitle } = require('./assertPrerenderedHtml');
 
 const BUILD_DIR = path.join(__dirname, '..', 'build');
 const HOST = '127.0.0.1';
@@ -128,41 +128,38 @@ const prerenderRoute = async (browser, origin, route) => {
 };
 
 const smokeCheckBuiltFiles = () => {
-  const { productPageTitle, dealerPageTitle, HOME_TITLE } = requireExpectations();
-  const pages = [
-    {
-      file: path.join(BUILD_DIR, 'index.html'),
-      title: HOME_TITLE,
-    },
-    {
-      file: path.join(BUILD_DIR, 'deer-feeders', '5-n-1', 'index.html'),
-      title: productPageTitle,
-    },
-    {
-      file: path.join(BUILD_DIR, 'dealers', 'delta-outdoors', 'index.html'),
-      title: dealerPageTitle,
-    },
-  ].map((page) => ({
-    ...page,
-    html: fs.readFileSync(page.file, 'utf8'),
-  }));
+  const home = fs.readFileSync(path.join(BUILD_DIR, 'index.html'), 'utf8');
+  const feeder = fs.readFileSync(path.join(BUILD_DIR, 'deer-feeders', '5-n-1', 'index.html'), 'utf8');
+  const dealer = fs.readFileSync(path.join(BUILD_DIR, 'dealers', 'delta-outdoors', 'index.html'), 'utf8');
 
-  pages.forEach((page) => {
-    const title = getTitle(page.html);
-    if (title !== page.title) {
-      throw new Error(`Smoke title mismatch for ${page.file}: expected "${page.title}", got "${title}"`);
-    }
+  assertPrerenderedPage(home, {
+    title: 'Next Generation Deer Feeders | PGM Outfitters',
+    description:
+      'Shreveport-made deer feeders that run protein and corn on gravity or timer. Built by PGM Outfitters for hunters and dealers.',
+    canonical: 'https://pgmoutfitters.com/',
+    contentIncludes: ['Next Generation Deer Feeders'],
+  });
+  assertPrerenderedPage(feeder, {
+    title: '5-N-1 Deer Feeder | PGM Outfitters',
+    description:
+      'The 5-N-1 deer feeder from PGM Outfitters. Built for hunters and dealers. Request pricing.',
+    canonical: 'https://pgmoutfitters.com/deer-feeders/5-n-1',
+    contentIncludes: ['5-N-1'],
+  });
+  assertPrerenderedPage(dealer, {
+    title: 'Delta Outdoors | PGM Outfitters Dealer',
+    description:
+      'Shop Next Generation deer feeders at Delta Outdoors in Cleveland, MS. Address, directions, and the full PGM Outfitters lineup.',
+    canonical: 'https://pgmoutfitters.com/dealers/delta-outdoors',
+    contentIncludes: ['Delta Outdoors'],
   });
 
-  assertDistinctPageTitles(pages);
+  assertDistinctPageTitles([{ html: home }, { html: feeder }, { html: dealer }]);
+  if (getTitle(feeder) === getTitle(home) || getTitle(dealer) === getTitle(home)) {
+    throw new Error('Feeder or dealer HTML still has the homepage title');
+  }
   console.log('Prerender smoke: homepage, 5-n-1, and delta-outdoors have distinct titles.');
 };
-
-const requireExpectations = () => ({
-  HOME_TITLE: 'Next Generation Deer Feeders | PGM Outfitters',
-  productPageTitle: '5-N-1 Deer Feeder | PGM Outfitters',
-  dealerPageTitle: 'Delta Outdoors | PGM Outfitters Dealer',
-});
 
 const main = async () => {
   if (!fs.existsSync(path.join(BUILD_DIR, 'index.html'))) {

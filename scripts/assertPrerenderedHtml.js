@@ -26,8 +26,28 @@ const getCanonical = (html) => {
 };
 
 const getRootInnerHtml = (html) => {
-  const match = html.match(/<div id="root"[^>]*>([\s\S]*?)<\/div>\s*(?:<!--|<script)/i);
-  return match ? match[1] : '';
+  const open = html.match(/<div id="root"[^>]*>/i);
+  if (!open) {
+    return '';
+  }
+
+  const start = open.index + open[0].length;
+  const rest = html.slice(start);
+  const tagRe = /<\/?div\b[^>]*>/gi;
+  let depth = 1;
+  let match;
+  while ((match = tagRe.exec(rest))) {
+    if (match[0].slice(0, 2) === '</') {
+      depth -= 1;
+      if (depth === 0) {
+        return rest.slice(0, match.index);
+      }
+    } else {
+      depth += 1;
+    }
+  }
+
+  return rest;
 };
 
 const assertPrerenderedPage = (html, expected) => {
