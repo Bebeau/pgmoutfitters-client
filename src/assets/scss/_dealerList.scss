@@ -2,6 +2,9 @@
   flex: 0 1 100%;
   position: relative;
   align-self: center;
+  max-width: 800px;
+  margin: 20px auto 0;
+  box-sizing: border-box;
   .headquarters {
     position: absolute;
     top: 36%;
@@ -32,18 +35,26 @@
 
 .dealerList {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   gap: 20px;
+  max-width: 1200px;
+  margin: 40px auto;
+  box-sizing: border-box;
+  background: #222;
+  padding: 20px 0 20px 20px;
   .dealerBlock {
     box-sizing: border-box;
-    padding: 10px;
+    padding: 20px;
     border-radius: 5px;
+    flex: 0 0 calc(50% - 20px);
     &:hover,
     &.active {
-      background: rgba(0,0,0,0.1);
+      background: rgba(0,0,0,1);
     }
   }
   h4 {
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
     color: white;
     margin: 0;
   }
@@ -53,10 +64,20 @@
       width: 20px;
       height: 20px;
     }
+    address {
+      font-size: clamp(0.8rem, 2.5vw, 1rem);
+      color: rgba(255,255,255,0.5);
+    }
   }
 }
 
 @media (min-width: 991px) {
+  .dealerList {
+    padding: 40px;
+    .dealerBlock {
+      flex: 0 0 calc(25% - 20px);
+    }
+  }
   .map {
     .headquarters {
       font-size: 2rem;
