@@ -1,11 +1,11 @@
 import { dealerAddressType } from '../assets/data/dealers';
 import PinIcon from '../assets/img/icons/png/pin.png';
 
-type dealerAddressLinkType = {
+type dealerAddressProps = {
   address: dealerAddressType;
 };
 
-const DealerAddressLink = ({ address }: dealerAddressLinkType) => {
+const DealerAddress = ({ address }: dealerAddressProps) => {
   return (
     <div className="addressWrap">
       <div className="icon">
@@ -20,4 +20,4 @@ const DealerAddressLink = ({ address }: dealerAddressLinkType) => {
   );
 };
 
-export default DealerAddressLink;
+export default DealerAddress;

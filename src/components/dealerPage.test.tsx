@@ -7,7 +7,7 @@ import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { dealerData } from '../assets/data/dealers';
 import { productData } from '../assets/data/products';
 import { CartProvider } from '../context/cartContext';
-import { dealerMapsEmbedUrl } from '../utils/dealerAddress';
+import { dealerDirectionsUrl, dealerMapsEmbedUrl } from '../utils/dealerAddress';
 import { dealerPath } from '../utils/dealerPath';
 import {
   dealerCanonical,
@@ -39,7 +39,7 @@ const EXPECTED_DEALER_SLUGS = [
   'potts-feed-store',
 ];
 
-const renderDealer = (slug: string, openInquiry: () => void = () => undefined) =>
+const renderDealer = (slug: string) =>
   render(
     <HelmetProvider>
       <CartProvider>
@@ -47,9 +47,7 @@ const renderDealer = (slug: string, openInquiry: () => void = () => undefined) =
           <Routes>
             <Route
               path="/dealers/:slug"
-              element={
-                <DealerPage openInquiry={openInquiry} productData={productData} />
-              }
+              element={<DealerPage productData={productData} />}
             />
             <Route path="/cart" element={<Cart />} />
           </Routes>
@@ -171,10 +169,14 @@ describe('Dealer page content', () => {
     expect(data).not.toHaveProperty('website');
     expect(data).not.toHaveProperty('sameAs');
 
+    const directions = screen.getByRole('link', { name: /get directions/i });
+    expect(directions).toHaveAttribute('href', dealerDirectionsUrl(dealer.address));
+    expect(directions).toHaveAttribute('target', '_blank');
+
     expect(screen.getAllByRole('button', { name: /add to cart/i }).length).toBe(
       productData.length
     );
-    expect(screen.getByRole('button', { name: /inquire for purchase/i })).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: /inquire for purchase/i })).not.toBeInTheDocument();
     productData.forEach((product) => {
       expect(screen.getByRole('heading', { name: product.name })).toBeInTheDocument();
     });
@@ -190,7 +192,7 @@ describe('Dealer page content', () => {
 
     expect(screen.getByRole('heading', { name: dealer.name })).toBeInTheDocument();
     expect(screen.getByTitle(`Map of ${dealer.name}`)).toBeInTheDocument();
-    expect(screen.queryByRole('link', { name: /^website$/i })).not.toBeInTheDocument();
+    expect(screen.queryByRole('link', { name: /view website/i })).not.toBeInTheDocument();
     expect(document.querySelector('a[href="link"]')).toBeNull();
 
     await waitFor(() => {
@@ -211,7 +213,7 @@ describe('Dealer page content', () => {
     expect(screen.getByRole('heading', { name: dealer.name })).toBeInTheDocument();
     expect(screen.getByText(new RegExp(dealer.address.street))).toBeInTheDocument();
     expect(screen.getByTitle(`Map of ${dealer.name}`)).toBeInTheDocument();
-    expect(screen.queryByRole('link', { name: /^website$/i })).not.toBeInTheDocument();
+    expect(screen.queryByRole('link', { name: /view website/i })).not.toBeInTheDocument();
     expect(document.querySelector('a[href="link"]')).toBeNull();
 
     await waitFor(() => {
@@ -229,9 +231,13 @@ describe('Dealer page content', () => {
 
     renderDealer(dealer.slug);
 
-    expect(screen.getByRole('link', { name: /^website$/i })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: /view website/i })).toHaveAttribute(
       'href',
       dealer.link
+    );
+    expect(screen.getByRole('link', { name: /get directions/i })).toHaveAttribute(
+      'href',
+      dealerDirectionsUrl(dealer.address)
     );
 
     await waitFor(() => {
@@ -239,16 +245,6 @@ describe('Dealer page content', () => {
     });
     expect(jsonLd()?.url).toBe(dealerCanonical(dealer.slug));
     expect(jsonLd()?.website).toBeUndefined();
-  });
-
-  test('inquire stays available the same way as the homepage listing', async () => {
-    const openInquiry = jest.fn();
-    renderDealer('delta-outdoors', openInquiry);
-
-    await userEvent.click(screen.getByRole('button', { name: /inquire for purchase/i }));
-
-    expect(openInquiry).toHaveBeenCalledTimes(1);
-    expect(screen.queryByRole('heading', { name: /^cart$/i })).not.toBeInTheDocument();
   });
 
   test('add to cart from the dealer listing navigates to the cart', async () => {

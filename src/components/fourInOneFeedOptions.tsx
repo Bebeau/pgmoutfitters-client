@@ -2,7 +2,7 @@ import {useState, useRef, useEffect} from 'react';
 
 import { ReactComponent as FeedOptions } from '../assets/img/feeders/4n1/modes.svg';
 
-const FourInOneFeedOptions = (props: {openInquiry: () => void}) => {
+const FourInOneFeedOptions = () => {
   const fullBtnRef = useRef(null);
   const singleBtnRef = useRef(null);
   const activeBtnRef = useRef(null);
@@ -13,11 +13,6 @@ const FourInOneFeedOptions = (props: {openInquiry: () => void}) => {
     activeBtnRef.current = target;
     setSetting(setting);
   }
-
-  // const handleInquiryBtnClick = () => {
-  //   window.gtag('event', 'feedOptionsCTA');
-  //   props.openInquiry();
-  // }
 
   useEffect(() => {
     activeBtnRef.current = fullBtnRef.current;
@@ -32,9 +27,6 @@ const FourInOneFeedOptions = (props: {openInquiry: () => void}) => {
           <p>Click the feed options below to see the settings change in on the feeder blueprint.</p>
           <button ref={fullBtnRef} className={activeBtnRef.current === fullBtnRef.current ? 'btn outline active' : 'btn outline'} onClick={(e) => handleBtnClick(e.target, 'full')}>4 chambers @ 425lb each</button>
           <button ref={singleBtnRef} className={activeBtnRef.current === singleBtnRef.current ? 'btn outline active' : 'btn outline'} onClick={(e) => handleBtnClick(e.target, 'single')}>425 lb single chamber</button>
-          {/* <button className="btn" onClick={handleInquiryBtnClick}>
-            Inquire For Purchase
-          </button> */}
         </div>
       </article>
       <article className={setting ? `graphic ${setting}` : 'graphic'}>

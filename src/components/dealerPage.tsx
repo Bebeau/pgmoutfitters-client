@@ -15,7 +15,6 @@ import PageHelmet from './pageHelmet';
 import ProductListing from './productListing';
 
 type dealerPageType = {
-  openInquiry: () => void;
   productData: productType[];
 };
 
@@ -64,10 +63,7 @@ const DealerPage = (props: dealerPageType) => {
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Helmet>
       <DealerHeader dealer={dealer} />
-      <ProductListing
-        openInquiry={props.openInquiry}
-        products={props.productData}
-      />
+      <ProductListing products={props.productData} />
     </div>
   );
 };

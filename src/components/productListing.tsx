@@ -6,11 +6,6 @@ import { useAddToCartNavigate } from '../hooks/useAddToCartNavigate';
 
 const ProductListing = (props: any) => {
   const addToCartAndGo = useAddToCartNavigate();
-  
-  const handleBtnClick = () => {
-    window.gtag('event', 'productListingCTA');
-    props.openInquiry();
-  }
 
   const handleAddToCart = (event: React.MouseEvent, item: any) => {
     event.preventDefault();
@@ -55,9 +50,6 @@ const ProductListing = (props: any) => {
           );
         })}
       </div>
-      {/* <button className="btn" onClick={handleBtnClick}>
-        Inquire For Purchase
-      </button> */}
     </div>
   )
 }

@@ -112,12 +112,10 @@ const Product = (props: singleProductType) => {
 
       <ProductSpecs
         productInfo={matchedProduct}
-        openInquiry={props.openInquiry}
       />
 
       <ImageGallery 
         photos={matchedProduct.photos}
-        openInquiry={props.openInquiry}
       />
 
       {/* {matchedProduct.name === "Surf-N-Turf" && (
@@ -128,35 +126,27 @@ const Product = (props: singleProductType) => {
 
       {matchedProduct.name === "2-N-1" && (
         <>
-          <TwoInOneFeedOptions 
-            openInquiry={props.openInquiry}
-          />
+          <TwoInOneFeedOptions />
           <CascadeBlocks />
         </>
       )}
 
       {matchedProduct.name === "3-N-1" && (
         <>
-          <ThreeInOneFeedOptions 
-            openInquiry={props.openInquiry}
-          />
+          <ThreeInOneFeedOptions />
           <CascadeBlocks />
         </>
       )}
 
       {matchedProduct.name === "4-N-1" && (
         <>
-          <FourInOneFeedOptions 
-            openInquiry={props.openInquiry}
-          />
+          <FourInOneFeedOptions />
         </>
       )}
 
       {matchedProduct.name === "5-N-1" && (
         <>
-          <FiveInOneFeedOptions 
-            openInquiry={props.openInquiry}
-          />
+          <FiveInOneFeedOptions />
           <CascadeBlocks />
         </>
       )}

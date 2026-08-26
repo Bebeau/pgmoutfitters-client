@@ -1,10 +1,8 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { dealerData } from "../assets/data/dealers"
-import PinIcon from '../assets/img/icons/png/pin.png'
-// import { dealerDirectionsUrl } from '../utils/dealerAddress'
 import { dealerPath } from '../utils/dealerPath'
-import DealerAddressLink from './dealerAddressLink'
+import DealerAddress from './dealerAddress'
 
 import { ReactComponent as Map } from '../assets/img/map.svg'
 
@@ -51,7 +49,7 @@ const DealerList = () => {
                                     <h4>
                                         {dealer.name}
                                     </h4>
-                                    <DealerAddressLink address={dealer.address} />
+                                    <DealerAddress address={dealer.address} />
                                 </Link>
                             </div>
                         )

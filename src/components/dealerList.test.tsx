@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { dealerData } from '../assets/data/dealers';
-import { dealerDirectionsUrl } from '../utils/dealerAddress';
 import { dealerPath } from '../utils/dealerPath';
 import DealerList from './dealerList';
 
@@ -13,11 +12,11 @@ const renderDealerList = () =>
   );
 
 describe('DealerList', () => {
-  test('links each dealer name to its SEO page and keeps the directions address', () => {
+  test('links each dealer card to its SEO page and shows the address', () => {
     renderDealerList();
 
     dealerData.forEach((dealer) => {
-      expect(screen.getByRole('link', { name: dealer.name })).toHaveAttribute(
+      expect(screen.getByRole('link', { name: new RegExp(dealer.name) })).toHaveAttribute(
         'href',
         dealerPath(dealer.slug)
       );
@@ -28,9 +27,10 @@ describe('DealerList', () => {
       throw new Error('Expected renegade-firearms dealer');
     }
 
-    const addressLink = screen.getByText(new RegExp(renegade.address.street)).closest('a');
-    expect(addressLink).toHaveAttribute('href', dealerDirectionsUrl(renegade.address));
-    expect(addressLink).toHaveAttribute('target', '_blank');
+    const addressText = screen.getByText(new RegExp(renegade.address.street));
+    expect(addressText).toBeInTheDocument();
+    expect(addressText.closest('a')).toHaveAttribute('href', dealerPath(renegade.slug));
+    expect(screen.queryByRole('link', { name: /get directions/i })).not.toBeInTheDocument();
   });
 
   test('keeps map pins as hover targets rather than links', () => {

@@ -48,9 +48,8 @@ const Homepage = (props: homepageType) => {
         slides={props.productData}
       />
     </div> */}
-    <ProductListing 
-      openInquiry={props.openInquiry}
-      products={props.productData} 
+    <ProductListing
+      products={props.productData}
     />
     <Company />
     <Testimonials 

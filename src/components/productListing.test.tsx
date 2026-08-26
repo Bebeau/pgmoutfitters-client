@@ -9,7 +9,7 @@ import { productData } from '../assets/data/products';
 import { CART_STORAGE_KEY, QTY_LIMIT_MESSAGE } from '../utils/cartStorage';
 import { CartLimitNotice } from './cartLink';
 
-const renderListing = (openInquiry = jest.fn()) =>
+const renderListing = () =>
   render(
     <HelmetProvider>
       <CartProvider>
@@ -19,10 +19,7 @@ const renderListing = (openInquiry = jest.fn()) =>
               path="/"
               element={
                 <>
-                  <ProductListing
-                    openInquiry={openInquiry}
-                    products={productData.slice(0, 1)}
-                  />
+                  <ProductListing products={productData.slice(0, 1)} />
                   <CartLimitNotice />
                 </>
               }
@@ -111,15 +108,10 @@ describe('ProductListing add to cart', () => {
     });
   });
 
-  test('keeps inquire on the listing and does not add to the cart or navigate', async () => {
-    const openInquiry = jest.fn();
-    renderListing(openInquiry);
+  test('does not show inquire on the listing', () => {
+    renderListing();
 
-    await userEvent.click(screen.getByRole('button', { name: /inquire for purchase/i }));
-
-    expect(openInquiry).toHaveBeenCalledTimes(1);
-    expect(screen.queryByRole('heading', { name: /^cart$/i })).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: /inquire for purchase/i })).not.toBeInTheDocument();
     expect(screen.getByRole('button', { name: /add to cart/i })).toBeInTheDocument();
-    expect(JSON.parse(window.localStorage.getItem(CART_STORAGE_KEY) || '[]')).toEqual([]);
   });
 });

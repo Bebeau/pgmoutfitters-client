@@ -99,7 +99,6 @@ const App = (props: sampleData) => {
             element={
               <DismissLoader setIsLoading={setIsLoading}>
                 <DealerPage
-                  openInquiry={() => setShowInquiry(true)}
                   productData={props.productData}
                 />
               </DismissLoader>

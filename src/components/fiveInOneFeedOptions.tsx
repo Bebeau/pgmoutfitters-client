@@ -2,7 +2,7 @@ import {useState, useRef, useEffect} from 'react';
 
 import { ReactComponent as FeedOptions } from '../assets/img/feeders/5n1/modes.svg';
 
-const FiveInOneFeedOptions = (props: {openInquiry: () => void}) => {
+const FiveInOneFeedOptions = () => {
   const activeBtnRef = useRef(null);
   const gravityBtnRef = useRef(null);
   const timerBtnRef = useRef(null);
@@ -13,11 +13,6 @@ const FiveInOneFeedOptions = (props: {openInquiry: () => void}) => {
     activeBtnRef.current = target;
     setSetting(setting);
   }
-
-  // const handleInquiryBtnClick = () => {
-  //   window.gtag('event', 'feedOptionsCTA');
-  //   props.openInquiry();
-  // }
 
   useEffect(() => {
     activeBtnRef.current = timerBtnRef.current;
@@ -32,9 +27,6 @@ const FiveInOneFeedOptions = (props: {openInquiry: () => void}) => {
           <p>Click the feed options below to see the settings change in on the feeder blueprint.</p>
           <button ref={timerBtnRef} className={activeBtnRef.current === timerBtnRef.current ? 'btn outline active' : 'btn outline'} onClick={(e) => handleBtnClick(e.target, 'timer')}>700 lb spin cast</button>
           <button ref={gravityBtnRef} className={activeBtnRef.current === gravityBtnRef.current ? 'btn outline active' : 'btn outline'} onClick={(e) => handleBtnClick(e.target, 'gravity')}>1000 lb gravity</button>
-          {/* <button className="btn" onClick={handleInquiryBtnClick}>
-            Inquire For Purchase
-          </button> */}
         </div>
       </article>
       <article className={setting ? `graphic ${setting}` : 'graphic'}>

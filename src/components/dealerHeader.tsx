@@ -1,7 +1,7 @@
 import { dealerType } from '../assets/data/dealers';
 import { dealerDirectionsUrl, dealerMapsEmbedUrl } from '../utils/dealerAddress';
 import { dealerWebsiteUrl } from '../utils/siteMeta';
-import DealerAddressLink from './dealerAddressLink';
+import DealerAddress from './dealerAddress';
 
 type dealerHeaderType = {
   dealer: dealerType;
@@ -14,7 +14,7 @@ const DealerHeader = ({ dealer }: dealerHeaderType) => {
     <div className="dealerHeader contentWrap">
       <div className="dealerInfo">
         <h1>{dealer.name}</h1>
-        <DealerAddressLink address={dealer.address} />
+        <DealerAddress address={dealer.address} />
         <a
           href={dealerDirectionsUrl(dealer.address)}
           target="_blank"
