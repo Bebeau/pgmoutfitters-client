@@ -2208,11 +2208,16 @@ input::placeholder {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+<<<<<<< HEAD
   gap: 0;
+=======
+  gap: 20px;
+>>>>>>> master
   max-width: 1200px;
   margin: 40px auto;
   box-sizing: border-box;
   background: #222;
+<<<<<<< HEAD
   padding: 20px;
 }
 .dealerList .dealerBlock {
@@ -2220,6 +2225,15 @@ input::placeholder {
   border-radius: 5px;
   flex: 0 0 100%;
   padding: 20px;
+=======
+  padding: 20px 0 20px 20px;
+}
+.dealerList .dealerBlock {
+  box-sizing: border-box;
+  padding: 20px;
+  border-radius: 5px;
+  flex: 0 0 calc(50% - 20px);
+>>>>>>> master
 }
 .dealerList .dealerBlock:hover, .dealerList .dealerBlock.active {
   background: rgb(0, 0, 0);
