@@ -953,7 +953,7 @@ input::placeholder {
   font-family: "new-frank", sans-serif;
   text-transform: uppercase;
 }
-.cartPage h1:active, .cartPage h1:focus {
+.cartPage h1:active, .cartPage h1:focus:not(:focus-visible) {
   outline: none;
   box-shadow: none;
 }

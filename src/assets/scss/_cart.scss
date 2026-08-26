@@ -51,7 +51,7 @@
         font-family: "new-frank", sans-serif;
         text-transform: uppercase;
         &:active,
-        &:focus {
+        &:focus:not(:focus-visible) {
             outline: none;
             box-shadow: none;
         }
