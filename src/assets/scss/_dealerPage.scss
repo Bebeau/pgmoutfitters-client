@@ -1,0 +1,55 @@
+.dealerPage {
+  color: white;
+  padding: 80px 0 0;
+
+  .dealerHeader {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #222;
+    padding: 0;
+    .dealerInfo {
+      padding: 40px;
+      height: 100%;
+      .btn {
+        width: 100%;
+      }
+    }
+
+    h1 {
+      font-family: "clarendon-wide", serif;
+      letter-spacing: 1px;
+      margin: 0 0 20px;
+      line-height: 34px;
+    }
+
+    .addressWrap {
+      margin: 0 0 30px;
+    }
+
+    .dealerWebsite {
+      display: inline-block;
+      margin: 0 0 24px;
+      text-decoration: underline;
+    }
+  }
+
+  .dealerMap {
+    display: block;
+    width: 100%;
+    min-height: 400px;
+    border: none;
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding: 10px;
+  }
+}
+
+@media (min-width: 768px) {
+  .dealerPage {
+    .dealerHeader {
+      flex-direction: row;
+    }
+  }
+}

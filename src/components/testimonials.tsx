@@ -51,7 +51,7 @@ const Testimonials = (props: any) => {
   return (
     <div className="testimonials">
       <div className="contentWrap">
-        <h3>Testimonials</h3>
+        <h2 className="sectionHeading">Testimonials</h2>
         <SingleQuote {...props.testimonials[activeIndex]} transition={show} />
         <div ref={btnRef} className='change'>
           <Refresh onClick={() => handleNavClick()} />

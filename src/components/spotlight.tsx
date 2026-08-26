@@ -1,22 +1,25 @@
 import React from 'react';
+import { formatRetailPrice } from '../utils/cartStorage';
+import { useAddToCartNavigate } from '../hooks/useAddToCartNavigate';
 
 type spotlightType = {
   image: string;
   name: string;
+  slug: string;
   price: number | any[];
-  openInquiry: () => void;
 }
 const Spotlight = (props: spotlightType) => {
+  const addToCartAndGo = useAddToCartNavigate();
 
-  const formatter = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    maximumFractionDigits: 0,
-});
-
-  const handleBtnClick = () => {
-    window.gtag('event', 'productSpotlightCTA');
-    props.openInquiry();
+  const handleAddToCart = () => {
+    if (typeof props.price !== 'number') {
+      return;
+    }
+    addToCartAndGo({
+      slug: props.slug,
+      name: props.name,
+      unitPrice: props.price,
+    });
   }
 
   return (
@@ -28,11 +31,13 @@ const Spotlight = (props: spotlightType) => {
           <h2>{props.name}</h2>
       )}
       {typeof props.price === "number" && (
-        <div className="price">${formatter.format(Number(props.price)).replace('$','')}</div>
+        <div className="price">{formatRetailPrice(Number(props.price))}</div>
       )}
-      <button className="btn" onClick={handleBtnClick}>
-        Inquire For Purchase
-      </button>
+      <div className="ctaGroup">
+        <button type="button" className="btn" onClick={handleAddToCart}>
+          Add to Cart
+        </button>
+      </div>
     </div>
   )
 }

@@ -22,6 +22,14 @@ h3 {
     text-transform: uppercase;
     font-family: "new-frank", sans-serif;
 }
+.sectionHeading {
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+    font-weight: 700;
+    font-style: normal;
+    text-transform: uppercase;
+    font-family: "new-frank", sans-serif;
+}
 h4 {
     font-family: "clarendon-wide", serif;
     letter-spacing: 1px;
@@ -116,6 +124,10 @@ input {
     }
     &:hover {
         cursor: pointer;
+    }
+    &:disabled {
+        opacity: 0.45;
+        cursor: not-allowed;
     }
 }
 .alert {

@@ -1,21 +1,25 @@
+export type dealerAddressType = {
+  street: string
+  city: string
+  state: string
+  zip: string
+}
+
 export type dealerType = {
+  slug: string
   name: string
-  address: {
-    street: string
-    city: string
-    state: string
-    zip: string
-  }
+  address: dealerAddressType
   logo: string
-  link: string,
+  link: string
   position: {
-    top: string,
+    top: string
     left: string
   }
 }
 
-export const dealerData = [
+export const dealerData: dealerType[] = [
   {
+    slug: 'renegade-firearms',
     name: 'Renegade Firearms',
     address: {
         street: '3148 MS-1',
@@ -24,13 +28,14 @@ export const dealerData = [
         zip: '38701'
     },
     logo: 'logo',
-    link: 'https://www.google.com/maps/place/Renegade+Firearms/@33.2912839,-91.0389018,744m/data=!3m1!1e3!4m16!1m9!3m8!1s0x862befb64eefa78b:0x9bdc00414036007!2s3148+MS-1,+Greenville,+MS+38701!3b1!8m2!3d33.291455!4d-91.0378546!10e5!16s%2Fg%2F11q4040wst!3m5!1s0x862befb64f1e449d:0xb413806d652b583f!8m2!3d33.291489!4d-91.037824!16s%2Fg%2F11c5bmw36j?entry=ttu&g_ep=EgoyMDI2MDgyMy4wIKXMDSoASAFQAw%3D%3D',
+    link: 'link',
     position: {
         top: '30',
         left: '84'
     }
   },
   {
+    slug: 'delta-outdoors',
     name: 'Delta Outdoors',
     address: {
         street: '3755 Hwy 61 North',
@@ -45,7 +50,8 @@ export const dealerData = [
         left: '84'
     }
   },
-   {
+  {
+    slug: 'russell-feed-supply-decatur',
     name: 'Russell Feed & Supply Decatur',
     address: {
         street: '1817 US-287',
@@ -61,6 +67,7 @@ export const dealerData = [
     }
   },
   {
+    slug: 'j-and-l-sales',
     name: 'J and L Sales',
     address: {
         street: '116 Southeast Fifth Street',
@@ -76,6 +83,7 @@ export const dealerData = [
     }
   },
   {
+    slug: 'huntin-store',
     name: `Huntin' Store`,
     address: {
         street: '1306 I-20 West',
@@ -91,6 +99,7 @@ export const dealerData = [
     }
   },
   {
+    slug: 'oklaunion-outdoors',
     name: 'Oklaunion Outdoors',
     address: {
         street: '7357 FM1763',
@@ -106,6 +115,7 @@ export const dealerData = [
     }
   },
   {
+    slug: 'wes-tex-steel',
     name: 'Wes-Tex Steel Inc.',
     address: {
         street: '88029 I-20',
@@ -121,6 +131,7 @@ export const dealerData = [
     }
   },
   {
+    slug: 'potts-feed-store',
     name: 'Potts Feed Store',
     address: {
         street: '119 N Texas Street',

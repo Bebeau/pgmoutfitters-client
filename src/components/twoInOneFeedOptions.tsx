@@ -2,7 +2,7 @@ import {useState, useRef, useEffect} from 'react';
 
 import { ReactComponent as FeedOptions } from '../assets/img/feeders/2n1/modes.svg';
 
-export const TwoInOneFeedOptions = (props: {openInquiry: () => void}) => {
+export const TwoInOneFeedOptions = () => {
   const activeBtnRef = useRef(null);
 
   const timerBtnRef = useRef(null);
@@ -15,11 +15,6 @@ export const TwoInOneFeedOptions = (props: {openInquiry: () => void}) => {
   const handleBtnClick = (target: any, setting: string) => {
     activeBtnRef.current = target;
     setSetting(setting);
-  }
-
-  const handleInquiryBtnClick = () => {
-    window.gtag('event', 'feedOptionsCTA');
-    props.openInquiry();
   }
 
   useEffect(() => {
@@ -37,9 +32,6 @@ export const TwoInOneFeedOptions = (props: {openInquiry: () => void}) => {
           <button ref={leftBtnRef} className={activeBtnRef.current === leftBtnRef.current ? 'btn outline active' : 'btn outline'} onClick={(e) => handleBtnClick(e.target, 'left')}>Right 250 lb Gravity / 350 lb Spin</button>
           {/* <button ref={rightBtnRef} className={activeBtnRef.current === rightBtnRef.current ? 'btn outline active' : 'btn outline'} onClick={(e) => handleBtnClick(e.target, 'right')}>Left 250 lb Gravity / 350 lb Spin</button> */}
           {/* <button ref={gravityBtnRef} className={activeBtnRef.current === gravityBtnRef.current ? 'btn outline active' : 'btn outline'} onClick={(e) => handleBtnClick(e.target, 'gravity')}>500 lb Gravity</button> */}
-          <button className="btn" onClick={handleInquiryBtnClick}>
-            Inquire For Purchase
-          </button>
         </div>
       </article>
       <article className={setting ? `graphic ${setting}` : 'graphic'}>
