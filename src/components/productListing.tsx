@@ -55,9 +55,9 @@ const ProductListing = (props: any) => {
           );
         })}
       </div>
-      <button className="btn" onClick={handleBtnClick}>
+      {/* <button className="btn" onClick={handleBtnClick}>
         Inquire For Purchase
-      </button>
+      </button> */}
     </div>
   )
 }

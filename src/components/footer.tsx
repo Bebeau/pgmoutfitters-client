@@ -19,7 +19,9 @@ const Footer = (props: any) => {
         <div className="footerWrap">
             <div className="copyWrap">
                 {/* <article> */}
-                    <Logo />
+                    <Link to="/">
+                        <Logo />
+                    </Link>
                     {/* <section className="addressWrap">
                         <div className="icon">
                             <img src={PinIcon} alt="" />

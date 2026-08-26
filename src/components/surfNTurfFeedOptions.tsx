@@ -37,9 +37,9 @@ const SurfNTurfFeedOptions = (props: {openInquiry: () => void}) => {
           <button ref={directionalBtnRef} className={activeBtnRef.current === directionalBtnRef.current ? 'btn outline active' : 'btn outline'} onClick={(e) => handleBtnClick(e.target, 'directional')}>650 lb full directional</button>
           <button ref={splitDirectionalBtnRef} className={activeBtnRef.current === splitDirectionalBtnRef.current ? 'btn outline active' : 'btn outline'} onClick={(e) => handleBtnClick(e.target, 'split directional')}>Left 350 lb gravity / 300 lb directional</button>
           <button ref={splitTimerBtnRef} className={activeBtnRef.current === splitTimerBtnRef.current ? 'btn outline active' : 'btn outline'} onClick={(e) => handleBtnClick(e.target, 'split timer')}>Left 350 lb gravity / 300 lb full timer</button>
-          <button className="btn" onClick={handleInquiryBtnClick}>
+          {/* <button className="btn" onClick={handleInquiryBtnClick}>
             Inquire For Purchase
-          </button>
+          </button> */}
         </div>
       </article>
       <article className={setting ? `graphic ${setting}` : 'graphic'}>

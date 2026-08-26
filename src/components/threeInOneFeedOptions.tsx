@@ -17,10 +17,10 @@ export const ThreeInOneFeedOptions = (props: {openInquiry: () => void}) => {
     setSetting(setting);
   }
 
-  const handleInquiryBtnClick = () => {
-    window.gtag('event', 'feedOptionsCTA');
-    props.openInquiry();
-  }
+  // const handleInquiryBtnClick = () => {
+  //   window.gtag('event', 'feedOptionsCTA');
+  //   props.openInquiry();
+  // }
 
   useEffect(() => {
     activeBtnRef.current = timerBtnRef.current;
@@ -37,9 +37,9 @@ export const ThreeInOneFeedOptions = (props: {openInquiry: () => void}) => {
           <button ref={leftBtnRef} className={activeBtnRef.current === leftBtnRef.current ? 'btn outline active' : 'btn outline'} onClick={(e) => handleBtnClick(e.target, 'left')}>Right 250 lb Gravity / 350 lb Spin</button>
           <button ref={rightBtnRef} className={activeBtnRef.current === rightBtnRef.current ? 'btn outline active' : 'btn outline'} onClick={(e) => handleBtnClick(e.target, 'right')}>Left 250 lb Gravity / 350 lb Spin</button>
           <button ref={gravityBtnRef} className={activeBtnRef.current === gravityBtnRef.current ? 'btn outline active' : 'btn outline'} onClick={(e) => handleBtnClick(e.target, 'gravity')}>500 lb Gravity</button>
-          <button className="btn" onClick={handleInquiryBtnClick}>
+          {/* <button className="btn" onClick={handleInquiryBtnClick}>
             Inquire For Purchase
-          </button>
+          </button> */}
         </div>
       </article>
       <article className={setting ? `graphic ${setting}` : 'graphic'}>

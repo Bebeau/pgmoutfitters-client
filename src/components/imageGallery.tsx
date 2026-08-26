@@ -49,9 +49,9 @@ const ImageGallery = (props: imageGalleryType) => {
             <div>
               <h5>{selected.title}</h5>
               <p>{selected.desc}</p>
-              <button className="btn" onClick={handleModalInquiry}>
+              {/* <button className="btn" onClick={handleModalInquiry}>
                 Inquire For Purchase
-              </button>
+              </button> */}
             </div>
             <div className="thumbs">
               {props.photos.map((item: any, index: number) => {

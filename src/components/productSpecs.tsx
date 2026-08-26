@@ -10,10 +10,10 @@ type productSpecsType = {
 const ProductSpecs = (props: productSpecsType) => {
     const addToCartAndGo = useAddToCartNavigate();
 
-    const handleBtnClick = () => {
-        window.gtag('event', 'productSpecsCTA');
-        props.openInquiry();
-    }
+    // const handleBtnClick = () => {
+    //     window.gtag('event', 'productSpecsCTA');
+    //     props.openInquiry();
+    // }
 
     const handleAddToCart = () => {
         addToCartAndGo({
@@ -60,9 +60,9 @@ const ProductSpecs = (props: productSpecsType) => {
                         <button type="button" className="btn" onClick={handleAddToCart}>
                             Add to Cart
                         </button>
-                        <button type="button" className="btn outline" onClick={handleBtnClick}>
+                        {/* <button type="button" className="btn outline" onClick={handleBtnClick}>
                             Inquire For Purchase
-                        </button>
+                        </button> */}
                     </div>
                 </div>
             </div>

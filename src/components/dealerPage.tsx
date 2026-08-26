@@ -64,13 +64,11 @@ const DealerPage = (props: dealerPageType) => {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+
       <div className="dealerHeader contentWrap">
-        <h1>{dealer.name}</h1>
-        <a
-          href={dealerDirectionsUrl(dealer.address)}
-          target="_blank"
-          rel="noreferrer"
-        >
+        
+        <div className="dealerInfo">
+          <h1>{dealer.name}</h1>
           <div className="addressWrap">
             <div className="icon">
               <img src={PinIcon} alt="" />
@@ -81,17 +79,27 @@ const DealerPage = (props: dealerPageType) => {
               {dealer.address.city}, {dealer.address.state} {dealer.address.zip}
             </address>
           </div>
-        </a>
-        {website ? (
           <a
-            className="dealerWebsite"
-            href={website}
+            href={dealerDirectionsUrl(dealer.address)}
             target="_blank"
             rel="noreferrer"
+            className="btn outline"
           >
-            Website
+            Get Directions
           </a>
-        ) : null}
+          <br />
+          {website ? (
+            <a
+              className="btn"
+              href={website}
+              target="_blank"
+              rel="noreferrer"
+            >
+              View Dealer Website
+            </a>
+          ) : null}
+        </div>
+
         <iframe
           className="dealerMap"
           title={`Map of ${dealer.name}`}
@@ -100,7 +108,9 @@ const DealerPage = (props: dealerPageType) => {
           referrerPolicy="no-referrer-when-downgrade"
           allowFullScreen
         />
+
       </div>
+
       <ProductListing
         openInquiry={props.openInquiry}
         products={props.productData}
