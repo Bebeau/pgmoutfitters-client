@@ -27,18 +27,16 @@ const hasBuiltHtml =
 const describeBuilt = hasBuiltHtml ? describe : describe.skip;
 
 describeBuilt('built prerendered HTML smoke', () => {
-  const feeder = productData.find((item) => item.slug === '5-n-1');
-  const dealer = dealerData.find((item) => item.slug === 'delta-outdoors');
-
-  if (!feeder || !dealer) {
-    throw new Error('Expected 5-n-1 and delta-outdoors');
-  }
-
-  const homeHtml = fs.readFileSync(homeFile, 'utf8');
-  const feederHtml = fs.readFileSync(feederFile, 'utf8');
-  const dealerHtml = fs.readFileSync(dealerFile, 'utf8');
-
   test('homepage, one feeder, and one dealer contain their own titles', () => {
+    const feeder = productData.find((item) => item.slug === '5-n-1');
+    const dealer = dealerData.find((item) => item.slug === 'delta-outdoors');
+    if (!feeder || !dealer) {
+      throw new Error('Expected 5-n-1 and delta-outdoors');
+    }
+
+    const homeHtml = fs.readFileSync(homeFile, 'utf8');
+    const feederHtml = fs.readFileSync(feederFile, 'utf8');
+    const dealerHtml = fs.readFileSync(dealerFile, 'utf8');
     const feederTitle = productPageTitle(feeder.name);
     const dealerTitle = dealerPageTitle(dealer.name);
 

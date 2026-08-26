@@ -226,8 +226,8 @@ describe('Related product navigation', () => {
     await userEvent.click(relatedLink);
 
     expect(window.scrollTo).toHaveBeenCalledWith(0, 0);
-    expect(screen.getByRole('heading', { name: toProduct.name })).toBeInTheDocument();
     expect(document.getElementById('productPage')).toHaveClass(toProduct.name);
+    expect(document.querySelector('#productPage .desc h2')).toHaveTextContent(toProduct.name);
   });
 });
 
