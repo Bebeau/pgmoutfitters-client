@@ -27,6 +27,15 @@ h3 {
   font-family: "new-frank", sans-serif;
 }
 
+.sectionHeading {
+  font-size: 1.8rem;
+  letter-spacing: 1px;
+  font-weight: 700;
+  font-style: normal;
+  text-transform: uppercase;
+  font-family: "new-frank", sans-serif;
+}
+
 h4 {
   font-family: "clarendon-wide", serif;
   letter-spacing: 1px;
@@ -296,7 +305,7 @@ input::placeholder {
     padding-right: 50px;
     align-self: center;
   }
-  .company .companyCopy h3 {
+  .company .companyCopy .sectionHeading {
     font-size: 2rem;
   }
   .company .companyCopy p {
@@ -343,7 +352,7 @@ input::placeholder {
 .testimonials .contentWrap {
   max-width: 1000px;
 }
-.testimonials h3 {
+.testimonials .sectionHeading {
   color: #223047;
   text-align: center;
   margin: 40px 0 0;

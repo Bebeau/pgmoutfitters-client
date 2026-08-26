@@ -6,6 +6,7 @@ import {
   DEFAULT_OG_IMAGE,
   DEFAULT_TWITTER_IMAGE,
   HOME_DESCRIPTION,
+  HOME_HEADING,
   HOME_TITLE,
   dealerCanonical,
   dealerPageDescription,
@@ -20,6 +21,8 @@ import {
 
 describe('siteMeta', () => {
   test('keeps the homepage title and uses the Shreveport-made meta description', () => {
+    expect(HOME_HEADING).toBe('Next Generation Deer Feeders');
+    expect(HOME_TITLE).toBe(`${HOME_HEADING} | PGM Outfitters`);
     expect(HOME_TITLE).toBe('Next Generation Deer Feeders | PGM Outfitters');
     expect(HOME_DESCRIPTION).toBe(
       'Shreveport-made deer feeders that run protein and corn on gravity or timer. Built by PGM Outfitters for hunters and dealers.'
