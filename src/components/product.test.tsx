@@ -15,7 +15,7 @@ import {
 import { CartProvider } from '../context/cartContext';
 import { CART_STORAGE_KEY } from '../utils/cartStorage';
 
-const renderProduct = (slug: string, openInquiry: () => void = () => undefined) =>
+const renderProduct = (slug: string) =>
   render(
     <HelmetProvider>
       <CartProvider>
@@ -25,7 +25,6 @@ const renderProduct = (slug: string, openInquiry: () => void = () => undefined) 
               path="/deer-feeders/:slug"
               element={
                 <Product
-                  openInquiry={openInquiry}
                   testimonialData={[]}
                   isLoading={false}
                   setIsLoading={() => undefined}
@@ -76,7 +75,7 @@ describe('Product helmet', () => {
     expect(metaContent('meta[name="twitter:image:src"]')).toBe(DEFAULT_TWITTER_IMAGE);
     expect(canonical).toBe('https://pgmoutfitters.com/deer-feeders/2-n-1');
     expect(screen.getAllByRole('button', { name: /add to cart/i }).length).toBeGreaterThan(0);
-    expect(screen.getAllByRole('button', { name: /inquire for purchase/i }).length).toBeGreaterThan(0);
+    expect(screen.queryByRole('button', { name: /inquire for purchase/i })).not.toBeInTheDocument();
   });
 
   test('unknown slugs use ProductNotFound instead of the product layout', async () => {
@@ -160,20 +159,16 @@ describe('Product add to cart', () => {
     expect(screen.getByLabelText(`${product.name} quantity`)).toHaveValue(2);
   });
 
-  test('inquire stays on the product page and does not add to the cart', async () => {
+  test('does not show inquire on the product page', () => {
     if (!product) {
       throw new Error('Expected 2-n-1 product');
     }
 
-    const openInquiry = jest.fn();
-    renderProduct(product.slug, openInquiry);
+    renderProduct(product.slug);
 
-    await userEvent.click(screen.getAllByRole('button', { name: /inquire for purchase/i })[0]);
-
-    expect(openInquiry).toHaveBeenCalledTimes(1);
-    expect(screen.queryByRole('heading', { name: /^cart$/i })).not.toBeInTheDocument();
-    expect(document.getElementById('productPage')).toBeInTheDocument();
-    expect(JSON.parse(window.localStorage.getItem(CART_STORAGE_KEY) || '[]')).toEqual([]);
+    expect(screen.queryByRole('button', { name: /inquire for purchase/i })).not.toBeInTheDocument();
+    expect(document.querySelector('.spotlight')).toBeInTheDocument();
+    expect(screen.getAllByRole('button', { name: /add to cart/i }).length).toBeGreaterThan(0);
   });
 });
 

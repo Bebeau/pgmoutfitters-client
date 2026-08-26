@@ -67,7 +67,6 @@ const App = (props: sampleData) => {
             path="/deer-feeders/:slug"
             element={
               <Product 
-                openInquiry={() => setShowInquiry(true)}
                 testimonialData={props.testimonialData}
                 isLoading={isLoading}
                 setIsLoading={(value: boolean) => setIsLoading(value)}

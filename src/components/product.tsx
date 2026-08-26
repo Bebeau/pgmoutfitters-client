@@ -29,7 +29,6 @@ import CascadeBlocks from './cascadeBlocks';
 import {testimonialType} from '../assets/data/testimonials';
 
 type singleProductType = {
-  openInquiry: () => void;
   testimonialData: testimonialType[];
   isLoading: boolean;
   setIsLoading: (value: boolean) => void; 
@@ -163,7 +162,6 @@ const Product = (props: singleProductType) => {
         name={matchedProduct.name}
         slug={matchedProduct.slug}
         price={matchedProduct.price.retail}
-        openInquiry={props.openInquiry}
       />
       {/* <Testimonials 
         testimonials={props.testimonialData}
