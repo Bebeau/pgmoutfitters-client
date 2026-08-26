@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useCart } from '../context/cartContext';
 import { productData } from '../assets/data/products';
@@ -16,10 +16,6 @@ const Cart = () => {
   const { items, subtotal, incrementQty, decrementQty, removeItem, limitMessage } = useCart();
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   const handleCheckout = () => {
     if (!items.length || isCheckingOut) {
@@ -51,7 +47,7 @@ const Cart = () => {
       <PageHelmet title={CART_TITLE} noindex />
 
       <div className="contentWrap">
-        <h2>Cart</h2>
+        <h1>Cart</h1>
 
         <p className="alert info pickupAlert">
           Purchases are pickup only at <a href="https://www.google.com/maps/place/908+Joseph+St,+Shreveport,+LA+71107/@32.5293771,-93.7613823,750m/data=!3m2!1e3!4b1!4m6!3m5!1s0x8636ccd92aad605d:0xd962e00b360ec708!8m2!3d32.5293771!4d-93.7588074!16s%2Fg%2F11c1h99zbr?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D" target="_BLANK" rel="noreferrer">{PICKUP_ADDRESS}</a> during regular business

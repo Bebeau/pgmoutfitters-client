@@ -255,11 +255,6 @@ describe('Dealer page content', () => {
     expect(screen.getByRole('heading', { name: /^cart$/i })).toBeInTheDocument();
     expect(screen.getByLabelText(`${productData[0].name} quantity`)).toHaveValue(1);
   });
-
-  test('scrolls the window to the top when a dealer page mounts', () => {
-    renderDealer('potts-feed-store');
-    expect(window.scrollTo).toHaveBeenCalledWith(0, 0);
-  });
 });
 
 describe('Dealer sitemap', () => {

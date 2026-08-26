@@ -4,6 +4,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import Product from './product';
 import Cart from './cart';
+import ScrollToTop from './scrollToTop';
 import { productData } from '../assets/data/products';
 import {
   DEFAULT_OG_IMAGE,
@@ -169,6 +170,66 @@ describe('Product add to cart', () => {
     expect(screen.queryByRole('button', { name: /inquire for purchase/i })).not.toBeInTheDocument();
     expect(document.querySelector('.spotlight')).toBeInTheDocument();
     expect(screen.getAllByRole('button', { name: /add to cart/i }).length).toBeGreaterThan(0);
+  });
+});
+
+describe('Related product navigation', () => {
+  const fromProduct = productData.find((item) => item.slug === '2-n-1');
+  const toProduct = productData.find((item) => item.slug === '5-n-1');
+
+  beforeEach(() => {
+    if (!fromProduct || !toProduct) {
+      throw new Error('Expected 2-n-1 and 5-n-1 products');
+    }
+    window.scrollTo = jest.fn();
+  });
+
+  test('scrolls to the top when a related product changes the slug', async () => {
+    if (!fromProduct || !toProduct) {
+      throw new Error('Expected 2-n-1 and 5-n-1 products');
+    }
+
+    render(
+      <HelmetProvider>
+        <CartProvider>
+          <MemoryRouter initialEntries={[`/deer-feeders/${fromProduct.slug}`]}>
+            <ScrollToTop />
+            <Routes>
+              <Route
+                path="/deer-feeders/:slug"
+                element={
+                  <Product
+                    testimonialData={[]}
+                    isLoading={false}
+                    setIsLoading={() => undefined}
+                  />
+                }
+              />
+            </Routes>
+          </MemoryRouter>
+        </CartProvider>
+      </HelmetProvider>
+    );
+
+    const related = await waitFor(() => {
+      const section = document.querySelector('.related');
+      if (!section) {
+        throw new Error('Expected related products');
+      }
+      return section as HTMLElement;
+    });
+
+    const relatedLink = within(related).getByRole('link', { name: new RegExp(toProduct.name, 'i') });
+    expect(relatedLink).toHaveAttribute('href', `/deer-feeders/${toProduct.slug}`);
+
+    (window.scrollTo as jest.Mock).mockClear();
+    await userEvent.click(relatedLink);
+
+    expect(window.scrollTo).toHaveBeenCalledWith(0, 0);
+    expect(document.getElementById('productPage')).toHaveClass(toProduct.name);
+    const productHeading = document.querySelector('#productPage .desc h2');
+    expect(productHeading).toHaveTextContent(toProduct.name);
+    expect(document.activeElement).toBe(productHeading);
   });
 });
 
