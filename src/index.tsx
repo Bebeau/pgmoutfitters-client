@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import { createRoot, hydrateRoot } from 'react-dom/client';
 import { HelmetProvider } from 'react-helmet-async';
 import App from './components/app';
 import reportWebVitals from './reportWebVitals';
@@ -13,20 +13,24 @@ declare global {
   }
 }
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
-
-root.render(
+const container = document.getElementById('root') as HTMLElement;
+const tree = (
   <React.StrictMode>
     <HelmetProvider>
-      <App 
+      <App
         productData={productData}
         testimonialData={testimonialData}
+        initialLoading={container.childElementCount === 0}
       />
     </HelmetProvider>
   </React.StrictMode>
 );
+
+if (container.childElementCount > 0) {
+  hydrateRoot(container, tree);
+} else {
+  createRoot(container).render(tree);
+}
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

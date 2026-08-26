@@ -54,17 +54,7 @@ describe('Cart page', () => {
     );
     expect(screen.getByRole('button', { name: /checkout/i })).toBeDisabled();
     expect(screen.queryByRole('link', { name: /keep shopping/i })).not.toBeInTheDocument();
-  });
-
-  test('scrolls the window to the top when the cart page mounts', () => {
-    window.localStorage.setItem(
-      CART_STORAGE_KEY,
-      JSON.stringify([{ slug: '2-n-1', name: '2-N-1', qty: 2, unitPrice: 1300 }])
-    );
-
-    renderCart();
-
-    expect(window.scrollTo).toHaveBeenCalledWith(0, 0);
+    expect(screen.getByRole('heading', { level: 1, name: /^cart$/i })).toBeInTheDocument();
   });
 
   test('renders line items with image, prices, qty controls, and checkout slugs only', async () => {

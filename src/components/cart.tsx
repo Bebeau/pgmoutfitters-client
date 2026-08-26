@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useCart } from '../context/cartContext';
 import { productData } from '../assets/data/products';
@@ -16,10 +16,6 @@ const Cart = () => {
   const { items, subtotal, incrementQty, decrementQty, removeItem, limitMessage } = useCart();
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   const handleCheckout = () => {
     if (!items.length || isCheckingOut) {

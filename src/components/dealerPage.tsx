@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useParams } from 'react-router-dom';
 import { dealerData } from '../assets/data/dealers';
@@ -22,10 +21,6 @@ const DealerPage = (props: dealerPageType) => {
   const { slug } = useParams();
   const dealer = dealerData.find((item) => item.slug === slug);
   const website = dealer ? dealerWebsiteUrl(dealer.link) : undefined;
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [slug]);
 
   if (!dealer) {
     return <DealerNotFound />;

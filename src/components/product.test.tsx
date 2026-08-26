@@ -227,7 +227,9 @@ describe('Related product navigation', () => {
 
     expect(window.scrollTo).toHaveBeenCalledWith(0, 0);
     expect(document.getElementById('productPage')).toHaveClass(toProduct.name);
-    expect(document.querySelector('#productPage .desc h2')).toHaveTextContent(toProduct.name);
+    const productHeading = document.querySelector('#productPage .desc h2');
+    expect(productHeading).toHaveTextContent(toProduct.name);
+    expect(document.activeElement).toBe(productHeading);
   });
 });
 

@@ -18,6 +18,7 @@ import {testimonialType} from '../assets/data/testimonials';
 type sampleData = {
   productData: productType[];
   testimonialData: testimonialType[];
+  initialLoading?: boolean;
 }
 
 const DismissLoader = (props: { setIsLoading: (value: boolean) => void; children: React.ReactNode }) => {
@@ -29,7 +30,7 @@ const DismissLoader = (props: { setIsLoading: (value: boolean) => void; children
 
 const App = (props: sampleData) => {
   const [showInquiry, setShowInquiry] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(props.initialLoading ?? true);
 
   return (
     <CartProvider>
