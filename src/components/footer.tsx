@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/iframe-has-title */
-import { Link } from 'react-router-dom';
 import DealerList from './dealerList';
-
+import { Link } from 'react-router-dom';
 import {ReactComponent as Logo} from '../assets/img/logo.svg';
 
 // import PinIcon from '../assets/img/icons/png/pin.png';
@@ -19,7 +18,9 @@ const Footer = (props: any) => {
         <div className="footerWrap">
             <div className="copyWrap">
                 {/* <article> */}
-                    <Logo />
+                    <Link to="/">
+                        <Logo />
+                    </Link>
                     {/* <section className="addressWrap">
                         <div className="icon">
                             <img src={PinIcon} alt="" />
@@ -43,9 +44,6 @@ const Footer = (props: any) => {
                             </div>
                             <span>sales@pgmoutfitters.com</span>
                         </a>
-                        <Link to="/cart" className="cart">
-                            <span>Cart</span>
-                        </Link>
                     </section>
                 {/* </article> */}
             </div>

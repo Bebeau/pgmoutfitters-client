@@ -7,15 +7,9 @@ type spotlightType = {
   name: string;
   slug: string;
   price: number | any[];
-  openInquiry: () => void;
 }
 const Spotlight = (props: spotlightType) => {
   const addToCartAndGo = useAddToCartNavigate();
-
-  const handleBtnClick = () => {
-    window.gtag('event', 'productSpotlightCTA');
-    props.openInquiry();
-  }
 
   const handleAddToCart = () => {
     if (typeof props.price !== 'number') {
@@ -42,9 +36,6 @@ const Spotlight = (props: spotlightType) => {
       <div className="ctaGroup">
         <button type="button" className="btn" onClick={handleAddToCart}>
           Add to Cart
-        </button>
-        <button type="button" className="btn outline" onClick={handleBtnClick}>
-          Inquire For Purchase
         </button>
       </div>
     </div>

@@ -5,15 +5,9 @@ import { useAddToCartNavigate } from '../hooks/useAddToCartNavigate';
 
 type productSpecsType = {
     productInfo: productType,
-    openInquiry: () => void
 }
 const ProductSpecs = (props: productSpecsType) => {
     const addToCartAndGo = useAddToCartNavigate();
-
-    const handleBtnClick = () => {
-        window.gtag('event', 'productSpecsCTA');
-        props.openInquiry();
-    }
 
     const handleAddToCart = () => {
         addToCartAndGo({
@@ -59,9 +53,6 @@ const ProductSpecs = (props: productSpecsType) => {
                     <div className="ctaGroup">
                         <button type="button" className="btn" onClick={handleAddToCart}>
                             Add to Cart
-                        </button>
-                        <button type="button" className="btn outline" onClick={handleBtnClick}>
-                            Inquire For Purchase
                         </button>
                     </div>
                 </div>

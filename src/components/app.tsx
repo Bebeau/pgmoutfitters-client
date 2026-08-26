@@ -8,6 +8,7 @@ import LegacyProductRedirect from './legacyProductRedirect';
 import Cart from './cart';
 import CartSuccess from './cartSuccess';
 import CartLink, { CartLimitNotice } from './cartLink';
+import DealerPage from './dealerPage';
 import { CartProvider } from '../context/cartContext';
 
 import {productType} from '../assets/data/products';
@@ -66,7 +67,6 @@ const App = (props: sampleData) => {
             path="/deer-feeders/:slug"
             element={
               <Product 
-                openInquiry={() => setShowInquiry(true)}
                 testimonialData={props.testimonialData}
                 isLoading={isLoading}
                 setIsLoading={(value: boolean) => setIsLoading(value)}
@@ -90,6 +90,16 @@ const App = (props: sampleData) => {
             element={
               <DismissLoader setIsLoading={setIsLoading}>
                 <CartSuccess />
+              </DismissLoader>
+            }
+          />
+          <Route
+            path="/dealers/:slug"
+            element={
+              <DismissLoader setIsLoading={setIsLoading}>
+                <DealerPage
+                  productData={props.productData}
+                />
               </DismissLoader>
             }
           />

@@ -3,7 +3,6 @@ import {productImage} from '../assets/data/products';
 
 type imageGalleryType = {
   photos: productImage[],
-  openInquiry: () => void
 }
 const ImageGallery = (props: imageGalleryType) => {
   const modalRef = useRef(null);
@@ -21,12 +20,6 @@ const ImageGallery = (props: imageGalleryType) => {
   }
   const handleModalClose = () => {
     setShowImageModal(false);
-  }
-  const handleModalInquiry = () => {
-    window.gtag('event', 'imageCTA');
-    
-    setShowImageModal(false);
-    props.openInquiry();
   }
   return (
     <>
@@ -49,9 +42,6 @@ const ImageGallery = (props: imageGalleryType) => {
             <div>
               <h5>{selected.title}</h5>
               <p>{selected.desc}</p>
-              <button className="btn" onClick={handleModalInquiry}>
-                Inquire For Purchase
-              </button>
             </div>
             <div className="thumbs">
               {props.photos.map((item: any, index: number) => {

@@ -923,15 +923,17 @@ input::placeholder {
   margin: 0 0 20px;
 }
 .cartPage .pickupAlert {
-  background: red;
+  background: #f46868;
   color: black;
-  font-weight: bold;
+  font-weight: normal;
   font-size: 1.2rem;
   line-height: 1.6;
   margin: 0 0 30px;
 }
 .cartPage .pickupAlert a {
   text-decoration: underline;
+  color: black;
+  font-weight: bold;
 }
 .cartPage .cartEmpty {
   text-align: center;
@@ -2179,18 +2181,18 @@ input::placeholder {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 0;
   max-width: 1200px;
   margin: 40px auto;
   box-sizing: border-box;
   background: #222;
-  padding: 20px 0 20px 20px;
+  padding: 20px;
 }
 .dealerList .dealerBlock {
   box-sizing: border-box;
-  padding: 20px;
   border-radius: 5px;
-  flex: 0 0 calc(50% - 20px);
+  flex: 0 0 100%;
+  padding: 20px;
 }
 .dealerList .dealerBlock:hover, .dealerList .dealerBlock.active {
   background: rgb(0, 0, 0);
@@ -2199,6 +2201,9 @@ input::placeholder {
   font-size: clamp(1rem, 2.5vw, 1.4rem);
   color: white;
   margin: 0;
+}
+.dealerList h4 a {
+  color: white;
 }
 .dealerList .addressWrap {
   display: flex;
@@ -2225,6 +2230,54 @@ input::placeholder {
   .map .dealerPin {
     width: 20px;
     height: 20px;
+  }
+}
+.dealerPage {
+  color: white;
+  padding: 80px 0 0;
+}
+.dealerPage .dealerHeader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #222;
+  padding: 0;
+}
+.dealerPage .dealerHeader .dealerInfo {
+  padding: 40px;
+  height: 100%;
+}
+.dealerPage .dealerHeader .dealerInfo .btn {
+  width: 100%;
+}
+.dealerPage .dealerHeader h1 {
+  font-family: "clarendon-wide", serif;
+  letter-spacing: 1px;
+  margin: 0 0 20px;
+  line-height: 34px;
+}
+.dealerPage .dealerHeader .addressWrap {
+  margin: 0 0 30px;
+}
+.dealerPage .dealerHeader .dealerWebsite {
+  display: inline-block;
+  margin: 0 0 24px;
+  text-decoration: underline;
+}
+.dealerPage .dealerMap {
+  display: block;
+  width: 100%;
+  min-height: 400px;
+  border: none;
+  border-radius: 5px;
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+@media (min-width: 768px) {
+  .dealerPage .dealerHeader {
+    flex-direction: row;
   }
 }
 footer {
@@ -2256,7 +2309,6 @@ footer .icon {
 }
 .addressWrap address {
   flex: 1 0 auto;
-  color: #BEA296;
   font-size: 1.2rem;
   font-style: normal;
   transition: 0.3s all ease-in-out;

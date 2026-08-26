@@ -1,10 +1,16 @@
+import { dealerData } from '../assets/data/dealers';
 import { productData } from '../assets/data/products';
+import { dealerPath } from './dealerPath';
 import { productPath } from './productPath';
 import {
   DEFAULT_OG_IMAGE,
   DEFAULT_TWITTER_IMAGE,
   HOME_DESCRIPTION,
   HOME_TITLE,
+  dealerCanonical,
+  dealerPageDescription,
+  dealerPageTitle,
+  dealerWebsiteUrl,
   homeCanonical,
   isAbsoluteHttpUrl,
   productCanonical,
@@ -53,6 +59,22 @@ describe('siteMeta', () => {
     expect(isAbsoluteHttpUrl(undefined)).toBe(false);
   });
 
+  test('only treats non-Maps http(s) dealer links as websites', () => {
+    expect(dealerWebsiteUrl('https://www.deltaoutdoors.com/')).toBe(
+      'https://www.deltaoutdoors.com/'
+    );
+    expect(dealerWebsiteUrl('link')).toBeUndefined();
+    expect(dealerWebsiteUrl('')).toBeUndefined();
+    expect(
+      dealerWebsiteUrl(
+        'https://www.google.com/maps/place/Renegade+Firearms/@33.2912839,-91.0389018'
+      )
+    ).toBeUndefined();
+    expect(
+      dealerWebsiteUrl('https://maps.google.com/maps?q=3148+MS-1+Greenville+MS')
+    ).toBeUndefined();
+  });
+
   test('home plus every real feeder have unique titles, descriptions, and canonicals', () => {
     const titles = [HOME_TITLE, ...productData.map((product) => productPageTitle(product.name))];
     const descriptions = [
@@ -70,5 +92,47 @@ describe('siteMeta', () => {
     expect(new Set(descriptions).size).toBe(descriptions.length);
     expect(new Set(canonicals).size).toBe(canonicals.length);
     expect(productData).toHaveLength(11);
+  });
+
+  test('builds dealer titles, descriptions, and canonicals from name, city, and slug', () => {
+    expect(dealerPageTitle('Renegade Firearms')).toBe(
+      'Renegade Firearms | PGM Outfitters Dealer'
+    );
+    expect(dealerPageDescription('Renegade Firearms', 'Greenville', 'MS')).toBe(
+      'Shop Next Generation deer feeders at Renegade Firearms in Greenville, MS. Address, directions, and the full PGM Outfitters lineup.'
+    );
+    expect(dealerCanonical('renegade-firearms')).toBe(
+      `https://pgmoutfitters.com${dealerPath('renegade-firearms')}`
+    );
+    expect(dealerCanonical('renegade-firearms')).toBe(
+      'https://pgmoutfitters.com/dealers/renegade-firearms'
+    );
+  });
+
+  test('home, feeders, and dealers have unique titles, descriptions, and canonicals', () => {
+    const titles = [
+      HOME_TITLE,
+      ...productData.map((product) => productPageTitle(product.name)),
+      ...dealerData.map((dealer) => dealerPageTitle(dealer.name)),
+    ];
+    const descriptions = [
+      HOME_DESCRIPTION,
+      ...productData.map((product) =>
+        productPageDescription(product.name, product.description)
+      ),
+      ...dealerData.map((dealer) =>
+        dealerPageDescription(dealer.name, dealer.address.city, dealer.address.state)
+      ),
+    ];
+    const canonicals = [
+      homeCanonical(),
+      ...productData.map((product) => productCanonical(product.slug)),
+      ...dealerData.map((dealer) => dealerCanonical(dealer.slug)),
+    ];
+
+    expect(new Set(titles).size).toBe(titles.length);
+    expect(new Set(descriptions).size).toBe(descriptions.length);
+    expect(new Set(canonicals).size).toBe(canonicals.length);
+    expect(dealerData).toHaveLength(8);
   });
 });
