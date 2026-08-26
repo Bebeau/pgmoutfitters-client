@@ -19,6 +19,13 @@ import {
 } from './siteMeta';
 
 describe('siteMeta', () => {
+  test('keeps the homepage title and uses the Shreveport-made meta description', () => {
+    expect(HOME_TITLE).toBe('Next Generation Deer Feeders | PGM Outfitters');
+    expect(HOME_DESCRIPTION).toBe(
+      'Shreveport-made deer feeders that run protein and corn on gravity or timer. Built by PGM Outfitters for hunters and dealers.'
+    );
+  });
+
   test('builds the homepage canonical with a trailing slash', () => {
     expect(homeCanonical()).toBe('https://pgmoutfitters.com/');
   });

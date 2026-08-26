@@ -48,6 +48,9 @@ const Homepage = (props: homepageType) => {
         slides={props.productData}
       />
     </div> */}
+    <div className="homeHeading contentWrap">
+      <h1>Next Generation Deer Feeders</h1>
+    </div>
     <ProductListing
       products={props.productData}
     />

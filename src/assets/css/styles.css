@@ -314,6 +314,28 @@ input::placeholder {
     transform: translate(0, 32px);
   }
 }
+.homeHeading {
+  text-align: center;
+  padding-top: 80px;
+  padding-bottom: 0;
+  color: white;
+}
+.homeHeading h1 {
+  margin: 0;
+  color: white;
+  font-size: 1.8rem;
+  letter-spacing: 1px;
+  font-weight: 700;
+  font-style: normal;
+  text-transform: uppercase;
+  font-family: "new-frank", sans-serif;
+}
+
+@media (min-width: 768px) {
+  .homeHeading h1 {
+    font-size: 2.2rem;
+  }
+}
 .testimonials {
   min-height: 300px;
   background: #7C8969;
