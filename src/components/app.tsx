@@ -1,10 +1,14 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Homepage from './homepage';
 import Inquiry from './inquiry';
 import Footer from './footer';
 import Product from './product';
 import LegacyProductRedirect from './legacyProductRedirect';
+import Cart from './cart';
+import CartSuccess from './cartSuccess';
+import CartLink, { CartLimitNotice } from './cartLink';
+import { CartProvider } from '../context/cartContext';
 
 import {productType} from '../assets/data/products';
 import {testimonialType} from '../assets/data/testimonials';
@@ -14,12 +18,19 @@ type sampleData = {
   testimonialData: testimonialType[];
 }
 
+const DismissLoader = (props: { setIsLoading: (value: boolean) => void; children: React.ReactNode }) => {
+  useEffect(() => {
+    props.setIsLoading(false);
+  }, [props]);
+  return <>{props.children}</>;
+};
+
 const App = (props: sampleData) => {
   const [showInquiry, setShowInquiry] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   return (
-    <>
+    <CartProvider>
     {
       isLoading && (
         <div className="loader">
@@ -36,6 +47,8 @@ const App = (props: sampleData) => {
       )
     }
       <Router>
+        <CartLink />
+        <CartLimitNotice />
         <Routes>
           <Route 
             path="/" 
@@ -64,15 +77,31 @@ const App = (props: sampleData) => {
             path="/products/deer-feeders/:slug"
             element={<LegacyProductRedirect />}
           />
+          <Route
+            path="/cart"
+            element={
+              <DismissLoader setIsLoading={setIsLoading}>
+                <Cart />
+              </DismissLoader>
+            }
+          />
+          <Route
+            path="/checkout/success"
+            element={
+              <DismissLoader setIsLoading={setIsLoading}>
+                <CartSuccess />
+              </DismissLoader>
+            }
+          />
         </Routes>
+        <Footer />
       </Router>
-      <Footer />
       <Inquiry
         closeInquiry={() => setShowInquiry(false)}
         showInquiry={showInquiry}
         productData={props.productData}
       />
-    </>
+    </CartProvider>
   )
 }
 

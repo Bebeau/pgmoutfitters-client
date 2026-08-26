@@ -4,19 +4,22 @@ import { MemoryRouter } from 'react-router-dom';
 import Homepage from './homepage';
 import { productData } from '../assets/data/products';
 import { HOME_DESCRIPTION, HOME_TITLE } from '../utils/siteMeta';
+import { CartProvider } from '../context/cartContext';
 
 const renderHomepage = () =>
   render(
     <HelmetProvider>
-      <MemoryRouter>
-        <Homepage
-          openInquiry={() => undefined}
-          productData={productData}
-          testimonialData={[]}
-          isLoading={false}
-          setIsLoading={() => undefined}
-        />
-      </MemoryRouter>
+      <CartProvider>
+        <MemoryRouter>
+          <Homepage
+            openInquiry={() => undefined}
+            productData={productData}
+            testimonialData={[]}
+            isLoading={false}
+            setIsLoading={() => undefined}
+          />
+        </MemoryRouter>
+      </CartProvider>
     </HelmetProvider>
   );
 

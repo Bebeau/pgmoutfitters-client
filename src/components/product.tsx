@@ -171,6 +171,7 @@ const Product = (props: singleProductType) => {
       <Spotlight 
         image={matchedProduct.image}
         name={matchedProduct.name}
+        slug={matchedProduct.slug}
         price={matchedProduct.price.retail}
         openInquiry={props.openInquiry}
       />

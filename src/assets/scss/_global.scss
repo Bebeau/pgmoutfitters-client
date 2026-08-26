@@ -117,6 +117,10 @@ input {
     &:hover {
         cursor: pointer;
     }
+    &:disabled {
+        opacity: 0.45;
+        cursor: not-allowed;
+    }
 }
 .alert {
     display: block;
