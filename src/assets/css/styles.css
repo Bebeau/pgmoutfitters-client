@@ -133,7 +133,7 @@ input::placeholder {
   max-width: 100%;
   padding: 10px;
   text-align: center;
-  color: #270303;
+  color: rgb(15.3522149601%, 1.1183732752%, 1.1183732752%);
 }
 .alert.error {
   background: #f46868;
@@ -524,10 +524,10 @@ input::placeholder {
   height: 100%;
 }
 .inquiryModal .inquiryCart .inquiryProduct:nth-child(odd) {
-  background: #626c53;
+  background: rgb(38.3795170961%, 42.4031761465%, 32.4987846378%);
 }
 .inquiryModal .inquiryCart .inquiryProduct:nth-child(even) {
-  background: #555e48;
+  background: rgb(33.2555501539%, 36.7420191217%, 28.1599416626%);
 }
 .inquiryModal .inquiryCart .productCopy {
   display: flex;
@@ -706,7 +706,7 @@ input::placeholder {
 }
 .inquiryModal .inquiryForm .btnGroup button:hover {
   cursor: pointer;
-  background: #334769;
+  background: rgb(19.8095238095%, 27.9663865546%, 41.3669467787%);
 }
 .inquiryModal .inquiryForm .btnGroup button.selected {
   background: white;
@@ -1195,10 +1195,10 @@ input::placeholder {
   margin-top: 40px;
 }
 #productPage .related .item:nth-child(odd) {
-  background: #626c53;
+  background: rgb(38.3795170961%, 42.4031761465%, 32.4987846378%);
 }
 #productPage .related .item:nth-child(even) {
-  background: #555e48;
+  background: rgb(33.2555501539%, 36.7420191217%, 28.1599416626%);
 }
 #productPage .riceBrand {
   background: #223047;
@@ -1866,6 +1866,9 @@ input::placeholder {
   flex: 0 1 100%;
   position: relative;
   align-self: center;
+  max-width: 800px;
+  margin: 20px auto 0;
+  box-sizing: border-box;
 }
 .map .headquarters {
   position: absolute;
@@ -1895,18 +1898,26 @@ input::placeholder {
 
 .dealerList {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   gap: 20px;
+  max-width: 1200px;
+  margin: 40px auto;
+  box-sizing: border-box;
+  background: #222;
+  padding: 20px 0 20px 20px;
 }
 .dealerList .dealerBlock {
   box-sizing: border-box;
-  padding: 10px;
+  padding: 20px;
   border-radius: 5px;
+  flex: 0 0 calc(50% - 20px);
 }
 .dealerList .dealerBlock:hover, .dealerList .dealerBlock.active {
-  background: rgba(0, 0, 0, 0.1);
+  background: rgb(0, 0, 0);
 }
 .dealerList h4 {
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
   color: white;
   margin: 0;
 }
@@ -1917,8 +1928,18 @@ input::placeholder {
   width: 20px;
   height: 20px;
 }
+.dealerList .addressWrap address {
+  font-size: clamp(0.8rem, 2.5vw, 1rem);
+  color: rgba(255, 255, 255, 0.5);
+}
 
 @media (min-width: 991px) {
+  .dealerList {
+    padding: 40px;
+  }
+  .dealerList .dealerBlock {
+    flex: 0 0 calc(25% - 20px);
+  }
   .map .headquarters {
     font-size: 2rem;
   }
@@ -1930,7 +1951,7 @@ input::placeholder {
 footer {
   width: 100%;
   background: linear-gradient(#885438, #461D0D);
-  padding: 80px 0;
+  padding: 40px 0;
 }
 footer h3 {
   color: white;
@@ -1993,9 +2014,6 @@ footer .icon {
   padding: 40px;
   max-width: 1600px;
   margin: 0 auto;
-}
-.footerWrap.dealerWrap {
-  flex-direction: column;
 }
 .footerWrap article {
   width: auto;

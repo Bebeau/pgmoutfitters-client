@@ -32,7 +32,7 @@ const DealerList = () => {
     return(
         <>
         <h3>Dealers</h3>
-        <div className="footerWrap dealerWrap">
+        <div className="dealerWrap">
             <div className="map">
                 <div className="headquarters">★</div>
                 {
