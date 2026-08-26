@@ -3,9 +3,10 @@ import { productPath } from './productPath';
 
 export const SITE_ORIGIN = 'https://pgmoutfitters.com';
 
-export const HOME_TITLE = 'Next Generation Deer Feeders | PGM Outfitters';
+export const HOME_HEADING = 'Next Generation Deer Feeders';
+export const HOME_TITLE = `${HOME_HEADING} | PGM Outfitters`;
 export const HOME_DESCRIPTION =
-  'PGM Outfitters is a manufacturer of next generation deer feeders.';
+  'Shreveport-made deer feeders that run protein and corn on gravity or timer. Built by PGM Outfitters for hunters and dealers.';
 
 export const CART_TITLE = 'Cart | PGM Outfitters';
 export const CART_SUCCESS_TITLE = 'Order Confirmed | PGM Outfitters';
