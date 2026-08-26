@@ -1,0 +1,31 @@
+.dealerPage {
+  color: white;
+  padding: 80px 0 0;
+
+  .dealerHeader {
+    h1 {
+      font-family: "clarendon-wide", serif;
+      letter-spacing: 1px;
+      margin: 0 0 16px;
+    }
+
+    .addressWrap {
+      margin: 0 0 16px;
+    }
+
+    .dealerWebsite {
+      display: inline-block;
+      margin: 0 0 24px;
+      text-decoration: underline;
+    }
+  }
+
+  .dealerMap {
+    display: block;
+    width: 100%;
+    min-height: 360px;
+    margin: 24px 0 0;
+    border: none;
+    border-radius: 5px;
+  }
+}

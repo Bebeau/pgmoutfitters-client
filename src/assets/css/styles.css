@@ -2200,6 +2200,9 @@ input::placeholder {
   color: white;
   margin: 0;
 }
+.dealerList h4 a {
+  color: white;
+}
 .dealerList .addressWrap {
   display: flex;
 }
@@ -2350,6 +2353,32 @@ footer .icon {
   .footerWrap #Logo {
     align-self: flex-start;
   }
+}
+
+.dealerPage {
+  color: white;
+  padding: 80px 0 0;
+}
+.dealerPage .dealerHeader h1 {
+  font-family: "clarendon-wide", serif;
+  letter-spacing: 1px;
+  margin: 0 0 16px;
+}
+.dealerPage .dealerHeader .addressWrap {
+  margin: 0 0 16px;
+}
+.dealerPage .dealerHeader .dealerWebsite {
+  display: inline-block;
+  margin: 0 0 24px;
+  text-decoration: underline;
+}
+.dealerPage .dealerMap {
+  display: block;
+  width: 100%;
+  min-height: 360px;
+  margin: 24px 0 0;
+  border: none;
+  border-radius: 5px;
 }
 
 /*# sourceMappingURL=styles.css.map */

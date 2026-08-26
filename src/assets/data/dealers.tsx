@@ -1,21 +1,25 @@
+export type dealerAddressType = {
+  street: string
+  city: string
+  state: string
+  zip: string
+}
+
 export type dealerType = {
+  slug: string
   name: string
-  address: {
-    street: string
-    city: string
-    state: string
-    zip: string
-  }
+  address: dealerAddressType
   logo: string
-  link: string,
+  link: string
   position: {
-    top: string,
+    top: string
     left: string
   }
 }
 
-export const dealerData = [
+export const dealerData: dealerType[] = [
   {
+    slug: 'renegade-firearms',
     name: 'Renegade Firearms',
     address: {
         street: '3148 MS-1',
@@ -31,6 +35,7 @@ export const dealerData = [
     }
   },
   {
+    slug: 'delta-outdoors',
     name: 'Delta Outdoors',
     address: {
         street: '3755 Hwy 61 North',
@@ -45,7 +50,8 @@ export const dealerData = [
         left: '84'
     }
   },
-   {
+  {
+    slug: 'russell-feed-supply-decatur',
     name: 'Russell Feed & Supply Decatur',
     address: {
         street: '1817 US-287',
@@ -61,6 +67,7 @@ export const dealerData = [
     }
   },
   {
+    slug: 'j-and-l-sales',
     name: 'J and L Sales',
     address: {
         street: '116 Southeast Fifth Street',
@@ -76,6 +83,7 @@ export const dealerData = [
     }
   },
   {
+    slug: 'huntin-store',
     name: `Huntin' Store`,
     address: {
         street: '1306 I-20 West',
@@ -91,6 +99,7 @@ export const dealerData = [
     }
   },
   {
+    slug: 'oklaunion-outdoors',
     name: 'Oklaunion Outdoors',
     address: {
         street: '7357 FM1763',
@@ -106,6 +115,7 @@ export const dealerData = [
     }
   },
   {
+    slug: 'wes-tex-steel',
     name: 'Wes-Tex Steel Inc.',
     address: {
         street: '88029 I-20',
@@ -121,6 +131,7 @@ export const dealerData = [
     }
   },
   {
+    slug: 'potts-feed-store',
     name: 'Potts Feed Store',
     address: {
         street: '119 N Texas Street',

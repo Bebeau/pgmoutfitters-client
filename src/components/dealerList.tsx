@@ -1,6 +1,9 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { dealerData } from "../assets/data/dealers"
 import PinIcon from '../assets/img/icons/png/pin.png'
+import { dealerDirectionsUrl } from '../utils/dealerAddress'
+import { dealerPath } from '../utils/dealerPath'
 
 import { ReactComponent as Map } from '../assets/img/map.svg'
 
@@ -11,7 +14,7 @@ const formatAddress = (address: {
     zip: string
 }) => {
     return (
-        <a href={`https://www.google.com/maps/dir/?api=1&origin=Current+Location&destination=${address.street + ' ' + address.city + ' ' + address.state + ' ' + address.zip}`} target="_blank" rel="noreferrer">
+        <a href={dealerDirectionsUrl(address)} target="_blank" rel="noreferrer">
             <div className="addressWrap">
                 <div className="icon">
                     <img src={PinIcon} alt="" />
@@ -65,7 +68,9 @@ const DealerList = () => {
                             key={`dealer-${index}`}
                             className={activeDealer === index ? 'dealerBlock active' : 'dealerBlock'}
                             onMouseOver={() => setActiveDealer(index)}>
-                                <h4>{dealer.name}</h4>
+                                <h4>
+                                    <Link to={dealerPath(dealer.slug)}>{dealer.name}</Link>
+                                </h4>
                                 {formatAddress(dealer.address)}
                             </div>
                         )
