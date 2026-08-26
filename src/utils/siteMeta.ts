@@ -44,3 +44,13 @@ export const productPageDescription = (name: string, description?: string) => {
 
 export const isAbsoluteHttpUrl = (value?: string) =>
   Boolean(value && /^https?:\/\//i.test(value));
+
+export const isGoogleMapsUrl = (value?: string) =>
+  Boolean(
+    value &&
+      (/^https?:\/\/((www|maps)\.)?google\.[^/]+\/maps(?:[/?#]|$)/i.test(value) ||
+        /^https?:\/\/maps\.app\.goo\.gl\//i.test(value))
+  );
+
+export const dealerWebsiteUrl = (value?: string) =>
+  isAbsoluteHttpUrl(value) && value && !isGoogleMapsUrl(value) ? value : undefined;

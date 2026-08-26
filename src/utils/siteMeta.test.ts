@@ -10,6 +10,7 @@ import {
   dealerCanonical,
   dealerPageDescription,
   dealerPageTitle,
+  dealerWebsiteUrl,
   homeCanonical,
   isAbsoluteHttpUrl,
   productCanonical,
@@ -56,6 +57,22 @@ describe('siteMeta', () => {
     expect(isAbsoluteHttpUrl('/static/media/2n1.png')).toBe(false);
     expect(isAbsoluteHttpUrl('')).toBe(false);
     expect(isAbsoluteHttpUrl(undefined)).toBe(false);
+  });
+
+  test('only treats non-Maps http(s) dealer links as websites', () => {
+    expect(dealerWebsiteUrl('https://www.deltaoutdoors.com/')).toBe(
+      'https://www.deltaoutdoors.com/'
+    );
+    expect(dealerWebsiteUrl('link')).toBeUndefined();
+    expect(dealerWebsiteUrl('')).toBeUndefined();
+    expect(
+      dealerWebsiteUrl(
+        'https://www.google.com/maps/place/Renegade+Firearms/@33.2912839,-91.0389018'
+      )
+    ).toBeUndefined();
+    expect(
+      dealerWebsiteUrl('https://maps.google.com/maps?q=3148+MS-1+Greenville+MS')
+    ).toBeUndefined();
   });
 
   test('home plus every real feeder have unique titles, descriptions, and canonicals', () => {

@@ -28,7 +28,7 @@ export const dealerData: dealerType[] = [
         zip: '38701'
     },
     logo: 'logo',
-    link: 'https://www.google.com/maps/place/Renegade+Firearms/@33.2912839,-91.0389018,744m/data=!3m1!1e3!4m16!1m9!3m8!1s0x862befb64eefa78b:0x9bdc00414036007!2s3148+MS-1,+Greenville,+MS+38701!3b1!8m2!3d33.291455!4d-91.0378546!10e5!16s%2Fg%2F11q4040wst!3m5!1s0x862befb64f1e449d:0xb413806d652b583f!8m2!3d33.291489!4d-91.037824!16s%2Fg%2F11c5bmw36j?entry=ttu&g_ep=EgoyMDI2MDgyMy4wIKXMDSoASAFQAw%3D%3D',
+    link: 'link',
     position: {
         top: '30',
         left: '84'
