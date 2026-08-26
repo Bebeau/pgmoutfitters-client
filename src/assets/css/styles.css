@@ -981,6 +981,7 @@ input::placeholder {
 }
 .cartPage .cartItem {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   gap: 16px;
@@ -1003,7 +1004,7 @@ input::placeholder {
   width: 80px;
 }
 .cartPage .cartItem .productImage img {
-  height: 60px;
+  height: 100px;
   display: block;
 }
 .cartPage .cartItem h4 {
@@ -1019,7 +1020,7 @@ input::placeholder {
 }
 .cartPage .cartItem .removeItem {
   background: none;
-  color: white;
+  color: #f46868;
   padding: 0;
   margin-top: 8px;
   text-transform: uppercase;
@@ -1032,12 +1033,13 @@ input::placeholder {
   opacity: 1;
 }
 .cartPage .cartItem .formGroup {
-  width: 100px;
+  width: 100%;
   display: flex;
   align-items: center;
 }
 .cartPage .cartItem .formGroup .inputWrap {
   position: relative;
+  width: 100%;
 }
 .cartPage .cartItem .formGroup input {
   width: 100%;
@@ -1061,7 +1063,7 @@ input::placeholder {
 .cartPage .cartItem .formGroup .arrow {
   display: block;
   position: absolute;
-  right: -30px;
+  right: 10px;
   background: none;
   padding: 0;
   font-size: 0;
@@ -1081,7 +1083,7 @@ input::placeholder {
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
   border-bottom: 15px solid white;
-  transform: translate(0, -10px);
+  transform: translate(0, calc(-50% - 10px));
 }
 .cartPage .cartItem .formGroup .arrow.down {
   top: 50%;
@@ -1090,7 +1092,7 @@ input::placeholder {
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
   border-top: 15px solid white;
-  transform: translate(0, 0);
+  transform: translate(0, calc(-50% + 10px));
 }
 .cartPage .cartSummary {
   display: flex;
@@ -1127,21 +1129,15 @@ input::placeholder {
 }
 
 @media (min-width: 768px) {
+  .cartPage .cartItem {
+    flex-direction: row;
+  }
   .cartPage .cartItem .formGroup {
     width: auto;
   }
   .cartPage .cartItem .formGroup input {
     width: 100px;
     padding-right: 30px;
-  }
-  .cartPage .cartItem .formGroup .arrow {
-    right: 10px;
-  }
-  .cartPage .cartItem .formGroup .arrow.up {
-    top: 20px;
-  }
-  .cartPage .cartItem .formGroup .arrow.down {
-    top: 30px;
   }
   .cartPage .cartSummary {
     align-items: flex-end;
