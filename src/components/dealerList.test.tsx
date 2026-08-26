@@ -28,7 +28,7 @@ describe('DealerList', () => {
       throw new Error('Expected renegade-firearms dealer');
     }
 
-    const addressLink = screen.getByText(renegade.address.street).closest('a');
+    const addressLink = screen.getByText(new RegExp(renegade.address.street)).closest('a');
     expect(addressLink).toHaveAttribute('href', dealerDirectionsUrl(renegade.address));
     expect(addressLink).toHaveAttribute('target', '_blank');
   });

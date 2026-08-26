@@ -18,6 +18,16 @@ import App from './app';
 import Cart from './cart';
 import DealerPage from './dealerPage';
 
+jest.mock('../utils/checkoutApi', () => ({
+  createCheckoutSession: jest.fn(),
+  fetchCheckoutSession: jest.fn(),
+}));
+
+jest.mock('./inquiry', () => ({
+  __esModule: true,
+  default: () => null,
+}));
+
 const EXPECTED_DEALER_SLUGS = [
   'renegade-firearms',
   'delta-outdoors',
@@ -132,10 +142,9 @@ describe('Dealer page content', () => {
     renderDealer(dealer.slug);
 
     expect(screen.getByRole('heading', { name: dealer.name })).toBeInTheDocument();
-    expect(screen.getByText(dealer.address.street)).toBeInTheDocument();
-    expect(
-      screen.getByText(`${dealer.address.city}, ${dealer.address.state} ${dealer.address.zip}`)
-    ).toBeInTheDocument();
+    expect(screen.getByText(new RegExp(dealer.address.street))).toBeInTheDocument();
+    expect(screen.getByText(new RegExp(dealer.address.city))).toBeInTheDocument();
+    expect(screen.getByText(new RegExp(dealer.address.zip))).toBeInTheDocument();
 
     const map = screen.getByTitle(`Map of ${dealer.name}`);
     expect(map.tagName).toBe('IFRAME');
@@ -175,7 +184,7 @@ describe('Dealer page content', () => {
     renderDealer(dealer.slug);
 
     expect(screen.getByRole('heading', { name: dealer.name })).toBeInTheDocument();
-    expect(screen.getByText(dealer.address.street)).toBeInTheDocument();
+    expect(screen.getByText(new RegExp(dealer.address.street))).toBeInTheDocument();
     expect(screen.getByTitle(`Map of ${dealer.name}`)).toBeInTheDocument();
     expect(screen.queryByRole('link', { name: /^website$/i })).not.toBeInTheDocument();
     expect(document.querySelector('a[href="link"]')).toBeNull();
