@@ -9,6 +9,7 @@ import Cart from './cart';
 import CartSuccess from './cartSuccess';
 import CartLink, { CartLimitNotice } from './cartLink';
 import DealerPage from './dealerPage';
+import ScrollToTop from './scrollToTop';
 import { CartProvider } from '../context/cartContext';
 
 import {productType} from '../assets/data/products';
@@ -48,6 +49,7 @@ const App = (props: sampleData) => {
       )
     }
       <Router>
+        <ScrollToTop />
         <CartLink />
         <CartLimitNotice />
         <Routes>
