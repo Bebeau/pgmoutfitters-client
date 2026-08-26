@@ -133,7 +133,7 @@ describe('Dealer page content', () => {
     window.gtag = jest.fn();
   });
 
-  test('renders address, titled map embed, LocalBusiness JSON-LD, and the feeder listing', () => {
+  test('renders address, titled map embed, LocalBusiness JSON-LD, and the feeder listing', async () => {
     const dealer = dealerData.find((item) => item.slug === 'renegade-firearms');
     if (!dealer) {
       throw new Error('Expected renegade-firearms dealer');
@@ -150,13 +150,16 @@ describe('Dealer page content', () => {
     expect(map.tagName).toBe('IFRAME');
     expect(map).toHaveAttribute('src', dealerMapsEmbedUrl(dealer.address));
 
+    await waitFor(() => {
+      expect(jsonLd()).not.toBeNull();
+    });
+
     const data = jsonLd();
     expect(data).toMatchObject({
       '@context': 'https://schema.org',
       '@type': 'LocalBusiness',
       name: dealer.name,
       url: dealerCanonical(dealer.slug),
-      website: dealer.link,
       address: {
         '@type': 'PostalAddress',
         streetAddress: dealer.address.street,
@@ -165,6 +168,8 @@ describe('Dealer page content', () => {
         postalCode: dealer.address.zip,
       },
     });
+    expect(data).not.toHaveProperty('website');
+    expect(data).not.toHaveProperty('sameAs');
 
     expect(screen.getAllByRole('button', { name: /add to cart/i }).length).toBe(
       productData.length
@@ -175,7 +180,27 @@ describe('Dealer page content', () => {
     });
   });
 
-  test("omits the website control for Huntin' Store while keeping address and map", () => {
+  test('omits the Website anchor for Renegade Firearms because its link is not a shop site', async () => {
+    const dealer = dealerData.find((item) => item.slug === 'renegade-firearms');
+    if (!dealer) {
+      throw new Error('Expected renegade-firearms dealer');
+    }
+
+    renderDealer(dealer.slug);
+
+    expect(screen.getByRole('heading', { name: dealer.name })).toBeInTheDocument();
+    expect(screen.getByTitle(`Map of ${dealer.name}`)).toBeInTheDocument();
+    expect(screen.queryByRole('link', { name: /^website$/i })).not.toBeInTheDocument();
+    expect(document.querySelector('a[href="link"]')).toBeNull();
+
+    await waitFor(() => {
+      expect(jsonLd()).not.toBeNull();
+    });
+    expect(jsonLd()?.website).toBeUndefined();
+    expect(jsonLd()?.sameAs).toBeUndefined();
+  });
+
+  test("omits the website control for Huntin' Store while keeping address and map", async () => {
     const dealer = dealerData.find((item) => item.slug === 'huntin-store');
     if (!dealer) {
       throw new Error('Expected huntin-store dealer');
@@ -188,6 +213,31 @@ describe('Dealer page content', () => {
     expect(screen.getByTitle(`Map of ${dealer.name}`)).toBeInTheDocument();
     expect(screen.queryByRole('link', { name: /^website$/i })).not.toBeInTheDocument();
     expect(document.querySelector('a[href="link"]')).toBeNull();
+
+    await waitFor(() => {
+      expect(jsonLd()).not.toBeNull();
+    });
+    expect(jsonLd()?.website).toBeUndefined();
+    expect(jsonLd()?.sameAs).toBeUndefined();
+  });
+
+  test('puts a real dealer website on sameAs and the Website control', async () => {
+    const dealer = dealerData.find((item) => item.slug === 'delta-outdoors');
+    if (!dealer) {
+      throw new Error('Expected delta-outdoors dealer');
+    }
+
+    renderDealer(dealer.slug);
+
+    expect(screen.getByRole('link', { name: /^website$/i })).toHaveAttribute(
+      'href',
+      dealer.link
+    );
+
+    await waitFor(() => {
+      expect(jsonLd()?.sameAs).toBe(dealer.link);
+    });
+    expect(jsonLd()?.url).toBe(dealerCanonical(dealer.slug));
     expect(jsonLd()?.website).toBeUndefined();
   });
 

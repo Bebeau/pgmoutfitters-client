@@ -1,15 +1,15 @@
 import { useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useParams } from 'react-router-dom';
 import { dealerData } from '../assets/data/dealers';
 import { productType } from '../assets/data/products';
-import PinIcon from '../assets/img/icons/png/pin.png';
 import {
   dealerCanonical,
   dealerPageDescription,
   dealerPageTitle,
-  isAbsoluteHttpUrl,
+  dealerWebsiteUrl,
 } from '../utils/siteMeta';
-import { dealerDirectionsUrl, dealerMapsEmbedUrl } from '../utils/dealerAddress';
+import DealerHeader from './dealerHeader';
 import DealerNotFound from './dealerNotFound';
 import PageHelmet from './pageHelmet';
 import ProductListing from './productListing';
@@ -22,7 +22,7 @@ type dealerPageType = {
 const DealerPage = (props: dealerPageType) => {
   const { slug } = useParams();
   const dealer = dealerData.find((item) => item.slug === slug);
-  const website = dealer && isAbsoluteHttpUrl(dealer.link) ? dealer.link : undefined;
+  const website = dealer ? dealerWebsiteUrl(dealer.link) : undefined;
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -54,53 +54,16 @@ const DealerPage = (props: dealerPageType) => {
   };
 
   if (website) {
-    jsonLd.website = website;
+    jsonLd.sameAs = website;
   }
 
   return (
     <div className="dealerPage">
       <PageHelmet title={title} description={description} canonical={canonical} />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      <div className="dealerHeader contentWrap">
-        <h1>{dealer.name}</h1>
-        <a
-          href={dealerDirectionsUrl(dealer.address)}
-          target="_blank"
-          rel="noreferrer"
-        >
-          <div className="addressWrap">
-            <div className="icon">
-              <img src={PinIcon} alt="" />
-            </div>
-            <address>
-              {dealer.address.street}
-              <br />
-              {dealer.address.city}, {dealer.address.state} {dealer.address.zip}
-            </address>
-          </div>
-        </a>
-        {website ? (
-          <a
-            className="dealerWebsite"
-            href={website}
-            target="_blank"
-            rel="noreferrer"
-          >
-            Website
-          </a>
-        ) : null}
-        <iframe
-          className="dealerMap"
-          title={`Map of ${dealer.name}`}
-          src={dealerMapsEmbedUrl(dealer.address)}
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-          allowFullScreen
-        />
-      </div>
+      <Helmet>
+        <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
+      </Helmet>
+      <DealerHeader dealer={dealer} />
       <ProductListing
         openInquiry={props.openInquiry}
         products={props.productData}

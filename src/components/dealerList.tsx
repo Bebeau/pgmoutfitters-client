@@ -1,33 +1,10 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { dealerData } from "../assets/data/dealers"
-import PinIcon from '../assets/img/icons/png/pin.png'
-import { dealerDirectionsUrl } from '../utils/dealerAddress'
 import { dealerPath } from '../utils/dealerPath'
+import DealerAddressLink from './dealerAddressLink'
 
 import { ReactComponent as Map } from '../assets/img/map.svg'
-
-const formatAddress = (address: {
-    street: string,
-    city: string,
-    state: string,
-    zip: string
-}) => {
-    return (
-        <a href={dealerDirectionsUrl(address)} target="_blank" rel="noreferrer">
-            <div className="addressWrap">
-                <div className="icon">
-                    <img src={PinIcon} alt="" />
-                </div>
-                <address>
-                    {address.street}
-                    <br />
-                    {address.city}, {address.state} {address.zip}
-                </address>
-            </div>
-        </a>
-    )
-}
 
 const DealerList = () => {
     const [activeDealer, setActiveDealer] = useState(0)
@@ -71,7 +48,7 @@ const DealerList = () => {
                                 <h4>
                                     <Link to={dealerPath(dealer.slug)}>{dealer.name}</Link>
                                 </h4>
-                                {formatAddress(dealer.address)}
+                                <DealerAddressLink address={dealer.address} />
                             </div>
                         )
                     })
