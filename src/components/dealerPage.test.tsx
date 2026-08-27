@@ -259,7 +259,7 @@ describe('Dealer page content', () => {
 });
 
 describe('Dealer sitemap', () => {
-  test('includes the eight known dealer URLs and omits cart, success, and unknown slugs', () => {
+  test('includes the nine known dealer URLs including feed-garden-store and omits cart, success, and unknown slugs', () => {
     const xml = fs.readFileSync(path.join(__dirname, '../../public/sitemap.xml'), 'utf8');
 
     EXPECTED_DEALER_SLUGS.forEach((slug) => {
