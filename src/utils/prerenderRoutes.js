@@ -17,6 +17,7 @@ const PRODUCT_SLUGS = [
 const DEALER_SLUGS = [
   'renegade-firearms',
   'delta-outdoors',
+  'feed-garden-store',
   'russell-feed-supply-decatur',
   'j-and-l-sales',
   'huntin-store',
