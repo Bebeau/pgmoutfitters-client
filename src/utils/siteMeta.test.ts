@@ -143,6 +143,7 @@ describe('siteMeta', () => {
     expect(new Set(titles).size).toBe(titles.length);
     expect(new Set(descriptions).size).toBe(descriptions.length);
     expect(new Set(canonicals).size).toBe(canonicals.length);
-    expect(dealerData).toHaveLength(8);
+    expect(dealerData.map((dealer) => dealer.slug)).toContain('feed-garden-store');
+    expect(dealerData).toHaveLength(9);
   });
 });
