@@ -2211,6 +2211,8 @@ input::placeholder {
 .dealerList {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
   flex-wrap: wrap;
   gap: 0;
   max-width: 1200px;
@@ -2342,10 +2344,6 @@ footer .icon {
   flex: 1 0 auto;
   font-size: 1.2rem;
   font-style: normal;
-  transition: 0.3s all ease-in-out;
-}
-.addressWrap address:hover {
-  color: white;
   transition: 0.3s all ease-in-out;
 }
 
