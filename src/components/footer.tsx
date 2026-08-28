@@ -44,6 +44,10 @@ const Footer = (props: any) => {
                             </div>
                             <span>sales@pgmoutfitters.com</span>
                         </a>
+                        <nav className="legalLinks" aria-label="Legal">
+                            <Link to="/terms">Terms of Use</Link>
+                            <Link to="/privacy">Privacy Policy</Link>
+                        </nav>
                     </section>
                 {/* </article> */}
             </div>

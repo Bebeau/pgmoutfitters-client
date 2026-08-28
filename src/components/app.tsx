@@ -9,6 +9,8 @@ import Cart from './cart';
 import CartSuccess from './cartSuccess';
 import CartLink, { CartLimitNotice } from './cartLink';
 import DealerPage from './dealerPage';
+import Terms from './terms';
+import Privacy from './privacy';
 import ScrollToTop from './scrollToTop';
 import { CartProvider } from '../context/cartContext';
 
@@ -103,6 +105,22 @@ const App = (props: sampleData) => {
                 <DealerPage
                   productData={props.productData}
                 />
+              </DismissLoader>
+            }
+          />
+          <Route
+            path="/terms"
+            element={
+              <DismissLoader setIsLoading={setIsLoading}>
+                <Terms />
+              </DismissLoader>
+            }
+          />
+          <Route
+            path="/privacy"
+            element={
+              <DismissLoader setIsLoading={setIsLoading}>
+                <Privacy />
               </DismissLoader>
             }
           />

@@ -1155,6 +1155,51 @@ input::placeholder {
     width: auto;
   }
 }
+.legalPage {
+  color: white;
+  min-height: 60vh;
+  padding: 80px 0 40px;
+}
+.legalPage h1 {
+  font-family: "new-frank", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0 0 10px;
+}
+.legalPage .legalUpdated {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 1rem;
+  margin: 0 0 30px;
+}
+.legalPage article {
+  max-width: 800px;
+}
+.legalPage article p,
+.legalPage article li {
+  font-size: 1.2rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.75);
+}
+.legalPage article p {
+  margin: 0 0 16px;
+}
+.legalPage article h2 {
+  font-family: "new-frank", sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 32px 0 12px;
+  color: white;
+}
+.legalPage article ul {
+  margin: 0 0 16px;
+  padding-left: 1.4em;
+}
+.legalPage article li {
+  margin-bottom: 8px;
+}
+
 #productPage h2 {
   text-align: center;
   font-size: 2rem;
@@ -2368,6 +2413,20 @@ footer .icon {
 .contactWrap a.cart {
   text-transform: uppercase;
   letter-spacing: 1px;
+}
+.contactWrap .legalLinks {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 16px;
+  margin-top: 4px;
+  font-size: 0.95rem;
+}
+.contactWrap .legalLinks a {
+  display: inline;
+  margin-bottom: 0;
+  color: rgba(255, 255, 255, 0.75);
 }
 
 .footerWrap {

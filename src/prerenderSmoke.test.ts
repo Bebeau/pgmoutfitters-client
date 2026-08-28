@@ -6,6 +6,8 @@ import {
   HOME_DESCRIPTION,
   HOME_HEADING,
   HOME_TITLE,
+  PRIVACY_TITLE,
+  TERMS_TITLE,
   dealerCanonical,
   dealerPageDescription,
   dealerPageTitle,
@@ -21,10 +23,14 @@ const buildDir = path.join(__dirname, '../build');
 const homeFile = path.join(buildDir, 'index.html');
 const feederFile = path.join(buildDir, 'deer-feeders/5-n-1/index.html');
 const dealerFile = path.join(buildDir, 'dealers/delta-outdoors/index.html');
+const termsFile = path.join(buildDir, 'terms/index.html');
+const privacyFile = path.join(buildDir, 'privacy/index.html');
 const hasBuiltHtml =
   fs.existsSync(homeFile) && fs.existsSync(feederFile) && fs.existsSync(dealerFile);
+const hasLegalHtml = fs.existsSync(termsFile) && fs.existsSync(privacyFile);
 
 const describeBuilt = hasBuiltHtml ? describe : describe.skip;
+const describeLegalBuilt = hasLegalHtml ? describe : describe.skip;
 
 describeBuilt('built prerendered HTML smoke', () => {
   test('homepage, one feeder, and one dealer contain their own titles', () => {
@@ -65,5 +71,18 @@ describeBuilt('built prerendered HTML smoke', () => {
       canonical: dealerCanonical(dealer.slug),
       contentIncludes: [dealer.name],
     });
+  });
+});
+
+describeLegalBuilt('built prerendered legal HTML smoke', () => {
+  test('terms and privacy contain their own titles', () => {
+    const termsHtml = fs.readFileSync(termsFile, 'utf8');
+    const privacyHtml = fs.readFileSync(privacyFile, 'utf8');
+
+    expect(getTitle(termsHtml)).toBe(TERMS_TITLE);
+    expect(getTitle(privacyHtml)).toBe(PRIVACY_TITLE);
+    expect(getTitle(termsHtml)).not.toBe(HOME_TITLE);
+    expect(getTitle(privacyHtml)).not.toBe(HOME_TITLE);
+    expect(getTitle(privacyHtml)).not.toBe(getTitle(termsHtml));
   });
 });

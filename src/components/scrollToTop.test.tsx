@@ -9,6 +9,7 @@ import DealerPage from './dealerPage';
 import HomeHeading from './homeHeading';
 import Product from './product';
 import ScrollToTop from './scrollToTop';
+import Terms from './terms';
 
 const renderAt = (path: string) =>
   render(
@@ -30,6 +31,8 @@ const renderAt = (path: string) =>
             />
             <Route path="/dealers/:slug" element={<DealerPage productData={productData} />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/privacy" element={<Privacy />} />
           </Routes>
         </MemoryRouter>
       </CartProvider>
@@ -82,6 +85,14 @@ describe('ScrollToTop', () => {
 
     expect(window.scrollTo).toHaveBeenCalledWith(0, 0);
     const heading = screen.getByRole('heading', { level: 1, name: /^cart$/i });
+    expect(document.activeElement).toBe(heading);
+  });
+
+  test('scrolls to top and focuses the terms H1', () => {
+    renderAt('/terms');
+
+    expect(window.scrollTo).toHaveBeenCalledWith(0, 0);
+    const heading = screen.getByRole('heading', { level: 1, name: 'Terms of Use' });
     expect(document.activeElement).toBe(heading);
   });
 });
