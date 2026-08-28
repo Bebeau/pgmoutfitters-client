@@ -166,7 +166,7 @@ export const privacyDocument: LegalDocument = {
           type: 'list',
           items: [
             'Stripe, to process payment.',
-            'Email delivery, to send the order summary to you and to kyle@cltdev.com, precisiongear@bellsouth.net, and sales@pgmoutfitters.com.',
+            'Email delivery, to send the order summary to you and to sales@pgmoutfitters.com.',
             'Service providers who host the Site or database, only as needed to run the business.',
             'Law enforcement or others if required by law.',
           ],

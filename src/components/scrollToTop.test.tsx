@@ -96,4 +96,12 @@ describe('ScrollToTop', () => {
     const heading = screen.getByRole('heading', { level: 1, name: 'Terms of Use' });
     expect(document.activeElement).toBe(heading);
   });
+
+  test('scrolls to top and focuses the privacy H1', () => {
+    renderAt('/privacy');
+
+    expect(window.scrollTo).toHaveBeenCalledWith(0, 0);
+    const heading = screen.getByRole('heading', { level: 1, name: 'Privacy Policy' });
+    expect(document.activeElement).toBe(heading);
+  });
 });

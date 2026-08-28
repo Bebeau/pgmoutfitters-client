@@ -3,6 +3,7 @@ import path from 'path';
 import { render, screen, waitFor } from '@testing-library/react';
 import { HelmetProvider } from 'react-helmet-async';
 import { MemoryRouter } from 'react-router-dom';
+import { LEGAL_LAST_UPDATED } from '../assets/data/legal';
 import { productData } from '../assets/data/products';
 import {
   DEFAULT_OG_IMAGE,
@@ -73,7 +74,7 @@ describe('Legal pages helmet and copy', () => {
     const headings = container.querySelectorAll('h1');
     expect(headings).toHaveLength(1);
     expect(screen.getByRole('heading', { level: 1, name: 'Terms of Use' })).toBeInTheDocument();
-    expect(screen.getByText('Last updated: August 28, 2026')).toBeInTheDocument();
+    expect(screen.getByText(`Last updated: ${LEGAL_LAST_UPDATED}`)).toBeInTheDocument();
     expect(
       screen.getByText(/These Terms of Use \("Terms"\) govern your use of pgmoutfitters.com/)
     ).toBeInTheDocument();
@@ -92,16 +93,18 @@ describe('Legal pages helmet and copy', () => {
     const headings = container.querySelectorAll('h1');
     expect(headings).toHaveLength(1);
     expect(screen.getByRole('heading', { level: 1, name: 'Privacy Policy' })).toBeInTheDocument();
-    expect(screen.getByText('Last updated: August 28, 2026')).toBeInTheDocument();
+    expect(screen.getByText(`Last updated: ${LEGAL_LAST_UPDATED}`)).toBeInTheDocument();
     expect(
       screen.getByText(/This Privacy Policy explains how PGM Outfitters/)
     ).toBeInTheDocument();
     expect(screen.getByText(/We do not sell your personal information/)).toBeInTheDocument();
     expect(
       screen.getByText(
-        'Email delivery, to send the order summary to you and to kyle@cltdev.com, precisiongear@bellsouth.net, and sales@pgmoutfitters.com.'
+        'Email delivery, to send the order summary to you and to sales@pgmoutfitters.com.'
       )
     ).toBeInTheDocument();
+    expect(screen.queryByText(/kyle@cltdev\.com/)).not.toBeInTheDocument();
+    expect(screen.queryByText(/precisiongear@bellsouth\.net/)).not.toBeInTheDocument();
   });
 });
 

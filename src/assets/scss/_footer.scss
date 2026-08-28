@@ -69,6 +69,11 @@ footer {
       display: inline;
       margin-bottom: 0;
       color: rgba(255, 255, 255, 0.75);
+      text-decoration: underline;
+      &:hover,
+      &:focus-visible {
+        color: white;
+      }
     }
   }
 }

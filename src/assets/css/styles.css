@@ -2431,6 +2431,10 @@ footer .icon {
   display: inline;
   margin-bottom: 0;
   color: rgba(255, 255, 255, 0.75);
+  text-decoration: underline;
+}
+.contactWrap .legalLinks a:hover, .contactWrap .legalLinks a:focus-visible {
+  color: white;
 }
 
 .footerWrap {
