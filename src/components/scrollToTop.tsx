@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 export const PRIMARY_HEADING_SELECTOR =
-  '.homeHeading h1, #productPage .desc h2, .dealerPage h1, .cartPage h1';
+  '.homeHeading h1, #productPage .desc h2, .dealerPage h1, .cartPage h1, .legalPage h1';
 
 const focusPrimaryHeading = () => {
   const heading = document.querySelector(PRIMARY_HEADING_SELECTOR) as HTMLElement | null;

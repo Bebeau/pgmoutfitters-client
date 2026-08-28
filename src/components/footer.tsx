@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/iframe-has-title */
 import DealerList from './dealerList';
+import LegalLinks from './legalLinks';
 import { Link } from 'react-router-dom';
 import {ReactComponent as Logo} from '../assets/img/logo.svg';
 
@@ -44,6 +45,7 @@ const Footer = (props: any) => {
                             </div>
                             <span>sales@pgmoutfitters.com</span>
                         </a>
+                        <LegalLinks />
                     </section>
                 {/* </article> */}
             </div>

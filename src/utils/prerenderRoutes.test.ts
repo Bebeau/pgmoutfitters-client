@@ -34,6 +34,8 @@ describe('prerender route list', () => {
     expect(paths[0]).toBe('/');
     expect(paths).toEqual([
       '/',
+      '/terms',
+      '/privacy',
       ...productData.map((product) => `/deer-feeders/${product.slug}`),
       ...dealerData.map((dealer) => `/dealers/${dealer.slug}`),
     ]);
@@ -41,9 +43,11 @@ describe('prerender route list', () => {
       expect(paths).not.toContain(skipped);
     });
     expect(paths.join(' ')).not.toMatch(/inquiry/);
+    expect(paths).not.toContain('/cart');
+    expect(paths).not.toContain('/checkout/success');
     expect(paths).not.toContain('/deer-feeders/not-a-real-feeder');
     expect(paths).not.toContain('/dealers/not-a-real-dealer');
-    expect(paths).toHaveLength(1 + productData.length + dealerData.length);
+    expect(paths).toHaveLength(3 + productData.length + dealerData.length);
   });
 });
 

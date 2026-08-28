@@ -5,16 +5,23 @@ import { productPath } from './productPath';
 import {
   DEFAULT_OG_IMAGE,
   DEFAULT_TWITTER_IMAGE,
+  CART_TITLE,
   HOME_DESCRIPTION,
   HOME_HEADING,
   HOME_TITLE,
+  PRIVACY_DESCRIPTION,
+  PRIVACY_TITLE,
+  TERMS_DESCRIPTION,
+  TERMS_TITLE,
   dealerCanonical,
   dealerPageDescription,
   dealerPageTitle,
   dealerWebsiteUrl,
   homeCanonical,
   isAbsoluteHttpUrl,
+  privacyCanonical,
   productCanonical,
+  termsCanonical,
   productPageDescription,
   productPageTitle,
 } from './siteMeta';
@@ -145,5 +152,25 @@ describe('siteMeta', () => {
     expect(new Set(canonicals).size).toBe(canonicals.length);
     expect(dealerData.map((dealer) => dealer.slug)).toContain('feed-garden-store');
     expect(dealerData).toHaveLength(9);
+  });
+
+  test('legal titles, descriptions, and canonicals are distinct from home, cart, and each other', () => {
+    const titles = [HOME_TITLE, CART_TITLE, TERMS_TITLE, PRIVACY_TITLE];
+    const descriptions = [HOME_DESCRIPTION, TERMS_DESCRIPTION, PRIVACY_DESCRIPTION];
+    const canonicals = [homeCanonical(), termsCanonical(), privacyCanonical()];
+
+    expect(TERMS_TITLE).toBe('Terms of Use | PGM Outfitters');
+    expect(PRIVACY_TITLE).toBe('Privacy Policy | PGM Outfitters');
+    expect(TERMS_DESCRIPTION).toBe(
+      'Terms of use for pgmoutfitters.com, including pickup-only deer feeder orders at 908 Joseph St, Shreveport, LA.'
+    );
+    expect(PRIVACY_DESCRIPTION).toBe(
+      'How PGM Outfitters collects and uses information from inquiries, checkout, and the website.'
+    );
+    expect(termsCanonical()).toBe('https://pgmoutfitters.com/terms');
+    expect(privacyCanonical()).toBe('https://pgmoutfitters.com/privacy');
+    expect(new Set(titles).size).toBe(titles.length);
+    expect(new Set(descriptions).size).toBe(descriptions.length);
+    expect(new Set(canonicals).size).toBe(canonicals.length);
   });
 });

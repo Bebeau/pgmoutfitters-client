@@ -1,0 +1,57 @@
+.legalPage {
+  color: white;
+  min-height: 60vh;
+  padding: 80px 0 40px;
+
+  h1 {
+    font-family: "new-frank", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0 0 10px;
+    &:active,
+    &:focus:not(:focus-visible) {
+      outline: none;
+      box-shadow: none;
+    }
+  }
+
+  .legalUpdated {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1rem;
+    margin: 0 0 30px;
+  }
+
+  article {
+    max-width: 800px;
+
+    p,
+    li {
+      font-size: 1.2rem;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    p {
+      margin: 0 0 16px;
+    }
+
+    h2 {
+      font-family: "new-frank", sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin: 32px 0 12px;
+      color: white;
+    }
+
+    ul {
+      margin: 0 0 16px;
+      padding-left: 1.4em;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+  }
+}
