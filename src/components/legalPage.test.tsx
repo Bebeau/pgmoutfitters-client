@@ -55,7 +55,7 @@ const expectHelmet = async (
   expect(metaContent('meta[name="twitter:title"]')).toBe(title);
   expect(metaContent('meta[name="twitter:description"]')).toBe(description);
   expect(metaContent('meta[name="twitter:image:src"]')).toBe(DEFAULT_TWITTER_IMAGE);
-  expect(metaContent('meta[name="robots"]')).toBeNull();
+  expect(document.head.querySelector('meta[name="robots"]')).toBeNull();
 };
 
 describe('Legal pages helmet and copy', () => {

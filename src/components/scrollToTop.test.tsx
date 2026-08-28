@@ -7,6 +7,7 @@ import { CartProvider } from '../context/cartContext';
 import Cart from './cart';
 import DealerPage from './dealerPage';
 import HomeHeading from './homeHeading';
+import Privacy from './privacy';
 import Product from './product';
 import ScrollToTop from './scrollToTop';
 import Terms from './terms';
