@@ -1166,6 +1166,10 @@ input::placeholder {
   letter-spacing: 1px;
   margin: 0 0 10px;
 }
+.legalPage h1:active, .legalPage h1:focus:not(:focus-visible) {
+  outline: none;
+  box-shadow: none;
+}
 .legalPage .legalUpdated {
   color: rgba(255, 255, 255, 0.5);
   font-size: 1rem;

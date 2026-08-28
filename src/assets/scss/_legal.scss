@@ -8,6 +8,11 @@
     text-transform: uppercase;
     letter-spacing: 1px;
     margin: 0 0 10px;
+    &:active,
+    &:focus:not(:focus-visible) {
+      outline: none;
+      box-shadow: none;
+    }
   }
 
   .legalUpdated {
