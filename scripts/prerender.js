@@ -8,6 +8,7 @@ const { assertDistinctPageTitles, assertPrerenderedPage, getTitle } = require('.
 const BUILD_DIR = path.join(__dirname, '..', 'build');
 const HOST = '127.0.0.1';
 const MIME = {
+  '.avif': 'image/avif',
   '.css': 'text/css; charset=utf-8',
   '.gif': 'image/gif',
   '.html': 'text/html; charset=utf-8',
