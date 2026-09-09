@@ -185,6 +185,8 @@
             margin: 0 auto;
             display: block;
             aspect-ratio: 1/1;
+            width: auto;
+            height: auto;
           }
         }
       }
@@ -213,11 +215,17 @@
       align-items: center;
       img {
         max-width: 80%;
+        height: auto;
       }
     }
     .camo {
       aspect-ratio: 1;
       background: url('../img/camo.jpg') no-repeat scroll center / cover;
+      background-image: image-set(
+        url('../img/camo.avif') type('image/avif'),
+        url('../img/camo.webp') type('image/webp'),
+        url('../img/camo.jpg') type('image/jpeg')
+      );
     }
     &.viewPort {
       flex-direction: column-reverse;
@@ -313,6 +321,8 @@
     img {
       max-width: 100%;
       max-height: 800px;
+      width: auto;
+      height: auto;
     }
     .ctaGroup {
       max-width: 300px;
@@ -346,6 +356,7 @@
       }
       img {
         max-width: 60%;
+        height: auto;
       }
       h4 {
         margin-top: 40px;
@@ -370,6 +381,7 @@
       }
       img {
         max-width: 80%;
+        height: auto;
       }
     }
   }

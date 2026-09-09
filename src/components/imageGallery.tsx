@@ -1,5 +1,7 @@
 import React, {useState, useRef} from 'react';
 import {productImage} from '../assets/data/products';
+import { IMAGE_SIZES } from '../utils/responsiveImage';
+import ResponsiveImage from './responsiveImage';
 
 type imageGalleryType = {
   photos: productImage[],
@@ -27,7 +29,7 @@ const ImageGallery = (props: imageGalleryType) => {
         {props.photos.map((item: any, index: number) => {
           return (
             <div key={index} className="image" onClick={() => handleImageClick(item)}>
-              <img src={item.thumb} alt='' />
+              <ResponsiveImage src={item.thumb} alt='' sizes={IMAGE_SIZES.galleryThumb} lazy />
             </div>
           );
         })}
@@ -36,7 +38,7 @@ const ImageGallery = (props: imageGalleryType) => {
         <button className="closeModal" onClick={handleModalClose}></button>
         <div className="imageWrap">
           <div className="featureImage">
-            <img src={selected.full} alt='' />
+            <ResponsiveImage src={selected.full} alt='' sizes={IMAGE_SIZES.galleryFull} lazy={false} />
           </div>
           <div className="copy">
             <div>
@@ -47,7 +49,7 @@ const ImageGallery = (props: imageGalleryType) => {
               {props.photos.map((item: any, index: number) => {
                 return (
                   <div key={index} className="image" onClick={() => handleImageClick(item)}>
-                    <img src={item.thumb} alt='' />
+                    <ResponsiveImage src={item.thumb} alt='' sizes={IMAGE_SIZES.galleryThumb} lazy />
                   </div>
                 );
               })}

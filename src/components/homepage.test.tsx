@@ -67,4 +67,32 @@ describe('Homepage helmet', () => {
     expect(container.querySelector('.testimonials h3')).toBeNull();
     expect(container.querySelectorAll('.productCard h4').length).toBeGreaterThan(0);
   });
+
+  test('eager-loads the first listing image and lazy-loads the rest', () => {
+    const { container } = renderHomepage();
+    const cards = container.querySelectorAll('.productCard');
+    expect(cards.length).toBeGreaterThan(1);
+
+    const firstImg = cards[0].querySelector('img');
+    const laterImg = cards[1].querySelector('img');
+
+    expect(firstImg).toHaveAttribute('loading', 'eager');
+    expect(firstImg).toHaveAttribute('fetchpriority', 'high');
+    expect(firstImg).toHaveAttribute('width');
+    expect(firstImg).toHaveAttribute('height');
+    expect(cards[0].querySelector('source[type="image/avif"]')).not.toBeNull();
+
+    expect(laterImg).toHaveAttribute('loading', 'lazy');
+    expect(laterImg).not.toHaveAttribute('fetchpriority');
+  });
+
+  test('lazy-loads the below-fold company portrait', () => {
+    const { container } = renderHomepage();
+    const moose = container.querySelector('.companyImage img');
+    expect(moose).toHaveAttribute('loading', 'lazy');
+    expect(moose).toHaveAttribute('alt', 'Michael Lex');
+    expect(moose).toHaveAttribute('width');
+    expect(moose).toHaveAttribute('height');
+  });
 });
+

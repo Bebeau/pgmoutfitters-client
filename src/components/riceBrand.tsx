@@ -1,12 +1,14 @@
 import React from 'react';
 
 import riceBrand from '../assets/img/tree-hugger/massxl-feed.png';
+import { IMAGE_SIZES } from '../utils/responsiveImage';
+import ResponsiveImage from './responsiveImage';
 
 const RiceBrand = () => {
   return (
     <div className="block riceBrand">
       <article>
-        <img src={riceBrand} alt='Rice Brand' />
+        <ResponsiveImage src={riceBrand} alt='Rice Brand' sizes={IMAGE_SIZES.riceBrand} lazy />
       </article>
       <article>
         <div className="copy">

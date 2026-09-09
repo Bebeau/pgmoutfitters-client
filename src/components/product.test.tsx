@@ -77,6 +77,16 @@ describe('Product helmet', () => {
     expect(canonical).toBe('https://pgmoutfitters.com/deer-feeders/2-n-1');
     expect(screen.getAllByRole('button', { name: /add to cart/i }).length).toBeGreaterThan(0);
     expect(screen.queryByRole('button', { name: /inquire for purchase/i })).not.toBeInTheDocument();
+
+    const mainImage = document.querySelector('#productPage .about .image img');
+    expect(mainImage).toHaveAttribute('loading', 'eager');
+    expect(mainImage).toHaveAttribute('fetchpriority', 'high');
+    expect(mainImage).toHaveAttribute('width');
+    expect(mainImage).toHaveAttribute('height');
+    expect(document.querySelector('#productPage .about .image source[type="image/avif"]')).not.toBeNull();
+
+    const galleryThumb = document.querySelector('#productPage .imageGallery img');
+    expect(galleryThumb).toHaveAttribute('loading', 'lazy');
   });
 
   test('unknown slugs use ProductNotFound instead of the product layout', async () => {

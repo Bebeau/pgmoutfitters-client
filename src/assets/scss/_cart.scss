@@ -106,6 +106,9 @@
             width: 80px;
             img {
                 height: 100px;
+                width: auto;
+                max-width: 80px;
+                object-fit: contain;
                 display: block;
             }
         }

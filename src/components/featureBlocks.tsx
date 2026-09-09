@@ -4,6 +4,8 @@ import corn from '../assets/img/corn-kernals.png';
 import riceBrand from '../assets/img/rice-brand-feeder.png';
 import solarPanel1 from '../assets/img/solarPanel1.png';
 import solarPanel2 from '../assets/img/solarPanel2.png';
+import { IMAGE_SIZES } from '../utils/responsiveImage';
+import ResponsiveImage from './responsiveImage';
 
 type featureBlockType = {
   name: string;
@@ -33,16 +35,15 @@ const FeatureBlocks = (props: featureBlockType) => {
           </div>
         </article>
         <article className="camoWrap">
-          <img className="camoImage" src={camo} alt='Camo Pattern' />
-          <img 
-            className="cornImage" 
-            src={props.name === 'Mass XL' ? riceBrand : corn} 
-            alt='Corn Feed' 
-            // style={{
-            //   transform: `translateY(${offset * 0.5}px)`,
-            // }}
+          <ResponsiveImage className="camoImage" src={camo} alt='Camo Pattern' sizes={IMAGE_SIZES.feature} lazy />
+          <ResponsiveImage
+            className="cornImage"
+            src={props.name === 'Mass XL' ? riceBrand : corn}
+            alt='Corn Feed'
+            sizes={IMAGE_SIZES.feature}
+            lazy
           />
-          <img className="viewPortImage" src={viewport} alt='Poly Sealed View Port' />
+          <ResponsiveImage className="viewPortImage" src={viewport} alt='Poly Sealed View Port' sizes={IMAGE_SIZES.feature} lazy />
         </article>
       </div>
       {props.name !== 'Covey Cafe' && (
@@ -57,12 +58,12 @@ const FeatureBlocks = (props: featureBlockType) => {
             </div>
             {
               props.name !== 'TreeHugger' && (
-                <img src={solarPanel1} alt='' />
+                <ResponsiveImage src={solarPanel1} alt='' sizes={IMAGE_SIZES.feature} lazy />
               )
             }
             {
               props.name === 'TreeHugger' && (
-                <img src={solarPanel2} alt='' />
+                <ResponsiveImage src={solarPanel2} alt='' sizes={IMAGE_SIZES.feature} lazy />
               )
             }
           </article>

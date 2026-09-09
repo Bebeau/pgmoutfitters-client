@@ -8,6 +8,8 @@ import { createCheckoutSession } from '../utils/checkoutApi';
 import { unwrapCheckoutUrl } from '../utils/checkoutResponse';
 import PageHelmet from './pageHelmet';
 import { CART_TITLE } from '../utils/siteMeta';
+import { IMAGE_SIZES } from '../utils/responsiveImage';
+import ResponsiveImage from './responsiveImage';
 
 const PICKUP_PHONE = '(318) 227-8145';
 const PICKUP_ADDRESS = '908 Joseph St, Shreveport, LA 71107';
@@ -80,7 +82,7 @@ const Cart = () => {
                   <div className="productCopy">
                     <div className="productImage">
                       {product?.image ? (
-                        <img src={product.image} alt={item.name} />
+                        <ResponsiveImage src={product.image} alt={item.name} sizes={IMAGE_SIZES.cart} lazy />
                       ) : null}
                     </div>
                     <div>

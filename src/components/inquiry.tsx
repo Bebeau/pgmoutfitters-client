@@ -5,6 +5,8 @@
     import { ReactComponent as DealerIcon } from '../assets/img/dealer.svg';
 
     import {productType} from '../assets/data/products';
+    import { IMAGE_SIZES } from '../utils/responsiveImage';
+    import ResponsiveImage from './responsiveImage';
 
     import APIUtils from '../utils/APIUtils';
     import PhoneNumeberInput from '@bebeau/phone-number-input';
@@ -222,7 +224,7 @@
 
                     <section className="productCopy">
                         <div className="productImage">
-                            <img src={item.image} alt={item.name} />
+                            <ResponsiveImage src={item.image} alt={item.name} sizes={IMAGE_SIZES.inquiry} lazy />
                         </div>
                         <div>
                             <h4>{item.name}</h4>

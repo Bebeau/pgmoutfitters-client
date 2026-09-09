@@ -1,4 +1,6 @@
 import React from 'react';
+import { IMAGE_SIZES } from '../utils/responsiveImage';
+import ResponsiveImage from './responsiveImage';
 
 type productHeroType = {
   image: string;
@@ -27,7 +29,7 @@ const ProductHero = (props: productHeroType) => {
         </div>
       </div> */}
       <div className={props.name === 'Mass XL' ? "heroImage" : "heroImage pad"}>
-        <img src={props.image} alt={props.name} />
+        <ResponsiveImage src={props.image} alt={props.name} sizes={IMAGE_SIZES.productSpotlight} lazy={false} fetchPriority="high" />
       </div>
     </div>
   )
