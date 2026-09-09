@@ -46,7 +46,7 @@ h4 {
   margin: 0 0 10px;
 }
 
-h5.details {
+.details {
   font-family: "stratum-1-web", sans-serif;
   font-weight: 400;
   font-style: normal;
@@ -55,7 +55,7 @@ h5.details {
   color: rgba(255, 255, 255, 0.5);
   transition: all 0.3s ease-in-out;
 }
-h5.details:after {
+.details:after {
   margin-left: 10px;
   content: "";
   display: inline-block;
@@ -106,7 +106,7 @@ input::placeholder {
 
 .btn {
   color: white;
-  background: #7C8969;
+  background: #6B7759;
   display: block;
   width: 300px;
   margin: 0 auto;
@@ -415,6 +415,8 @@ input::placeholder {
 .testimonials .change {
   width: 50px;
   height: 50px;
+  padding: 0;
+  border: none;
   background: #223047;
   margin: 0 auto 40px;
   border-radius: 9999px;
@@ -491,8 +493,14 @@ input::placeholder {
   margin: 0 auto;
   display: block;
 }
-.productListing .contentWrap .productCard h4 {
+.productListing .contentWrap .productCard h2 {
+  font-family: "clarendon-wide", serif;
+  letter-spacing: 1px;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0 0 10px;
   margin-bottom: 0;
+  color: white;
 }
 .productListing .contentWrap .productCard .price {
   font-size: 1.4rem;
@@ -502,11 +510,11 @@ input::placeholder {
   width: 220px;
   margin-top: 20px;
 }
-.productListing .contentWrap .productCard:hover h5 {
+.productListing .contentWrap .productCard:hover .details {
   color: rgb(255, 255, 255);
   transition: all 0.3s ease-in-out;
 }
-.productListing .contentWrap .productCard:hover h5:after {
+.productListing .contentWrap .productCard:hover .details:after {
   border-left: 10px solid white;
   transform: translate(5px, 0);
   transition: all 0.3s ease-in-out;
@@ -549,7 +557,7 @@ input::placeholder {
   gap: 10px;
   height: 48px;
   padding: 0 16px;
-  background: #7C8969;
+  background: #6B7759;
   color: white;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -975,6 +983,11 @@ footer .icon {
   margin-bottom: -5px;
   aspect-ratio: 1/1;
   overflow: hidden;
+  appearance: none;
+  background: none;
+  border: none;
+  color: inherit;
+  font: inherit;
 }
 #productPage .imageGallery .image img {
   height: 100%;
@@ -1024,7 +1037,7 @@ footer .icon {
 #productPage .imageModal .imageWrap .copy {
   color: white;
 }
-#productPage .imageModal .imageWrap .copy h5 {
+#productPage .imageModal .imageWrap .copy .galleryTitle {
   margin: 20px 0 0;
   font-size: 2rem;
 }
@@ -1033,6 +1046,14 @@ footer .icon {
 }
 #productPage .imageModal .imageWrap .copy .thumbs {
   display: none;
+}
+#productPage .imageModal .imageWrap .copy .thumbs .image {
+  appearance: none;
+  background: none;
+  border: none;
+  color: inherit;
+  font: inherit;
+  padding: 0;
 }
 #productPage .imageModal .imageWrap .copy .thumbs img {
   max-width: 100%;
@@ -1204,8 +1225,13 @@ footer .icon {
   max-width: 60%;
   height: auto;
 }
-#productPage .related .item h4 {
+#productPage .related .item h2 {
+  font-family: "clarendon-wide", serif;
+  letter-spacing: 1px;
+  font-size: 1.4rem;
+  font-weight: 700;
   margin-top: 40px;
+  color: white;
 }
 #productPage .related .item:nth-child(odd) {
   background: rgb(38.3795170961%, 42.4031761465%, 32.4987846378%);
@@ -1781,7 +1807,7 @@ footer .icon {
   object-fit: contain;
   display: block;
 }
-.cartPage .cartItem h4 {
+.cartPage .cartItem h2 {
   margin: 0;
   font-size: 1.1rem;
 }

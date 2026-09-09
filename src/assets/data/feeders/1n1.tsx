@@ -1,7 +1,7 @@
 import feature from '../../img/feeders/1n1/1n1.png';
 import bluePrint from '../../img/feeders/1n1/blueprint.svg';
 import photo1 from '../../img/feeders/woody/photos/1.jpg';
-import photo2 from '../../img/feeders/woody/photos/2.jpg';
+// import photo2 from '../../img/feeders/woody/photos/2.jpg';
 import photo3 from '../../img/feeders/woody/photos/3.jpg';
 import photo4 from '../../img/feeders/woody/photos/4.jpg';
 import photo5 from '../../img/feeders/woody/photos/5.jpg';

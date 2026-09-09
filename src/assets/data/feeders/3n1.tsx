@@ -1,7 +1,7 @@
 import feature from '../../img/feeders/3n1/3n1.png';
 import bluePrint from '../../img/feeders/3n1/blueprint.svg';
 import photo1 from '../../img/feeders/3n1/photos/1.jpg';
-import photo2 from '../../img/feeders/3n1/photos/2.jpg';
+// import photo2 from '../../img/feeders/3n1/photos/2.jpg';
 import photo3 from '../../img/feeders/3n1/photos/3.jpg';
 import photo4 from '../../img/feeders/3n1/photos/4.jpg';
 import photo5 from '../../img/feeders/3n1/photos/5.jpg';
