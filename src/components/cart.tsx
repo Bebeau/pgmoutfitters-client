@@ -87,9 +87,9 @@ const Cart = () => {
                       ) : null}
                     </div>
                     <div>
-                      <h4>
+                      <h2>
                         <Link to={productPath(item.slug)}>{item.name}</Link>
-                      </h4>
+                      </h2>
                       <div className="price">
                         {formatRetailPrice(item.unitPrice)}
                         <span className="lineTotal">
@@ -141,10 +141,10 @@ const Cart = () => {
         )}
 
         <section className="cartSummary">
-          <h4 className="subtotal">
+          <p className="subtotal">
             <span className="label">Subtotal</span>
             {formatRetailPrice(subtotal)}
-          </h4>
+          </p>
           <div className="cartActions">
             {!!items.length && (
               <Link to="/" className="btn outline">

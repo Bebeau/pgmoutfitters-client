@@ -19,5 +19,7 @@ describe('App homepage split', () => {
     expect(document.getElementById('productPage')).toBeNull();
     expect(document.querySelector('.inquiryModal')).toBeNull();
     expect(document.querySelector('.cartLink')).toBeInTheDocument();
+    expect(document.querySelectorAll('main')).toHaveLength(1);
+    expect(document.querySelector('main .homeHeading h1')).toHaveTextContent(HOME_HEADING);
   });
 });

@@ -59,6 +59,7 @@ const App = (props: sampleData) => {
         <CartLink />
         <CartLimitNotice />
         <Suspense fallback={<RouteFallback />}>
+          <main>
           <Routes>
             <Route 
               path="/" 
@@ -129,6 +130,7 @@ const App = (props: sampleData) => {
               }
             />
           </Routes>
+          </main>
         </Suspense>
         <Footer />
       </Router>

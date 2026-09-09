@@ -18,11 +18,11 @@ const relatedProducts = (props: relatedType) => {
             <Link to={productPath(item.slug)} key={index}>
               <ResponsiveImage src={item.image} alt={item.name} sizes={IMAGE_SIZES.related} lazy />
               {item.name === 'Special Ops 2-N-1' || item.name === 'Special Ops 3-N-1' ? (
-                  <h4>Special Ops <span className="break">{item.name.replace('Special Ops ', '')}</span></h4>
+                  <h2>Special Ops <span className="break">{item.name.replace('Special Ops ', '')}</span></h2>
               ) : (
-                  <h4>{item.name}</h4>
+                  <h2>{item.name}</h2>
               )}
-              <h5 className="details">View Details</h5>
+              <span className="details">View Details</span>
             </Link>
           </div>
         );

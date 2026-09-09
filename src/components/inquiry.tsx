@@ -216,7 +216,7 @@
     return (
         <div className={props.showInquiry ? "inquiryModal show" : "inquiryModal"}>
 
-        <button className="closeModal" onClick={() => props.closeInquiry()}></button>
+        <button type="button" className="closeModal" aria-label="Close" onClick={() => props.closeInquiry()}></button>
 
         <section className="inquiryCart">
             {props.productData.map((item: any, index: number) => {

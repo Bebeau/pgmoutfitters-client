@@ -29,6 +29,10 @@ describe('Footer', () => {
       'mailto:sales@pgmoutfitters.com'
     );
 
+    expect(screen.getByRole('link', { name: 'PGM Outfitters home' })).toHaveAttribute(
+      'href',
+      '/'
+    );
     expect(screen.getByRole('link', { name: /cart/i })).toHaveClass('cartLink');
     expect(document.querySelector('footer a[href="/cart"]')).toBeNull();
     expect(document.querySelector('footer a.cart')).toBeNull();

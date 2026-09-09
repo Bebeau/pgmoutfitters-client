@@ -28,14 +28,16 @@ const ResponsiveImage = ({
   const imgHeight = height ?? record?.height;
   const loading = lazy ? 'lazy' : 'eager';
 
+  const priority = fetchPriority && fetchPriority !== 'auto' ? fetchPriority : undefined;
+
   const setPriority = useCallback(
     (node: HTMLImageElement | null) => {
-      if (!node || !fetchPriority || fetchPriority === 'auto') {
+      if (!node || !priority) {
         return;
       }
-      node.setAttribute('fetchpriority', fetchPriority);
+      node.setAttribute('fetchpriority', priority);
     },
-    [fetchPriority]
+    [priority]
   );
 
   const img = (
@@ -50,6 +52,8 @@ const ResponsiveImage = ({
       srcSet={record?.fallbackSrcSet}
       loading={loading}
       decoding="async"
+      fetchpriority={priority}
+      suppressHydrationWarning={Boolean(priority)}
     />
   );
 
