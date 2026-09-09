@@ -97,6 +97,36 @@ const assertProductionAssets = (buildDir = BUILD_DIR) => {
     `Missing inquiry vendor chunk among ${namedChunks.join(', ')}`
   );
 
+  const productCss = cssFiles.find((file) => path.basename(file).startsWith('product.'));
+  const inquiryCss = cssFiles.find((file) => path.basename(file).startsWith('inquiry.'));
+  const mainCss = cssFiles.find((file) => path.basename(file).startsWith('main.'));
+  assert(productCss, 'Missing product CSS chunk');
+  assert(
+    fs.readFileSync(productCss, 'utf8').includes('.closeModal'),
+    'Product CSS must include .closeModal so the gallery X is visible without Inquiry'
+  );
+  assert(
+    inquiryCss && fs.readFileSync(inquiryCss, 'utf8').includes('.closeModal'),
+    'Inquiry CSS should keep .closeModal for the inquiry modal'
+  );
+  assert(
+    mainCss && !fs.readFileSync(mainCss, 'utf8').includes('.closeModal'),
+    'Homepage CSS should not pull gallery/inquiry close-button rules'
+  );
+
+  const productHtml = fs.readFileSync(
+    path.join(buildDir, 'deer-feeders', '2-n-1', 'index.html'),
+    'utf8'
+  );
+  assert(
+    /\/static\/css\/product\.[a-f0-9]+\.chunk\.css/.test(productHtml),
+    '2-n-1 prerender must link the product CSS chunk (gallery close styles)'
+  );
+  assert(
+    !/\/static\/css\/inquiry\./.test(productHtml),
+    '2-n-1 must not load the Inquiry CSS chunk'
+  );
+
   console.log(
     `Production assets: ${jsFiles.length} JS chunks, ${cssFiles.length} CSS chunks, no source maps.`
   );
