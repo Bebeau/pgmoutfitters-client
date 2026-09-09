@@ -10,13 +10,19 @@ import {
   HOME_DESCRIPTION,
   HOME_HEADING,
   HOME_TITLE,
+  PRIVACY_DESCRIPTION,
+  PRIVACY_TITLE,
+  TERMS_DESCRIPTION,
+  TERMS_TITLE,
   dealerCanonical,
   dealerPageDescription,
   dealerPageTitle,
   homeCanonical,
+  privacyCanonical,
   productCanonical,
   productPageDescription,
   productPageTitle,
+  termsCanonical,
 } from './siteMeta';
 
 const {
@@ -85,6 +91,33 @@ describe('prerendered HTML smoke helper', () => {
       { html: homeHtml },
       { html: feederHtml },
       { html: dealerHtml },
+    ]);
+  });
+
+  test('terms and privacy must have their own titles, descriptions, canonicals, and headings', () => {
+    const termsHtml = `<!doctype html><html><head><title>${TERMS_TITLE}</title><meta name="description" content="${TERMS_DESCRIPTION}" /><link rel="canonical" href="${termsCanonical()}" /></head><body><div id="root"><div class="legalPage"><h1>Terms of Use</h1></div></div></body></html>`;
+    const privacyHtml = `<!doctype html><html><head><title>${PRIVACY_TITLE}</title><meta name="description" content="${PRIVACY_DESCRIPTION}" /><link rel="canonical" href="${privacyCanonical()}" /></head><body><div id="root"><div class="legalPage"><h1>Privacy Policy</h1></div></div></body></html>`;
+
+    assertPrerenderedPage(termsHtml, {
+      title: TERMS_TITLE,
+      description: TERMS_DESCRIPTION,
+      canonical: termsCanonical(),
+      contentIncludes: ['Terms of Use'],
+    });
+    assertPrerenderedPage(privacyHtml, {
+      title: PRIVACY_TITLE,
+      description: PRIVACY_DESCRIPTION,
+      canonical: privacyCanonical(),
+      contentIncludes: ['Privacy Policy'],
+    });
+    expect(getTitle(termsHtml)).not.toBe(HOME_TITLE);
+    expect(getTitle(privacyHtml)).not.toBe(HOME_TITLE);
+    assertDistinctPageTitles([
+      { html: homeHtml },
+      { html: feederHtml },
+      { html: dealerHtml },
+      { html: termsHtml },
+      { html: privacyHtml },
     ]);
   });
 

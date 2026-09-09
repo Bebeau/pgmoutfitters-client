@@ -135,6 +135,8 @@ const smokeCheckBuiltFiles = () => {
   const home = fs.readFileSync(path.join(BUILD_DIR, 'index.html'), 'utf8');
   const feeder = fs.readFileSync(path.join(BUILD_DIR, 'deer-feeders', '5-n-1', 'index.html'), 'utf8');
   const dealer = fs.readFileSync(path.join(BUILD_DIR, 'dealers', 'delta-outdoors', 'index.html'), 'utf8');
+  const terms = fs.readFileSync(path.join(BUILD_DIR, 'terms', 'index.html'), 'utf8');
+  const privacy = fs.readFileSync(path.join(BUILD_DIR, 'privacy', 'index.html'), 'utf8');
 
   assertPrerenderedPage(home, {
     title: 'Next Generation Deer Feeders | PGM Outfitters',
@@ -157,12 +159,37 @@ const smokeCheckBuiltFiles = () => {
     canonical: 'https://pgmoutfitters.com/dealers/delta-outdoors',
     contentIncludes: ['Delta Outdoors'],
   });
+  assertPrerenderedPage(terms, {
+    title: 'Terms of Use | PGM Outfitters',
+    description:
+      'Terms of use for pgmoutfitters.com, including pickup-only deer feeder orders at 908 Joseph St, Shreveport, LA.',
+    canonical: 'https://pgmoutfitters.com/terms',
+    contentIncludes: ['Terms of Use'],
+  });
+  assertPrerenderedPage(privacy, {
+    title: 'Privacy Policy | PGM Outfitters',
+    description:
+      'How PGM Outfitters collects and uses information from inquiries, checkout, and the website.',
+    canonical: 'https://pgmoutfitters.com/privacy',
+    contentIncludes: ['Privacy Policy'],
+  });
 
-  assertDistinctPageTitles([{ html: home }, { html: feeder }, { html: dealer }]);
+  assertDistinctPageTitles([
+    { html: home },
+    { html: feeder },
+    { html: dealer },
+    { html: terms },
+    { html: privacy },
+  ]);
   if (getTitle(feeder) === getTitle(home) || getTitle(dealer) === getTitle(home)) {
     throw new Error('Feeder or dealer HTML still has the homepage title');
   }
-  console.log('Prerender smoke: homepage, 5-n-1, and delta-outdoors have distinct titles.');
+  if (getTitle(terms) === getTitle(home) || getTitle(privacy) === getTitle(home)) {
+    throw new Error('Terms or privacy HTML still has the homepage title');
+  }
+  console.log(
+    'Prerender smoke: homepage, 5-n-1, delta-outdoors, terms, and privacy have distinct titles.'
+  );
 };
 
 const main = async () => {
