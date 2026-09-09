@@ -2,6 +2,8 @@ import React from 'react';
 import {productType} from '../assets/data/products';
 import { formatRetailPrice } from '../utils/cartStorage';
 import { useAddToCartNavigate } from '../hooks/useAddToCartNavigate';
+import { IMAGE_SIZES } from '../utils/responsiveImage';
+import ResponsiveImage from './responsiveImage';
 
 type productSpecsType = {
     productInfo: productType,
@@ -27,7 +29,13 @@ const ProductSpecs = (props: productSpecsType) => {
             <div className="about">
                 
                 <div className="image">
-                    <img src={props.productInfo.image} alt='' />
+                    <ResponsiveImage
+                        src={props.productInfo.image}
+                        alt=''
+                        sizes={IMAGE_SIZES.productMain}
+                        lazy={false}
+                        fetchPriority="high"
+                    />
                 </div>
 
                 <div className="desc">

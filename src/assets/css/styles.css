@@ -7,6 +7,10 @@ body {
   font-family: "stratum-1-web", sans-serif;
 }
 
+picture.responsiveImage {
+  display: contents;
+}
+
 a {
   color: white;
   text-decoration: none;
@@ -288,6 +292,7 @@ input::placeholder {
 }
 .company .companyImage img {
   max-width: 100%;
+  height: auto;
   position: relative;
   z-index: 2;
 }
@@ -482,6 +487,8 @@ input::placeholder {
 .productListing .contentWrap .productCard img {
   max-height: 400px;
   max-width: 100%;
+  width: auto;
+  height: auto;
   margin: 0 auto;
   display: block;
 }
@@ -1009,6 +1016,9 @@ input::placeholder {
 }
 .cartPage .cartItem .productImage img {
   height: 100px;
+  width: auto;
+  max-width: 80px;
+  object-fit: contain;
   display: block;
 }
 .cartPage .cartItem h4 {
@@ -1426,10 +1436,12 @@ input::placeholder {
 }
 #productPage .block article img {
   max-width: 80%;
+  height: auto;
 }
 #productPage .block .camo {
   aspect-ratio: 1;
   background: url("../img/camo.jpg") no-repeat scroll center/cover;
+  background-image: image-set(url("../img/camo.avif") type('image/avif'), url("../img/camo.webp") type('image/webp'), url("../img/camo.jpg") type('image/jpeg'));
 }
 #productPage .block.viewPort {
   flex-direction: column-reverse;
@@ -1523,6 +1535,8 @@ input::placeholder {
 #productPage .spotlight img {
   max-width: 100%;
   max-height: 800px;
+  width: auto;
+  height: auto;
 }
 #productPage .spotlight .ctaGroup {
   max-width: 300px;
@@ -1557,6 +1571,7 @@ input::placeholder {
 }
 #productPage .related .item img {
   max-width: 60%;
+  height: auto;
 }
 #productPage .related .item h4 {
   margin-top: 40px;
@@ -1579,6 +1594,7 @@ input::placeholder {
 }
 #productPage .riceBrand article img {
   max-width: 80%;
+  height: auto;
 }
 #productPage .feedOptions {
   background: #223047;

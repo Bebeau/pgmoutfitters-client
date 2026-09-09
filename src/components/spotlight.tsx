@@ -1,6 +1,8 @@
 import React from 'react';
 import { formatRetailPrice } from '../utils/cartStorage';
 import { useAddToCartNavigate } from '../hooks/useAddToCartNavigate';
+import { IMAGE_SIZES } from '../utils/responsiveImage';
+import ResponsiveImage from './responsiveImage';
 
 type spotlightType = {
   image: string;
@@ -24,7 +26,7 @@ const Spotlight = (props: spotlightType) => {
 
   return (
     <div className="spotlight">
-      <img src={props.image} alt={props.name} />
+      <ResponsiveImage src={props.image} alt={props.name} sizes={IMAGE_SIZES.productSpotlight} lazy />
       {props.name === 'Special Ops 2-N-1' || props.name === 'Special Ops 3-N-1' ? (
           <h2>Special Ops <span className="break">{props.name.replace('Special Ops ', '')}</span></h2>
       ) : (

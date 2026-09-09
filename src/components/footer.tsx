@@ -35,13 +35,13 @@ const Footer = (props: any) => {
                     <section className="contactWrap">
                         <a href="tel:3182278145" className="phone">
                             <div className="icon">
-                                <img src={PhoneIcon} alt="" />
+                                <img src={PhoneIcon} alt="" width={12} height={21} />
                             </div>
                             <span>(318) 227-8145</span>
                         </a>
                         <a href="mailto:sales@pgmoutfitters.com" className="email">
                             <div className="icon">
-                                <img src={EmailIcon} alt="" />
+                                <img src={EmailIcon} alt="" width={20} height={16} />
                             </div>
                             <span>sales@pgmoutfitters.com</span>
                         </a>
