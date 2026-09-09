@@ -87,6 +87,7 @@ describe('Product helmet', () => {
 
     const galleryThumb = document.querySelector('#productPage .imageGallery img');
     expect(galleryThumb).toHaveAttribute('loading', 'lazy');
+    expect(document.querySelectorAll('#productPage .related .item').length).toBeGreaterThan(0);
   });
 
   test('gallery close control is present without mounting Inquiry', async () => {
@@ -100,12 +101,14 @@ describe('Product helmet', () => {
     expect(document.querySelector('.inquiryModal')).toBeNull();
     const thumb = document.querySelector('#productPage .imageGallery .image');
     expect(thumb).not.toBeNull();
+    expect(thumb).toHaveAccessibleName();
     await userEvent.click(thumb as HTMLElement);
 
     const modal = document.querySelector('#productPage .imageModal');
     expect(modal).toHaveClass('show');
     const close = modal?.querySelector('button.closeModal');
     expect(close).toBeInTheDocument();
+    expect(close).toHaveAccessibleName('Close');
     expect(close).toHaveTextContent('');
 
     await userEvent.click(close as HTMLElement);

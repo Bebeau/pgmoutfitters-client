@@ -1,5 +1,5 @@
 import React from 'react';
-import { renderHook, act } from '@testing-library/react';
+import { render, renderHook, act } from '@testing-library/react';
 import { CartProvider, useCart } from './cartContext';
 import { CART_STORAGE_KEY, QTY_LIMIT_MESSAGE } from '../utils/cartStorage';
 
@@ -10,6 +10,31 @@ const wrapper = ({ children }: { children: React.ReactNode }) => (
 describe('CartProvider', () => {
   beforeEach(() => {
     window.localStorage.clear();
+  });
+
+  test('keeps the first render empty so prerendered HTML can hydrate', () => {
+    window.localStorage.setItem(
+      CART_STORAGE_KEY,
+      JSON.stringify([{ slug: '2-n-1', name: '2-N-1', qty: 2, unitPrice: 1300 }])
+    );
+
+    let firstCount: number | undefined;
+    const Probe = () => {
+      const { itemCount } = useCart();
+      if (firstCount === undefined) {
+        firstCount = itemCount;
+      }
+      return <span data-testid="count">{itemCount}</span>;
+    };
+
+    const { getByTestId } = render(
+      <CartProvider>
+        <Probe />
+      </CartProvider>
+    );
+
+    expect(firstCount).toBe(0);
+    expect(getByTestId('count')).toHaveTextContent('2');
   });
 
   test('loads stored lines and survives an add after mount', () => {

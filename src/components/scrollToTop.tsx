@@ -9,9 +9,6 @@ const focusPrimaryHeading = () => {
   if (!heading) {
     return;
   }
-  if (!heading.hasAttribute('tabindex')) {
-    heading.tabIndex = -1;
-  }
   heading.focus({ preventScroll: true });
 };
 

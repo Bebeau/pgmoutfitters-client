@@ -1,7 +1,7 @@
-import {useState, useEffect} from 'react';
+import {useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 import '../assets/scss/product-page.scss';
-import {productData, productType} from '../assets/data/products';
+import {productData} from '../assets/data/products';
 import PageHelmet from './pageHelmet';
 import ProductNotFound from './productNotFound';
 import {
@@ -40,7 +40,9 @@ const Product = (props: singleProductType) => {
   // const productFetchRef = useRef(false);
   const {slug} = useParams();
   const matchedProduct = productData.find(product => product.slug === slug);
-  const [relatedProducts, setRelatedProducts] = useState<productType[]>([]);
+  const relatedProducts = matchedProduct
+    ? productData.filter(product => product.slug !== slug)
+    : [];
 
   // Use once data is pulled from database
   // const fetchProductData = () => {
@@ -59,13 +61,6 @@ const Product = (props: singleProductType) => {
   // }
 
   useEffect(() => {
-    if (!matchedProduct) {
-      setRelatedProducts([]);
-      props.setIsLoading(false);
-      return;
-    }
-
-    setRelatedProducts(productData.filter(product => product.slug !== slug));
     props.setIsLoading(false);
   }, [matchedProduct, props, slug]);
 

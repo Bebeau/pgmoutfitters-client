@@ -124,6 +124,11 @@
       margin-bottom: -5px;
       aspect-ratio: 1/1;
       overflow: hidden;
+      appearance: none;
+      background: none;
+      border: none;
+      color: inherit;
+      font: inherit;
       img {
         height: 100%;
         width: 100%;
@@ -171,7 +176,7 @@
       }
       .copy {
         color: white;
-        h5 {
+        .galleryTitle {
           margin: 20px 0 0;
           font-size: 2rem;
         }
@@ -180,6 +185,14 @@
         }
         .thumbs {
           display: none;
+          .image {
+            appearance: none;
+            background: none;
+            border: none;
+            color: inherit;
+            font: inherit;
+            padding: 0;
+          }
           img {
             max-width: 100%;
             margin: 0 auto;
@@ -358,8 +371,13 @@
         max-width: 60%;
         height: auto;
       }
-      h4 {
+      h2 {
+        font-family: "clarendon-wide", serif;
+        letter-spacing: 1px;
+        font-size: 1.4rem;
+        font-weight: 700;
         margin-top: 40px;
+        color: white;
       }
       &:nth-child(odd){
         background: darken($green, 10%);

@@ -65,6 +65,7 @@ describe('ScrollToTop', () => {
     expect(window.scrollTo).toHaveBeenCalledWith(0, 0);
     const heading = document.querySelector('#productPage .desc h2');
     expect(heading).toHaveTextContent(product.name);
+    expect(heading).toHaveAttribute('tabindex', '-1');
     expect(document.activeElement).toBe(heading);
   });
 
