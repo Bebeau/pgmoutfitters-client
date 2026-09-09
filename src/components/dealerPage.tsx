@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import { useParams } from 'react-router-dom';
+import '../assets/scss/dealer-page.scss';
 import { dealerData } from '../assets/data/dealers';
 import { productType } from '../assets/data/products';
 import {

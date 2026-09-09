@@ -1,5 +1,6 @@
-import {useState, useEffect, useCallback} from 'react';
+import {useState, useEffect} from 'react';
 import {useParams} from 'react-router-dom';
+import '../assets/scss/product-page.scss';
 import {productData, productType} from '../assets/data/products';
 import PageHelmet from './pageHelmet';
 import ProductNotFound from './productNotFound';
@@ -57,28 +58,6 @@ const Product = (props: singleProductType) => {
   //   });
   // }
 
-  const preloadImages = useCallback(() => {
-    if (!matchedProduct) {
-      props.setIsLoading(false);
-      return;
-    }
-
-    let images = matchedProduct.photos.map((item) => {
-      return new Promise<void>((resolve, reject) => {
-        let img = new Image();
-        img.src = item.full;
-        img.onload = function(){
-          resolve();
-        }
-      })
-    });
-
-    Promise.all(images)
-    .then(() => {
-      props.setIsLoading(false);
-    });
-  }, [matchedProduct, props]);
-
   useEffect(() => {
     if (!matchedProduct) {
       setRelatedProducts([]);
@@ -87,8 +66,8 @@ const Product = (props: singleProductType) => {
     }
 
     setRelatedProducts(productData.filter(product => product.slug !== slug));
-    preloadImages();
-  }, [matchedProduct, props, slug, preloadImages]);
+    props.setIsLoading(false);
+  }, [matchedProduct, props, slug]);
 
   if (!matchedProduct) {
     return <ProductNotFound />;

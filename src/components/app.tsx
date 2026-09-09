@@ -1,21 +1,22 @@
-import React, {useEffect, useState} from 'react';
+import React, { lazy, Suspense, useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Homepage from './homepage';
-import Inquiry from './inquiry';
 import Footer from './footer';
-import Product from './product';
-import LegacyProductRedirect from './legacyProductRedirect';
-import Cart from './cart';
-import CartSuccess from './cartSuccess';
 import CartLink, { CartLimitNotice } from './cartLink';
-import DealerPage from './dealerPage';
-import Terms from './terms';
-import Privacy from './privacy';
 import ScrollToTop from './scrollToTop';
 import { CartProvider } from '../context/cartContext';
 
 import {productType} from '../assets/data/products';
 import {testimonialType} from '../assets/data/testimonials';
+
+const Product = lazy(() => import(/* webpackChunkName: "product" */ './product'));
+const LegacyProductRedirect = lazy(() => import(/* webpackChunkName: "legacy-product" */ './legacyProductRedirect'));
+const Cart = lazy(() => import(/* webpackChunkName: "cart" */ './cart'));
+const CartSuccess = lazy(() => import(/* webpackChunkName: "cart-success" */ './cartSuccess'));
+const DealerPage = lazy(() => import(/* webpackChunkName: "dealer" */ './dealerPage'));
+const Terms = lazy(() => import(/* webpackChunkName: "legal" */ './terms'));
+const Privacy = lazy(() => import(/* webpackChunkName: "legal" */ './privacy'));
+const Inquiry = lazy(() => import(/* webpackChunkName: "inquiry" */ './inquiry'));
 
 type sampleData = {
   productData: productType[];
@@ -29,6 +30,8 @@ const DismissLoader = (props: { setIsLoading: (value: boolean) => void; children
   }, [props]);
   return <>{props.children}</>;
 };
+
+const RouteFallback = () => null;
 
 const App = (props: sampleData) => {
   const [showInquiry, setShowInquiry] = useState(false);
@@ -55,83 +58,89 @@ const App = (props: sampleData) => {
         <ScrollToTop />
         <CartLink />
         <CartLimitNotice />
-        <Routes>
-          <Route 
-            path="/" 
-            element={
-              <Homepage 
-                openInquiry={() => setShowInquiry(true)}
-                productData={props.productData}
-                testimonialData={props.testimonialData}
-                isLoading={isLoading}
-                setIsLoading={(value: boolean) => setIsLoading(value)}
-              />
-            } 
-          />
-          <Route 
-            path="/deer-feeders/:slug"
-            element={
-              <Product 
-                testimonialData={props.testimonialData}
-                isLoading={isLoading}
-                setIsLoading={(value: boolean) => setIsLoading(value)}
-              />
-            } 
-          />
-          <Route
-            path="/products/deer-feeders/:slug"
-            element={<LegacyProductRedirect />}
-          />
-          <Route
-            path="/cart"
-            element={
-              <DismissLoader setIsLoading={setIsLoading}>
-                <Cart />
-              </DismissLoader>
-            }
-          />
-          <Route
-            path="/checkout/success"
-            element={
-              <DismissLoader setIsLoading={setIsLoading}>
-                <CartSuccess />
-              </DismissLoader>
-            }
-          />
-          <Route
-            path="/dealers/:slug"
-            element={
-              <DismissLoader setIsLoading={setIsLoading}>
-                <DealerPage
+        <Suspense fallback={<RouteFallback />}>
+          <Routes>
+            <Route 
+              path="/" 
+              element={
+                <Homepage 
+                  openInquiry={() => setShowInquiry(true)}
                   productData={props.productData}
+                  testimonialData={props.testimonialData}
+                  isLoading={isLoading}
+                  setIsLoading={(value: boolean) => setIsLoading(value)}
                 />
-              </DismissLoader>
-            }
-          />
-          <Route
-            path="/terms"
-            element={
-              <DismissLoader setIsLoading={setIsLoading}>
-                <Terms />
-              </DismissLoader>
-            }
-          />
-          <Route
-            path="/privacy"
-            element={
-              <DismissLoader setIsLoading={setIsLoading}>
-                <Privacy />
-              </DismissLoader>
-            }
-          />
-        </Routes>
+              } 
+            />
+            <Route 
+              path="/deer-feeders/:slug"
+              element={
+                <Product 
+                  testimonialData={props.testimonialData}
+                  isLoading={isLoading}
+                  setIsLoading={(value: boolean) => setIsLoading(value)}
+                />
+              } 
+            />
+            <Route
+              path="/products/deer-feeders/:slug"
+              element={<LegacyProductRedirect />}
+            />
+            <Route
+              path="/cart"
+              element={
+                <DismissLoader setIsLoading={setIsLoading}>
+                  <Cart />
+                </DismissLoader>
+              }
+            />
+            <Route
+              path="/checkout/success"
+              element={
+                <DismissLoader setIsLoading={setIsLoading}>
+                  <CartSuccess />
+                </DismissLoader>
+              }
+            />
+            <Route
+              path="/dealers/:slug"
+              element={
+                <DismissLoader setIsLoading={setIsLoading}>
+                  <DealerPage
+                    productData={props.productData}
+                  />
+                </DismissLoader>
+              }
+            />
+            <Route
+              path="/terms"
+              element={
+                <DismissLoader setIsLoading={setIsLoading}>
+                  <Terms />
+                </DismissLoader>
+              }
+            />
+            <Route
+              path="/privacy"
+              element={
+                <DismissLoader setIsLoading={setIsLoading}>
+                  <Privacy />
+                </DismissLoader>
+              }
+            />
+          </Routes>
+        </Suspense>
         <Footer />
       </Router>
-      <Inquiry
-        closeInquiry={() => setShowInquiry(false)}
-        showInquiry={showInquiry}
-        productData={props.productData}
-      />
+      {showInquiry && (
+        <Suspense fallback={null}>
+          <Inquiry
+            closeInquiry={() => setShowInquiry(false)}
+            showInquiry={showInquiry}
+            productData={props.productData}
+          />
+        </Suspense>
+      )}
     </CartProvider>
   )
 }

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import '../assets/scss/cart-page.scss';
 import { useCart } from '../context/cartContext';
 import { productData } from '../assets/data/products';
 import { productPath } from '../utils/productPath';

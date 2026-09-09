@@ -89,6 +89,79 @@ describe('Product helmet', () => {
     expect(galleryThumb).toHaveAttribute('loading', 'lazy');
   });
 
+  test('gallery close control is present without mounting Inquiry', async () => {
+    const product = productData.find((item) => item.slug === '2-n-1');
+    if (!product) {
+      throw new Error('Expected 2-n-1 product');
+    }
+
+    renderProduct(product.slug);
+
+    expect(document.querySelector('.inquiryModal')).toBeNull();
+    const thumb = document.querySelector('#productPage .imageGallery .image');
+    expect(thumb).not.toBeNull();
+    await userEvent.click(thumb as HTMLElement);
+
+    const modal = document.querySelector('#productPage .imageModal');
+    expect(modal).toHaveClass('show');
+    const close = modal?.querySelector('button.closeModal');
+    expect(close).toBeInTheDocument();
+    expect(close).toHaveTextContent('');
+
+    await userEvent.click(close as HTMLElement);
+    expect(document.querySelector('#productPage .imageModal')).not.toHaveClass('show');
+  });
+
+  test('dismisses the loader without preloading gallery full images', async () => {
+    const product = productData.find((item) => item.slug === '2-n-1');
+    if (!product) {
+      throw new Error('Expected 2-n-1 product');
+    }
+
+    const setIsLoading = jest.fn();
+    const imageSpy = jest.fn();
+    const OriginalImage = window.Image;
+    window.Image = class MockImage {
+      set src(_value: string) {
+        imageSpy();
+      }
+    } as unknown as typeof Image;
+
+    try {
+      render(
+        <HelmetProvider>
+          <CartProvider>
+            <MemoryRouter initialEntries={[`/deer-feeders/${product.slug}`]}>
+              <Routes>
+                <Route
+                  path="/deer-feeders/:slug"
+                  element={
+                    <Product
+                      testimonialData={[]}
+                      isLoading={true}
+                      setIsLoading={setIsLoading}
+                    />
+                  }
+                />
+              </Routes>
+            </MemoryRouter>
+          </CartProvider>
+        </HelmetProvider>
+      );
+
+      await waitFor(() => {
+        expect(setIsLoading).toHaveBeenCalledWith(false);
+      });
+      expect(imageSpy).not.toHaveBeenCalled();
+      expect(document.querySelector('#productPage .imageGallery img')).toHaveAttribute(
+        'loading',
+        'lazy'
+      );
+    } finally {
+      window.Image = OriginalImage;
+    }
+  });
+
   test('unknown slugs use ProductNotFound instead of the product layout', async () => {
     renderProduct('not-a-real-feeder');
 
