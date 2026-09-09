@@ -1410,6 +1410,8 @@ input::placeholder {
   margin: 0 auto;
   display: block;
   aspect-ratio: 1/1;
+  width: auto;
+  height: auto;
 }
 #productPage .block {
   display: flex;
