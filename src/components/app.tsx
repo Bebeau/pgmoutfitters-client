@@ -58,8 +58,8 @@ const App = (props: sampleData) => {
         <ScrollToTop />
         <CartLink />
         <CartLimitNotice />
-        <Suspense fallback={<RouteFallback />}>
-          <Routes>
+        <main>
+        <Routes>
             <Route 
               path="/" 
               element={
@@ -75,61 +75,77 @@ const App = (props: sampleData) => {
             <Route 
               path="/deer-feeders/:slug"
               element={
+                <Suspense fallback={<RouteFallback />}>
                 <Product 
                   testimonialData={props.testimonialData}
                   isLoading={isLoading}
                   setIsLoading={(value: boolean) => setIsLoading(value)}
                 />
+                </Suspense>
               } 
             />
             <Route
               path="/products/deer-feeders/:slug"
-              element={<LegacyProductRedirect />}
+              element={
+                <Suspense fallback={<RouteFallback />}>
+                  <LegacyProductRedirect />
+                </Suspense>
+              }
             />
             <Route
               path="/cart"
               element={
+                <Suspense fallback={<RouteFallback />}>
                 <DismissLoader setIsLoading={setIsLoading}>
                   <Cart />
                 </DismissLoader>
+                </Suspense>
               }
             />
             <Route
               path="/checkout/success"
               element={
+                <Suspense fallback={<RouteFallback />}>
                 <DismissLoader setIsLoading={setIsLoading}>
                   <CartSuccess />
                 </DismissLoader>
+                </Suspense>
               }
             />
             <Route
               path="/dealers/:slug"
               element={
+                <Suspense fallback={<RouteFallback />}>
                 <DismissLoader setIsLoading={setIsLoading}>
                   <DealerPage
                     productData={props.productData}
                   />
                 </DismissLoader>
+                </Suspense>
               }
             />
             <Route
               path="/terms"
               element={
+                <Suspense fallback={<RouteFallback />}>
                 <DismissLoader setIsLoading={setIsLoading}>
                   <Terms />
                 </DismissLoader>
+                </Suspense>
               }
             />
             <Route
               path="/privacy"
               element={
+                <Suspense fallback={<RouteFallback />}>
                 <DismissLoader setIsLoading={setIsLoading}>
                   <Privacy />
                 </DismissLoader>
+                </Suspense>
               }
             />
           </Routes>
-        </Suspense>
+        </main>
         <Footer />
       </Router>
       {showInquiry && (

@@ -31,7 +31,7 @@ const LegalPage = ({ title, description, canonical, heading, document }: legalPa
   <div className="legalPage">
     <PageHelmet title={title} description={description} canonical={canonical} />
     <div className="contentWrap">
-      <h1>{heading}</h1>
+      <h1 tabIndex={-1}>{heading}</h1>
       <p className="legalUpdated">Last updated: {document.lastUpdated}</p>
       <article>
         <p>{document.intro}</p>

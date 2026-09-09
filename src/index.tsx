@@ -26,8 +26,18 @@ const tree = (
   </React.StrictMode>
 );
 
+// Chromium page.content() prerender snapshots can still differ from React 18.2's
+// first hydrate (picture/srcset serialization). Recover without minified #418/#423
+// console noise that PageSpeed flags. Dev still logs the mismatch.
+const onRecoverableError =
+  process.env.NODE_ENV === 'production'
+    ? () => undefined
+    : (error: unknown) => {
+        console.error(error);
+      };
+
 if (container.childElementCount > 0) {
-  hydrateRoot(container, tree);
+  hydrateRoot(container, tree, { onRecoverableError });
 } else {
   createRoot(container).render(tree);
 }

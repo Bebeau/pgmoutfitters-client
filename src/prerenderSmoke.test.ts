@@ -16,6 +16,7 @@ import {
   productPageDescription,
   productPageTitle,
 } from './utils/siteMeta';
+import { headingLevels, headingOrderSkips } from './utils/headingOrder';
 
 const { assertDistinctPageTitles, assertPrerenderedPage, getTitle } = require('../scripts/assertPrerenderedHtml');
 
@@ -71,6 +72,28 @@ describeBuilt('built prerendered HTML smoke', () => {
       canonical: dealerCanonical(dealer.slug),
       contentIncludes: [dealer.name],
     });
+  });
+
+  test('homepage prerender includes phase C landmarks and does not skip headings', () => {
+    const homeHtml = fs.readFileSync(homeFile, 'utf8');
+    const feederHtml = fs.readFileSync(feederFile, 'utf8');
+
+    expect(homeHtml).toContain('<main>');
+    expect(homeHtml).toContain('aria-label="PGM Outfitters home"');
+    expect(homeHtml).toContain('testimonialWrap show');
+    expect(homeHtml).toContain('fetchpriority="high"');
+    expect(homeHtml).toContain('<h1 tabindex="-1">');
+    expect(homeHtml).not.toMatch(/productCard[\s\S]{0,800}<h4/);
+
+    const homeRoot = document.createElement('div');
+    homeRoot.innerHTML = homeHtml;
+    expect(headingOrderSkips(headingLevels(homeRoot))).toEqual([]);
+
+    expect(feederHtml).toContain('<main>');
+    expect(feederHtml).toContain('aria-label="Close"');
+    const feederRoot = document.createElement('div');
+    feederRoot.innerHTML = feederHtml;
+    expect(headingOrderSkips(headingLevels(feederRoot))).toEqual([]);
   });
 });
 

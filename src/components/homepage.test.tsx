@@ -65,7 +65,8 @@ describe('Homepage helmet', () => {
     expect(container.querySelector('.company h3')).toBeNull();
     expect(container.querySelector('.testimonials h2.sectionHeading')).toHaveTextContent('Testimonials');
     expect(container.querySelector('.testimonials h3')).toBeNull();
-    expect(container.querySelectorAll('.productCard h4').length).toBeGreaterThan(0);
+    expect(container.querySelectorAll('.productCard h2').length).toBeGreaterThan(0);
+    expect(container.querySelectorAll('.productCard h4, .productCard h5')).toHaveLength(0);
   });
 
   test('eager-loads the first listing image and lazy-loads the rest', () => {

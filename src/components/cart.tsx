@@ -50,7 +50,7 @@ const Cart = () => {
       <PageHelmet title={CART_TITLE} noindex />
 
       <div className="contentWrap">
-        <h1>Cart</h1>
+        <h1 tabIndex={-1}>Cart</h1>
 
         <p className="alert info pickupAlert">
           Purchases are pickup only at <a href="https://www.google.com/maps/place/908+Joseph+St,+Shreveport,+LA+71107/@32.5293771,-93.7613823,750m/data=!3m2!1e3!4b1!4m6!3m5!1s0x8636ccd92aad605d:0xd962e00b360ec708!8m2!3d32.5293771!4d-93.7588074!16s%2Fg%2F11c1h99zbr?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D" target="_BLANK" rel="noreferrer">{PICKUP_ADDRESS}</a> during regular business
@@ -87,9 +87,9 @@ const Cart = () => {
                       ) : null}
                     </div>
                     <div>
-                      <h4>
+                      <h2>
                         <Link to={productPath(item.slug)}>{item.name}</Link>
-                      </h4>
+                      </h2>
                       <div className="price">
                         {formatRetailPrice(item.unitPrice)}
                         <span className="lineTotal">
@@ -141,10 +141,10 @@ const Cart = () => {
         )}
 
         <section className="cartSummary">
-          <h4 className="subtotal">
+          <p className="subtotal">
             <span className="label">Subtotal</span>
             {formatRetailPrice(subtotal)}
-          </h4>
+          </p>
           <div className="cartActions">
             {!!items.length && (
               <Link to="/" className="btn outline">

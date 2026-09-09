@@ -41,9 +41,9 @@ const ProductSpecs = (props: productSpecsType) => {
                 <div className="desc">
 
                     {props.productInfo.name === 'Special Ops 2-N-1' || props.productInfo.name === 'Special Ops 3-N-1' ? (
-                        <h2 className="specialOpsTitle">Special Ops <span>{props.productInfo.name.replace('Special Ops ', '')}</span></h2>
+                        <h2 className="specialOpsTitle" tabIndex={-1}>Special Ops <span>{props.productInfo.name.replace('Special Ops ', '')}</span></h2>
                     ) : (
-                        <h2>{props.productInfo.name}</h2>
+                        <h2 tabIndex={-1}>{props.productInfo.name}</h2>
                     )}
     
                     <div className="price">{formatRetailPrice(Number(props.productInfo.price.retail))}</div>
