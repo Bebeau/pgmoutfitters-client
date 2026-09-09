@@ -49,11 +49,16 @@ const assertProductionAssets = (buildDir = BUILD_DIR) => {
   const typekit = fs.readFileSync(path.join(buildDir, 'typekit-swap.css'), 'utf8');
   assert(typekit.includes('font-display: swap'), 'typekit-swap.css must set font-display: swap');
   assert(!typekit.includes('font-display:auto'), 'typekit-swap.css must not use font-display:auto');
-  assert(!typekit.includes('stratum-2-web'), 'unused Typekit family stratum-2-web should stay omitted');
+  assert(
+    !/@font-face[^}]*font-family:\s*["']stratum-2-web["']/.test(typekit),
+    'unused Typekit family stratum-2-web should stay omitted'
+  );
 
   const homeHtml = fs.readFileSync(path.join(buildDir, 'index.html'), 'utf8');
   assert(
-    /rel=["']preload["'][^>]*typekit-swap\.css|typekit-swap\.css[^>]*rel=["']preload["']/.test(homeHtml),
+    /<link[^>]+rel=["']preload["'][^>]+href=["'][^"']*typekit-swap\.css["']|<link[^>]+href=["'][^"']*typekit-swap\.css["'][^>]+rel=["']preload["']/.test(
+      homeHtml
+    ),
     'Homepage must preload typekit-swap.css instead of a blocking @import'
   );
   assert(
@@ -67,10 +72,19 @@ const assertProductionAssets = (buildDir = BUILD_DIR) => {
   );
 
   const homeScripts = [...homeHtml.matchAll(/<script[^>]+src=["']([^"']+)["']/g)].map((match) => match[1]);
-  const chunkScripts = homeScripts.filter((src) => /\/static\/js\/\d+\./.test(src));
+  const appScripts = homeScripts.filter((src) => src.includes('/static/js/'));
   assert(
-    chunkScripts.length === 0,
-    `Homepage should not preload lazy route chunks as entry scripts: ${chunkScripts.join(', ')}`
+    appScripts.length === 1 && /\/static\/js\/main\.[a-f0-9]+\.js$/.test(appScripts[0]),
+    `Homepage should only boot main.js; found ${appScripts.join(', ') || 'none'}`
+  );
+  const homeCss = [...homeHtml.matchAll(/<link[^>]+href=["']([^"']+\.css)["']/g)].map((match) => match[1]);
+  assert(
+    homeCss.some((href) => /\/static\/css\/main\.[a-f0-9]+\.css$/.test(href)),
+    'Homepage must include the critical CSS chunk'
+  );
+  assert(
+    !homeCss.some((href) => /\/static\/css\/(product|cart|inquiry|legal|dealer)\./.test(href)),
+    `Homepage must not load route CSS: ${homeCss.join(', ')}`
   );
 
   const namedChunks = jsFiles.map((file) => path.basename(file));

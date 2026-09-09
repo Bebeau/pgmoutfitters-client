@@ -37,6 +37,12 @@ const chromeCandidates = () =>
     '/usr/bin/chromium',
   ].filter((candidate) => candidate && fs.existsSync(candidate));
 
+const restoreAsyncTypekit = (html) =>
+  html.replace(
+    /<link rel="stylesheet" href="\/typekit-swap\.css" as="style"[^>]*>/g,
+    '<link rel="preload" href="/typekit-swap.css" as="style" onload="this.onload=null;this.rel=\'stylesheet\'">'
+  );
+
 const destForRoute = (route) => {
   if (route === '/') {
     return path.join(BUILD_DIR, 'index.html');
@@ -76,7 +82,7 @@ const createSpaServer = (spaIndexHtml, port) =>
   });
 
 const shouldAbort = (url) =>
-  /googletagmanager\.com|google-analytics\.com|googleadservices\.com|doubleclick\.net|use\.typekit\.net|fonts\.googleapis\.com|maps\.googleapis\.com|maps\.google\.com|google\.com\/maps|maps\.gstatic\.com/i.test(
+  /googletagmanager\.com|google-analytics\.com|googleadservices\.com|doubleclick\.net|use\.typekit\.net|typekit-swap\.css|fonts\.googleapis\.com|maps\.googleapis\.com|maps\.google\.com|google\.com\/maps|maps\.gstatic\.com/i.test(
     url
   );
 
@@ -91,6 +97,15 @@ const waitForPrerenderReady = async (page, route) => {
       const main = document.querySelector(
         '.homeHeading h1, #productPage h2, .dealerPage h1, .legalPage h1'
       );
+      const canonicalHref = canonical && canonical.getAttribute('href');
+      let canonicalPath = '';
+      try {
+        canonicalPath = canonicalHref ? new URL(canonicalHref).pathname : '';
+      } catch (err) {
+        canonicalPath = '';
+      }
+      const pagePath = window.location.pathname.replace(/\/$/, '') || '/';
+      const canonPath = canonicalPath.replace(/\/$/, '') || '/';
       return Boolean(
         root &&
           root.innerHTML.trim() &&
@@ -98,6 +113,7 @@ const waitForPrerenderReady = async (page, route) => {
           canonical &&
           description &&
           main &&
+          canonPath === pagePath &&
           !document.querySelector('.loader')
       );
     },
@@ -221,7 +237,7 @@ const main = async () => {
       }
       const dest = destForRoute(route);
       fs.mkdirSync(path.dirname(dest), { recursive: true });
-      fs.writeFileSync(dest, html);
+      fs.writeFileSync(dest, restoreAsyncTypekit(html));
       console.log(`Wrote ${path.relative(path.join(__dirname, '..'), dest)}`);
     }
   } finally {
