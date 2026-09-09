@@ -1,4 +1,4 @@
-import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import React, { createContext, useCallback, useContext, useEffect, useLayoutEffect, useMemo, useState } from 'react';
 import {
   CartLine,
   CartProductInput,
@@ -31,12 +31,21 @@ type cartContextType = {
 const CartContext = createContext<cartContextType | undefined>(undefined);
 
 export const CartProvider = ({ children }: { children: React.ReactNode }) => {
-  const [items, setItems] = useState<CartLine[]>(() => readStoredCart());
+  const [items, setItems] = useState<CartLine[]>([]);
+  const [hasHydrated, setHasHydrated] = useState(false);
   const [limitMessage, setLimitMessage] = useState('');
 
+  useLayoutEffect(() => {
+    setItems(readStoredCart());
+    setHasHydrated(true);
+  }, []);
+
   useEffect(() => {
+    if (!hasHydrated) {
+      return;
+    }
     writeStoredCart(items);
-  }, [items]);
+  }, [hasHydrated, items]);
 
   const addToCart = useCallback((product: CartProductInput) => {
     setItems((current) => {

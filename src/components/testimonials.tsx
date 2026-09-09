@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 
 import { ReactComponent as Refresh } from '../assets/img/refresh.svg';
 
@@ -23,7 +23,7 @@ const SingleQuote = (props: any) => {
 const Testimonials = (props: any) => {
   const btnRef = React.useRef<any>();
   const [activeIndex, setActiveIndex] = useState(0);
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(true);
   const handleTransition = () => {
     setShow(false);
     setTimeout(() => setShow(true), 500);
@@ -44,18 +44,24 @@ const Testimonials = (props: any) => {
     }
     setTimeout(() => setActiveIndex(0), 500);
   }
-  useEffect(() => {
-    setShow(true);
-  }, []);
-
   return (
     <div className="testimonials">
       <div className="contentWrap">
         <h2 className="sectionHeading">Testimonials</h2>
-        <SingleQuote {...props.testimonials[activeIndex]} transition={show} />
-        <div ref={btnRef} className='change'>
-          <Refresh onClick={() => handleNavClick()} />
-        </div>
+        {props.testimonials[activeIndex] ? (
+          <SingleQuote {...props.testimonials[activeIndex]} transition={show} />
+        ) : null}
+        {props.testimonials.length > 1 ? (
+          <button
+            type="button"
+            ref={btnRef}
+            className="change"
+            aria-label="Show next testimonial"
+            onClick={handleNavClick}
+          >
+            <Refresh aria-hidden="true" />
+          </button>
+        ) : null}
       </div>
     </div>
   )

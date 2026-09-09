@@ -1,6 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
+import '../assets/scss/carousel-page.scss';
 import { productPath } from '../utils/productPath';
+import { IMAGE_SIZES } from '../utils/responsiveImage';
+import ResponsiveImage from './responsiveImage';
 
 interface slide {
   name?: string;
@@ -13,7 +16,9 @@ const ProductSlide = (props: slide) => {
   return (
     <div className="slide">
       <section className="slideImage">
-        <img src={props.image} alt={props.name} />
+        {props.image ? (
+          <ResponsiveImage src={props.image} alt={props.name || ''} sizes={IMAGE_SIZES.productSpotlight} lazy={false} />
+        ) : null}
       </section>
       <section className={props.transition ? "slideCopy fade" : "slideCopy"}>
         <h2>

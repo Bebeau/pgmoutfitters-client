@@ -15,11 +15,19 @@
             img {
                 max-height: 400px;
                 max-width: 100%;
+                width: auto;
+                height: auto;
                 margin: 0 auto;
                 display: block;
             }
-            h4 {
+            h2 {
+                font-family: "clarendon-wide", serif;
+                letter-spacing: 1px;
+                font-size: 1.4rem;
+                font-weight: 700;
+                margin: 0 0 10px;
                 margin-bottom: 0;
+                color: white;
             }
             .price {
                 font-size: 1.4rem;
@@ -30,7 +38,7 @@
                 margin-top: 20px;
             }
             &:hover {
-            h5 {
+            .details {
                 color: rgba(255,255,255,1);
                 transition: all 0.3s ease-in-out;
                 &:after {

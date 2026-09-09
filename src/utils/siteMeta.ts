@@ -11,12 +11,23 @@ export const HOME_DESCRIPTION =
 export const CART_TITLE = 'Cart | PGM Outfitters';
 export const CART_SUCCESS_TITLE = 'Order Confirmed | PGM Outfitters';
 
+export const TERMS_TITLE = 'Terms of Use | PGM Outfitters';
+export const TERMS_DESCRIPTION =
+  'Terms of use for pgmoutfitters.com, including pickup-only deer feeder orders at 908 Joseph St, Shreveport, LA.';
+export const PRIVACY_TITLE = 'Privacy Policy | PGM Outfitters';
+export const PRIVACY_DESCRIPTION =
+  'How PGM Outfitters collects and uses information from inquiries, checkout, and the website.';
+
 export const DEFAULT_OG_IMAGE =
   'https://init-public.s3.amazonaws.com/pgmFacebook.jpg';
 export const DEFAULT_TWITTER_IMAGE =
   'https://init-public.s3.amazonaws.com/pgmTwitter.jpg';
 
 export const homeCanonical = () => `${SITE_ORIGIN}/`;
+
+export const termsCanonical = () => `${SITE_ORIGIN}/terms`;
+
+export const privacyCanonical = () => `${SITE_ORIGIN}/privacy`;
 
 export const productCanonical = (slug: string) =>
   `${SITE_ORIGIN}${productPath(slug)}`;

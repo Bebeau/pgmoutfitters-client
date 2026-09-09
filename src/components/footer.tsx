@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/iframe-has-title */
 import DealerList from './dealerList';
+import LegalLinks from './legalLinks';
 import { Link } from 'react-router-dom';
 import {ReactComponent as Logo} from '../assets/img/logo.svg';
 
@@ -18,8 +19,8 @@ const Footer = (props: any) => {
         <div className="footerWrap">
             <div className="copyWrap">
                 {/* <article> */}
-                    <Link to="/">
-                        <Logo />
+                    <Link to="/" aria-label="PGM Outfitters home">
+                        <Logo aria-hidden="true" focusable="false" />
                     </Link>
                     {/* <section className="addressWrap">
                         <div className="icon">
@@ -34,16 +35,17 @@ const Footer = (props: any) => {
                     <section className="contactWrap">
                         <a href="tel:3182278145" className="phone">
                             <div className="icon">
-                                <img src={PhoneIcon} alt="" />
+                                <img src={PhoneIcon} alt="" width={12} height={21} />
                             </div>
                             <span>(318) 227-8145</span>
                         </a>
                         <a href="mailto:sales@pgmoutfitters.com" className="email">
                             <div className="icon">
-                                <img src={EmailIcon} alt="" />
+                                <img src={EmailIcon} alt="" width={20} height={16} />
                             </div>
                             <span>sales@pgmoutfitters.com</span>
                         </a>
+                        <LegalLinks />
                     </section>
                 {/* </article> */}
             </div>

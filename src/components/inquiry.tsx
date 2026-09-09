@@ -1,10 +1,13 @@
     import {useState, useEffect, useCallback, useRef, createRef} from 'react';
+    import '../assets/scss/modal-page.scss';
 
     import { ReactComponent as HunterIcon } from '../assets/img/hunter.svg';
     import { ReactComponent as OutfitterIcon } from '../assets/img/outfitter.svg';
     import { ReactComponent as DealerIcon } from '../assets/img/dealer.svg';
 
     import {productType} from '../assets/data/products';
+    import { IMAGE_SIZES } from '../utils/responsiveImage';
+    import ResponsiveImage from './responsiveImage';
 
     import APIUtils from '../utils/APIUtils';
     import PhoneNumeberInput from '@bebeau/phone-number-input';
@@ -213,7 +216,7 @@
     return (
         <div className={props.showInquiry ? "inquiryModal show" : "inquiryModal"}>
 
-        <button className="closeModal" onClick={() => props.closeInquiry()}></button>
+        <button type="button" className="closeModal" aria-label="Close" onClick={() => props.closeInquiry()}></button>
 
         <section className="inquiryCart">
             {props.productData.map((item: any, index: number) => {
@@ -222,7 +225,7 @@
 
                     <section className="productCopy">
                         <div className="productImage">
-                            <img src={item.image} alt={item.name} />
+                            <ResponsiveImage src={item.image} alt={item.name} sizes={IMAGE_SIZES.inquiry} lazy />
                         </div>
                         <div>
                             <h4>{item.name}</h4>

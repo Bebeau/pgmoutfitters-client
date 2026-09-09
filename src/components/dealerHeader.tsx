@@ -13,7 +13,7 @@ const DealerHeader = ({ dealer }: dealerHeaderType) => {
   return (
     <div className="dealerHeader contentWrap">
       <div className="dealerInfo">
-        <h1>{dealer.name}</h1>
+        <h1 tabIndex={-1}>{dealer.name}</h1>
         <DealerAddress address={dealer.address} />
         <a
           href={dealerDirectionsUrl(dealer.address)}

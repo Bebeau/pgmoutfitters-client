@@ -29,8 +29,19 @@ describe('Footer', () => {
       'mailto:sales@pgmoutfitters.com'
     );
 
+    expect(screen.getByRole('link', { name: 'PGM Outfitters home' })).toHaveAttribute(
+      'href',
+      '/'
+    );
     expect(screen.getByRole('link', { name: /cart/i })).toHaveClass('cartLink');
     expect(document.querySelector('footer a[href="/cart"]')).toBeNull();
     expect(document.querySelector('footer a.cart')).toBeNull();
+
+    expect(screen.getByRole('navigation', { name: 'Legal' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Terms of Use' })).toHaveAttribute('href', '/terms');
+    expect(screen.getByRole('link', { name: 'Privacy Policy' })).toHaveAttribute(
+      'href',
+      '/privacy'
+    );
   });
 });

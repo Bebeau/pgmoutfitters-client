@@ -9,6 +9,7 @@ describe('HomeHeading', () => {
     const headings = container.querySelectorAll('h1');
     expect(headings).toHaveLength(1);
     expect(headings[0]).toHaveTextContent(HOME_HEADING);
+    expect(headings[0]).toHaveAttribute('tabindex', '-1');
     expect(HOME_HEADING).toBe('Next Generation Deer Feeders');
     expect(container.querySelector('.homeHeading p')).toHaveTextContent(HOME_DESCRIPTION);
     expect(container.querySelector('.homeHeading')).not.toBeNull();

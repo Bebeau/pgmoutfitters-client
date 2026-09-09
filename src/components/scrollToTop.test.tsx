@@ -7,8 +7,10 @@ import { CartProvider } from '../context/cartContext';
 import Cart from './cart';
 import DealerPage from './dealerPage';
 import HomeHeading from './homeHeading';
+import Privacy from './privacy';
 import Product from './product';
 import ScrollToTop from './scrollToTop';
+import Terms from './terms';
 
 const renderAt = (path: string) =>
   render(
@@ -30,6 +32,8 @@ const renderAt = (path: string) =>
             />
             <Route path="/dealers/:slug" element={<DealerPage productData={productData} />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/privacy" element={<Privacy />} />
           </Routes>
         </MemoryRouter>
       </CartProvider>
@@ -61,6 +65,7 @@ describe('ScrollToTop', () => {
     expect(window.scrollTo).toHaveBeenCalledWith(0, 0);
     const heading = document.querySelector('#productPage .desc h2');
     expect(heading).toHaveTextContent(product.name);
+    expect(heading).toHaveAttribute('tabindex', '-1');
     expect(document.activeElement).toBe(heading);
   });
 
@@ -82,6 +87,22 @@ describe('ScrollToTop', () => {
 
     expect(window.scrollTo).toHaveBeenCalledWith(0, 0);
     const heading = screen.getByRole('heading', { level: 1, name: /^cart$/i });
+    expect(document.activeElement).toBe(heading);
+  });
+
+  test('scrolls to top and focuses the terms H1', () => {
+    renderAt('/terms');
+
+    expect(window.scrollTo).toHaveBeenCalledWith(0, 0);
+    const heading = screen.getByRole('heading', { level: 1, name: 'Terms of Use' });
+    expect(document.activeElement).toBe(heading);
+  });
+
+  test('scrolls to top and focuses the privacy H1', () => {
+    renderAt('/privacy');
+
+    expect(window.scrollTo).toHaveBeenCalledWith(0, 0);
+    const heading = screen.getByRole('heading', { level: 1, name: 'Privacy Policy' });
     expect(document.activeElement).toBe(heading);
   });
 });

@@ -10,13 +10,19 @@ import {
   HOME_DESCRIPTION,
   HOME_HEADING,
   HOME_TITLE,
+  PRIVACY_DESCRIPTION,
+  PRIVACY_TITLE,
+  TERMS_DESCRIPTION,
+  TERMS_TITLE,
   dealerCanonical,
   dealerPageDescription,
   dealerPageTitle,
   homeCanonical,
+  privacyCanonical,
   productCanonical,
   productPageDescription,
   productPageTitle,
+  termsCanonical,
 } from './siteMeta';
 
 const {
@@ -34,6 +40,8 @@ describe('prerender route list', () => {
     expect(paths[0]).toBe('/');
     expect(paths).toEqual([
       '/',
+      '/terms',
+      '/privacy',
       ...productData.map((product) => `/deer-feeders/${product.slug}`),
       ...dealerData.map((dealer) => `/dealers/${dealer.slug}`),
     ]);
@@ -41,9 +49,11 @@ describe('prerender route list', () => {
       expect(paths).not.toContain(skipped);
     });
     expect(paths.join(' ')).not.toMatch(/inquiry/);
+    expect(paths).not.toContain('/cart');
+    expect(paths).not.toContain('/checkout/success');
     expect(paths).not.toContain('/deer-feeders/not-a-real-feeder');
     expect(paths).not.toContain('/dealers/not-a-real-dealer');
-    expect(paths).toHaveLength(1 + productData.length + dealerData.length);
+    expect(paths).toHaveLength(3 + productData.length + dealerData.length);
   });
 });
 
@@ -84,6 +94,33 @@ describe('prerendered HTML smoke helper', () => {
     ]);
   });
 
+  test('terms and privacy must have their own titles, descriptions, canonicals, and headings', () => {
+    const termsHtml = `<!doctype html><html><head><title>${TERMS_TITLE}</title><meta name="description" content="${TERMS_DESCRIPTION}" /><link rel="canonical" href="${termsCanonical()}" /></head><body><div id="root"><div class="legalPage"><h1>Terms of Use</h1></div></div></body></html>`;
+    const privacyHtml = `<!doctype html><html><head><title>${PRIVACY_TITLE}</title><meta name="description" content="${PRIVACY_DESCRIPTION}" /><link rel="canonical" href="${privacyCanonical()}" /></head><body><div id="root"><div class="legalPage"><h1>Privacy Policy</h1></div></div></body></html>`;
+
+    assertPrerenderedPage(termsHtml, {
+      title: TERMS_TITLE,
+      description: TERMS_DESCRIPTION,
+      canonical: termsCanonical(),
+      contentIncludes: ['Terms of Use'],
+    });
+    assertPrerenderedPage(privacyHtml, {
+      title: PRIVACY_TITLE,
+      description: PRIVACY_DESCRIPTION,
+      canonical: privacyCanonical(),
+      contentIncludes: ['Privacy Policy'],
+    });
+    expect(getTitle(termsHtml)).not.toBe(HOME_TITLE);
+    expect(getTitle(privacyHtml)).not.toBe(HOME_TITLE);
+    assertDistinctPageTitles([
+      { html: homeHtml },
+      { html: feederHtml },
+      { html: dealerHtml },
+      { html: termsHtml },
+      { html: privacyHtml },
+    ]);
+  });
+
   test('fails when every file still has the homepage title or an empty #root', () => {
     expect(() =>
       assertDistinctPageTitles([{ html: homeHtml }, { html: homeHtml }, { html: homeHtml }])
@@ -101,3 +138,4 @@ describe('prerendered HTML smoke helper', () => {
     ).toThrow(/Empty #root/);
   });
 });
+

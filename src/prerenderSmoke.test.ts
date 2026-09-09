@@ -6,6 +6,8 @@ import {
   HOME_DESCRIPTION,
   HOME_HEADING,
   HOME_TITLE,
+  PRIVACY_TITLE,
+  TERMS_TITLE,
   dealerCanonical,
   dealerPageDescription,
   dealerPageTitle,
@@ -14,6 +16,7 @@ import {
   productPageDescription,
   productPageTitle,
 } from './utils/siteMeta';
+import { headingLevels, headingOrderSkips } from './utils/headingOrder';
 
 const { assertDistinctPageTitles, assertPrerenderedPage, getTitle } = require('../scripts/assertPrerenderedHtml');
 
@@ -21,10 +24,14 @@ const buildDir = path.join(__dirname, '../build');
 const homeFile = path.join(buildDir, 'index.html');
 const feederFile = path.join(buildDir, 'deer-feeders/5-n-1/index.html');
 const dealerFile = path.join(buildDir, 'dealers/delta-outdoors/index.html');
+const termsFile = path.join(buildDir, 'terms/index.html');
+const privacyFile = path.join(buildDir, 'privacy/index.html');
 const hasBuiltHtml =
   fs.existsSync(homeFile) && fs.existsSync(feederFile) && fs.existsSync(dealerFile);
+const hasLegalHtml = fs.existsSync(termsFile) && fs.existsSync(privacyFile);
 
 const describeBuilt = hasBuiltHtml ? describe : describe.skip;
+const describeLegalBuilt = hasLegalHtml ? describe : describe.skip;
 
 describeBuilt('built prerendered HTML smoke', () => {
   test('homepage, one feeder, and one dealer contain their own titles', () => {
@@ -65,5 +72,40 @@ describeBuilt('built prerendered HTML smoke', () => {
       canonical: dealerCanonical(dealer.slug),
       contentIncludes: [dealer.name],
     });
+  });
+
+  test('homepage prerender includes phase C landmarks and does not skip headings', () => {
+    const homeHtml = fs.readFileSync(homeFile, 'utf8');
+    const feederHtml = fs.readFileSync(feederFile, 'utf8');
+
+    expect(homeHtml).toContain('<main>');
+    expect(homeHtml).toContain('aria-label="PGM Outfitters home"');
+    expect(homeHtml).toContain('testimonialWrap show');
+    expect(homeHtml).toContain('fetchpriority="high"');
+    expect(homeHtml).toContain('<h1 tabindex="-1">');
+    expect(homeHtml).not.toMatch(/productCard[\s\S]{0,800}<h4/);
+
+    const homeRoot = document.createElement('div');
+    homeRoot.innerHTML = homeHtml;
+    expect(headingOrderSkips(headingLevels(homeRoot))).toEqual([]);
+
+    expect(feederHtml).toContain('<main>');
+    expect(feederHtml).toContain('aria-label="Close"');
+    const feederRoot = document.createElement('div');
+    feederRoot.innerHTML = feederHtml;
+    expect(headingOrderSkips(headingLevels(feederRoot))).toEqual([]);
+  });
+});
+
+describeLegalBuilt('built prerendered legal HTML smoke', () => {
+  test('terms and privacy contain their own titles', () => {
+    const termsHtml = fs.readFileSync(termsFile, 'utf8');
+    const privacyHtml = fs.readFileSync(privacyFile, 'utf8');
+
+    expect(getTitle(termsHtml)).toBe(TERMS_TITLE);
+    expect(getTitle(privacyHtml)).toBe(PRIVACY_TITLE);
+    expect(getTitle(termsHtml)).not.toBe(HOME_TITLE);
+    expect(getTitle(privacyHtml)).not.toBe(HOME_TITLE);
+    expect(getTitle(privacyHtml)).not.toBe(getTitle(termsHtml));
   });
 });

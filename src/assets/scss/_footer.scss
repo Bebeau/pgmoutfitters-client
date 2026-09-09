@@ -57,6 +57,25 @@ footer {
       letter-spacing: 1px;
     }
   }
+  .legalLinks {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 16px;
+    margin-top: 4px;
+    font-size: 0.95rem;
+    a {
+      display: inline;
+      margin-bottom: 0;
+      color: rgba(255, 255, 255, 0.75);
+      text-decoration: underline;
+      &:hover,
+      &:focus-visible {
+        color: white;
+      }
+    }
+  }
 }
 
 .footerWrap {

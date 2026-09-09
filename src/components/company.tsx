@@ -1,6 +1,8 @@
 import React from 'react';
 
 import moose from '../assets/img/moose.png';
+import { IMAGE_SIZES } from '../utils/responsiveImage';
+import ResponsiveImage from './responsiveImage';
 
 const Company = () => {
   return (
@@ -12,7 +14,12 @@ const Company = () => {
         </p>
       </section>
       <section className="companyImage">
-        <img src={moose} alt="Michael Lex" />
+        <ResponsiveImage
+          src={moose}
+          alt="Michael Lex"
+          sizes={IMAGE_SIZES.company}
+          lazy
+        />
       </section>
     </div>
   )

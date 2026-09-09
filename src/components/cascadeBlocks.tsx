@@ -1,6 +1,8 @@
 import React from 'react';
 import motorImage from '../assets/img/special-ops/photos/full/6.jpg';
 import guardImage from '../assets/img/guard.jpg';
+import { IMAGE_SIZES } from '../utils/responsiveImage';
+import ResponsiveImage from './responsiveImage';
 
 const CascadeBlocks = () => {
   // const [activeItem, setActiveItem] = useState('');
@@ -13,7 +15,7 @@ const CascadeBlocks = () => {
       <div className="block cascade">
         <article>
           <div className="image">
-            <img src={guardImage} alt="" />
+            <ResponsiveImage src={guardImage} alt="" sizes={IMAGE_SIZES.feature} lazy />
           </div>
           <div className="copy">
             <h3>Raccoon Deterent Shield</h3>
@@ -24,7 +26,7 @@ const CascadeBlocks = () => {
         </article>
         <article>
           <div className="image">
-            <img src={motorImage} alt="" />
+            <ResponsiveImage src={motorImage} alt="" sizes={IMAGE_SIZES.feature} lazy />
           </div>
           <div className="copy">
             <h3>Funnel Drop Door</h3>

@@ -8,6 +8,7 @@ const { assertDistinctPageTitles, assertPrerenderedPage, getTitle } = require('.
 const BUILD_DIR = path.join(__dirname, '..', 'build');
 const HOST = '127.0.0.1';
 const MIME = {
+  '.avif': 'image/avif',
   '.css': 'text/css; charset=utf-8',
   '.gif': 'image/gif',
   '.html': 'text/html; charset=utf-8',
@@ -35,6 +36,12 @@ const chromeCandidates = () =>
     '/usr/bin/chromium-browser',
     '/usr/bin/chromium',
   ].filter((candidate) => candidate && fs.existsSync(candidate));
+
+const restoreAsyncTypekit = (html) =>
+  html.replace(
+    /<link rel="stylesheet" href="\/typekit-swap\.css" as="style"[^>]*>/g,
+    '<link rel="preload" href="/typekit-swap.css" as="style" onload="this.onload=null;this.rel=\'stylesheet\'">'
+  );
 
 const destForRoute = (route) => {
   if (route === '/') {
@@ -75,18 +82,30 @@ const createSpaServer = (spaIndexHtml, port) =>
   });
 
 const shouldAbort = (url) =>
-  /googletagmanager\.com|google-analytics\.com|googleadservices\.com|doubleclick\.net|use\.typekit\.net|fonts\.googleapis\.com|maps\.googleapis\.com|maps\.google\.com|google\.com\/maps|maps\.gstatic\.com/i.test(
+  /googletagmanager\.com|google-analytics\.com|googleadservices\.com|doubleclick\.net|use\.typekit\.net|typekit-swap\.css|fonts\.googleapis\.com|maps\.googleapis\.com|maps\.google\.com|google\.com\/maps|maps\.gstatic\.com/i.test(
     url
   );
 
 const waitForPrerenderReady = async (page, route) => {
+  console.log(`Prerendering ${route}`);
   await page.waitForFunction(
     () => {
       const root = document.getElementById('root');
       const title = document.title || '';
       const canonical = document.querySelector('link[rel="canonical"]');
       const description = document.querySelector('meta[name="description"]');
-      const main = document.querySelector('.homeHeading h1, #productPage h2, .dealerPage h1');
+      const main = document.querySelector(
+        '.homeHeading h1, #productPage h2, .dealerPage h1, .legalPage h1'
+      );
+      const canonicalHref = canonical && canonical.getAttribute('href');
+      let canonicalPath = '';
+      try {
+        canonicalPath = canonicalHref ? new URL(canonicalHref).pathname : '';
+      } catch (err) {
+        canonicalPath = '';
+      }
+      const pagePath = window.location.pathname.replace(/\/$/, '') || '/';
+      const canonPath = canonicalPath.replace(/\/$/, '') || '/';
       return Boolean(
         root &&
           root.innerHTML.trim() &&
@@ -94,6 +113,7 @@ const waitForPrerenderReady = async (page, route) => {
           canonical &&
           description &&
           main &&
+          canonPath === pagePath &&
           !document.querySelector('.loader')
       );
     },
@@ -131,6 +151,8 @@ const smokeCheckBuiltFiles = () => {
   const home = fs.readFileSync(path.join(BUILD_DIR, 'index.html'), 'utf8');
   const feeder = fs.readFileSync(path.join(BUILD_DIR, 'deer-feeders', '5-n-1', 'index.html'), 'utf8');
   const dealer = fs.readFileSync(path.join(BUILD_DIR, 'dealers', 'delta-outdoors', 'index.html'), 'utf8');
+  const terms = fs.readFileSync(path.join(BUILD_DIR, 'terms', 'index.html'), 'utf8');
+  const privacy = fs.readFileSync(path.join(BUILD_DIR, 'privacy', 'index.html'), 'utf8');
 
   assertPrerenderedPage(home, {
     title: 'Next Generation Deer Feeders | PGM Outfitters',
@@ -153,12 +175,37 @@ const smokeCheckBuiltFiles = () => {
     canonical: 'https://pgmoutfitters.com/dealers/delta-outdoors',
     contentIncludes: ['Delta Outdoors'],
   });
+  assertPrerenderedPage(terms, {
+    title: 'Terms of Use | PGM Outfitters',
+    description:
+      'Terms of use for pgmoutfitters.com, including pickup-only deer feeder orders at 908 Joseph St, Shreveport, LA.',
+    canonical: 'https://pgmoutfitters.com/terms',
+    contentIncludes: ['Terms of Use'],
+  });
+  assertPrerenderedPage(privacy, {
+    title: 'Privacy Policy | PGM Outfitters',
+    description:
+      'How PGM Outfitters collects and uses information from inquiries, checkout, and the website.',
+    canonical: 'https://pgmoutfitters.com/privacy',
+    contentIncludes: ['Privacy Policy'],
+  });
 
-  assertDistinctPageTitles([{ html: home }, { html: feeder }, { html: dealer }]);
+  assertDistinctPageTitles([
+    { html: home },
+    { html: feeder },
+    { html: dealer },
+    { html: terms },
+    { html: privacy },
+  ]);
   if (getTitle(feeder) === getTitle(home) || getTitle(dealer) === getTitle(home)) {
     throw new Error('Feeder or dealer HTML still has the homepage title');
   }
-  console.log('Prerender smoke: homepage, 5-n-1, and delta-outdoors have distinct titles.');
+  if (getTitle(terms) === getTitle(home) || getTitle(privacy) === getTitle(home)) {
+    throw new Error('Terms or privacy HTML still has the homepage title');
+  }
+  console.log(
+    'Prerender smoke: homepage, 5-n-1, delta-outdoors, terms, and privacy have distinct titles.'
+  );
 };
 
 const main = async () => {
@@ -190,7 +237,7 @@ const main = async () => {
       }
       const dest = destForRoute(route);
       fs.mkdirSync(path.dirname(dest), { recursive: true });
-      fs.writeFileSync(dest, html);
+      fs.writeFileSync(dest, restoreAsyncTypekit(html));
       console.log(`Wrote ${path.relative(path.join(__dirname, '..'), dest)}`);
     }
   } finally {

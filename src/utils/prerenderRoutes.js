@@ -26,10 +26,13 @@ const DEALER_SLUGS = [
   'potts-feed-store',
 ];
 
+const STATIC_PATHS = ['/terms', '/privacy'];
+
 const SKIPPED_PATHS = ['/cart', '/checkout/success'];
 
 const getPrerenderPaths = () => [
   '/',
+  ...STATIC_PATHS,
   ...PRODUCT_SLUGS.map((slug) => `/deer-feeders/${slug}`),
   ...DEALER_SLUGS.map((slug) => `/dealers/${slug}`),
 ];
@@ -37,6 +40,7 @@ const getPrerenderPaths = () => [
 module.exports = {
   PRODUCT_SLUGS,
   DEALER_SLUGS,
+  STATIC_PATHS,
   SKIPPED_PATHS,
   getPrerenderPaths,
 };

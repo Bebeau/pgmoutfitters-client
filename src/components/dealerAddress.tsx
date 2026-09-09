@@ -9,7 +9,7 @@ const DealerAddress = ({ address }: dealerAddressProps) => {
   return (
     <div className="addressWrap">
       <div className="icon">
-        <img src={PinIcon} alt="" />
+        <img src={PinIcon} alt="" width={15} height={19} />
       </div>
       <address>
         {address.street}

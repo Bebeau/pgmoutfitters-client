@@ -1,8 +1,8 @@
-@import url("https://use.typekit.net/yby0lpp.css");
-
 $blue: #223047;
 $lightblue: #4E6283;
 $green: #7C8969;
+// White text on $green is ~3.7:1. This olive still reads as brand green and is ≥4.5:1.
+$greenAccessible: #6B7759;
 $tan: #BEA296;
 $orange: #885438;
 $grey: #4C4F58;

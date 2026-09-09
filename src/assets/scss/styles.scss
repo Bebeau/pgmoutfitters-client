@@ -1,18 +1,9 @@
-
-@import './_variables.scss';
-@import './_global.scss';
-@import './_loader.scss';
-// @use './_dealerInquiry';
-// @use './_hero';
-@import './_company.scss';
-@import './_homepage.scss';
-@import './_testimonials.scss';
-@import './_productListing.scss';
-@import './_modal.scss';
-@import './_cart.scss';
-
-@import './_product.scss';
-@import './_carousel.scss';
-@import './_dealerList.scss';
-@import './_dealerPage.scss';
-@import './_footer.scss';
+// Full stylesheet for `npm run sass`. Production loads `critical.scss`
+// from index.tsx and route/page SCSS from the matching lazy components.
+@import './critical.scss';
+@import './product-page.scss';
+@import './cart-page.scss';
+@import './legal-page.scss';
+@import './dealer-page.scss';
+@import './modal-page.scss';
+@import './carousel-page.scss';

@@ -5,6 +5,9 @@ body {
     background: $blue;
     font-family: "stratum-1-web", sans-serif;
 }
+picture.responsiveImage {
+    display: contents;
+}
 a {
     color: white;
     text-decoration: none;
@@ -36,7 +39,7 @@ h4 {
     font-size: 1.4rem;
     margin: 0 0 10px;
 }
-h5.details {
+.details {
     font-family: "stratum-1-web", sans-serif;
     font-weight: 400;
     font-style: normal;
@@ -93,7 +96,7 @@ input {
 }
 .btn {
     color: white;
-    background: $green;
+    background: $greenAccessible;
     display: block;
     width: 300px;
     margin: 0 auto;
