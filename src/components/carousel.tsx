@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
+import '../assets/scss/carousel-page.scss';
 import { productPath } from '../utils/productPath';
 import { IMAGE_SIZES } from '../utils/responsiveImage';
 import ResponsiveImage from './responsiveImage';

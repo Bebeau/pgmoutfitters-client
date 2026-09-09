@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
+import '../assets/scss/cart-page.scss';
 import { useCart } from '../context/cartContext';
 import { fetchCheckoutSession } from '../utils/checkoutApi';
 import { unwrapSessionPayment } from '../utils/checkoutResponse';

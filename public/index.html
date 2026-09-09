@@ -65,8 +65,21 @@
       data-rh="true"
     />
     <title data-rh="true">Next Generation Deer Feeders</title>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MNNBCH3N3B"></script>
+    <style>
+      html,body{margin:0;padding:0;background:#223047}
+    </style>
+    <link rel="preconnect" href="https://use.typekit.net" crossorigin>
+    <link
+      rel="preload"
+      href="%PUBLIC_URL%/typekit-swap.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    >
+    <noscript><link rel="stylesheet" href="%PUBLIC_URL%/typekit-swap.css"></noscript>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -74,11 +87,7 @@
       gtag('config', 'G-MNNBCH3N3B');
       gtag('config', 'AW-11171481429');
     </script>
-    <!-- End -->
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MNNBCH3N3B"></script>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.

@@ -1,4 +1,5 @@
     import {useState, useEffect, useCallback, useRef, createRef} from 'react';
+    import '../assets/scss/modal-page.scss';
 
     import { ReactComponent as HunterIcon } from '../assets/img/hunter.svg';
     import { ReactComponent as OutfitterIcon } from '../assets/img/outfitter.svg';

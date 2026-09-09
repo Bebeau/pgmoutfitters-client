@@ -89,6 +89,56 @@ describe('Product helmet', () => {
     expect(galleryThumb).toHaveAttribute('loading', 'lazy');
   });
 
+  test('dismisses the loader without preloading gallery full images', async () => {
+    const product = productData.find((item) => item.slug === '2-n-1');
+    if (!product) {
+      throw new Error('Expected 2-n-1 product');
+    }
+
+    const setIsLoading = jest.fn();
+    const imageSpy = jest.fn();
+    const OriginalImage = window.Image;
+    window.Image = class MockImage {
+      set src(_value: string) {
+        imageSpy();
+      }
+    } as unknown as typeof Image;
+
+    try {
+      render(
+        <HelmetProvider>
+          <CartProvider>
+            <MemoryRouter initialEntries={[`/deer-feeders/${product.slug}`]}>
+              <Routes>
+                <Route
+                  path="/deer-feeders/:slug"
+                  element={
+                    <Product
+                      testimonialData={[]}
+                      isLoading={true}
+                      setIsLoading={setIsLoading}
+                    />
+                  }
+                />
+              </Routes>
+            </MemoryRouter>
+          </CartProvider>
+        </HelmetProvider>
+      );
+
+      await waitFor(() => {
+        expect(setIsLoading).toHaveBeenCalledWith(false);
+      });
+      expect(imageSpy).not.toHaveBeenCalled();
+      expect(document.querySelector('#productPage .imageGallery img')).toHaveAttribute(
+        'loading',
+        'lazy'
+      );
+    } finally {
+      window.Image = OriginalImage;
+    }
+  });
+
   test('unknown slugs use ProductNotFound instead of the product layout', async () => {
     renderProduct('not-a-real-feeder');
 

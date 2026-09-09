@@ -1,4 +1,5 @@
 import { LegalDocument, LegalSection } from '../assets/data/legal';
+import '../assets/scss/legal-page.scss';
 import PageHelmet from './pageHelmet';
 
 type legalPageType = {

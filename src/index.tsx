@@ -3,7 +3,7 @@ import { createRoot, hydrateRoot } from 'react-dom/client';
 import { HelmetProvider } from 'react-helmet-async';
 import App from './components/app';
 import reportWebVitals from './reportWebVitals';
-import './assets/css/styles.css';
+import './assets/scss/critical.scss';
 import {productData} from './assets/data/products';
 import {testimonialData} from './assets/data/testimonials';
 
