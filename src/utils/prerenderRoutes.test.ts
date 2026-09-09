@@ -138,3 +138,4 @@ describe('prerendered HTML smoke helper', () => {
     ).toThrow(/Empty #root/);
   });
 });
+

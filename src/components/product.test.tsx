@@ -87,6 +87,7 @@ describe('Product helmet', () => {
 
     const galleryThumb = document.querySelector('#productPage .imageGallery img');
     expect(galleryThumb).toHaveAttribute('loading', 'lazy');
+    expect(document.querySelectorAll('#productPage .related .item').length).toBeGreaterThan(0);
   });
 
   test('gallery close control is present without mounting Inquiry', async () => {
