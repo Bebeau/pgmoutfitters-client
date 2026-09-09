@@ -80,13 +80,16 @@ const shouldAbort = (url) =>
   );
 
 const waitForPrerenderReady = async (page, route) => {
+  console.log(`Prerendering ${route}`);
   await page.waitForFunction(
     () => {
       const root = document.getElementById('root');
       const title = document.title || '';
       const canonical = document.querySelector('link[rel="canonical"]');
       const description = document.querySelector('meta[name="description"]');
-      const main = document.querySelector('.homeHeading h1, #productPage h2, .dealerPage h1');
+      const main = document.querySelector(
+        '.homeHeading h1, #productPage h2, .dealerPage h1, .legalPage h1'
+      );
       return Boolean(
         root &&
           root.innerHTML.trim() &&
